@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2024 at 09:00 PM
+-- Generation Time: Feb 13, 2024 at 01:24 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -44,7 +44,7 @@ CREATE TABLE `activitylog` (
 --
 
 CREATE TABLE `agents` (
-  `Agent_ID` int(10) NOT NULL,
+  `AgentID` int(10) NOT NULL,
   `AgentCustomerNo` varchar(10) NOT NULL,
   `AgentNameAr` varchar(100) NOT NULL,
   `AgentNameEn` varchar(100) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE `agents` (
 -- Dumping data for table `agents`
 --
 
-INSERT INTO `agents` (`Agent_ID`, `AgentCustomerNo`, `AgentNameAr`, `AgentNameEn`, `AgentPhone`, `AgentCR`, `AgentAddress`, `AgentEmail`, `AgentBilling`, `AgentURL`, `AgentCity`, `AgentCountry`, `AgentNotes`, `AgentContactName`, `AgentContactTitle`, `AgentOpeningBalance`, `AgentCategory`, `AgentEx1`, `AgentEx2`, `AgentEx3`) VALUES
+INSERT INTO `agents` (`AgentID`, `AgentCustomerNo`, `AgentNameAr`, `AgentNameEn`, `AgentPhone`, `AgentCR`, `AgentAddress`, `AgentEmail`, `AgentBilling`, `AgentURL`, `AgentCity`, `AgentCountry`, `AgentNotes`, `AgentContactName`, `AgentContactTitle`, `AgentOpeningBalance`, `AgentCategory`, `AgentEx1`, `AgentEx2`, `AgentEx3`) VALUES
 (1, '910004', 'الحاج عبدالله علي رضا و شركاه المحدوده', 'H. ALI  REZA', '8324133', '8337575', '', '', '', '', 'Dammam', 'Saudia Arabia', '', 'MR. SAFWAT(119)', '', 0, 1, '', '', 0),
 (2, '910009', 'شركة الخدمات البحرية العالمية', 'GLOBE Marine Services Co.', '8352222', '8351222', '', '', '', '', 'Dammam', 'Saudia Arabia', '', 'MR.AMANULLAH(1323)', '', 0, 1, '', '', 0),
 (3, '910007', 'توكيلات  بارويل  المحدودة', 'BARWIL  Agencies  Ltd.', '8339975/8142411', '8333393', 'POBox 293 / Postal Code 31411', 'salah.al-yousif@barwil.com', '', '', 'Dammam', 'Saudia Arabia', '', 'Mr.Abdur Razzaq(203)', 'Mr.Zaheeruddin (202)', 0, 1, '', '', 0),
@@ -162,7 +162,7 @@ CREATE TABLE `invoice` (
   `ServiceType` varchar(50) NOT NULL,
   `ServiceTypeName` varchar(50) NOT NULL,
   `ServiceTypeFactor` double NOT NULL,
-  `InvoiceDate` datetime NOT NULL,
+  `InvoiceDate` datetime NOT NULL DEFAULT current_timestamp(),
   `InvoiceDateT` varchar(50) NOT NULL,
   `InvoiceDateH` varchar(50) NOT NULL,
   `ArrivalDate` datetime NOT NULL,
@@ -172,7 +172,7 @@ CREATE TABLE `invoice` (
   `DepartureDateT` varchar(50) NOT NULL,
   `DepartureDateH` varchar(50) NOT NULL,
   `PeriodDays` int(10) NOT NULL,
-  `AnchorageEntry` datetime NOT NULL,
+  `AnchorageEntry` datetime DEFAULT NULL,
   `AnchorageEntryT` varchar(50) NOT NULL,
   `AnchorageEntryH` varchar(50) NOT NULL,
   `AnchorageLeave` datetime NOT NULL,
@@ -180,21 +180,21 @@ CREATE TABLE `invoice` (
   `AnchorageLeaveH` varchar(50) NOT NULL,
   `AnchorageDays` int(10) NOT NULL,
   `MSericeAnchoragePrice` double NOT NULL,
-  `MovePort0` varchar(50) NOT NULL,
   `MovePort1` varchar(50) NOT NULL,
   `MovePort2` varchar(50) NOT NULL,
+  `MovePort3` varchar(50) NOT NULL,
   `TripNo` varchar(50) NOT NULL,
   `DockingNo` varchar(50) NOT NULL,
   `RouteNo` varchar(50) NOT NULL,
   `ShiftedNo` varchar(50) NOT NULL,
   `Reason` text NOT NULL,
   `Note` text NOT NULL,
-  `MSFraction0` double NOT NULL DEFAULT 1,
   `MSFraction1` double NOT NULL DEFAULT 1,
   `MSFraction2` double NOT NULL DEFAULT 1,
-  `MService0` varchar(50) NOT NULL,
+  `MSFraction3` double NOT NULL DEFAULT 1,
   `MService1` varchar(50) NOT NULL,
   `MService2` varchar(50) NOT NULL,
+  `MService3` varchar(50) NOT NULL,
   `CA0` double NOT NULL,
   `CA1` double NOT NULL,
   `CA2` double NOT NULL,
@@ -222,46 +222,46 @@ CREATE TABLE `invoice` (
   `MC3` double NOT NULL,
   `MovePortPrice` double NOT NULL,
   `MSericeBathPrice` double NOT NULL,
-  `MSNote0` text NOT NULL,
-  `MSNote1` text NOT NULL,
-  `MSNote2` text NOT NULL,
+  `MSNote1` varchar(50) NOT NULL,
+  `MSNote2` varchar(50) NOT NULL,
+  `MSNote3` varchar(50) NOT NULL,
   `MGPrice` double NOT NULL,
   `MSTOTAL` double NOT NULL,
-  `SService0` varchar(50) NOT NULL,
-  `SService1` varchar(50) NOT NULL,
-  `SService2` varchar(50) NOT NULL,
-  `SService3` varchar(50) NOT NULL,
-  `SService4` varchar(50) NOT NULL,
-  `SSName0` text NOT NULL,
+  `SService1` text NOT NULL,
+  `SService2` text NOT NULL,
+  `SService3` text NOT NULL,
+  `SService4` text NOT NULL,
+  `SService5` text NOT NULL,
   `SSName1` text NOT NULL,
   `SSName2` text NOT NULL,
   `SSName3` text NOT NULL,
   `SSName4` text NOT NULL,
-  `SSNote0` text NOT NULL,
+  `SSName5` text NOT NULL,
   `SSNote1` text NOT NULL,
   `SSNote2` text NOT NULL,
   `SSNote3` text NOT NULL,
   `SSNote4` text NOT NULL,
-  `SSUnit0` varchar(50) NOT NULL,
-  `SSUnit1` varchar(50) NOT NULL,
-  `SSUnit2` varchar(50) NOT NULL,
-  `SSUnit3` varchar(50) NOT NULL,
-  `SSUnit4` varchar(50) NOT NULL,
-  `SSQut0` double NOT NULL,
-  `SSQut1` double NOT NULL,
-  `SSQut2` double NOT NULL,
-  `SSQut3` double NOT NULL,
-  `SSQut4` double NOT NULL,
-  `SSUPrice0` double NOT NULL,
-  `SSUPrice1` double NOT NULL,
-  `SSUPrice2` double NOT NULL,
-  `SSUPrice3` double NOT NULL,
-  `SSUPrice4` double NOT NULL,
-  `SSPrice0` double NOT NULL,
-  `SSPrice1` double NOT NULL,
-  `SSPrice2` double NOT NULL,
-  `SSPrice3` double NOT NULL,
-  `SSPrice4` double NOT NULL,
+  `SSNote5` text NOT NULL,
+  `SSUnit1` text NOT NULL,
+  `SSUnit2` text NOT NULL,
+  `SSUnit3` text NOT NULL,
+  `SSUnit4` text NOT NULL,
+  `SSUnit5` text NOT NULL,
+  `SSQut1` text NOT NULL,
+  `SSQut2` text NOT NULL,
+  `SSQut3` text NOT NULL,
+  `SSQut4` text NOT NULL,
+  `SSQut5` text NOT NULL,
+  `SSUPrice1` text NOT NULL,
+  `SSUPrice2` text NOT NULL,
+  `SSUPrice3` text NOT NULL,
+  `SSUPrice4` text NOT NULL,
+  `SSUPrice5` text NOT NULL,
+  `SSPrice1` text NOT NULL,
+  `SSPrice2` text NOT NULL,
+  `SSPrice3` text NOT NULL,
+  `SSPrice4` text NOT NULL,
+  `SSPrice5` text NOT NULL,
   `SSTOTAL` double NOT NULL,
   `TOTAL` double NOT NULL,
   `is_VAT` int(4) NOT NULL DEFAULT 0,
@@ -270,19 +270,6 @@ CREATE TABLE `invoice` (
   `Status` int(10) NOT NULL DEFAULT 0,
   `OracleCode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `invoice`
---
-
-INSERT INTO `invoice` (`InvoiceID`, `ShipID`, `ShipName`, `ShipWeight`, `AgentID`, `AgentNameAr`, `AgentNameEn`, `ServiceType`, `ServiceTypeName`, `ServiceTypeFactor`, `InvoiceDate`, `InvoiceDateT`, `InvoiceDateH`, `ArrivalDate`, `ArrivalDateT`, `ArrivalDateH`, `DepartureDate`, `DepartureDateT`, `DepartureDateH`, `PeriodDays`, `AnchorageEntry`, `AnchorageEntryT`, `AnchorageEntryH`, `AnchorageLeave`, `AnchorageLeaveT`, `AnchorageLeaveH`, `AnchorageDays`, `MSericeAnchoragePrice`, `MovePort0`, `MovePort1`, `MovePort2`, `TripNo`, `DockingNo`, `RouteNo`, `ShiftedNo`, `Reason`, `Note`, `MSFraction0`, `MSFraction1`, `MSFraction2`, `MService0`, `MService1`, `MService2`, `CA0`, `CA1`, `CA2`, `CA3`, `MSericeInPrice`, `CB0`, `CB1`, `CB2`, `CB3`, `MSericeOutPrice`, `MA`, `MA0`, `MA1`, `MA2`, `MA3`, `MB`, `MB0`, `MB1`, `MB2`, `MB3`, `MC`, `MC0`, `MC1`, `MC2`, `MC3`, `MovePortPrice`, `MSericeBathPrice`, `MSNote0`, `MSNote1`, `MSNote2`, `MGPrice`, `MSTOTAL`, `SService0`, `SService1`, `SService2`, `SService3`, `SService4`, `SSName0`, `SSName1`, `SSName2`, `SSName3`, `SSName4`, `SSNote0`, `SSNote1`, `SSNote2`, `SSNote3`, `SSNote4`, `SSUnit0`, `SSUnit1`, `SSUnit2`, `SSUnit3`, `SSUnit4`, `SSQut0`, `SSQut1`, `SSQut2`, `SSQut3`, `SSQut4`, `SSUPrice0`, `SSUPrice1`, `SSUPrice2`, `SSUPrice3`, `SSUPrice4`, `SSPrice0`, `SSPrice1`, `SSPrice2`, `SSPrice3`, `SSPrice4`, `SSTOTAL`, `TOTAL`, `is_VAT`, `VAT`, `VAT_TOTAL`, `Status`, `OracleCode`) VALUES
-(1, 8282, 'SOUND FUTURE', 18495, 2, 'شركة الخدمات البحرية العالمية', 'GLOBE Marine Services Co.', '1', 'عادية', 1, '2014-10-25 15:55:00', '15:55', '1436/01/01', '2014-10-21 21:20:00', '21:20', '1435/12/26', '2014-10-25 02:00:00', '02:00', '1436/01/01', 4, '0000-00-00 00:00:00', '01:00', '1389/10/22', '0000-00-00 00:00:00', '01:00', '1389/10/22', 0, 0, '', '', '', '003', '22/21', '', '', '', '', 1, 1, 1, '1', '1', '1', 500, 2500, 1800, 349.5, 5149.5, 500, 2500, 1800, 349.5, 5149.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8000, '', '', '', 10299, 18299, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18299, 0, 0, 18299, 760, ''),
-(2, 9969, 'MARITIME TABONEO', 39871, 9, 'شركة الملاحة البحرية العربية ', 'Shipping Corp. of Saudi Arabia ', '1', 'عادية', 1, '2014-10-25 16:41:00', '16:41', '1436/01/01', '2014-10-10 20:40:00', '20:40', '1435/12/15', '2014-10-25 02:55:00', '02:55', '1436/01/01', 15, '0000-00-00 00:00:00', '01:00', '1389/10/22', '0000-00-00 00:00:00', '01:00', '1389/10/22', 0, 0, '', '', '', '', '13/12', '', '', '', '', 1, 1, 1, '1', '1', '1', 500, 2500, 1800, 2487.1, 7287.1, 500, 2500, 1800, 2487.1, 7287.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30000, '', '', '', 14574.2, 44574.2, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 44574.2, 0, 0, 44574.2, 760, ''),
-(3, 6011, 'CEPHEUS LEADER', 62571, 1, 'الحاج عبدالله علي رضا و شركاه المحدوده', 'H. ALI  REZA', '1', 'عادية', 1, '2014-10-25 15:43:00', '15:43', '1436/01/01', '2014-10-24 20:40:00', '20:40', '1435/12/29', '2014-10-25 03:35:00', '03:35', '1436/01/01', 1, '0000-00-00 00:00:00', '01:00', '1389/10/22', '0000-00-00 00:00:00', '01:00', '1389/10/22', 0, 0, '', '', '', '064', '30/31', '', '', '', '', 1, 1, 1, '1', '1', '1', 500, 2500, 1800, 4757.1, 9557.1, 500, 2500, 1800, 4757.1, 9557.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2000, '', '', '', 19114.2, 21114.2, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21114.2, 0, 0, 21114.2, 760, ''),
-(4, 9711, 'BOURGEOIS TIDE', 1476, 4, 'شركة يوسف بن احمد كانو', 'Yusuf  Bin  Ahmad  KANOO', '1', 'عادية', 1, '2014-10-25 16:10:00', '16:10', '1436/01/01', '2014-10-20 09:00:00', '09:00', '1435/12/25', '2014-10-20 09:40:00', '09:40', '1435/12/25', 1, '0000-00-00 00:00:00', '01:00', '1389/10/22', '0000-00-00 00:00:00', '01:00', '1389/10/22', 0, 0, '', '', '', '', 'LBY', '', '', '', '', 1, 1, 1, '0', '0', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0, 0, '44', '', '', '', '', 'اجور الإرشاد 500 طن حتى 3000', '', '', '', '', '', '', '', '', '', 'حركة', '', '', '', '', 1, 0, 0, 0, 0, 500, 0, 0, 0, 0, 500, 0, 0, 0, 0, 500, 500, 0, 0, 500, 760, ''),
-(5, 9970, 'DOMINIGUE TIDE', 1678, 4, 'شركة يوسف بن احمد كانو', 'Yusuf  Bin  Ahmad  KANOO', '1', 'عادية', 1, '2014-10-25 16:20:00', '16:20', '1436/01/01', '2014-10-19 08:55:00', '08:55', '1435/12/24', '2014-10-19 10:00:00', '10:00', '1435/12/24', 1, '2014-10-19 07:20:00', '07:20', '1435/12/24', '2014-10-19 08:30:00', '08:30', '1435/12/24', 1, 250, '', '', '', '', 'LBY', '', '', '', '', 1, 1, 1, '0', '0', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0, 250, '44', '', '', '', '', 'اجور الإرشاد 500 طن حتى 3000', '', '', '', '', '', '', '', '', '', 'حركة', '', '', '', '', 1, 0, 0, 0, 0, 500, 0, 0, 0, 0, 500, 0, 0, 0, 0, 500, 750, 0, 0, 750, 760, ''),
-(6, 7653, 'T/BERGERON TIDE', 1678, 4, 'شركة يوسف بن احمد كانو', 'Yusuf  Bin  Ahmad  KANOO', '1', 'عادية', 1, '2014-10-25 16:20:00', '16:20', '1436/01/01', '2014-10-19 16:35:00', '16:35', '1435/12/24', '2014-10-19 17:00:00', '17:00', '1435/12/24', 1, '0000-00-00 00:00:00', '01:00', '1389/10/22', '0000-00-00 00:00:00', '01:00', '1389/10/22', 0, 0, '', '', '', '', 'LBY', '', '', '', '', 1, 1, 1, '0', '0', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0, 0, '44', '', '', '', '', 'اجور الإرشاد 500 طن حتى 3000', '', '', '', '', '', '', '', '', '', 'حركة', '', '', '', '', 1, 0, 0, 0, 0, 500, 0, 0, 0, 0, 500, 0, 0, 0, 0, 500, 500, 0, 0, 500, 760, ''),
-(7, 9648, 'T/VM LEGEND', 1047, 4, 'شركة يوسف بن احمد كانو', 'Yusuf  Bin  Ahmad  KANOO', '1', 'عادية', 1, '2014-10-25 16:22:00', '16:22', '1436/01/01', '2014-10-19 09:15:00', '09:15', '1435/12/24', '2014-10-19 09:40:00', '09:40', '1435/12/24', 1, '0000-00-00 00:00:00', '01:00', '1389/10/22', '0000-00-00 00:00:00', '01:00', '1389/10/22', 0, 0, '', '', '', '', 'LBY', '', '', '', '', 1, 1, 1, '0', '0', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0, 0, '44', '', '', '', '', 'اجور الإرشاد 500 طن حتى 3000', '', '', '', '', '', '', '', '', '', 'حركة', '', '', '', '', 1, 0, 0, 0, 0, 500, 0, 0, 0, 0, 500, 0, 0, 0, 0, 500, 500, 0, 0, 500, 760, '');
 
 -- --------------------------------------------------------
 
@@ -444,7 +431,7 @@ INSERT INTO `services` (`Service_ID`, `Description`, `ServiceType`, `Unit`, `Wei
 --
 
 CREATE TABLE `ship` (
-  `Ship_ID` int(10) NOT NULL,
+  `ShipID` int(10) NOT NULL,
   `IMO` varchar(20) NOT NULL,
   `ShipName` varchar(100) NOT NULL,
   `Weight` double NOT NULL,
@@ -457,7 +444,7 @@ CREATE TABLE `ship` (
 -- Dumping data for table `ship`
 --
 
-INSERT INTO `ship` (`Ship_ID`, `IMO`, `ShipName`, `Weight`, `AgentID`, `VAT`, `Notes`) VALUES
+INSERT INTO `ship` (`ShipID`, `IMO`, `ShipName`, `Weight`, `AgentID`, `VAT`, `Notes`) VALUES
 (14983, '198982158 ', 'HUANG UP', 22998, 0, 0, ''),
 (14984, '399384720 ', 'BASILISK', 14859, 0, 0, ''),
 (14985, '432270533 ', 'AL-HAJI KASIM', 524, 0, 0, ''),
@@ -823,7 +810,7 @@ ALTER TABLE `activitylog`
 -- Indexes for table `agents`
 --
 ALTER TABLE `agents`
-  ADD PRIMARY KEY (`Agent_ID`);
+  ADD PRIMARY KEY (`AgentID`);
 
 --
 -- Indexes for table `config`
@@ -872,7 +859,7 @@ ALTER TABLE `services`
 -- Indexes for table `ship`
 --
 ALTER TABLE `ship`
-  ADD PRIMARY KEY (`Ship_ID`),
+  ADD PRIMARY KEY (`ShipID`),
   ADD UNIQUE KEY `IMO` (`IMO`);
 
 --
@@ -904,7 +891,7 @@ ALTER TABLE `activitylog`
 -- AUTO_INCREMENT for table `agents`
 --
 ALTER TABLE `agents`
-  MODIFY `Agent_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=230;
+  MODIFY `AgentID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=230;
 
 --
 -- AUTO_INCREMENT for table `config`
@@ -922,7 +909,7 @@ ALTER TABLE `information`
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `InvoiceID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21467;
+  MODIFY `InvoiceID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `member`
@@ -952,7 +939,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `ship`
 --
 ALTER TABLE `ship`
-  MODIFY `Ship_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15006;
+  MODIFY `ShipID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15006;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
