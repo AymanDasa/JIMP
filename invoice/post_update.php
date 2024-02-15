@@ -3,21 +3,19 @@
 			Require_once( "C:\\wow\\password\\config.php"); 
 			Require_once("../include/auth.php"); 
 			Require_once("../include/config.php"); 
-			  
-	    
-			$query = "SELECT `value` FROM `config`  WHERE  `name`='SSCount' LIMIT 1;"; 
-			$SSCountQuerys = $dbop->query($query)->fetchAll();   
-			foreach ($SSCountQuerys as $SSCountQuery) {    
-				$SSCount = intval($SSCountQuery['value']) ;
-			} 
+      $SSCount = 5 ;
 			$today = date("Y-m-d H:i:s"); 
-      $maxID=1;
-if(isset($_POST['save'])) {
+           
+
+if(isset($_POST['Update'])) {
 #########################################################################
 #########################################################################
 #######################  Functions & Class  #############################
 #########################################################################
 #########################################################################
+$maxID =$InvoiceID= intval($_POST['maxID']);
+if($debug){echo "<b>maxID :</b>".$maxID,"<br>";} 
+if($debug){echo "<b>InvoiceID :</b>".$InvoiceID,"<br>";} 
 
 include_once("../include/js/Hijri_GregorianConvert.class");
 function TGH($BDate){
@@ -405,9 +403,6 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
 #########################################################################
 
 
-    $query_company = "SELECT `vat` FROM `information` "; 
-    $vats = $dbop->query($query_company)->fetchAll(); 
-    foreach ($vats as $vat_row) {$vatP=floatval($vat_row['vat'])/100;} 
     $query = "SELECT * FROM `services` ORDER BY `Service_ID` ASC"; 
     $SSVs = $dbop->query($query)->fetchAll();
     $i=1;   
@@ -419,6 +414,7 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
         $i++;
         
     } 
+    
     $SService1 = intval($_POST['SService1']);
     $SService2 = intval($_POST['SService2']);
     $SService3 = intval($_POST['SService3']);
@@ -528,8 +524,8 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
 #########################################################################
 
 $TOTAL=$MSTOTAL+$SSTOTAL ;
-$VAT=intval(($TOTAL*$ShipVAT)*($vatP));
-$VAT_TOTAL=intval($VAT+$TOTAL);
+$VAT=$TOTAL*$ShipVAT;
+$VAT_TOTAL=$VAT+$TOTAL;
 
     if($debug){echo "<b>M. TOTAL :</b>".$MSTOTAL."<br>";}
     if($debug){echo "<b>S. TOTAL :</b>".$SSTOTAL."<br>";}
@@ -544,255 +540,128 @@ $VAT_TOTAL=intval($VAT+$TOTAL);
 #########################################################################
 
 
-
-$SQL_INSERT="INSERT INTO `invoice` 
-(
+$SQL_UPDATE ="UPDATE `invoice` SET 
+  `ShipID`                  ='$ShipID',       
+  `ShipName`                ='$ShipName',       
+  `ShipWeight`              ='$ShipWeight',           
+  `AgentID`                 ='$AgentID',       
+  `AgentNameAr`             ='$AgentNameAr',           
+  `AgentNameEn`             ='$AgentNameEn',           
+  `ServiceType`             ='$ServiceType',           
+  `ServiceTypeName`         ='$ServiceTypeName',               
+  `ServiceTypeFactor`       ='$ServiceTypeFactor',               
+  `InvoiceDate`             ='$InvoiceDate',           
+  `InvoiceDateT`            ='$InvoiceDateT',           
+  `InvoiceDateH`            ='$InvoiceDateH',           
+  `ArrivalDate`             ='$ArrivalDate',           
+  `ArrivalDateT`            ='$ArrivalDateT',           
+  `ArrivalDateH`            ='$ArrivalDateH',           
+  `DepartureDate`           ='$DepartureDate',           
+  `DepartureDateT`          ='$DepartureDateT',               
+  `DepartureDateH`          ='$DepartureDateH',               
+  `PeriodDays`              ='$PeriodDays',           
+  `AnchorageEntry`          ='$AnchorageEntry',               
+  `AnchorageEntryT`         ='$AnchorageEntryT',               
+  `AnchorageEntryH`         ='$AnchorageEntryH',               
+  `AnchorageLeave`          ='$AnchorageLeave',               
+  `AnchorageLeaveT`         ='$AnchorageLeaveT',               
+  `AnchorageLeaveH`         ='$AnchorageLeaveH',               
+  `AnchorageDays`           ='$AnchorageDays',           
+  `MSericeAnchoragePrice`   ='$MSericeAnchoragePrice',                   
+  `MovePort1`               ='$MovePort1',       
+  `MovePort2`               ='$MovePort2',       
+  `MovePort3`               ='$MovePort3',       
+  `TripNo`                  ='$TripNo',       
+  `DockingNo`               ='$DockingNo',       
+  `RouteNo`                 ='$RouteNo',       
+  `ShiftedNo`               ='$ShiftedNo',       
+  `Reason`                  ='$Reason',       
+  `Note`                    ='$Note',   
+  `MSFraction1`             ='$MSFraction1',           
+  `MSFraction2`             ='$MSFraction2',           
+  `MSFraction3`             ='$MSFraction3',           
+  `MService1`               ='$MService1',       
+  `MService2`               ='$MService2',       
+  `MService3`               ='$MService3',       
+  `CA0`                     ='$CA0',   
+  `CA1`                     ='$CA1',   
+  `CA2`                     ='$CA2',   
+  `CA3`                     ='$CA3',   
+  `MSericeInPrice`          ='$MSericeInPrice',               
+  `CB0`                     ='$CB0',   
+  `CB1`                     ='$CB1',   
+  `CB2`                     ='$CB2',   
+  `CB3`                     ='$CB3',   
+  `MSericeOutPrice`         ='$MSericeOutPrice',               
+  `MA`                      ='$MA',   
+  `MA0`                     ='$MA0',   
+  `MA1`                     ='$MA1',   
+  `MA2`                     ='$MA2',   
+  `MA3`                     ='$MA3',   
+  `MB`                      ='$MB',   
+  `MB0`                     ='$MB0',   
+  `MB1`                     ='$MB1',   
+  `MB2`                     ='$MB2',   
+  `MB3`                     ='$MB3',   
+  `MC`                      ='$MC',   
+  `MC0`                     ='$MC0',   
+  `MC1`                     ='$MC1',   
+  `MC2`                     ='$MC2',   
+  `MC3`                     ='$MC3',   
+  `MovePortPrice`           ='$MovePortPrice',           
+  `MSericeBathPrice`        ='$MSericeBathPrice',               
+  `MSNote1`                 ='$MSNote1',       
+  `MSNote2`                 ='$MSNote2',       
+  `MSNote3`                 ='$MSNote3',       
+  `MGPrice`                 ='$MGPrice',       
+  `MSTOTAL`                 ='$MSTOTAL',       
+  `SService1`               ='$SService1',       
+  `SService2`               ='$SService2',       
+  `SService3`               ='$SService3',       
+  `SService4`               ='$SService4',       
+  `SService5`               ='$SService5',       
+  `SSName1`                 ='$SSName1',       
+  `SSName2`                 ='$SSName2',       
+  `SSName3`                 ='$SSName3',       
+  `SSName4`                 ='$SSName4',       
+  `SSName5`                 ='$SSName5',       
+  `SSNote1`                 ='$SSNote1',       
+  `SSNote2`                 ='$SSNote2',       
+  `SSNote3`                 ='$SSNote3',       
+  `SSNote4`                 ='$SSNote4',       
+  `SSNote5`                 ='$SSNote5',       
+  `SSUnit1`                 ='$SSUnit1',       
+  `SSUnit2`                 ='$SSUnit2',       
+  `SSUnit3`                 ='$SSUnit3',       
+  `SSUnit4`                 ='$SSUnit4',       
+  `SSUnit5`                 ='$SSUnit5',       
+  `SSQut1`                  ='$SSQut1',       
+  `SSQut2`                  ='$SSQut2',       
+  `SSQut3`                  ='$SSQut3',       
+  `SSQut4`                  ='$SSQut4',       
+  `SSQut5`                  ='$SSQut5',       
+  `SSUPrice1`               ='$SSUPrice1',       
+  `SSUPrice2`               ='$SSUPrice2',       
+  `SSUPrice3`               ='$SSUPrice3',       
+  `SSUPrice4`               ='$SSUPrice4',       
+  `SSUPrice5`               ='$SSUPrice5',       
+  `SSPrice1`                ='$SSPrice1',      
+  `SSPrice2`                ='$SSPrice2',       
+  `SSPrice3`                ='$SSPrice3',      
+  `SSPrice4`                ='$SSPrice4',        
+  `SSPrice5`                ='$SSPrice5',       
+  `SSTOTAL`                 ='$SSTOTAL',       
+  `TOTAL`                   ='$TOTAL',   
+  `is_VAT`                  ='$is_VAT',   
+  `VAT`                     ='$VAT',   
+  `VAT_TOTAL`               ='$VAT_TOTAL',       
+  `Status`                   ='$Status'   
+   WHERE  `InvoiceID`         =".$InvoiceID.";";  
+if($debug){echo "<b>InvoiceID :</b>".$InvoiceID,"<br>";} 
+if($debug){echo "<b>SQL_UPDATE :</b>".$SQL_UPDATE,"<br>";} 
  
-  `ShipID`, 
-  `ShipName`, 
-  `ShipWeight`, 
-  `AgentID`, 
-  `AgentNameAr`, 
-  `AgentNameEn`, 
-  `ServiceType`, 
-  `ServiceTypeName`, 
-  `ServiceTypeFactor`, 
-  `InvoiceDate`, 
-  `InvoiceDateT`, 
-  `InvoiceDateH`, 
-  `ArrivalDate`, 
-  `ArrivalDateT`, 
-  `ArrivalDateH`, 
-  `DepartureDate`, 
-  `DepartureDateT`, 
-  `DepartureDateH`, 
-  `PeriodDays`, 
-  `AnchorageEntry`, 
-  `AnchorageEntryT`, 
-  `AnchorageEntryH`, 
-  `AnchorageLeave`, 
-  `AnchorageLeaveT`, 
-  `AnchorageLeaveH`, 
-  `AnchorageDays`, 
-  `MSericeAnchoragePrice`, 
-  `MovePort1`, 
-  `MovePort2`, 
-  `MovePort3`, 
-  `TripNo`, 
-  `DockingNo`, 
-  `RouteNo`, 
-  `ShiftedNo`, 
-  `Reason`, 
-  `Note`, 
-  `MSFraction1`, 
-  `MSFraction2`, 
-  `MSFraction3`, 
-  `MService1`, 
-  `MService2`, 
-  `MService3`, 
-  `CA0`, 
-  `CA1`, 
-  `CA2`, 
-  `CA3`, 
-  `MSericeInPrice`, 
-  `CB0`, 
-  `CB1`, 
-  `CB2`, 
-  `CB3`, 
-  `MSericeOutPrice`, 
-  `MA`, 
-  `MA0`, 
-  `MA1`, 
-  `MA2`, 
-  `MA3`, 
-  `MB`, 
-  `MB0`, 
-  `MB1`, 
-  `MB2`, 
-  `MB3`, 
-  `MC`, 
-  `MC0`, 
-  `MC1`, 
-  `MC2`, 
-  `MC3`, 
-  `MovePortPrice`, 
-  `MSericeBathPrice`, 
-  `MSNote1`, 
-  `MSNote2`, 
-  `MSNote3`, 
-  `MGPrice`, 
-  `MSTOTAL`, 
-  `SService1`, 
-  `SService2`, 
-  `SService3`, 
-  `SService4`, 
-  `SService5`, 
-  `SSName1`, 
-  `SSName2`, 
-  `SSName3`, 
-  `SSName4`, 
-  `SSName5`, 
-  `SSNote1`, 
-  `SSNote2`, 
-  `SSNote3`, 
-  `SSNote4`, 
-  `SSNote5`, 
-  `SSUnit1`, 
-  `SSUnit2`, 
-  `SSUnit3`, 
-  `SSUnit4`, 
-  `SSUnit5`, 
-  `SSQut1`, 
-  `SSQut2`, 
-  `SSQut3`, 
-  `SSQut4`, 
-  `SSQut5`, 
-  `SSUPrice1`, 
-  `SSUPrice2`, 
-  `SSUPrice3`, 
-  `SSUPrice4`, 
-  `SSUPrice5`, 
-  `SSPrice1`, 
-  `SSPrice2`, 
-  `SSPrice3`, 
-  `SSPrice4`, 
-  `SSPrice5`, 
-  `SSTOTAL`, 
-  `TOTAL`,
-  `is_VAT`,
-  `VAT`,
-  `VAT_TOTAL`,
-  `Status`
-) 
-VALUES (
- 
-'$ShipID',
-'$ShipName',
-'$ShipWeight',
-'$AgentID',
-'$AgentNameAr',
-'$AgentNameEn',
-'$ServiceType',
-'$ServiceTypeName',
-'$ServiceTypeFactor',
-'$InvoiceDate',
-'$InvoiceDateT',
-'$InvoiceDateH',
-'$ArrivalDate',
-'$ArrivalDateT',
-'$ArrivalDateH',
-'$DepartureDate',
-'$DepartureDateT',
-'$DepartureDateH',
-'$PeriodDays',
-'$AnchorageEntry',
-'$AnchorageEntryT',
-'$AnchorageEntryH',
-'$AnchorageLeave',
-'$AnchorageLeaveT',
-'$AnchorageLeaveH',
-'$AnchorageDays',
-'$MSericeAnchoragePrice',
-'$MovePort1',
-'$MovePort2',
-'$MovePort3',
-'$TripNo',
-'$DockingNo',
-'$RouteNo',
-'$ShiftedNo',
-'$Reason',
-'$Note',
-'$MSFraction1',
-'$MSFraction2',
-'$MSFraction3',
-'$MService1',
-'$MService2',
-'$MService3',
-'$CA0',
-'$CA1',
-'$CA2',
-'$CA3',
-'$MSericeInPrice',
-'$CB0',
-'$CB1',
-'$CB2',
-'$CB3',
-'$MSericeOutPrice',
-'$MA',
-'$MA0',
-'$MA1',
-'$MA2',
-'$MA3',
-'$MB',
-'$MB0',
-'$MB1',
-'$MB2',
-'$MB3',
-'$MC',
-'$MC0',
-'$MC1',
-'$MC2',
-'$MC3',
-'$MovePortPrice',
-'$MSericeBathPrice',
-'$MSNote1',
-'$MSNote2',
-'$MSNote3',
-'$MGPrice',
-'$MSTOTAL',
-'$SService1',
-'$SService2',
-'$SService3',
-'$SService4',
-'$SService5',
-'$SSName1',
-'$SSName2',
-'$SSName3',
-'$SSName4',
-'$SSName5',
-'$SSNote1',
-'$SSNote2',
-'$SSNote3',
-'$SSNote4',
-'$SSNote5',
-'$SSUnit1',
-'$SSUnit2',
-'$SSUnit3',
-'$SSUnit4',
-'$SSUnit5',
-'$SSQut1',
-'$SSQut2',
-'$SSQut3',
-'$SSQut4',
-'$SSQut5',
-'$SSUPrice1',
-'$SSUPrice2',
-'$SSUPrice3',
-'$SSUPrice4',
-'$SSUPrice5',
-'$SSPrice1',
-'$SSPrice2',
-'$SSPrice3',
-'$SSPrice4',
-'$SSPrice5',
-'$SSTOTAL',
-'$TOTAL',
-'$is_VAT',
-'$VAT',
-'$VAT_TOTAL',
-'$Status'
-)";
-
-
-
-$dbop->query($SQL_INSERT); 
+$dbop->query($SQL_UPDATE); 
 }
-
- 
-$aqlr='SELECT MAX(InvoiceID) AS `LastID` FROM `invoice` LIMIT 1; ';
-$maxIDrs = $dbop->query($aqlr)->fetchAll();   
-    foreach ($maxIDrs as $maxIDr) { $maxID = $maxIDr['LastID'];  }
- 
  ?>  
 <!DOCTYPE html>
 <html lang="en">
@@ -840,11 +709,16 @@ $maxIDrs = $dbop->query($aqlr)->fetchAll();
   <?php include("../include/post.php")?>
   <!-- /.navbar -->
 
-  <!-- Content Wrapper. Contains page content --> 
+  <!-- Content Wrapper. Contains page content -->
+
+
+
+
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-   
+    
         <div class="container-fluid">
           <div class="row">
             <div class="col-12"> 
@@ -886,15 +760,17 @@ $maxIDrs = $dbop->query($aqlr)->fetchAll();
         <div class="row">
           <div class="col-12">
             <div class="callout callout-info">
-              <div class="row mb-2">
-                <div class="col-sm-11"> 
-                <h5> Note:</h5> The invoice details below are intended for review. Kindly approve before printing becomes available.
-                </div>
-                <div class="col-sm-1"> <a href="edit.php?id=<?php echo $maxID;?>">
-                  <button type="button" class="btn btn-block btn-warning"><i class="fas fa-pen-to-square"></i></button> </a>
-                </div>
+                <div class="row mb-2">
+                  <div class="col-sm-11"> 
+                  <h5> Note:</h5> The invoice details below are intended for review. Kindly approve before printing becomes available.
+                  </div>
+                  <div class="col-sm-1"> <a href="edit.php?id=<?php echo $maxID;?>">
+                    <button type="button" class="btn btn-block btn-warning"><i class="fas fa-pen-to-square"></i></button> </a>
+                  </div>
+                </div> 
               </div> 
-            </div> 
+
+
             <!-- Main content -->
             <div class="invoice p-3 mb-3">
               <!-- title row -->
@@ -908,13 +784,14 @@ $maxIDrs = $dbop->query($aqlr)->fetchAll();
                 <!-- /.col -->
               </div>
               <!-- info row -->
-              <div class="row invoice-info"> 
+              <div class="row invoice-info">
                 <div class="col-sm-4 invoice-col">
                     <b>Invoice #JD-<?php echo $maxID;?></b><br> 
                     <b>Vessel Name:<span class="tab"></span></b>  <?php echo $ShipName;?> <br> 
-                    <b>Araival Date:<span class="tab"></span></b><?php echo $ArrivalDate;?><br>
-                    <b>Departure Date:<span class="tab"></span></b> <?php echo $DepartureDate;?><br>
-                    <b>Vessel Port Stay:<span class="tab"></span></b> <?php echo $PeriodDays;?> <br> 
+                    <b>Araival Date:<span class="tab"></span></b>2024-01-30 10:04:00<br>
+                    <b>Departure Date:<span class="tab"></span></b> 2024-01-30 10:04:00<br>
+                    <b>Vessel Port Stay:<span class="tab"></span></b> 5 <br>
+                     
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
@@ -1063,7 +940,12 @@ $maxIDrs = $dbop->query($aqlr)->fetchAll();
                     </table>
                   </div>
                   
-                </div> 
+                </div>
+                     
+                
+
+              
+
 
                 <!-- /.col -->
               </div>
@@ -1074,14 +956,16 @@ $maxIDrs = $dbop->query($aqlr)->fetchAll();
                 <div class="col-12">
                   <!-- 
                     <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                  -->  
+                  -->
+                  <?php if(intval($Status==700)){?>
                     <form action="approve.php" method="POST">
                       <input type="hidden" name="VAT_TOTAL" value="<?php echo $VAT_TOTAL;?>"> 
-                      <input type="hidden" name="maxID" value="<?php echo $maxID;?>"> 
+                      <input type="hidden" name="maxID" value="<?php echo $InvoiceID;?>"> 
                       <button type="submit" name="approved"  class="btn btn-success float-right" >
                         <i class="far fa-credit-card"></i> Approve
                       </button>
                     </form>
+                    <?php }?>
                   <!-- 
                   <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate PDF
@@ -1331,23 +1215,6 @@ if(i<15){i++;
     $('#lista-p-' + id).html(""); 
   });
 });
-
-function approved() { 
-  var txt;
-  if (confirm("Approve invoice # <?php echo $maxID;?>")) {
-    <?php 
-      $Status=800;
-      $SQL_APPROVED="UPDATE `invoice` SET 
-          `Status`                   ='$Status',  
-          WHERE  `InvoiceID`         ='$maxID'; " ;
-          $dbop->query($SQL_APPROVED); 
-      ?>
-
-  } else {
-     <?php header('Location: index.php');?>
-  }
-  document.getElementById("demo").innerHTML = txt;
-}
 </script>
  
       

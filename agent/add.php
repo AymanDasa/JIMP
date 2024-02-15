@@ -1,52 +1,35 @@
-
-		<?php   
-				$folder_name =  basename(dirname(__FILE__));
-				Require_once( "C:\\wow\\password\\config.php"); 
-				Require_once("../include/auth.php"); 
-				Require_once("../include/config.php");  
-			$is_active =1;
-			$name=$cr =$vat =$hname=$conatct =$create_date=$update_date=" ";
-			$CardColor='secondary'; 
-	   
-			 	// DUBLICAT ITEM
-				 	$query = "SELECT * FROM `suppliers` ;"; 
-					$suppliers = $dbop->query($query)->fetchAll();   
-					foreach ($suppliers as $supplier) {   
-						$cr     			=$supplier['cr'];        
-						$vat     			=$supplier['vat']; 
-						if(  isset($_POST['cr']) &&
-							isset($_POST['vat']) &&
-							isset($_POST['name'])
-							) {  
-							if($_POST['cr']==$cr || $_POST['vat']==$vat)
-							{
-								echo "ERROR DUBLICAT ITEM";
-								exit();
-							}  
-						}   
-					}
-				// DUBLICAT ITEM 
-
-			$today = date("Y-m-d H:i:s");
-			if(	isset($_POST['name']) &&
-				isset($_POST['cr']) &&
-				isset($_POST['vat'])  
-			){
-				$name=  	stripslashes(htmlentities( strip_tags($_POST['name'] )));
-				$cr=  		stripslashes(htmlentities( strip_tags($_POST['cr'] )));
-				$vat=  		stripslashes(htmlentities( strip_tags($_POST['vat'] )));
-				$conatct=  stripslashes(htmlentities( strip_tags($_POST['conatct'] )));
-	 
-				$query=" INSERT INTO `suppliers` (`id`, `name`, `cr`, `vat`, `conatct`, `is_active`, `create_date`, `update_date`) 
-						VALUES (NULL, '".$name."', '".$_POST['cr']."', '".$_POST['vat']."', '".$_POST['conatct']."', '1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); 
-				 ";  
-					  $dbop->query($query); 
-				 	  
-			}  
-			
-			 
-        ?>   
 <!DOCTYPE html>
+		<?php    
+			$folder_name =  basename(dirname(__FILE__));
+			Require_once( "C:\\wow\\password\\config.php"); 
+			Require_once("../include/auth.php"); 
+			Require_once("../include/config.php");
+			$is_active =0; 
+			$name=$cr =$vat =$conatct =$create_date=$update_date=" "; 
+					$today = date("Y-m-d H:i:s");  
+				 
+			if(isset($_POST['add'])){
+				
+				
+						$AgentNameAr		=  	stripslashes(htmlentities( strip_tags($_POST['AgentNameAr'] )));
+						$AgentNameEn		= 	stripslashes(htmlentities( strip_tags($_POST['AgentNameEn'] )));
+						$AgentCR			=  	stripslashes(htmlentities( strip_tags($_POST['AgentCR'] )));
+						$AgentEmail			=  	stripslashes(htmlentities( strip_tags($_POST['AgentEmail'] )));
+						$AgentBilling		=  	stripslashes(htmlentities( strip_tags($_POST['AgentBilling'] )));
+						$AgentEx2			=  	stripslashes(htmlentities( strip_tags($_POST['AgentEx2'] )));
+						$AgentPhone			=  	stripslashes(htmlentities( strip_tags($_POST['AgentPhone'] )));
+						$AgentContactName	=  	stripslashes(htmlentities( strip_tags($_POST['AgentContactName'] )));
+						$AgentNotes			=  	stripslashes(htmlentities( strip_tags($_POST['AgentNotes'] )));  
+			
+				$query_INSERT="INSERT INTO `agents`  
+							(`AgentNameAr` ,`AgentNameEn` ,`AgentCR` ,`AgentEmail`,`AgentBilling`,`AgentEx2`,`AgentPhone`,`AgentContactName`,`AgentNotes`)
+							VALUES ('".$AgentNameAr."', '".$AgentNameEn."','".$AgentCR."','".$AgentEmail."','".$AgentBilling."','".$AgentEx2."','".$AgentPhone."','".$AgentContactName."','".$AgentNotes."');"; 
+							if($debug){echo "<b>query_INSERT :</b>".$query_INSERT."<br>";}
+							 
+					  $dbop->query($query_INSERT);  
+					  if($debug){echo "<b>IMO :</b>".$AgentCR."<br>";}  else{header("Refresh:20"); }
+			}   
+        ?>   
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -58,6 +41,8 @@
   <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free6/css/all.min.css">
   <!-- Theme style -->
+    <!-- Select2 -->
+	<link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="<?php echo $path;?>adminlte/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -68,13 +53,13 @@
   <!-- /.navbar -->
 
   <!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
+  <div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<div class="container-fluid">
 			<div class="row mb-2">
 			<div class="col-sm-6">
-			<h1>  <?=$hname;?>  </h1> 
+			<h1>  Agent</h1> 
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
@@ -94,7 +79,7 @@
 			<div class="col-md-12"> 
 				<!-- general form elements disabled -->
 				<form action="#" method="POST">
-				<input type="hidden" name="id"  value="<?=$id;?>">
+				<input type="hidden" name="id"  value="<?=$AgentID;?>">
 				<div class="card card-<?=$CardColor;?>">
 					<div class="card-header">
 						<h3 class="card-title">General Information</h3> 
@@ -102,24 +87,30 @@
 					<div class="card-body"> 
 						<div class="row">
 							<div class="col-sm-6">
-							<!-- text input -->
+							<!-- text input  -->
 							<div class="form-group">
-								<label>Company Name</label>
-								<input type="text" class="form-control" name="name" autocomplete="off" >
+								<label>Company Name Ar</label>
+								 <input type="text" class="form-control" name="AgentNameAr"  autocomplete="off">
+								<label>Company Name En</label>
+								 <input type="text" class="form-control" name="AgentNameEn" autocomplete="off">
 							</div>
 							</div>
 							<div class="col-sm-3">
 							<!-- text input -->
 							<div class="form-group">
 								<label>CR No#</label>
-								<input type="text" class="form-control" name="cr"  autocomplete="off">
+								<input type="text" class="form-control" name="AgentCR" autocomplete="off">
+								<label>IBAN</label>
+								<input type="text" class="form-control" name="AgentBilling" autocomplete="off">
 							</div>
 							</div>
 							<div class="col-sm-3">
-							<!-- text input -->
+							<!-- text input   -->
 							<div class="form-group">
-								<label>VAT No#</label>
-								<input type="text" class="form-control" name="vat"  autocomplete="off">
+							<label>AgentPhone</label>
+								<input type="text" class="form-control" name="AgentPhone" autocomplete="off">
+							<label>Contact Name</label>
+								<input type="text" class="form-control" name="AgentContactName"  autocomplete="off">
 							</div>
 							</div>
 							
@@ -129,14 +120,15 @@
 							<!-- textarea -->
 							<div class="form-group">
 								<label>Contact Address</label>
-								<textarea class="form-control" rows="3" name="conatct" > </textarea>
+								<textarea class="form-control" rows="3" name="AgentNotes" ></textarea>
 							</div>
 							</div>
-							<div class="col-sm-6">
+							<div class="col-sm-3">
 							<div class="form-group">
-								<label>Record Information</label> 
-								<input class="form-control"   placeholder="Created : " disabled></textarea>
-								<input class="form-control"   placeholder="Last Modified :  " disabled></textarea>
+								<label>Email</label>
+								<input type="text" class="form-control" name="AgentEmail" autocomplete="off"> 
+								<label>Other</label>
+								<input type="text" class="form-control" name="AgentEx2" autocomplete="off"> 
 							</div>
 							</div>
 						</div> 
@@ -144,8 +136,7 @@
 						</form>
 					</div>
 					<div class="card-footer">
-						<button type="submit" name="save" value="save" class="btn btn-info">save</button>
-						<?php if($is_active){?><button type="submit" name="delete" value="delete" class="btn btn-danger float-right">Delete</button><?php }?>
+						<button type="submit" name="add" value="add" class="btn btn-info">Save</button>
 					</div> 
 				<!-- /.card-body -->
 				</div>
@@ -173,6 +164,9 @@
 <script src="<?php echo $path;?>adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo $path;?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Select2 -->
+	<script src="<?php echo $path;?>adminlte/plugins/select2/js/select2.full.min.js"></script>
 <!-- bs-custom-file-input -->
 <script src="<?php echo $path;?>adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
@@ -181,6 +175,14 @@
 $(function () {
   bsCustomFileInput.init();
 });
+$(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })});
 </script>
 <script> 
   var $sidebar = $('.control-sidebar')

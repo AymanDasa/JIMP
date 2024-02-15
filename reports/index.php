@@ -9,7 +9,7 @@ Require_once("../include/config.php");
 $SAPPOname = '';
 $IsActive = 0 ;	   
      
-?>
+?> 
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -21,7 +21,9 @@ $IsActive = 0 ;
   <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free/css/all.min.css"> 
   <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free6/css/all.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"> 
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/select2/css/select2.min.css"> 
   <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
@@ -41,7 +43,7 @@ $IsActive = 0 ;
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Invoices</h1>
+            <h1>Reports</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -57,27 +59,90 @@ $IsActive = 0 ;
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12"> 
-            <div class="card">
+          <div class="col-3"> 
+            <div class="card"> 
               <div class="card-header">
-                <h3 class="card-title">List of all Invoices</h3>
-                  <div class="card-tools"> 
-                    <a href="r1.php?id=7">
-                      <button type="button" class="btn btn-success" >
-                        Add new invoice
-                      </button> 
-                    </a>
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-plus"></i>
-                    </button> 
-                  </div>
+                <h3 class="card-title">Daily Invoice Report</h3><br>
+                  <div class="row">
+                    <div class="col-12"> 
+                      <div class="form-group">
+                          <label>Invoice Date</label>
+                          <div class="input-group date" id="ClickInvoiceDate" data-target-input="nearest">
+                            <input  name="InvoiceDate" type="text" class="form-control datetimepicker-input" data-target="#ClickInvoiceDate"/>
+                            <div class="input-group-append" data-target="#ClickInvoiceDate" data-toggle="datetimepicker">
+                            <div class="input-group-text">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                            </div>
+                          </div>  
+                      </div>
+                    </div> 
+                  </div> 
+                <!-- /.card-header -->
               </div> 
-              <!-- /.card-header -->
-              
+              <div class="card-footer"> 
+                <button type="submit" class="btn btn-info float-right">Genrate</button>
+              </div>
               <!-- /.card-body -->
             </div>
+
+            <div class="card"> 
+              <div class="card-header">
+                <h3 class="card-title">Monthly Invoice Report</h3><br>
+                <div class="row">
+                  <div class="col-12"> 
+                    <div class="form-group"> 
+                      <label>Invoice Date</label>
+                      <select name="Month" class="form-control">
+                        <option value="1">محرم		</option>
+                        <option value="2">صفر		</option>
+                        <option value="3">ربيع أول	</option>
+                        <option value="4">ربيع ثاني	</option>
+                        <option value="5">جمادى أول	</option>
+                        <option value="6">جمادى أخر	</option>
+                        <option value="7">رجب		</option>
+                        <option value="8">شعبان		</option>
+                        <option value="9">رمضان		</option>
+                        <option value="10">شوال		</option>
+                        <option value="11">ذوالقعدة	</option>
+                        <option value="12">ذو الحجه	</option> 
+                      </select>
+                    </div>
+                    <div class="form-group"> 
+                      <label>Year Hijri</label>
+                      <input type="text" class="form-control" name="ds" value="14" >
+                    </div>
+                    <div class="form-group"> 
+                      <label>Start Invoice</label>
+                      <input type="text" class="form-control" name="ds" value="14" >
+                    </div>
+                    <div class="form-group"> 
+                      <label>Last Invoice</label>
+                      <input type="text" class="form-control" name="ds" value="14" >
+                    </div>
+                  </div> 
+                </div> 
+                <!-- /.card-header -->
+              </div> 
+              <div class="card-footer"> 
+                <button type="submit" class="btn btn-info float-right">Genrate</button>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+            <a href="xlsx.php">
+            <div class="card-footer"> 
+                <button type="submit" class="btn btn-info float-right">Genrate</button>
+              </div>
+</a>
+
+
             <!-- /.card -->
-          </div>
+          </div><a href="r1.php?id=1">
+            <div class="card-footer"> 
+                <button type="submit" class="btn btn-info float-right">Genrate</button>
+              </div>
+</a>
           <!-- /.col -->
         </div>
         <!-- /.row -->
@@ -97,6 +162,9 @@ $IsActive = 0 ;
 <script src="<?php echo $path;?>adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo $path;?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Select2 -->
+<script src="<?php echo $path;?>adminlte/plugins/select2/js/select2.full.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="<?php echo $path;?>adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo $path;?>adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -128,9 +196,15 @@ $IsActive = 0 ;
       "autoWidth": false,
       "responsive": true,
     });
-  });
 
- 
+    $('.select2').select2() 
+    //Date picker Date From todate
+    $('#ClickInvoiceDate').datetimepicker({
+    format: 'YYYY-MM-DD'
+    });
+
+
+  }); 
 </script>
 <script> 
   var $sidebar = $('.control-sidebar')

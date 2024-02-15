@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<?php   
+<?php    
 			$folder_name =  basename(dirname(__FILE__));
 			Require_once( "C:\\wow\\password\\config.php"); 
 			Require_once("../include/auth.php"); 
 			Require_once("../include/config.php"); 
-
+      
      
 ?>
 <html lang="en">
@@ -61,7 +61,7 @@
                   <div class="card-tools"> 
                     <a href="add.php">
                       <button type="button" class="btn btn-success" >
-                        Add new supplier
+                        Add Agint
                       </button> 
                     </a>
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -74,35 +74,49 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                      <th>Company Name</th>
+                      <th>Agent Name</th>
                       <th>CR</th>
-                      <th>VAT</th>
+                      <th>IBAN</th>
                       <th>Conatct</th>
                       <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
                   <?php 
-                      $suppliers = $dbop->query('SELECT * FROM suppliers WHERE `is_active` =1   ;')->fetchAll();
-                      foreach ($suppliers as $supplier) {  
+
+
+                  $query = "SELECT * FROM `agents`  ;"; 
+                        if($debug){echo "<b>query :</b>".$query."<br>";}
+                                $Agents = $dbop->query($query)->fetchAll();   
+                                foreach ($Agents as $Agent) {  
+                                    $AgentID    	=$Agent['AgentID'];
+                                    $AgentNameAr 	=$Agent['AgentNameAr'];
+                                    $AgentCR		=$Agent['AgentCR'];        
+                                    $AgentEmail 	=$Agent['AgentEmail'];        
+                                    $AgentBilling	=$Agent['AgentBilling'];        
+                                    $AgentNameEn	=$Agent['AgentNameEn'];        
+                                    $AgentEx2	=$Agent['AgentEx2'];        
+                                    $AgentPhone 	=$Agent['AgentPhone'];        
+                                    $AgentContactName 	=$Agent['AgentContactName'];        
+                                    $AgentNotes		=$Agent['AgentNotes'];      
 			 	                echo '<tr>
-                              <td>('.$supplier['id']. ')'.$supplier['name']. '  </td> 
-                              <td>'.$supplier['cr']. ' </td> 
-                              <td>'.$supplier['vat']. ' </td> 
-                              <td>'.$supplier['conatct']. ' </td> 
-                              <td> <a href="view.php?id='.$supplier['id'].'">
-                                      <button Style="padding: .0rem .0rem;" class="btn btn-icon"> 
-                                        <i class="fas fa-search"></i>
-                                      </button>
-                                    </a>
-                              </td>
+                              <td>'.$AgentNameAr. '<br>'.$AgentNameEn. '  </td> 
+                              <td>'.$AgentCR. ' </td> 
+                              <td>'.$AgentBilling. ' </td> 
+                              <td>'.$AgentContactName. ' </td> 
+                              <td>   
+                              <div class="btn-group btn-group-sm"> 
+                                <a href="view.php?id='.$AgentID.'" class="btn btn-info">
+                                <i class="fas fa-eye"></i></a> 
+                              </div>
+                            </td>  
                             </tr>' ;  }  ?>
                   </tbody>
                   <tfoot>
                   <tr>
-                      <th>Company Name</th>
+                      <th>Agent Name</th>
                       <th>CR</th>
-                      <th>VAT</th>
+                      <th>IBAN</th>
                       <th>Conatct</th>
                       <th>Action</th>
                   </tr>

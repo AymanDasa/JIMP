@@ -1,64 +1,63 @@
 <!DOCTYPE html>
-		<?php    
+		<?php   
 			$folder_name =  basename(dirname(__FILE__));
 			Require_once( "C:\\wow\\password\\config.php"); 
 			Require_once("../include/auth.php"); 
 			Require_once("../include/config.php");
 			$is_active =0;
 			$name=$cr =$vat =$conatct =$create_date=$update_date=" ";
-			$id=$_GET['id'];  
-		
-	 
+			$id=intval($_GET['id']);   
+			$AgentID=intval($_GET['id']); 
 				// SELECT  AGENT
-				$query = "SELECT * FROM `suppliers` WHERE   id = ".$id." LIMIT 1 ;"; 
-			 
-                $suppliers = $dbop->query($query)->fetchAll();   
-                foreach ($suppliers as $supplier) {  
-                    $id    				=$supplier['id'];
-                    $name    			=$supplier['name'];
-                    $cr     			=$supplier['cr'];        
-                    $vat     			=$supplier['vat'];        
-                    $conatct     		=$supplier['conatct'];        
-                    $is_active			=$supplier['is_active'];        
-                    $create_date     	=$supplier['create_date'];        
-                    $update_date     	=$supplier['update_date'];    }
-					$del_tag=''; 	 
-		 
-			if($is_active) {
-				$hname=$name;
-				$CardColor='secondary';
-			} else{
-				$hname="<del>".$name."</del>";
-				$CardColor='danger'; 
-			} 
+				$query = "SELECT * FROM `agents` WHERE `AgentID`='".$AgentID."' LIMIT 1 ;"; 
+				if($debug){echo "<b>query :</b>".$query."<br>";}
+                $Agents = $dbop->query($query)->fetchAll();   
+                foreach ($Agents as $Agent) {  
+                    $AgentID    	=$Agent['AgentID'];
+                    $AgentNameAr 	=$Agent['AgentNameAr'];
+                    $AgentCR		=$Agent['AgentCR'];        
+                    $AgentEmail 	=$Agent['AgentEmail'];        
+                    $AgentBilling	=$Agent['AgentBilling'];        
+                    $AgentNameEn	=$Agent['AgentNameEn'];        
+                    $AgentEx2	=$Agent['AgentEx2'];        
+                    $AgentPhone 	=$Agent['AgentPhone'];        
+                    $AgentContactName 	=$Agent['AgentContactName'];        
+                    $AgentNotes		=$Agent['AgentNotes'];      }
+					$del_tag=''; 	
+					if($debug){echo "<b>AgentID :</b>".$AgentID."<br>";} 
 			$today = date("Y-m-d H:i:s");
+
+			if($debug){echo "<b>_POST[save] :</b>".$_POST['save']."<br>";} 
 			if(isset($_POST['save'])){
-				$query1 = " SELECT `id`,`cr`,`vat`  FROM `suppliers` WHERE NOT id=$id  ; "; 
-				$suppliers = $dbop->query($query1)->fetchAll();   
-				$DuplicateCR=searchForArray($_POST['cr'],$suppliers,'cr');    
-				$DuplicateVAT=searchForArray($_POST['vat'],$suppliers,'vat');    
-				 if($DuplicateCR){echo "Error CR"; exit();}
-				 if($DuplicateVAT){echo "Error VAT"; exit();}
-						$name=  	stripslashes(htmlentities( strip_tags($_POST['name'] )));
-						$cr=  		stripslashes(htmlentities( strip_tags($_POST['cr'] )));
-						$vat=  		stripslashes(htmlentities( strip_tags($_POST['vat'] )));
-						$conatct=  stripslashes(htmlentities( strip_tags($_POST['conatct'] )));
-				$query="UPDATE `suppliers` SET 
-						`name` = '".$name."', 
-						`cr` = '".$cr."', 
-						`vat` = '".$vat."', 
-						`conatct` = '".$conatct."', 
-						`is_active` = '1', 
-						`update_date` = '".$today."' 
-					WHERE  `id` = ".$id."; "; 
-					  $dbop->query($query); 
-				 	  header("Refresh:0"); 
+						$AgentNameAr=  	stripslashes(htmlentities( strip_tags($_POST['AgentNameAr'] )));
+						$AgentCR=  		stripslashes(htmlentities( strip_tags($_POST['AgentCR'] )));
+						$AgentEmail=  		stripslashes(htmlentities( strip_tags($_POST['AgentEmail'] )));
+						$AgentBilling=  stripslashes(htmlentities( strip_tags($_POST['AgentBilling'] )));
+						$AgentNameEn=  stripslashes(htmlentities( strip_tags($_POST['AgentNameEn'] )));
+						$AgentEx2=  stripslashes(htmlentities( strip_tags($_POST['AgentEx2'] )));
+						$AgentPhone=  stripslashes(htmlentities( strip_tags($_POST['AgentPhone'] )));
+						$AgentContactName=  stripslashes(htmlentities( strip_tags($_POST['AgentContactName'] ))); 
+						$AgentNotes=  stripslashes(htmlentities( strip_tags($_POST['AgentNotes'] ))); 
+  
+						if($debug){echo "<b>AgentID :</b>".$AgentID."<br>";} 
+
+				$query="UPDATE `agents` SET 
+					`AgentNameAr`='".$AgentNameAr."', 
+					`AgentCR`='".$AgentCR."', 
+					`AgentEmail`='".$AgentEmail."', 
+					`AgentBilling`='".$AgentBilling."', 
+					`AgentNameEn`='".$AgentNameEn."', 
+					`AgentEx2`='".$AgentEx2."', 
+					`AgentPhone`='".$AgentPhone."', 
+					`AgentContactName`='".$AgentContactName."',
+					`AgentNotes`='".$AgentNotes."'
+					  WHERE `AgentID` = ".$AgentID.";"; 
+
+					  if($debug){echo "<b>query :</b>".$query."<br>";} 
+					  $dbop->query($query);  
+					   if($debug){echo "<b>AgentCR :</b>".$AgentCR."<br>";}  else{header("Refresh:0");  }
 			} 
-			if(isset($_POST['delete'])){  
-				$query = "UPDATE `suppliers` SET `is_active` = '0' , `update_date` = '".$today."'  WHERE `id`= ".$id  ; 
-                  $dbop->query($query);  
-				  header("Refresh:0"); 
-			} 
+			 
 			  
         ?>   
 <html lang="en">
@@ -88,7 +87,7 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 			<div class="col-sm-6">
-			<h1>  <?=$hname;?>  </h1> 
+			<h1>  Agent</h1> 
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
@@ -108,44 +107,38 @@
 			<div class="col-md-12"> 
 				<!-- general form elements disabled -->
 				<form action="#" method="POST">
-				<input type="hidden" name="id"  value="<?=$id;?>">
+				<input type="hidden" name="id"  value="<?=$AgentID;?>">
 				<div class="card card-<?=$CardColor;?>">
 					<div class="card-header">
-						<h3 class="card-title">General Information</h3>
-						<div class="card-tools">
-							<a href="view.php?id=<?=$id-1;?>">
-								<button type="button" class="btn btn-tool" >
-										<i class="fa fa-angle-left"></i>
-								</button>
-							</a>
-							<a href="view.php?id=<?=$id+1;?>">
-								<button type="button"  class="btn btn-tool" >
-									<i class="fa fa-angle-right"></i> 
-								</button>
-							</a>
-						</div>
+						<h3 class="card-title">General Information</h3> 
 					</div>  
 					<div class="card-body"> 
 						<div class="row">
 							<div class="col-sm-6">
-							<!-- text input -->
+							<!-- text input  -->
 							<div class="form-group">
-								<label>Company Name</label>
-								<input type="text" class="form-control" name="name" value="<?=$name;?>">
+								<label>Company Name Ar</label>
+								 <input type="text" class="form-control" name="AgentNameAr" value="<?=$AgentNameAr;?>" autocomplete="off">
+								<label>Company Name En</label>
+								 <input type="text" class="form-control" name="AgentNameEn" value="<?=$AgentNameEn;?>" autocomplete="off">
 							</div>
 							</div>
 							<div class="col-sm-3">
 							<!-- text input -->
 							<div class="form-group">
 								<label>CR No#</label>
-								<input type="text" class="form-control" name="cr" value="<?=$cr;?>">
+								<input type="text" class="form-control" name="AgentCR" value="<?=$AgentCR;?>" autocomplete="off">
+								<label>IBAN</label>
+								<input type="text" class="form-control" name="AgentBilling" value="<?=$AgentBilling;?>" autocomplete="off">
 							</div>
 							</div>
 							<div class="col-sm-3">
-							<!-- text input -->
+							<!-- text input   -->
 							<div class="form-group">
-								<label>VAT No#</label>
-								<input type="text" class="form-control" name="vat" value="<?=$vat;?>">
+							<label>AgentPhone</label>
+								<input type="text" class="form-control" name="AgentPhone" value="<?=$AgentPhone;?>" autocomplete="off">
+							<label>Contact Name</label>
+								<input type="text" class="form-control" name="AgentContactName" value="<?=$AgentContactName;?>" autocomplete="off">
 							</div>
 							</div>
 							
@@ -155,14 +148,15 @@
 							<!-- textarea -->
 							<div class="form-group">
 								<label>Contact Address</label>
-								<textarea class="form-control" rows="3" name="conatct" > <?=$conatct;?></textarea>
+								<textarea class="form-control" rows="3" name="AgentNotes" ><?=$AgentNotes;?></textarea>
 							</div>
 							</div>
-							<div class="col-sm-6">
+							<div class="col-sm-3">
 							<div class="form-group">
-								<label>Record Information</label> 
-								<input class="form-control"   placeholder="Created : <?=$create_date;?>" disabled></textarea>
-								<input class="form-control"   placeholder="Last Modified : <?=$update_date;?>" disabled></textarea>
+								<label>Email</label>
+								<input type="text" class="form-control" name="AgentEmail" value="<?=$AgentEmail;?>" autocomplete="off"> 
+								<label>Other</label>
+								<input type="text" class="form-control" name="AgentEx2" value="<?=$AgentEx2;?>" autocomplete="off"> 
 							</div>
 							</div>
 						</div> 
@@ -170,7 +164,7 @@
 						</form>
 					</div>
 					<div class="card-footer">
-						<button type="submit" name="save" value="save" class="btn btn-info">save</button>
+						<button type="submit" name="save" value="save" class="btn btn-info">Update</button>
 					</div> 
 				<!-- /.card-body -->
 				</div>

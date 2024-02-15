@@ -1,52 +1,52 @@
-
-		<?php   
-				$folder_name =  basename(dirname(__FILE__));
-				Require_once( "C:\\wow\\password\\config.php"); 
-				Require_once("../include/auth.php"); 
-				Require_once("../include/config.php");  
-			$is_active =1;
-			$name=$cr =$vat =$hname=$conatct =$create_date=$update_date=" ";
-			$CardColor='secondary'; 
-	   
-			 	// DUBLICAT ITEM
-				 	$query = "SELECT * FROM `suppliers` ;"; 
-					$suppliers = $dbop->query($query)->fetchAll();   
-					foreach ($suppliers as $supplier) {   
-						$cr     			=$supplier['cr'];        
-						$vat     			=$supplier['vat']; 
-						if(  isset($_POST['cr']) &&
-							isset($_POST['vat']) &&
-							isset($_POST['name'])
-							) {  
-							if($_POST['cr']==$cr || $_POST['vat']==$vat)
-							{
-								echo "ERROR DUBLICAT ITEM";
-								exit();
-							}  
-						}   
-					}
-				// DUBLICAT ITEM 
-
-			$today = date("Y-m-d H:i:s");
-			if(	isset($_POST['name']) &&
-				isset($_POST['cr']) &&
-				isset($_POST['vat'])  
-			){
-				$name=  	stripslashes(htmlentities( strip_tags($_POST['name'] )));
-				$cr=  		stripslashes(htmlentities( strip_tags($_POST['cr'] )));
-				$vat=  		stripslashes(htmlentities( strip_tags($_POST['vat'] )));
-				$conatct=  stripslashes(htmlentities( strip_tags($_POST['conatct'] )));
-	 
-				$query=" INSERT INTO `suppliers` (`id`, `name`, `cr`, `vat`, `conatct`, `is_active`, `create_date`, `update_date`) 
-						VALUES (NULL, '".$name."', '".$_POST['cr']."', '".$_POST['vat']."', '".$_POST['conatct']."', '1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP); 
-				 ";  
-					  $dbop->query($query); 
-				 	  
-			}  
-			
-			 
-        ?>   
 <!DOCTYPE html>
+		<?php    
+			$folder_name =  basename(dirname(__FILE__));
+			Require_once( "C:\\wow\\password\\config.php"); 
+			Require_once("../include/auth.php"); 
+			Require_once("../include/config.php");
+			$is_active =0; 
+			$name=$cr =$vat =$conatct =$create_date=$update_date=" "; 
+					$today = date("Y-m-d H:i:s"); 
+							// option Agents 
+							$AgentOption='<option value=""></option>';
+							$query = "SELECT `AgentID`,`AgentNameAr`,`AgentCR` FROM `agents`;"; 
+						   $Agents = $dbop->query($query)->fetchAll();   
+						   foreach ($Agents as $Agents) {    
+				   $AgentOption.='
+				   <option value="'.$Agents['AgentID'].'">'.$Agents['AgentNameAr'].' CR:'.$Agents['AgentCR'].'</option>';
+						   }
+					   // option Agents
+
+
+			if(isset($_POST['add'])){
+				$query1 = " SELECT `IMO`  FROM `ship` WHERE NOT IMO='".$IMO."'; "; 
+				if($debug){echo "<b>query :</b>".$query1."<br>";} 
+				$IMOs = $dbop->query($query1)->fetchAll();   
+				$DuplicateIMO=searchForArray($_POST['IMO'],$IMOs,'IMO'); 
+				if(isset($_POST['VAT'])){
+					$VAT	=	stripslashes(htmlentities( strip_tags($_POST['VAT'] ))); }
+					else{$VAT=0;}     
+				if($DuplicateIMO){echo "ERROR IMO : ".$IMO; exit();} 
+						$IMO		=  	stripslashes(htmlentities( strip_tags($_POST['IMO'] )));
+						$ShipName	= 	stripslashes(htmlentities( strip_tags($_POST['ShipName'] )));
+						$AgentID	=  	stripslashes(htmlentities( strip_tags($_POST['AgentID'] )));
+						$Notes		=  	stripslashes(htmlentities( strip_tags($_POST['Notes'] )));
+						$Weight		=  	stripslashes(htmlentities( strip_tags($_POST['Weight'] )));
+						$Weight		=  	floatval($Weight);
+						if($debug){echo "<b>VAT :</b>".$VAT."<br>";} 
+						if($VAT=='on'){$VAT=1;}else{$VAT=0;}
+
+			
+				$query_INSERT="INSERT INTO `ship`  (`ShipName` ,`IMO` ,`Weight` ,`AgentID`,`VAT`,`Notes`)
+							VALUES ('".$ShipName."','".$IMO."',".$Weight.",".$AgentID.", ".$VAT.",'".$Notes."')"; 
+							if($debug){echo "<b>query_INSERT :</b>".$query_INSERT."<br>";}
+							 
+					  $dbop->query($query_INSERT);  
+					  if($debug){echo "<b>IMO :</b>".$IMO."<br>";}
+					  else{header("Refresh:0"); }
+
+			}   
+        ?>   
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -58,6 +58,8 @@
   <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free6/css/all.min.css">
   <!-- Theme style -->
+    <!-- Select2 -->
+	<link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="<?php echo $path;?>adminlte/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -74,7 +76,7 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 			<div class="col-sm-6">
-			<h1>  <?=$hname;?>  </h1> 
+			<h1>  Ships </h1> 
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
@@ -94,7 +96,7 @@
 			<div class="col-md-12"> 
 				<!-- general form elements disabled -->
 				<form action="#" method="POST">
-				<input type="hidden" name="id"  value="<?=$id;?>">
+				<input type="hidden" name="id" >
 				<div class="card card-<?=$CardColor;?>">
 					<div class="card-header">
 						<h3 class="card-title">General Information</h3> 
@@ -102,50 +104,67 @@
 					<div class="card-body"> 
 						<div class="row">
 							<div class="col-sm-6">
-							<!-- text input -->
-							<div class="form-group">
-								<label>Company Name</label>
-								<input type="text" class="form-control" name="name" autocomplete="off" >
+								<!-- text input   -->
+								<div class="form-group">
+									<label>Ship Name</label>
+									<input type="text" class="form-control" name="ShipName"  autocomplete="off">
+								</div>
 							</div>
+						</div>
+
+						<div class="row">
+								<div class="col-sm-12 col-md-4 col-lg-4 col-xl-6"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Agents %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>Agents</label> 
+										<select name="AgentID" class="form-control select2">
+											<?=$AgentOption;?>
+										</select>
+									</div>   
+								</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-3">
+								<!-- text input -->
+								<div class="form-group">
+									<label>IMO#</label>
+									<input type="text" class="form-control" name="IMO"  autocomplete="off">
+								</div>
 							</div>
 							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label>CR No#</label>
-								<input type="text" class="form-control" name="cr"  autocomplete="off">
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label>VAT No#</label>
-								<input type="text" class="form-control" name="vat"  autocomplete="off">
-							</div>
+								<!-- text input -->
+								<div class="form-group">
+									<label>Weight</label>
+									<input type="text" class="form-control" name="Weight"  autocomplete="off">
+								</div>
 							</div>
 							
 						</div>
 						<div class="row">
+							<div class="col-sm-2">
+								<div class="form-group">
+									<div class="custom-control custom-switch"> 
+										<input name="VAT" type="checkbox" checked class="custom-control-input" id="customSwitch1">
+										<label class="custom-control-label" for="customSwitch1">VAT 15%</label>
+									</div>
+								</div>
+							</div>
+						</div> 
+						<div class="row">
 							<div class="col-sm-6">
 							<!-- textarea -->
 							<div class="form-group">
-								<label>Contact Address</label>
-								<textarea class="form-control" rows="3" name="conatct" > </textarea>
+								<label>Notes</label>
+								<textarea class="form-control" rows="3" name="Notes" ></textarea>
 							</div>
-							</div>
-							<div class="col-sm-6">
-							<div class="form-group">
-								<label>Record Information</label> 
-								<input class="form-control"   placeholder="Created : " disabled></textarea>
-								<input class="form-control"   placeholder="Last Modified :  " disabled></textarea>
-							</div>
-							</div>
+							</div> 
 						</div> 
 						<!-- input states --> 
 						</form>
 					</div>
 					<div class="card-footer">
-						<button type="submit" name="save" value="save" class="btn btn-info">save</button>
-						<?php if($is_active){?><button type="submit" name="delete" value="delete" class="btn btn-danger float-right">Delete</button><?php }?>
+						<button type="submit" name="add" value="add" class="btn btn-info">Add New</button>
 					</div> 
 				<!-- /.card-body -->
 				</div>
@@ -173,6 +192,9 @@
 <script src="<?php echo $path;?>adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo $path;?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Select2 -->
+	<script src="<?php echo $path;?>adminlte/plugins/select2/js/select2.full.min.js"></script>
 <!-- bs-custom-file-input -->
 <script src="<?php echo $path;?>adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
@@ -181,6 +203,14 @@
 $(function () {
   bsCustomFileInput.init();
 });
+$(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })});
 </script>
 <script> 
   var $sidebar = $('.control-sidebar')

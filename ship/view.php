@@ -4,62 +4,80 @@
 			Require_once( "C:\\wow\\password\\config.php"); 
 			Require_once("../include/auth.php"); 
 			Require_once("../include/config.php");
-			$is_active =0;
+			$is_active =0; 
 			$name=$cr =$vat =$conatct =$create_date=$update_date=" ";
-			$id=$_GET['id'];  
-		
-	 
+			$ShipID=intval($_GET['id']);
+			if($debug){echo "<b>ShipID :</b>".$ShipID."<br>";} 
 				// SELECT  AGENT
-				$query = "SELECT * FROM `suppliers` WHERE   id = ".$id." LIMIT 1 ;"; 
-			 
-                $suppliers = $dbop->query($query)->fetchAll();   
-                foreach ($suppliers as $supplier) {  
-                    $id    				=$supplier['id'];
-                    $name    			=$supplier['name'];
-                    $cr     			=$supplier['cr'];        
-                    $vat     			=$supplier['vat'];        
-                    $conatct     		=$supplier['conatct'];        
-                    $is_active			=$supplier['is_active'];        
-                    $create_date     	=$supplier['create_date'];        
-                    $update_date     	=$supplier['update_date'];    }
-					$del_tag=''; 	 
-		 
-			if($is_active) {
-				$hname=$name;
-				$CardColor='secondary';
-			} else{
-				$hname="<del>".$name."</del>";
-				$CardColor='danger'; 
-			} 
-			$today = date("Y-m-d H:i:s");
-			if(isset($_POST['save'])){
-				$query1 = " SELECT `id`,`cr`,`vat`  FROM `suppliers` WHERE NOT id=$id  ; "; 
-				$suppliers = $dbop->query($query1)->fetchAll();   
-				$DuplicateCR=searchForArray($_POST['cr'],$suppliers,'cr');    
-				$DuplicateVAT=searchForArray($_POST['vat'],$suppliers,'vat');    
-				 if($DuplicateCR){echo "Error CR"; exit();}
-				 if($DuplicateVAT){echo "Error VAT"; exit();}
-						$name=  	stripslashes(htmlentities( strip_tags($_POST['name'] )));
-						$cr=  		stripslashes(htmlentities( strip_tags($_POST['cr'] )));
-						$vat=  		stripslashes(htmlentities( strip_tags($_POST['vat'] )));
-						$conatct=  stripslashes(htmlentities( strip_tags($_POST['conatct'] )));
-				$query="UPDATE `suppliers` SET 
-						`name` = '".$name."', 
-						`cr` = '".$cr."', 
-						`vat` = '".$vat."', 
-						`conatct` = '".$conatct."', 
-						`is_active` = '1', 
-						`update_date` = '".$today."' 
-					WHERE  `id` = ".$id."; "; 
-					  $dbop->query($query); 
-				 	  header("Refresh:0"); 
-			} 
-			if(isset($_POST['delete'])){  
-				$query = "UPDATE `suppliers` SET `is_active` = '0' , `update_date` = '".$today."'  WHERE `id`= ".$id  ; 
-                  $dbop->query($query);  
-				  header("Refresh:0"); 
-			} 
-			  
+				$ships_sql = "SELECT * FROM `ship` WHERE `ShipID` = ".$ShipID." LIMIT 1 ;"; 
+				if($debug){echo "<b>ships_sql :</b>".$ships_sql."<br>";} 
+                $ships = $dbop->query($ships_sql)->fetchAll();   
+                foreach ($ships as $ship) {  
+                    $ShipID   			=$ship['ShipID'];
+                    $IMO     			=$ship['IMO'];
+                    $ShipName     		=$ship['ShipName'];        
+                    $Weight     		=$ship['Weight'];        
+                    $AgentID     		=$ship['AgentID'];        
+                    $VAT				=$ship['VAT'];        
+                    $Notes     			=$ship['Notes'];      }
+					$del_tag=''; 	  
+					$today = date("Y-m-d H:i:s");
+					$query_agents = "SELECT *  FROM `agents` WHERE `AgentID`=".$AgentID." LIMIT 1;"; 
+					  $agents = $dbop->query($query_agents)->fetchAll();   
+					  foreach ($agents as $agent) {  
+						if(isset($agent['AgentNameAr'])){$AgentNameAr = $agent['AgentNameAr'];}else{$AgentNameAr ="";}
+					  	}  
+					  if($debug){echo "<b>query_agents :</b>".$query_agents."<br>";} 
+					  if($debug){echo "<b>AgentNameAr :</b>".$AgentNameAr."<br>";} 
+
+					// option AgentNameAr 
+					$AgentOption='<option value=""></option>';
+					$query = "SELECT `AgentID`,`AgentNameAr`,`AgentCR` FROM `agents`;"; 
+					$Agents = $dbop->query($query)->fetchAll();   
+					foreach ($Agents as $Agents) {   
+						$ThisID =intval($Agents['AgentID']);
+						$AgentsID=intval($AgentID);
+						if($ThisID==$AgentsID){$select="selected";}else{$select="";}
+						$AgentOption.='
+						<option value="'.$Agents['AgentID'].'" '.$select.'>'.$Agents['AgentNameAr'].' CR:'.$Agents['AgentCR'].'</option>';
+					}
+					// option AgentNameAr
+
+
+			if(isset($_POST['Update'])){
+				$query1 = " SELECT `IMO`  FROM `ship` WHERE NOT IMO='".$IMO."'; "; 
+				if($debug){echo "<b>query :</b>".$query1."<br>";} 
+				$IMOs = $dbop->query($query1)->fetchAll();   
+				$DuplicateIMO=searchForArray($_POST['IMO'],$IMOs,'IMO'); 
+				if(isset($_POST['VAT'])){
+					$VAT	=	stripslashes(htmlentities( strip_tags($_POST['VAT'] )));}
+					else{$VAT=0;}     
+				if($DuplicateIMO){echo "ERROR IMO : ".$IMO; exit();} 
+						$IMO		=  	stripslashes(htmlentities( strip_tags($_POST['IMO'] )));
+						$ShipName	= 	stripslashes(htmlentities( strip_tags($_POST['ShipName'] )));
+						
+						$AgentID	=  	stripslashes(htmlentities( strip_tags($_POST['AgentID'] )));
+						$Notes		=  	stripslashes(htmlentities( strip_tags($_POST['Notes'] )));
+						$Weight		=  	stripslashes(htmlentities( strip_tags($_POST['Weight'] )));
+						$Weight		=  	floatval($Weight);
+						if($debug){echo "<b>VAT :</b>".$VAT."<br>";} 
+				if($VAT=='on'){$VAT=1;}else{$VAT=0;}
+				$query_UPDATE="UPDATE `ship` SET 
+							`IMO` = '".$IMO."', 
+							`ShipName` = '".$ShipName."', 
+							`Weight` = '".$Weight."', 
+							`AgentID` = '".$AgentID."', 
+							`VAT` = '$VAT', 
+							`Notes` ='$Notes', 
+							`Weight` = '".$Weight."' 
+							WHERE  `ShipID` = ".$ShipID."; "; 
+							if($debug){echo "<b>query_UPDATE :</b>".$query_UPDATE."<br>";}
+							 
+					  $dbop->query($query_UPDATE);  
+					  if($debug){echo "<b>IMO :</b>".$IMO."<br>";}
+					  else{header("Refresh:0"); }
+
+			}   
         ?>   
 <html lang="en">
 <head>
@@ -88,7 +106,7 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 			<div class="col-sm-6">
-			<h1>  <?=$hname;?>  </h1> 
+			<h1>  Ships </h1> 
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
@@ -108,69 +126,76 @@
 			<div class="col-md-12"> 
 				<!-- general form elements disabled -->
 				<form action="#" method="POST">
-				<input type="hidden" name="id"  value="<?=$id;?>">
+				<input type="hidden" name="id"  value="<?=$ShipID;?>">
 				<div class="card card-<?=$CardColor;?>">
 					<div class="card-header">
-						<h3 class="card-title">General Information</h3>
-						<div class="card-tools">
-							<a href="view.php?id=<?=$id-1;?>">
-								<button type="button" class="btn btn-tool" >
-										<i class="fa fa-angle-left"></i>
-								</button>
-							</a>
-							<a href="view.php?id=<?=$id+1;?>">
-								<button type="button"  class="btn btn-tool" >
-									<i class="fa fa-angle-right"></i> 
-								</button>
-							</a>
-						</div>
+						<h3 class="card-title">General Information</h3> 
 					</div>  
 					<div class="card-body"> 
 						<div class="row">
 							<div class="col-sm-6">
-							<!-- text input -->
-							<div class="form-group">
-								<label>Company Name</label>
-								<input type="text" class="form-control" name="name" value="<?=$name;?>">
+								<!-- text input   -->
+								<div class="form-group">
+									<label>Ship Name</label>
+									<input type="text" class="form-control" name="ShipName" value="<?=$ShipName;?>">
+								</div>
 							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-6">
+								<!-- text input   -->
+								<div class="form-group">
+										<label>Agents</label> 
+										<select name="AgentID" class="form-control select2">
+											<?=$AgentOption;?>
+										</select>
+									</div>  
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-3">
+								<!-- text input -->
+								<div class="form-group">
+									<label>IMO#</label>
+									<input type="text" class="form-control" name="IMO" value="<?=$IMO;?>">
+								</div>
 							</div>
 							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label>CR No#</label>
-								<input type="text" class="form-control" name="cr" value="<?=$cr;?>">
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label>VAT No#</label>
-								<input type="text" class="form-control" name="vat" value="<?=$vat;?>">
-							</div>
+								<!-- text input -->
+								<div class="form-group">
+									<label>Weight</label>
+									<input type="text" class="form-control" name="Weight" value="<?=$Weight;?>">
+								</div>
 							</div>
 							
 						</div>
 						<div class="row">
+							<div class="col-sm-2">
+								<div class="form-group">
+									<div class="custom-control custom-switch">
+										<?php if($VAT){$isVAT="checked";}else{$isVAT="";}?>
+										<input name="VAT" type="checkbox" <?php echo $isVAT;?> class="custom-control-input" id="customSwitch1">
+										<label class="custom-control-label" for="customSwitch1">VAT 15%</label>
+									</div>
+								</div>
+							</div>
+						</div> 
+						<div class="row">
 							<div class="col-sm-6">
 							<!-- textarea -->
 							<div class="form-group">
-								<label>Contact Address</label>
-								<textarea class="form-control" rows="3" name="conatct" > <?=$conatct;?></textarea>
+								<label>Notes</label>
+								<textarea class="form-control" rows="3" name="Notes" ><?=$Notes;?></textarea>
 							</div>
-							</div>
-							<div class="col-sm-6">
-							<div class="form-group">
-								<label>Record Information</label> 
-								<input class="form-control"   placeholder="Created : <?=$create_date;?>" disabled></textarea>
-								<input class="form-control"   placeholder="Last Modified : <?=$update_date;?>" disabled></textarea>
-							</div>
-							</div>
+							</div> 
 						</div> 
 						<!-- input states --> 
 						</form>
 					</div>
 					<div class="card-footer">
-						<button type="submit" name="save" value="save" class="btn btn-info">save</button>
+						<button type="submit" name="Update" value="Update" class="btn btn-info">Update</button>
 					</div> 
 				<!-- /.card-body -->
 				</div>

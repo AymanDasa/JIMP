@@ -79,7 +79,7 @@
           </li> 
 
           <!-- #### Agent #### -->
-          <li class="nav-item <?php if($folder_name=='ship') {echo 'menu-open';} ?>">
+          <li class="nav-item <?php if($folder_name=='agent') {echo 'menu-open';} ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-lines"></i>
               <p>

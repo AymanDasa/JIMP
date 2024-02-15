@@ -8,11 +8,7 @@
 	$dompdf = new Dompdf($options); 
 	require_once '../include/dompdf/vendor/src/Arabic.php';
 	$Arabic = new ArPHP\I18N\Arabic(); 
-	  
-	
-			
-			$id=$_GET['id'];   
-			$folder_name =  basename(dirname(__FILE__));
+
 			Require_once( "C:\\wow\\password\\config.php"); 
 			Require_once("../include/auth.php"); 
 			Require_once("../include/config.php"); 
@@ -67,7 +63,7 @@
 				@page { margin: 20px; }
 				@font-face {
 						font-family: "Arabic";
-						src:  url("DINNextLTArabicRegular3.ttf") format("truetype");
+						src:  url("DubaiRegular.ttf") format("truetype");
 								font-weight: normal;
 								font-style:normal; 
 						}

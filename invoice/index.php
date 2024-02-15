@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <?php   
-
-	 
 $folder_name =  basename(dirname(__FILE__));
 Require_once( "C:\\wow\\password\\config.php"); 
 Require_once("../include/auth.php"); 
@@ -77,69 +75,70 @@ $IsActive = 0 ;
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-			   	  <th>Date</th> 
-				  <th>Invoice No#</th>
-                      <th> Ref - SAP PO</th> 
-                      <th>Amount</th>
-                      <th>Supplier</th>
+                      <th>#</th> 
+                      <th>Date</th> 
+                      <th>Invoice No#</th>
+                      <th>Ship Name</th> 
+                      <th>Agent Name</th>
+                      <th>TOTAL (SAR)</th>
                       <th>View</th>
                   </tr>
                   </thead>
                   <tbody>
                   <?php 
-                      $invoices = $dbop->query('SELECT * FROM invoice  ;')->fetchAll();
-                      foreach ($invoices as $invoice) {  
+                      $invoices = $dbop->query('SELECT * FROM `invoice`  ')->fetchAll();
+                      foreach ($invoices as $invoice) { 
+                          
+                          $InvoiceDate  = $invoice['InvoiceDate'];
+                          $InvoiceID    = $invoice['InvoiceID'];
+                          $ShipName     = $invoice['ShipName']; 
+                          $AgentNameEn  = $invoice['AgentNameEn']; 
+                          $VAT_TOTAL    = $invoice['VAT_TOTAL'];  
+                          $Status       = $invoice['Status'];   
+                          $date1=date_create($InvoiceDate); 
+                          switch(intval($Status)){  
+                            case 700:
+                              $Icons='<a href="edit.php?id='.$invoice["InvoiceID"].'" class="btn btn-warning">
+                              <i class="fas fa-pen-to-square"></i></a> 
+                              <a href="view.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
+                              <i class="fas fa-trash"></i></a>';
+                              break;
+                            case 800:
+                              $Icons='<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
+                              <i class="fas fa-print"></i></a>';
+                              break;
+                            default:
+                                echo $Icons="";
+                            }
+                            
+                       echo '<tr>
+                          <td>'.$InvoiceID. ' </td>  
+                          <td>'.date_format($date1,"Y-m-d"). ' </td>  
+                          <td>'.$ShipName.'  </td>
+                          <td>'.$AgentNameEn. ' </td> 
+                          <td>'.$AgentNameEn. ' </td> 
+                          <td style="text-align: right;">'.number_format($VAT_TOTAL). ' </td> 
+                           
+                          <td>  
 
-
-					$invoice_supplier = $invoice['supplier'];
-					$SAPPOid = $invoice['sappo'];
-					$querysuppliers = "SELECT * FROM `suppliers` WHERE `id`=".$invoice_supplier." LIMIT 1;"; 
-					$suppliers = $dbop->query($querysuppliers)->fetchAll();   
-						foreach ($suppliers as $supplier) {    
-						$SupplierName = $supplier['name'];
-						$SupplierCR = $supplier['cr'];
-						$SupplierConatct = $supplier['conatct'];
-						$create_date = $supplier['create_date'];
-						$update_date = $supplier['update_date'];
-						$SupplierVAT = $supplier['vat'];} 
-					
-					$querySAPPO = "SELECT * FROM `sappo` WHERE `id`=".$SAPPOid." LIMIT 1;"; 
-					$SAPPOs = $dbop->query($querySAPPO)->fetchAll();   
-							foreach ($SAPPOs as $SAPPO) { 
-								$SAPPOname = $SAPPO['name']; 
-								$IsActive = intval($SAPPO['is_active']);   
-							}  
-						$ShortSupplierName = substr($SupplierName,0, 50);
-						$ShortSupplierName = substr($ShortSupplierName,0, -1);
-						
-
-					if($IsActive){
-			 	 	echo '<tr>
-					  <td>'.$invoice['date']. ' </td> 
-                            <td>'.$invoice['no']. ' </td> 
-                              <td>'.$invoice['ref_no']. ' - '.$SAPPOname.'  </td>  
-                              
-                              <td>'.$invoice['amount']. ' </td> 
-                              <td> <a href="../suppliers/view.php?id='.$invoice_supplier.'">
-                                      <button Style="padding: .0rem .0rem;" class="btn btn-icon">  ...'. $ShortSupplierName.'.  </button>
-                                    </a>
-                              </td>
-						<td> <a href="view.php?id='.$invoice['id'].'">
-							<button style="padding: .0rem .0rem;" class="btn btn-icon"> 
-								<i class="fas fa-search"></i>
-							</button>
-						</td>  
-                            </tr>' ; }
-					    }  ?>
+                            <div class="btn-group btn-group-sm"> 
+                              <a href="view.php?id='.$invoice['InvoiceID'].'" class="btn btn-info">
+                              <i class="fas fa-eye"></i></a>
+                              '.$Icons.'
+                            </div>
+                          </td>  
+                        </tr>' ; }
+					       ?>
                   </tbody>
                   <tfoot>
                   <tr>
-			   	  <th>Date</th> 
-				  <th>Invoice No#</th>
-                      <th>SAPPO - Ref No# </th> 
-                      <th>Amount</th>
-                      <th>Supplier</th>
-                      <th>View</th>
+                      <th>#</th> 
+                      <th>Date</th> 
+                      <th>Invoice No#</th>
+                      <th>Ship Name</th> 
+                      <th>Agent Name</th>
+                      <th>TOTAL (SAR)</th>
+                      <th>View</th> 
                   </tr>
                   </tfoot>
                 </table>

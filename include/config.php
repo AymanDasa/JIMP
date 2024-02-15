@@ -44,5 +44,6 @@ function searchForArray($id, $array,$elmint) {
         }
         return $Select;
      }
-
+$debug = 0 ; 
+if($debug){echo "<b>Debug :</b>".$debug."<br>";}
  ?>

@@ -1,58 +1,188 @@
-		<?php    
+<?php    
 			$folder_name =  basename(dirname(__FILE__));
 			Require_once( "C:\\wow\\password\\config.php"); 
 			Require_once("../include/auth.php"); 
 			Require_once("../include/config.php"); 
-			$is_active =1;
-			$SSCount=5;
-			$name=$cr =$vat =$hname=$conatct =$create_date=$update_date="";
-			$CardColor='secondary'; 
-	   
-		// option Agents 
-        	$AgentOption='<option value=""></option>';
-				 	$query = "SELECT `AgentID`,`AgentNameAr`,`AgentCR` FROM `agents`;"; 
-					$Agents = $dbop->query($query)->fetchAll();   
-					foreach ($Agents as $Agents) {    
-            $AgentOption.='
-			<option value="'.$Agents['AgentID'].'">'.$Agents['AgentNameAr'].' CR:'.$Agents['AgentCR'].'</option>';
-					}
-				// option Agents
-
-        // option Ships
-        	$ShipNameOption='<option value=""></option>';
-				 	$query = "SELECT `ShipID`,`ShipName`  FROM `ship`;"; 
-					$ships = $dbop->query($query)->fetchAll();   
-					foreach ($ships as $ship) {    
-            $ShipNameOption.='
-			<option value="'.$ship['ShipID'].'">'.$ship['ShipName'].'</option>';
-					}
-				// option Ships
-        // option services
-        	$servicesOption='<option value=""></option>';
-				 	$query = "SELECT `Service_ID`,`Description`  FROM `services`;"; 
-					$services = $dbop->query($query)->fetchAll();   
-					foreach ($services as $service) {    
-            $servicesOption.='
-			<option value="'.$service['Service_ID'].'">'.$service['Description'].'</option>';
-					}
-				// option services
-		// SSCount 
+			$name=$cr =$vat =$hname=$conatct =$create_date=$update_date="";  
+            $CardColor='secondary'; 
 			$query = "SELECT `value` FROM `config`  WHERE  `name`='SSCount' LIMIT 1;"; 
 			$SSCountQuerys = $dbop->query($query)->fetchAll();   
 			foreach ($SSCountQuerys as $SSCountQuery) {    
 				$SSCount = intval($SSCountQuery['value']) ;
-			}
-		// option services
+			} 
+			$today = date("Y-m-d H:i:s"); 
 
-        // DUBLICAT ITEM
-		  
-	   
+if(isset($_GET['id'])) {
+#########################################################################
+#########################################################################
+#######################  Functions & Class  #############################
+#########################################################################
+#########################################################################
+$invoiceID = intval($_GET['id']); 
+    $query = "SELECT *  FROM `invoice` WHERE `invoiceID`=".$invoiceID." LIMIT 1;"; 
+
+    $invoicevs = $dbop->query($query)->fetchAll();   
+    foreach ($invoicevs as $invoicev) {   
+		$ShipID=$invoicev['ShipID'];
+		$ShipName=$invoicev['ShipName'];
+		$ShipWeight=$invoicev['ShipWeight'];
+		$AgentID=$invoicev['AgentID'];
+		$AgentNameAr=$invoicev['AgentNameAr'];
+		$AgentNameEn=$invoicev['AgentNameEn'];
+		$ServiceType=$invoicev['ServiceType'];
+		$ServiceTypeName=$invoicev['ServiceTypeName'];
+		$ServiceTypeFactor=$invoicev['ServiceTypeFactor'];
+		$InvoiceDate=$invoicev['InvoiceDate'];
+		$InvoiceDateT=$invoicev['InvoiceDateT'];
+		$InvoiceDateH=$invoicev['InvoiceDateH'];
+		$ArrivalDate=$invoicev['ArrivalDate'];
+		$ArrivalDateT=$invoicev['ArrivalDateT'];
+		$ArrivalDateH=$invoicev['ArrivalDateH'];
+		$DepartureDate=$invoicev['DepartureDate'];
+		$DepartureDateT=$invoicev['DepartureDateT'];
+		$DepartureDateH=$invoicev['DepartureDateH'];
+		$PeriodDays=$invoicev['PeriodDays'];
+		$AnchorageEntry=$invoicev['AnchorageEntry'];
+		$AnchorageEntryT=$invoicev['AnchorageEntryT'];
+		$AnchorageEntryH=$invoicev['AnchorageEntryH'];
+		$AnchorageLeave=$invoicev['AnchorageLeave'];
+		$AnchorageLeaveT=$invoicev['AnchorageLeaveT'];
+		$AnchorageLeaveH=$invoicev['AnchorageLeaveH'];
+		$AnchorageDays=$invoicev['AnchorageDays'];
+		$MSericeAnchoragePrice=$invoicev['MSericeAnchoragePrice'];
+		$MovePort1=$invoicev['MovePort1'];
+		$MovePort2=$invoicev['MovePort2'];
+		$MovePort3=$invoicev['MovePort3'];
+		$TripNo=$invoicev['TripNo'];
+		$DockingNo=$invoicev['DockingNo'];
+		$RouteNo=$invoicev['RouteNo'];
+		$ShiftedNo=$invoicev['ShiftedNo'];
+		$Reason=$invoicev['Reason'];
+		$Note=$invoicev['Note'];
+		$MSFraction1=$invoicev['MSFraction1'];
+		$MSFraction2=$invoicev['MSFraction2'];
+		$MSFraction3=$invoicev['MSFraction3'];
+		$MService1=$invoicev['MService1'];
+		$MService2=$invoicev['MService2'];
+		$MService3=$invoicev['MService3'];
+		$CA0=$invoicev['CA0'];
+		$CA1=$invoicev['CA1'];
+		$CA2=$invoicev['CA2'];
+		$CA3=$invoicev['CA3'];
+		$MSericeInPrice=$invoicev['MSericeInPrice'];
+		$CB0=$invoicev['CB0'];
+		$CB1=$invoicev['CB1'];
+		$CB2=$invoicev['CB2'];
+		$CB3=$invoicev['CB3'];
+		$MSericeOutPrice=$invoicev['MSericeOutPrice'];
+		$MA=$invoicev['MA'];
+		$MA0=$invoicev['MA0'];
+		$MA1=$invoicev['MA1'];
+		$MA2=$invoicev['MA2'];
+		$MA3=$invoicev['MA3'];
+		$MB=$invoicev['MB'];
+		$MB0=$invoicev['MB0'];
+		$MB1=$invoicev['MB1'];
+		$MB2=$invoicev['MB2'];
+		$MB3=$invoicev['MB3'];
+		$MC=$invoicev['MC'];
+		$MC0=$invoicev['MC0'];
+		$MC1=$invoicev['MC1'];
+		$MC2=$invoicev['MC2'];
+		$MC3=$invoicev['MC3'];
+		$MovePortPrice=$invoicev['MovePortPrice'];
+		$MSericeBathPrice=$invoicev['MSericeBathPrice'];
+		$MSNote1=$invoicev['MSNote1'];
+		$MSNote2=$invoicev['MSNote2'];
+		$MSNote3=$invoicev['MSNote3'];
+		$MGPrice=$invoicev['MGPrice'];
+		$MSTOTAL=$invoicev['MSTOTAL'];
+		$SService1=$invoicev['SService1'];
+		$SService2=$invoicev['SService2'];
+		$SService3=$invoicev['SService3'];
+		$SService4=$invoicev['SService4'];
+		$SService5=$invoicev['SService5'];
+		$SSName1=$invoicev['SSName1'];
+		$SSName2=$invoicev['SSName2'];
+		$SSName3=$invoicev['SSName3'];
+		$SSName4=$invoicev['SSName4'];
+		$SSName5=$invoicev['SSName5'];
+		$SSNote1=$invoicev['SSNote1'];
+		$SSNote2=$invoicev['SSNote2'];
+		$SSNote3=$invoicev['SSNote3'];
+		$SSNote4=$invoicev['SSNote4'];
+		$SSNote5=$invoicev['SSNote5'];
+		$SSUnit1=$invoicev['SSUnit1'];
+		$SSUnit2=$invoicev['SSUnit2'];
+		$SSUnit3=$invoicev['SSUnit3'];
+		$SSUnit4=$invoicev['SSUnit4'];
+		$SSUnit5=$invoicev['SSUnit5'];
+		$SSQut1=$invoicev['SSQut1'];
+		$SSQut2=$invoicev['SSQut2'];
+		$SSQut3=$invoicev['SSQut3'];
+		$SSQut4=$invoicev['SSQut4'];
+		$SSQut5=$invoicev['SSQut5'];
+		$SSUPrice1=$invoicev['SSUPrice1'];
+		$SSUPrice2=$invoicev['SSUPrice2'];
+		$SSUPrice3=$invoicev['SSUPrice3'];
+		$SSUPrice4=$invoicev['SSUPrice4'];
+		$SSUPrice5=$invoicev['SSUPrice5'];
+		$SSPrice1=$invoicev['SSPrice1'];
+		$SSPrice2=$invoicev['SSPrice2'];
+		$SSPrice3=$invoicev['SSPrice3'];
+		$SSPrice4=$invoicev['SSPrice4'];
+		$SSPrice5=$invoicev['SSPrice5'];
+		$SSTOTAL=$invoicev['SSTOTAL'];
+		$TOTAL=$invoicev['TOTAL'];
+		$is_VAT=$invoicev['is_VAT'];
+		$VAT=$invoicev['VAT'];
+		$VAT_TOTAL=$invoicev['VAT_TOTAL']; 
+    } 
+
+}
+else{
+	exit();
+}
+
+// option AgentNameAr 
+    $AgentOption='<option value=""></option>';
+    $query = "SELECT `AgentID`,`AgentNameAr`,`AgentCR` FROM `agents`;"; 
+    $Agents = $dbop->query($query)->fetchAll();   
+    foreach ($Agents as $Agents) {   
+        $ThisID =intval($Agents['AgentID']);
+        $AgentsID=intval($AgentID);
+        if($ThisID==$AgentsID){$select="selected";}else{$select="";}
+        $AgentOption.='
+        <option value="'.$Agents['AgentID'].'" '.$select.'>'.$Agents['AgentNameAr'].' CR:'.$Agents['AgentCR'].'</option>';
+    }
+// option AgentNameAr
+
+// option ShipName
+    $ShipNameOption='<option value=""></option>';
+    $query = "SELECT `ShipID`,`ShipName`  FROM `ship`;"; 
+    $ships = $dbop->query($query)->fetchAll();  
+
+    foreach ($ships as $ship) {
+        $ThisID =intval($ship['ShipID']);
+        $shipID=intval($ShipID);
+        if($ThisID==$shipID){$select="selected";}else{$select="";}
+        $ShipNameOption.='
+        <option value="'.$ship['ShipID'].'" '.$select.'>'.$ship['ShipName'].'</option>';
+    }
+// option ShipName
 
 
-			$today = date("Y-m-d H:i:s");
-			$A = $B = $C = $D = $E = $F = $G = $H = $I = $J = 0;
-			$TotalInvoiceAmount = $NumberOfAllInvoice = $OverBalance =  0;
-			$DataIsOK = $query= '';
+		
+
+// option SSCount 
+$query = "SELECT `value` FROM `config`  WHERE  `name`='SSCount' LIMIT 1;"; 
+$SSCountQuerys = $dbop->query($query)->fetchAll();   
+foreach ($SSCountQuerys as $SSCountQuery) {    
+    $SSCount = intval($SSCountQuery['value']) ;
+}
+// option SSCount
+
+
  ?>  
 <!DOCTYPE html>
 <html lang="en">
@@ -99,11 +229,7 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 				<div class="col-sm-6">
-				<h1>  <?=$hname;?> </h1> 
-					<?php if($DataIsOK){?>
-						
-					<?php }?>
-			
+				<h1>  <?=$hname;?> </h1>  
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -122,8 +248,8 @@
 			<!-- left column --> 
 			<div class="col-md-12"> 
 				<!-- general form elements disabled  action="test.php"  --> 
-				<form action="post_add.php" method="POST"> 
-
+				<form action="post_update.php" method="POST"> 
+                <input type="hidden" name="maxID" value="<?=$invoiceID;?>">
 
 
 
@@ -162,7 +288,7 @@
 									<div class="form-group">
 										<label>Invoice Date</label>
 										<div class="input-group date" id="ClickInvoiceDate" data-target-input="nearest">
-											<input  name="InvoiceDate" type="text" class="form-control datetimepicker-input" data-target="#ClickInvoiceDate"/>
+											<input  name="InvoiceDate" type="text" value="<?php echo $InvoiceDate;?>" class="form-control datetimepicker-input" data-target="#ClickInvoiceDate"/>
 											<div class="input-group-append" data-target="#ClickInvoiceDate" data-toggle="datetimepicker">
 											<div class="input-group-text">
 												<i class="fa fa-calendar"></i>
@@ -179,7 +305,7 @@
 										<div class="form-group">
 											<label>Arrival Date</label>
 											<div class="input-group date" id="ClickArrivalDate" data-target-input="nearest">
-												<input  name="ArrivalDate" type="text" class="form-control datetimepicker-input" data-target="#ClickArrivalDate"/>
+												<input  name="ArrivalDate" type="text" value="<?php echo $ArrivalDate;?>" class="form-control datetimepicker-input" data-target="#ClickArrivalDate"/>
 												<div class="input-group-append" data-target="#ClickArrivalDate" data-toggle="datetimepicker">
 												<div class="input-group-text">
 													<i class="fa fa-calendar"></i>
@@ -193,7 +319,7 @@
 									<div class="form-group">
 									<label>Departure Date:</label>
 									<div class="input-group date" id="ClickDepartureDate" data-target-input="nearest">
-										<input name="DepartureDate" type="text" class="form-control datetimepicker-input" data-target="#ClickDepartureDate"/>
+										<input name="DepartureDate" type="text"  value="<?php echo $DepartureDate;?>" class="form-control datetimepicker-input" data-target="#ClickDepartureDate"/>
 										<div class="input-group-append" data-target="#ClickDepartureDate" data-toggle="datetimepicker">
 										<div class="input-group-text"><i class="fa fa-calendar"></i></div>
 										</div>
@@ -204,14 +330,14 @@
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3"> 
 										<div class="form-group">
 											<label>Trip No</label> 
-											<input type="text" class="form-control" name="TripNo"  autocomplete="off">
+											<input type="text" class="form-control" name="TripNo"  value="<?php echo $TripNo;?>" autocomplete="off">
 										</div>
 									</div>
 								<!-- %%  Partial/Final  %%% -->     
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3"> 
 										<div class="form-group">
 											<label>MovePort 1</label> 
-											<input name="MovePort1" type="text" class="form-control" >
+											<input name="MovePort1"  value="<?php echo $MovePort1;?>" type="text" class="form-control" >
 										</div>
 									</div>
 							</div>  
@@ -222,7 +348,7 @@
 										<div class="form-group">
 											<label>Anchor Entry</label>
 											<div class="input-group date" id="ClickAnchorEntryDate" data-target-input="nearest">
-												<input  name="AnchorageEntry" type="text" class="form-control datetimepicker-input" data-target="#ClickAnchorEntryDate"/>
+												<input   name="AnchorageEntry"  value="<?php echo $AnchorageEntry;?>" type="text" class="form-control datetimepicker-input" data-target="#ClickAnchorEntryDate"/>
 												<div class="input-group-append" data-target="#ClickAnchorEntryDate" data-toggle="datetimepicker">
 												<div class="input-group-text">
 													<i class="fa fa-calendar"></i>
@@ -236,7 +362,7 @@
 									<div class="form-group">
 									<label>Anchor Leave:</label>
 									<div class="input-group date" id="ClickAnchorLeaveDate" data-target-input="nearest">
-										<input name="AnchorageLeave" type="text" class="form-control datetimepicker-input" data-target="#ClickAnchorLeaveDate"/>
+										<input name="AnchorageLeave"   value="<?php echo $AnchorageLeave;?>" type="text" class="form-control datetimepicker-input" data-target="#ClickAnchorLeaveDate"/>
 										<div class="input-group-append" data-target="#ClickAnchorLeaveDate" data-toggle="datetimepicker">
 										<div class="input-group-text"><i class="fa fa-calendar"></i></div>
 										</div>
@@ -247,14 +373,14 @@
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3"> 
 										<div class="form-group">
 											<label>Docking No</label> 
-											<input type="text" class="form-control" name="DockingNo"  >
+											<input type="text" class="form-control" name="DockingNo"  value="<?php echo $DockingNo;?>" >
 										</div>
 									</div>
 								<!-- %%  Partial/Final  %%% -->     
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3"> 
 										<div class="form-group">
 											<label>MovePort 2</label> 
-											<input type="text" class="form-control" name="MovePort2"  >
+											<input type="text" class="form-control" name="MovePort2"  value="<?php echo $MovePort2;?>" >
 										</div>
 									</div>
 							</div>  
@@ -264,25 +390,25 @@
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">   
 										<div class="form-group">
 											<label>Route No</label> 
-											<input type="text" class="form-control" name="RouteNo"  >
+											<input type="text" class="form-control" name="RouteNo"  value="<?php echo $RouteNo;?>" >
 										</div> 
 									</div>
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">   
 										<div class="form-group">
 											<label>Shifted No</label> 
-											<input type="text" class="form-control" name="ShiftedNo"  >
+											<input type="text" class="form-control" name="ShiftedNo"  value="<?php echo $ShiftedNo;?>" >
 										</div> 
 									</div>
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">   
 										<div class="form-group">
 											<label>Reason</label> 
-											<input type="text" class="form-control" name="Reason"  >
+											<input type="text" class="form-control" name="Reason"  value="<?php echo $Reason;?>" >
 										</div> 
 									</div>
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">   
 										<div class="form-group">
 											<label>MovePort 3</label> 
-											<input type="text" class="form-control" name="MovePort3"  >
+											<input type="text" class="form-control" name="MovePort3"  value="<?php echo $MovePort3;?>" >
 										</div> 
 									</div>
 							</div>  
@@ -291,7 +417,7 @@
 									<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">   
 										<div class="form-group">
 											<label>Note</label>  
-											<textarea class="form-control" rows="1" name="Note" placeholder=""></textarea>
+											<textarea class="form-control" rows="1" name="Note" ><?php echo $Note;?></textarea>
 										</div> 
 									</div>
 							</div>  
@@ -312,6 +438,7 @@
 						<div class="card-body"> 
 
 							<!-- %%%%%%%%%%%%%%%%%%%% row1  Araval Fees   %%%%%%%%%%%%%%%%%%%%%%%% --> 
+                            
 							<div class="row">
 								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
 									<!-- %%%%%%%%%%%%%%%%%%%% Fees 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  --> 
@@ -319,7 +446,7 @@
 										<div class="custom-control custom-switch" style="padding-left: 5.25rem;">
 											<label>Araval Fees</label> 
 											<br>
-											<input name="MService1" type="checkbox" class="custom-control-input" id="customSwitch1">
+											<input name="MService1" <?php if($MService1==1){echo 'checked';} ?> type="checkbox" class="custom-control-input" id="customSwitch1">
 											<label class="custom-control-label" for="customSwitch1"></label>
 										</div>
 									</div>
@@ -328,14 +455,14 @@
 										<!-- %%%%%%%%%%%%%%%%%%%% Rate 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 									<div class="form-group">
 										<label>Araval Rate</label> 
-										<input type="text" class="form-control" name="MSFraction1"  >
+										<input type="text" class="form-control" name="MSFraction1" value="<?php echo $MSFraction1;?>" >
 									</div>  
 								</div>
 								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
 										<!-- %%%%%%%%%%%%%%%%%%%% Note 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%% --> 
 										<div class="form-group">
 											<label> Note</label> 
-											<input type="text" class="form-control" name="MSNote1"  >
+											<input type="text" class="form-control" name="MSNote1" value="<?php echo $MSNote1;?>">
 										</div>
 								</div> 
 							</div> 
@@ -348,7 +475,7 @@
 										<div class="custom-control custom-switch" style="padding-left: 5.25rem;">
 											<label>Departure Fees</label> 
 											<br>
-											<input name="MService2" type="checkbox" class="custom-control-input" id="customSwitch2">
+											<input name="MService2" <?php if($MService2==1){echo 'checked';} ?> type="checkbox" class="custom-control-input" id="customSwitch2">
 											<label class="custom-control-label" for="customSwitch2"></label>
 										</div>
 									</div>
@@ -357,14 +484,14 @@
 										<!-- %%%%%%%%%%%%%%%%%%%% Rate 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 									<div class="form-group">
 										<label>Departure Rate</label> 
-										<input type="text" class="form-control" name="MSFraction2"  >
+										<input type="text" class="form-control" name="MSFraction2" value="<?php echo $MSFraction2;?>" >
 									</div>  
 								</div>
 								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
 										<!-- %%%%%%%%%%%%%%%%%%%% Note 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%% --> 
 										<div class="form-group">
 											<label> Note</label> 
-											<input type="text" class="form-control" name="MSNote2"  >
+											<input type="text" class="form-control" name="MSNote2" value="<?php echo $MSNote2;?>" >
 										</div>
 								</div> 
 							</div> 
@@ -378,7 +505,7 @@
 										<div class="custom-control custom-switch" style="padding-left: 5.25rem;">
 											<label>Port Fees</label> 
 											<br>
-											<input name="MService3" type="checkbox" class="custom-control-input" id="customSwitch3">
+											<input name="MService3" <?php if($MService3==1){echo 'checked';} ?> type="checkbox" class="custom-control-input" id="customSwitch3">
 											<label class="custom-control-label" for="customSwitch3"></label>
 										</div>
 									</div>
@@ -387,14 +514,14 @@
 										<!-- %%%%%%%%%%%%%%%%%%%% Rate 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 									<div class="form-group">
 										<label>Port Rate</label> 
-										<input type="text" class="form-control" name="MSFraction3"  >
+										<input type="text" class="form-control" name="MSFraction3"  value="<?php echo $MSFraction3;?>">
 									</div>  
 								</div>
 								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
 										<!-- %%%%%%%%%%%%%%%%%%%% Note 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%% --> 
 										<div class="form-group">
 											<label>Note </label> 
-											<input type="text" class="form-control" name="MSNote3"  >
+											<input type="text" class="form-control" name="MSNote3"  value="<?php echo $MSNote3;?>">
 										</div>
 								</div> 
 							</div> 
@@ -412,15 +539,30 @@
 							<h3 class="card-title">Special Service   </h3> 
 						</div>  
 						<div class="card-body">  
-							<!-- %%%%%%%%%%%%%%%%%%%% row1   %%%%%%%%%%%%%%%%%%%%%%%% --> 
-							<?php for($i=1;$i<=$SSCount ;$i++){?>
+
+
+				<!-- %%%%%%%%%%%%%%%%%%%%  1 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
 							<div class="row">
 								<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6"> 
 									<!-- %%%%%%%%%%%%%%%%%%%% Fees 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  --> 
 									<div class="form-group">
-										<label>Services Description <?php echo $i;?></label> 
-										<select name="SService<?php echo $i;?>" class="form-control select2">
-							  					<?=$servicesOption;?>
+										<label>Services Description </label> 
+										<select name="SService1" class="form-control select2">
+							  					<?php
+                                                // option Description
+                                                    $query = "SELECT `Service_ID`,`Description` FROM `services`;"; 
+                                                    $services = $dbop->query($query)->fetchAll();  
+                                                    $servicesOption='<option value=""></option>'; 
+                                                    foreach ($services as $service) {    
+                                                        $ThisID =intval($service['Service_ID']);
+                                                        $SService1=intval($SService1);
+                                                        if($ThisID==$SService1){$select="selected";}else{$select="";}
+                                                    $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>'.$service['Description'].'
+                                                    </option>';
+                                                    }
+                                                    echo $servicesOption;
+                                                // option Description
+                                                ?>
 										</select>
 									</div> 
 								</div> 
@@ -428,29 +570,235 @@
 										<!-- %%%%%%%%%%%%%%%%%%%% Rate 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 									<div class="form-group">
 										<label>Qut.</label> 
-										<input type="text" class="form-control" name="SSQut<?php echo $i;?>"  >
+										<input type="text" class="form-control" name="SSQut1"  value="<?php echo $SSQut1;?>">
 									</div>  
 								</div>
 								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
 										<!-- %%%%%%%%%%%%%%%%%%%% Rate 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 									<div class="form-group">
 										<label>U. Price</label> 
-										<input type="text" class="form-control" name="SSUPrice<?php echo $i;?>"  >
+										<input type="text" class="form-control" name="SSUPrice1"  value="<?php echo $SSUPrice1;?>">
 									</div>  
 								</div>
 								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
 										<!-- %%%%%%%%%%%%%%%%%%%% Rate 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 									<div class="form-group">
 										<label>Note</label> 
-										<input type="text" class="form-control" name="SSNote<?php echo $i;?>"  >
+										<input type="text" class="form-control" name="SSNote1"  value="<?php echo $SSNote1;?>">
 									</div>  
 								</div> 
 							</div> 
-							<?php }?>
+                <!-- %%%%%%%%%%%%%%%%%%%%  1 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
+
+
+
+
+
+                <!-- %%%%%%%%%%%%%%%%%%%%  2 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
+							<div class="row">
+								<div class="col-sm-2 col-md-6 col-lg-6 col-xl-6"> 
+									<!-- %%%%%%%%%%%%%%%%%%%% Fees 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  --> 
+									<div class="form-group">
+										<label>Services Description </label> 
+										<select name="SService2" class="form-control select2">
+							  					<?php
+                                                // option Description
+                                                    $query = "SELECT `Service_ID`,`Description`  FROM `services`;"; 
+                                                    $services = $dbop->query($query)->fetchAll();  
+                                                    $servicesOption='<option value=""></option>'; 
+                                                    foreach ($services as $service) {    
+                                                        $ThisID =intval($service['Service_ID']);
+                                                        $SService2=intval($SService2);
+                                                        if($ThisID==$SService2){$select="selected";}else{$select="";}
+                                                    $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>'.$service['Description'].'
+                                                    </option>';
+                                                    }
+                                                    echo $servicesOption;
+                                                // option Description
+                                                ?>
+										</select>
+									</div> 
+								</div> 
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>Qut.</label> 
+										<input type="text" class="form-control" name="SSQut2"  value="<?php echo $SSQut2;?>">
+									</div>  
+								</div>
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>U. Price</label> 
+										<input type="text" class="form-control" name="SSUPrice2"  value="<?php echo $SSUPrice2;?>">
+									</div>  
+								</div>
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>Note</label> 
+										<input type="text" class="form-control" name="SSNote2"  value="<?php echo $SSNote2;?>">
+									</div>  
+								</div> 
+							</div> 
+                <!-- %%%%%%%%%%%%%%%%%%%%  2 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
+
+
+
+
+
+                <!-- %%%%%%%%%%%%%%%%%%%%  3 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
+                            <div class="row">
+								<div class="col-sm-2 col-md-6 col-lg-6 col-xl-6"> 
+									<!-- %%%%%%%%%%%%%%%%%%%% Fees 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  --> 
+									<div class="form-group">
+										<label>Services Description </label> 
+										<select name="SService3" class="form-control select2">
+							  					<?php
+                                                // option Description
+                                                    $query = "SELECT `Service_ID`,`Description`  FROM `services`;"; 
+                                                    $services = $dbop->query($query)->fetchAll();   
+                                                    $servicesOption='<option value=""></option>';
+                                                    foreach ($services as $service) {    
+                                                        $ThisID =intval($service['Service_ID']);
+                                                        $SService3=intval($SService3);
+                                                        if($ThisID==$SService3){$select="selected";}else{$select="";}
+                                                    $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>'.$service['Description'].'</option>';
+                                                    }
+                                                    echo $servicesOption;
+                                                // option Description
+                                                ?>
+										</select>
+									</div> 
+								</div> 
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>Qut.</label> 
+										<input type="text" class="form-control" name="SSQut3"  value="<?php echo $SSQut3;?>">
+									</div>  
+								</div>
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>U. Price</label> 
+										<input type="text" class="form-control" name="SSUPrice3"  value="<?php echo $SSUPrice3;?>">
+									</div>  
+								</div>
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>Note</label> 
+										<input type="text" class="form-control" name="SSNote3"  value="<?php echo $SSNote3;?>">
+									</div>  
+								</div> 
+							</div> 
+                <!-- %%%%%%%%%%%%%%%%%%%%  3 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
+
+
+
+                <!-- %%%%%%%%%%%%%%%%%%%%  4 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
+                <div class="row">
+								<div class="col-sm-2 col-md-6 col-lg-6 col-xl-6"> 
+									<!-- %%%%%%%%%%%%%%%%%%%% Fees 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  --> 
+									<div class="form-group">
+										<label>Services Description </label> 
+										<select name="SService4" class="form-control select2">
+							  					<?php
+                                                // option Description
+                                                    $query = "SELECT `Service_ID`,`Description`  FROM `services`;"; 
+                                                    $services = $dbop->query($query)->fetchAll();   
+                                                    $servicesOption='<option value=""></option>';
+                                                    foreach ($services as $service) {    
+                                                        $ThisID =intval($service['Service_ID']);
+                                                        $SService4=intval($SService4);
+                                                        if($ThisID==$SService4){$select="selected";}else{$select="";}
+                                                    $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>'.$service['Description'].'</option>';
+                                                    }
+                                                    echo $servicesOption;
+                                                // option Description
+                                                ?>
+										</select>
+									</div> 
+								</div> 
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>Qut.</label> 
+										<input type="text" class="form-control" name="SSQut4"  value="<?php echo $SSQut4;?>">
+									</div>  
+								</div>
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>U. Price</label> 
+										<input type="text" class="form-control" name="SSUPrice4"  value="<?php echo $SSUPrice4;?>">
+									</div>  
+								</div>
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>Note</label> 
+										<input type="text" class="form-control" name="SSNote4"  value="<?php echo $SSNote4;?>">
+									</div>  
+								</div> 
+							</div> 
+                <!-- %%%%%%%%%%%%%%%%%%%%  4 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
+
+
+
+
+                <!-- %%%%%%%%%%%%%%%%%%%%  5 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
+                <div class="row">
+								<div class="col-sm-2 col-md-6 col-lg-6 col-xl-6"> 
+									<!-- %%%%%%%%%%%%%%%%%%%% Fees 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  --> 
+									<div class="form-group">
+										<label>Services Description </label> 
+										<select name="SService5" class="form-control select2">
+							  					<?php
+                                                // option Description
+                                                    $query = "SELECT `Service_ID`,`Description`  FROM `services`;"; 
+                                                    $services = $dbop->query($query)->fetchAll(); 
+                                                    $servicesOption='<option value=""></option>';  
+                                                    foreach ($services as $service) {    
+                                                        $ThisID =intval($service['Service_ID']);
+                                                        $SService5=intval($SService5);
+                                                        if($ThisID==$SService5){$select="selected";}else{$select="";}
+                                                    $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>'.$service['Description'].'</option>';
+                                                    }
+                                                    echo $servicesOption;
+                                                // option Description
+                                                ?>
+										</select>
+									</div> 
+								</div> 
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>Qut.</label> 
+										<input type="text" class="form-control" name="SSQut5"  value="<?php echo $SSQut5;?>">
+									</div>  
+								</div>
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>U. Price</label> 
+										<input type="text" class="form-control" name="SSUPrice5"  value="<?php echo $SSUPrice5;?>">
+									</div>  
+								</div>
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>Note</label> 
+										<input type="text" class="form-control" name="SSNote5"  value="<?php echo $SSNote5;?>">
+									</div>  
+								</div> 
+							</div> 
+                <!-- %%%%%%%%%%%%%%%%%%%%  5 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
 
 						</div>
 						<div class="card-footer">
-							<button type="submit" name="save" value="save" class="btn btn-info">save</button>
+							<button type="submit" name="Update" value="Update" class="btn btn-info">Update</button>
 						</div>  
 					</div> 
 						 

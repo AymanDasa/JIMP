@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<?php   
-			$folder_name =  basename(dirname(__FILE__));
-			Require_once( "C:\\wow\\password\\config.php"); 
-			Require_once("../include/auth.php"); 
-			Require_once("../include/config.php"); 
-
-     
+<?php  
+$folder_name =  basename(dirname(__FILE__));
+Require_once( "C:\\wow\\password\\config.php"); 
+Require_once("../include/auth.php"); 
+Require_once("../include/config.php"); 
+$SAPPOname = '';
+$IsActive = 0 ;	   
+if($debug){echo "<b>IsActive :</b>".$IsActive."<br>";} 
 ?>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free/css/all.min.css"> 
   <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free6/css/all.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -38,7 +39,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DataTables</h1>
+            <h1>Ships</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -57,11 +58,11 @@
           <div class="col-12"> 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">List of all suppliers</h3>
+                <h3 class="card-title">List of all Ships</h3>
                   <div class="card-tools"> 
                     <a href="add.php">
                       <button type="button" class="btn btn-success" >
-                        Add new supplier
+                        Add new Ship
                       </button> 
                     </a>
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -74,37 +75,61 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                      <th>Company Name</th>
-                      <th>CR</th>
+                      <th>#</th> 
+                      <th>IMO</th>  
+                      <th>Ship Name</th> 
+                      <th>Weight</th>
+                      <th>Agent Name</th>
                       <th>VAT</th>
-                      <th>Conatct</th>
-                      <th>Action</th>
+                      <th>View</th>
                   </tr>
                   </thead>
                   <tbody>
                   <?php 
-                      $suppliers = $dbop->query('SELECT * FROM suppliers WHERE `is_active` =1   ;')->fetchAll();
-                      foreach ($suppliers as $supplier) {  
-			 	                echo '<tr>
-                              <td>('.$supplier['id']. ')'.$supplier['name']. '  </td> 
-                              <td>'.$supplier['cr']. ' </td> 
-                              <td>'.$supplier['vat']. ' </td> 
-                              <td>'.$supplier['conatct']. ' </td> 
-                              <td> <a href="view.php?id='.$supplier['id'].'">
-                                      <button Style="padding: .0rem .0rem;" class="btn btn-icon"> 
-                                        <i class="fas fa-search"></i>
-                                      </button>
-                                    </a>
-                              </td>
-                            </tr>' ;  }  ?>
+                      $invoices = $dbop->query('SELECT * FROM `Ship`  ')->fetchAll();
+                      foreach ($invoices as $invoice) { 
+                          
+                          $ShipID   = $invoice['ShipID'];
+                          $IMO      = $invoice['IMO'];
+                          $ShipName = $invoice['ShipName']; 
+                          $Weight   = $invoice['Weight']; 
+                          $AgentID  = $invoice['AgentID'];  
+                          $VAT      = $invoice['VAT'];    
+                          if($VAT){$isVAT="15%";} else{$isVAT="";} 
+
+                          $query = "SELECT *  FROM `agents` WHERE `AgentID`=".$AgentID." LIMIT 1;"; 
+                            $agents = $dbop->query($query)->fetchAll();   
+                            foreach ($agents as $agent) {  
+                              if(isset($agent['AgentNameAr'])){$AgentNameAr = $agent['AgentNameAr'];}else{$AgentNameAr ="";}
+                            }  
+
+                       echo '<tr>
+                          <td>'.$ShipID. ' </td>  
+                          <td style="text-align: right;">'.$IMO. ' </td>  
+                          <td>'.$ShipName.'  </td>
+                          <td style="text-align: right;">'.$Weight. ' </td> 
+                          <td>'.$AgentNameAr. ' </td> 
+                          <td style="text-align: right;">'.$isVAT. ' </td> 
+
+                          <td>   
+                            <div class="btn-group btn-group-sm"> 
+                              <a href="view.php?id='.$ShipID.'" class="btn btn-info">
+                              <i class="fas fa-eye"></i></a> 
+                            </div>
+                          </td>  
+                             
+                        </tr>' ; }
+					       ?>
                   </tbody>
                   <tfoot>
                   <tr>
-                      <th>Company Name</th>
-                      <th>CR</th>
-                      <th>VAT</th>
-                      <th>Conatct</th>
-                      <th>Action</th>
+                      <th>#</th> 
+                      <th>IMO</th>  
+                      <th>Ship Name</th> 
+                      <th>Weight</th>
+                      <th>Agent Name</th>
+                      <th>VAT</th> 
+                      <th>View</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -122,10 +147,8 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-	<?php include('../include/footer.php');?>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark"> </aside>
+  	<?php include('../include/footer.php');?>
+	<aside class="control-sidebar control-sidebar-dark"> </aside>
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
