@@ -57,11 +57,11 @@
           <div class="col-12"> 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title"></h3>
+              <h3 class="card-title">List of all Services</h3>
                   <div class="card-tools"> 
                     <a href="add.php">
                       <button type="button" class="btn btn-success" >
-                        Add Agint
+                        Add Service
                       </button> 
                     </a>
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -70,126 +70,105 @@
                   </div>
               </div> 
               <!-- /.card-header -->
-              <div class="card-body">
-               
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+              <div class="card-body p-0"> 
+                <div class="row">
+                  <div class="col-12"> 
+
+                    <table width="100%">
+                      <thead>
+                      <tr>
+                          <th>Code</th>
+                          <th>Description</th>
+                          <th>Service Type</th>
+                          <th>Unit</th>
+                          <th>Weight Factor</th>
+                          <th>Double Factor</th>
+                          <th>Profit Percent</th>
+                          <th>Cost</th>
+                          <th>MinCost</th> 
+                          <th>Update</th> 
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <?php 
 
 
-            
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">List of all Services</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-              
+                        $query_allservices = "SELECT * FROM `services` ORDER BY  `Service_ID` ASC ;"; 
+                            if($debug){echo "<b>query :</b>".$query_allservices."<br>";}
+                                    $services = $dbop->query($query_allservices)->fetchAll();   
+                                    foreach ($services as $service) {  
+                                        $Service_ID    	=intval($service['Service_ID']);
+                                        $code 	        =$service['code'];
+                                        $Description		=$service['Description'];        
+                                        $ServiceType		=intval($service['ServiceType']);
+                                        if($ServiceType){$checkedServiceType="checked";}else{$checkedServiceType="";} 
+                                        $Unit		=$service['Unit'];        
+                                        $WeightFactor		=intval($service['WeightFactor']);   
+                                        if($WeightFactor){$checkedWeightFactor="checked";}else{$checkedWeightFactor="";}     
+                                        $DoubleFactor		=$service['DoubleFactor'];        
+                                        $ProfitPercent		=$service['ProfitPercent'];        
+                                        $Cost		=$service['Cost'];        
+                                        $MinCost		=$service['MinCost'];        
+                                        $Notes		=$service['Notes']; 
 
 
+                            echo '
+                            <form method="POST" action="view.php">
+                                <tr>
+                                    <td> <input style="width: 50px;" value="'.$code.'" name="code">  </td> 
+                                    <td> <input style="width: 500px;"  value="'.$Description. '" name="Description">   </td>  
+                                    <td style="width: 80px;"> 
+                                      <div class="form-group">
+                                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success" style="text-align: center;">
+                                          <input  type="checkbox" class="custom-control-input" id="customSwitchs'.$Service_ID.'" '.$checkedServiceType.'  name="ServiceType">
+                                          <label class="custom-control-label" for="customSwitchs'.$Service_ID.'">  </label>
+                                        </div>
+                                      </div>       
+                                    </td>   
+                                    <td><input  style="width: 100%;" value="'.$Unit.'" name="Unit">   </td>  
+                                    <td> 
+                                      <div class="form-group">
+                                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success" style="text-align: center;">
+                                          <input type="checkbox" class="custom-control-input" id="customSwitchw'.$Service_ID.'" '.$checkedWeightFactor.'  name="WeightFactor">
+                                          <label class="custom-control-label" for="customSwitchw'.$Service_ID.'">  </label>
+                                        </div>
+                                      </div>       
+                                    </td>  
+                                    <td><input type="number"  style="width: 100%;" value="'.$DoubleFactor.'" name="DoubleFactor">  </td> 
+                                    <td><input type="number" style="width: 100%;" value="'.$ProfitPercent. '" name="ProfitPercent">  </td> 
+                                    <td><input type="number" style="width: 100%;" value="'. $Cost.'" name="Cost">  </td> 
+                                    <td><input type="number" style="width: 100%;" value="'.$MinCost.'" name="MinCost">   </td>  
+                                  <td>   
+                                  <div class="btn-group btn-group-sm">  
+                                    <input type="hidden" value='.$Service_ID.' name="Service_ID"> 
+                                    <button type="submit" class="btn btn-block btn-primary"><i class="fas fa-upload"></i></button>
 
-              <div class="row">
-          <div class="col-12"> 
-
-                <table width="100%">
-                  <thead>
-                  <tr>
-                      <th>Code</th>
-                      <th>Description</th>
-                      <th>ServiceType</th>
-                      <th>Unit</th>
-                      <th>WeightFactor</th>
-                      <th>DoubleFactor</th>
-                      <th>ProfitPercent</th>
-                      <th>Cost</th>
-                      <th>MinCost</th> 
-                      <th>Update</th> 
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <?php 
-
-
-                  $query_allservices = "SELECT * FROM `services` ORDER BY  `Service_ID` ASC ;"; 
-                        if($debug){echo "<b>query :</b>".$query_allservices."<br>";}
-                                $services = $dbop->query($query_allservices)->fetchAll();   
-                                foreach ($services as $service) {  
-                                    $Service_ID    	=intval($service['Service_ID']);
-                                    $code 	        =$service['code'];
-                                    $Description		=$service['Description'];        
-                                    $ServiceType		=intval($service['ServiceType']);
-                                    if($ServiceType){$checkedServiceType="checked";}else{$checkedServiceType="";} 
-                                    $Unit		=$service['Unit'];        
-                                    $WeightFactor		=intval($service['WeightFactor']);   
-                                    if($WeightFactor){$checkedWeightFactor="checked";}else{$checkedWeightFactor="";}     
-                                    $DoubleFactor		=$service['DoubleFactor'];        
-                                    $ProfitPercent		=$service['ProfitPercent'];        
-                                    $Cost		=$service['Cost'];        
-                                    $MinCost		=$service['MinCost'];        
-                                    $Notes		=$service['Notes']; 
-
-
-			 	                echo '
-                         <form method="POST" action="view.php">
-                            <tr>
-                                <td> <input style="width: 50px;" value="'.$code.'" name="code">  </td> 
-                                <td> <input style="width: 500px;"  value="'.$Description. '" name="Description">   </td>  
-                                <td> 
-                                  <div class="form-group">
-                                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success" style="text-align: center;">
-                                      <input type="checkbox" class="custom-control-input" id="customSwitchs'.$Service_ID.'" '.$checkedServiceType.'  name="ServiceType">
-                                      <label class="custom-control-label" for="customSwitchs'.$Service_ID.'">  </label>
-                                    </div>
-                                  </div>       
-                                </td>   
-                                <td><input  style="width: 100%;" value="'.$Unit.'" name="Unit">   </td>  
-                                <td> 
-                                  <div class="form-group">
-                                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success" style="text-align: center;">
-                                      <input type="checkbox" class="custom-control-input" id="customSwitchw'.$Service_ID.'" '.$checkedWeightFactor.'  name="WeightFactor">
-                                      <label class="custom-control-label" for="customSwitchw'.$Service_ID.'">  </label>
-                                    </div>
-                                  </div>       
+                                  </div>
                                 </td>  
-                                <td><input type="number"  style="width: 100%;" value="'.$DoubleFactor.'" name="DoubleFactor">  </td> 
-                                <td><input type="number" style="width: 100%;" value="'.$ProfitPercent. '" name="ProfitPercent">  </td> 
-                                <td><input type="number" style="width: 100%;" value="'. $Cost.'" name="Cost">  </td> 
-                                <td><input type="number" style="width: 100%;" value="'.$MinCost.'" name="MinCost">   </td>  
-                              <td>   
-                              <div class="btn-group btn-group-sm">  
-                                <input type="hidden" value='.$Service_ID.' name="Service_ID"> 
-                                <button type="submit" class="btn btn-block btn-primary"><i class="fas fa-eye"></i></button>
-
-                              </div>
-                            </td>  
-                          </tr>
-                          </form>' ;  }  ?>
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                      <th>Code</th>
-                      <th>Description</th>
-                      <th>ServiceType</th>
-                      <th>Unit</th>
-                      <th>WeightFactor</th>
-                      <th>DoubleFactor</th>
-                      <th>ProfitPercent</th>
-                      <th>Cost</th>
-                      <th>MinCost</th> 
-                      <th>Update</th> 
-                  </tr>
-                  </tfoot>
-                </table>
-                </div>
-                </div>
-
+                              </tr>
+                              </form>' ;  }  ?>
+                      </tbody>
+                      <tfoot>
+                      <tr>
+                          <th>Code</th>
+                          <th>Description</th>
+                          <th>Service Type</th>
+                          <th>Unit</th>
+                          <th>Weight Factor</th>
+                          <th>Double Factor</th>
+                          <th>Profit Percent</th>
+                          <th>Cost</th>
+                          <th>MinCost</th> 
+                          <th>Update</th> 
+                      </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div> 
               </div>
               <!-- /.card-body -->
             </div>
-            <!-- /.card -->
-
-
+            <!-- /.card --> 
           </div>
           <!-- /.col -->
         </div>
