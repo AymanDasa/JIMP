@@ -429,18 +429,13 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
     if (($_POST['SService1'])!="")
   		{
   		$SSName1    = $rowSSVDescription[$SService1];
-      if (($_POST['SService1'])==""){$SSQut1=0;}else{$SSQut1=floatval($_POST['SSQut1']);}
-      if (($_POST['SSUPrice1'])==""){$SSUPrice1=floatval($rowSSVCost[$SService1]);}else{$SSUPrice1=floatval($_POST['SSUPrice1']);} 
+      if (($_POST['SService1'])==""){$SSQut1=0;}
+        else{$SSQut1=floatval($_POST['SSQut1']);}
+      if (($_POST['SSUPrice1'])==""){$SSUPrice1=floatval($rowSSVCost[$SService1]);}
+        else{$SSUPrice1=floatval($_POST['SSUPrice1']);} 
   		$SSUnit1    =$rowSSUnit[$SService1]; 
   		$SSNote1    =$_POST['SSNote1'];
-  		$SSPrice1   =$SSQut1*$SSUPrice1 ;
-
-      if($debug){echo "<b>SSName1 :</b>".$SSName1."<br>";}
-      if($debug){echo "<b>SSQut1 :</b>".$SSQut1."<br>";}
-      if($debug){echo "<b>SSUPrice1 :</b>".$SSUPrice1."<br>";}
-      if($debug){echo "<b>SSUnit1 :</b>".$SSUnit1."<br>";}
-      if($debug){echo "<b>SSPrice1 :</b>".$SSPrice1."<br>";}
-
+  		$SSPrice1   =$SSQut1*$SSUPrice1 ; 
 		}
     else  {$SSPrice1=$SService1=$SSName1=$SSQut1=$SSUPrice1=$SSUnit1=$SSNote1="";}
 
@@ -454,11 +449,6 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
   		$SSNote2    =$_POST['SSNote2'];
   		$SSPrice2   =$SSQut2*$SSUPrice2 ;
 
-      if($debug){echo "<b>SSName2 :</b>".$SSName2."<br>";}
-      if($debug){echo "<b>SSQut2 :</b>".$SSQut2."<br>";}
-      if($debug){echo "<b>SSUPrice2 :</b>".$SSUPrice2."<br>";}
-      if($debug){echo "<b>SSUnit2 :</b>".$SSUnit2."<br>";}
-      if($debug){echo "<b>SSPrice2 :</b>".$SSPrice2."<br>";}
 		}
     else  {$SSPrice2=$SService2=$SSName2=$SSQut2=$SSUPrice2=$SSUnit2=$SSNote2="";}
 
@@ -470,13 +460,8 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
       if (($_POST['SSUPrice3'])==""){$SSUPrice3=floatval($rowSSVCost[$SService3]);}else{$SSUPrice3=floatval($_POST['SSUPrice3']);} 
   		$SSUnit3    =$rowSSUnit[$SService3]; 
   		$SSNote3    =$_POST['SSNote3'];
-  		$SSPrice3   =$SSQut3*$SSUPrice3 ;
+  		$SSPrice3   =$SSQut3*$SSUPrice3 ; 
 
-      if($debug){echo "<b>SSName3 :</b>".$SSName3."<br>";}
-      if($debug){echo "<b>SSQut3 :</b>".$SSQut3."<br>";}
-      if($debug){echo "<b>SSUPrice3 :</b>".$SSUPrice3."<br>";}
-      if($debug){echo "<b>SSUnit3 :</b>".$SSUnit3."<br>";}
-      if($debug){echo "<b>SSPrice3 :</b>".$SSPrice3."<br>";}
 		}
     else  {$SSPrice3=$SService3=$SSName3=$SSQut3=$SSUPrice3=$SSUnit3=$SSNote3="";}    
 
@@ -490,11 +475,6 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
   		$SSNote4    =$_POST['SSNote4'];
   		$SSPrice4   =$SSQut4*$SSUPrice4 ;
 
-      if($debug){echo "<b>SSName4 :</b>".$SSName4."<br>";}
-      if($debug){echo "<b>SSQut4 :</b>".$SSQut4."<br>";}
-      if($debug){echo "<b>SSUPrice4 :</b>".$SSUPrice4."<br>";}
-      if($debug){echo "<b>SSUnit4 :</b>".$SSUnit4."<br>";}
-      if($debug){echo "<b>SSPrice4 :</b>".$SSPrice4."<br>";}
 		}
     else  {$SSPrice4=$SService4=$SSName4=$SSQut4=$SSUPrice4=$SSUnit4=$SSNote4="";}    
 
@@ -508,18 +488,44 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
   		$SSNote5    =$_POST['SSNote5'];
   		$SSPrice5   =$SSQut5*$SSUPrice5 ;
 
-      if($debug){echo "<b>SSName5 :</b>".$SSName5."<br>";}
-      if($debug){echo "<b>SSQut5 :</b>".$SSQut5."<br>";}
-      if($debug){echo "<b>SSUPrice5 :</b>".$SSUPrice5."<br>";}
-      if($debug){echo "<b>SSUnit5 :</b>".$SSUnit5."<br>";}
-      if($debug){echo "<b>SSPrice5 :</b>".$SSPrice5."<br>";}
+      
 		}
     else  {$SSPrice5=$SService5=$SSName5=$SSQut5=$SSUPrice5=$SSUnit5=$SSNote5="";}    
 
-    ########################  SSTOTAL  ###############################
-    $SSTOTAL=floatval($SSPrice1)+floatval($SSPrice2)+floatval($SSPrice3)+floatval($SSPrice5)+floatval($SSPrice5) ;
-    
+      if($debug){echo "<br><b>SSName1 :</b>".$SSName1.
+                      "<br><b>SSQut1 :</b>".$SSQut1.
+                      "<br><b>SSUPrice1 :</b>".$SSUPrice1.
+                      "<br><b>SSUnit1 :</b>".$SSUnit1.
+                      "<br><b><u>SSPrice1 :</u></b>".$SSPrice1.
 
+                      "<br><b>SSName2 :</b>".$SSName2.
+                      "<br><b>SSQut2 :</b>".$SSQut2.
+                      "<br><b>SSUPrice2 :</b>".$SSUPrice2.
+                      "<br><b>SSUnit2 :</b>".$SSUnit2.
+                      "<br><b><u>SSPrice2 :</u></b>".$SSPrice2.
+
+                      "<br><b>SSName3 :</b>".$SSName3.
+                      "<br><b>SSQut3 :</b>".$SSQut3.
+                      "<br><b>SSUPrice3 :</b>".$SSUPrice3.
+                      "<br><b>SSUnit3 :</b>".$SSUnit3.
+                      "<br><b><u>SSPrice3 :</u></b>".$SSPrice3.
+
+                      "<br><b>SSName4 :</b>".$SSName4.
+                      "<br><b>SSQut4 :</b>".$SSQut4.
+                      "<br><b>SSUPrice4 :</b>".$SSUPrice4.
+                      "<br><b>SSUnit4 :</b>".$SSUnit4.
+                      "<br><b><u>SSPrice4 :</u></b>".$SSPrice4.
+
+                      "<br><b>SSName5 :</b>".$SSName5.
+                      "<br><b>SSQut5 :</b>".$SSQut5.
+                      "<br><b>SSUPrice5 :</b>".$SSUPrice5.
+                      "<br><b>SSUnit5 :</b>".$SSUnit5.
+                      "<br><b><u>SSPrice5 :</u></b>".$SSPrice5."<br>";}
+
+    ########################  SSTOTAL  ###############################
+    $SSTOTAL=floatval($SSPrice1)+floatval($SSPrice2)+floatval($SSPrice3)+floatval($SSPrice4)+floatval($SSPrice5) ;
+    
+ 
 
 #########################################################################
 #########################################################################

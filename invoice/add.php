@@ -28,12 +28,12 @@
 					}
 				// option Ships
         // option services
-        	$servicesOption='<option value=""></option>';
-				 	$query = "SELECT `Service_ID`,`Description`  FROM `services`;"; 
+        	$servicesOption='<option></option>';
+				 	$query = "SELECT `Service_ID`,`Description`,`code`  FROM `services`;"; 
 					$services = $dbop->query($query)->fetchAll();   
 					foreach ($services as $service) {    
             $servicesOption.='
-			<option value="'.$service['Service_ID'].'">'.$service['Description'].'</option>';
+			<option   value="'.$service['Service_ID'].'"> ['.$service['code'].'] '.$service['Description'].'</option>';
 					}
 				// option services
 		// SSCount 
