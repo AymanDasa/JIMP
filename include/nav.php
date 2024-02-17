@@ -136,8 +136,7 @@ if(isset($_SESSION["is_admin"])){
 	}
 	else{  
 		$admin_access = 0;
-	} 
-
+	}  
 ?>
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -179,6 +178,10 @@ if(isset($_SESSION["is_admin"])){
           <div class="dropdown-divider"></div>
 			<a href="../access/debug.php" class="dropdown-item">
 			<i class="fas fa-user-shield mr-2 text-danger" ></i> Enable Debug
+			</a>
+		<div class="dropdown-divider"></div>
+			<a href="../phpmyadmin/" class="dropdown-item">
+			<i class="fas fa-right-to-bracket mr-2 text-danger"></i> phpMyAdmin
 			</a>
           <div class="dropdown-divider"></div>
 			<a href="../access/resetpassword.php" class="dropdown-item">
