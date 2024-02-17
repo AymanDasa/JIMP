@@ -1,12 +1,12 @@
 <?php 
 	use Dompdf\Dompdf;
 	use Dompdf\Options;
-	require '../include/dompdf/vendor/autoload.php';
+	require '../../dompdf/vendor/autoload.php';
 	$options = new Options();
 	$options->set('defaultFont', 'Arabic');
 	$options->set('chroot', realpath(''));
 	$dompdf = new Dompdf($options); 
-	require_once '../include/dompdf/vendor/src/Arabic.php';
+	require_once '../../dompdf/vendor/src/Arabic.php';
 	$Arabic = new ArPHP\I18N\Arabic(); 
 	Require_once( "C:\\wow\\password\\config.php"); 
 	Require_once("../include/auth.php"); 
