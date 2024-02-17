@@ -12,17 +12,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 Require_once('C://wow//password//db.php'); 
  
  
-	$f_name=$l_name =$avatar=$max_list =NULL;
-	$username = $_SESSION["username"] ;  
+	$f_name=$l_name =$avatar=$max_list =NULL; 
 	// SELECT  AGENT
-	$query = "SELECT * FROM `users` WHERE `username` = '".$username."' LIMIT 1 ;";  
+	$query = "SELECT `debug` FROM `users` WHERE `debug` = '".$username."' LIMIT 1 ;";  
 	// echo $query ;
 	$profiles = $dbop->query($query)->fetchAll();   
-	foreach ($profiles as $profile) {   
-		$f_name		= ucwords($profile['f_name']); 
-		$l_name		=ucwords($profile['l_name']); 
-		$avatar		=$profile['avatar']; 
-		$max_list		=(int)$profile['max_list']; 
+	foreach ($profiles as $profile) {    
+		
 	  }
 	  
 

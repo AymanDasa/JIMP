@@ -43,7 +43,11 @@ function searchForArray($id, $array,$elmint) {
             break;
         }
         return $Select;
-     }
-$debug = 0 ; 
+     } 
+$username_now=$_SESSION["username"];
+$debug_sql = "SELECT `debug` FROM `users` WHERE `username` = '".$username_now."' LIMIT 1 ;"; 
+ 
+$debug_sqlr = $dbop->query($debug_sql)->fetchAll();   
+                foreach ($debug_sqlr as $debug_row) { $debug = $debug_row['debug'] ; }  
 if($debug){echo "<b>Debug :</b>".$debug."<br>";}
  ?>

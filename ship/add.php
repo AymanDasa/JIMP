@@ -19,6 +19,7 @@
 
 
 			if(isset($_POST['add'])){
+				$IMO		=  	stripslashes(htmlentities( strip_tags($_POST['IMO'] )));
 				$query1 = " SELECT `IMO`  FROM `ship` WHERE NOT IMO='".$IMO."'; "; 
 				if($debug){echo "<b>query :</b>".$query1."<br>";} 
 				$IMOs = $dbop->query($query1)->fetchAll();   

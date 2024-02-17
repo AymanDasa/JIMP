@@ -940,17 +940,10 @@ $dbop->query($SQL_UPDATE);
                     </table>
                   </div>
                   
-                </div>
-                     
-                
-
-              
-
-
+                </div> 
                 <!-- /.col -->
               </div>
-              <!-- /.row -->
-
+              <!-- /.row --> 
               <!-- this row will not appear when printing -->
               <div class="row no-print">
                 <div class="col-12">

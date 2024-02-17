@@ -279,7 +279,7 @@ else{
                     <b>G.R.T.:<span class="tab"></span></b>       <?php echo $ShipWeight;?> <br>
                     <b>Trip No:<span class="tab"></span></b>      <?php echo $TripNo;?> <br>  
                     <b>Route No:</b>                              <?php echo $RouteNo;?> <br>
-                    <b>Trip No:</b>                               <?php echo $TripNo;?> <br> 
+                    <b>Move Port:</b>                               <?php echo $MovePort1."-";$MovePort2."-";$MovePort3."-";   ?> <br> 
                     <b>Docking dock</b>                           <?php echo $DockingNo;?> <br>
                     <span class="tab"></span>
                 </div>
@@ -445,7 +445,14 @@ else{
                         <i class="far fa-credit-card"></i> Approve
                       </button>
                     </form>
-                    <?php }?>
+                    <?php }
+				 else {?>   
+					<a href="../reports/invoice.php?id=<?php echo $InvoiceID;?>">
+                      <button class="btn btn-success float-right" >
+				  <i class="fa-solid fa-print"></i> Print
+                      </button> </a>
+				<?php }?>
+				?>
                   <!-- 
                   <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate PDF

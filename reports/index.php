@@ -55,96 +55,112 @@ $IsActive = 0 ;
       </div><!-- /.container-fluid -->
     </section>
 
-    <!-- Main content -->
+    <!-- Main content
+
+
+
+
+
+				
+
+
+
+ 		
+		
+		
+		-->
     <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-3"> 
-            <div class="card"> 
-              <div class="card-header">
-                <h3 class="card-title">Daily Invoice Report</h3><br>
-                  <div class="row">
-                    <div class="col-12"> 
-                      <div class="form-group">
-                          <label>Invoice Date</label>
-                          <div class="input-group date" id="ClickInvoiceDate" data-target-input="nearest">
-                            <input  name="InvoiceDate" type="text" class="form-control datetimepicker-input" data-target="#ClickInvoiceDate"/>
-                            <div class="input-group-append" data-target="#ClickInvoiceDate" data-toggle="datetimepicker">
-                            <div class="input-group-text">
-                              <i class="fa fa-calendar"></i>
-                            </div>
-                            </div>
-                          </div>  
-                      </div>
-                    </div> 
-                  </div> 
-                <!-- /.card-header -->
-              </div> 
-              <div class="card-footer"> 
-                <button type="submit" class="btn btn-info float-right">Genrate</button>
-              </div>
-              <!-- /.card-body -->
-            </div>
+     <div class="container-fluid">
+		<div class="row">
+			<div class="col-12"> 
+				<div class="card">  
+					<div class="card-body">
+            				<h4>Custom Content Below</h4>
+						<ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true"> Daily Invoice Report</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Monthly Invoice Report</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Messages</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Settings</a>
+						</li>
+						</ul>
+						<div class="tab-content" id="custom-content-below-tabContent">
+						<div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
+						<p>
+							<div class="form-group">
+								<label>Invoice Date</label>
+								<div class="input-group date" id="ClickInvoiceDate" data-target-input="nearest">
+									<input  name="InvoiceDate" type="text" class="form-control datetimepicker-input" data-target="#ClickInvoiceDate"/>
+									<div class="input-group-append" data-target="#ClickInvoiceDate" data-toggle="datetimepicker">
+										<div class="input-group-text">
+										<i class="fa fa-calendar"></i>
+										</div>
+									</div>
+								</div>  
+							</div>
+						</p>
+						<button type="submit" class="btn btn-info float-right">Genrate</button>
 
-            <div class="card"> 
-              <div class="card-header">
-                <h3 class="card-title">Monthly Invoice Report</h3><br>
-                <div class="row">
-                  <div class="col-12"> 
-                    <div class="form-group"> 
-                      <label>Invoice Date</label>
-                      <select name="Month" class="form-control">
-                        <option value="1">محرم		</option>
-                        <option value="2">صفر		</option>
-                        <option value="3">ربيع أول	</option>
-                        <option value="4">ربيع ثاني	</option>
-                        <option value="5">جمادى أول	</option>
-                        <option value="6">جمادى أخر	</option>
-                        <option value="7">رجب		</option>
-                        <option value="8">شعبان		</option>
-                        <option value="9">رمضان		</option>
-                        <option value="10">شوال		</option>
-                        <option value="11">ذوالقعدة	</option>
-                        <option value="12">ذو الحجه	</option> 
-                      </select>
-                    </div>
-                    <div class="form-group"> 
-                      <label>Year Hijri</label>
-                      <input type="text" class="form-control" name="ds" value="14" >
-                    </div>
-                    <div class="form-group"> 
-                      <label>Start Invoice</label>
-                      <input type="text" class="form-control" name="ds" value="14" >
-                    </div>
-                    <div class="form-group"> 
-                      <label>Last Invoice</label>
-                      <input type="text" class="form-control" name="ds" value="14" >
-                    </div>
-                  </div> 
-                </div> 
-                <!-- /.card-header -->
-              </div> 
-              <div class="card-footer"> 
-                <button type="submit" class="btn btn-info float-right">Genrate</button>
-              </div>
-              <!-- /.card-body -->
-            </div>
+						</div>
+						<div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
 
-            <a href="xlsx.php">
-            <div class="card-footer"> 
-                <button type="submit" class="btn btn-info float-right">Genrate</button>
-              </div>
-</a>
+							<p>
+							<div class="form-group"> 
+							 	<label>Invoice Date</label>
+								<select name="Month" class="form-control">
+									<option value="1">محرم		</option>
+									<option value="2">صفر		</option>
+									<option value="3">ربيع أول	</option>
+									<option value="4">ربيع ثاني	</option>
+									<option value="5">جمادى أول	</option>
+									<option value="6">جمادى أخر	</option>
+									<option value="7">رجب		</option>
+									<option value="8">شعبان		</option>
+									<option value="9">رمضان		</option>
+									<option value="10">شوال		</option>
+									<option value="11">ذوالقعدة	</option>
+									<option value="12">ذو الحجه	</option> 
+								</select>
+							</div>
+							<div class="form-group"> 
+								<label>Year Hijri</label>
+								<input type="text" class="form-control" name="ds" value="14" >
+							</div>
+							<div class="form-group"> 
+								<label>Start Invoice</label>
+								<input type="text" class="form-control" name="ds" value="14" >
+							</div>
+							<div class="form-group"> 
+								<label>Last Invoice</label>
+								<input type="text" class="form-control" name="ds" value="14" >
+							</div>
+							<button type="submit" class="btn btn-info float-right">Genrate</button>
+						</p>
+
+						</div>
+						<div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
 
 
-            <!-- /.card -->
-          </div><a href="r1.php?id=1">
-            <div class="card-footer"> 
-                <button type="submit" class="btn btn-info float-right">Genrate</button>
-              </div>
-</a>
-          <!-- /.col -->
-        </div>
+
+						</div>
+						<div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
+
+	
+	
+						</div>
+						</div> 
+				</div>
+			</div>
+		</div>
+	</div>
+
+ 
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->

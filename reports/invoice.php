@@ -253,7 +253,7 @@
 			  <td align=center width=20% height="65" valign="middle" style="border-right-style:hidden">
 				  <p>
 					  <span lang="ar-SA">
-						  <img src="img/mawani.png " height="55px"> 
+						  <img src="img/mawani.png" height="55px"> 
 					  </span>
 				</p>
 			  </td>
@@ -801,11 +801,12 @@ $job_user4
 				$utf8ar = $Arabic->utf8Glyphs(substr($html, $p[$i-1], $p[$i] - $p[$i-1]));
 				$html   = substr_replace($html, $utf8ar, $p[$i-1], $p[$i] - $p[$i-1]);
 			} 
-			 
- 
+			  
+	$Iday = date("Ymd", strtotime($InvoiceDate));
+	$filename = strval($InvoiceID)."_".strval($Iday);			
 	$dompdf->loadHtml($html);
 	$dompdf->setPaper('A4', 'portrait');
 	$dompdf->render();
-	$dompdf -> stream("NEXAMPLE", array("Attachment" => false));
+	$dompdf -> stream($filename, array("Attachment" => false));
 	
 ?>

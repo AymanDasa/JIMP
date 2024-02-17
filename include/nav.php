@@ -146,15 +146,15 @@ if(isset($_SESSION["is_admin"])){
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">User Menue</span>
           <div class="dropdown-divider"></div>
-          <a href="access/profile.php" class="dropdown-item">
+          <a href="../access/profile.php" class="dropdown-item">
             <i class="fas fa-id-badge mr-2"></i> User Profile
           </a>
           <div class="dropdown-divider"></div>
-          <a href="access/resetpassword.php" class="dropdown-item">
+          <a href="../access/resetpassword.php" class="dropdown-item">
             <i class="fas fa-key mr-2"></i> Security
           </a>
           <div class="dropdown-divider"></div>
-          <a href="access/logout.php" class="dropdown-item">
+          <a href="../access/logout.php" class="dropdown-item">
             <i class="fas fa-right-to-bracket mr-2"></i> Logout
           </a>
         </div>
@@ -167,24 +167,27 @@ if(isset($_SESSION["is_admin"])){
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">Admin Menue</span>
           <div class="dropdown-divider"></div>
-          <a href="access/register.php" class="dropdown-item">
-            <i class="fas fa-id-badge mr-2 text-danger"></i> New User
-          </a>
-		<a href="access/data_reset.php" class="dropdown-item">
-            <i class="fas fa-id-badge mr-2 text-danger"></i> Delete All Data
-          </a>
+			<a href="../access/register.php" class="dropdown-item">
+			<i class="fas fa-id-badge mr-2 text-danger"></i> New User
+			</a>
+			<a href="../access/data_reset.php" class="dropdown-item">
+			<i class="fas fa-id-badge mr-2 text-danger"></i> Delete All Data
+			</a>
+			<a href="../access/2fa.php" class="dropdown-item">
+			<i class="fas fa-user-shield mr-2 text-danger" ></i> 2FA
+			</a>
           <div class="dropdown-divider"></div>
-          <a href="access/2fa.php" class="dropdown-item">
-            <i class="fas fa-user-shield mr-2 text-danger" ></i> 2FA
-          </a>
+			<a href="../access/debug.php" class="dropdown-item">
+			<i class="fas fa-user-shield mr-2 text-danger" ></i> Enable Debug
+			</a>
           <div class="dropdown-divider"></div>
-          <a href="access/resetpassword.php" class="dropdown-item">
-            <i class="fas fa-key mr-2  text-danger"></i> Reset Password
-          </a>
+			<a href="../access/resetpassword.php" class="dropdown-item">
+			<i class="fas fa-key mr-2  text-danger"></i> Reset Password
+			</a>
 		<div class="dropdown-divider"></div>
-          <a href="access/logout.php" class="dropdown-item">
-            <i class="fas fa-right-to-bracket mr-2 text-danger"></i> Logout
-          </a>
+			<a href="../access/logout.php" class="dropdown-item">
+			<i class="fas fa-right-to-bracket mr-2 text-danger"></i> Logout
+			</a>
         </div>
       </li>
 <?php } ?>
