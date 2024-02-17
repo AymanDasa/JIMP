@@ -513,7 +513,7 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
     else  {$SSPrice5=$SService5=$SSName5=$SSQut5=$SSUPrice5=$SSUnit5=$SSNote5="";}    
 
     ########################  SSTOTAL  ###############################
-    $SSTOTAL=floatval($SSPrice1)+floatval($SSPrice2)+floatval($SSPrice3)+floatval($SSPrice5)+floatval($SSPrice5) ;
+    $SSTOTAL=floatval($SSPrice1)+floatval($SSPrice2)+floatval($SSPrice3)+floatval($SSPrice4)+floatval($SSPrice5) ;
     
 
 
