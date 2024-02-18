@@ -262,7 +262,7 @@
 					  <span style="font-size:8pt" lang="ar-SA">
 										  المملكة العربية السعودية <br>
 										المؤسسة العامة للموانئ<br>
-										ميناء الملك عبد العزيز / الدمام<br>
+									 ميناء جدة الإسلامي<br>
 										www.ports.gov.sa
 					  </span>
 				  </p>
@@ -535,11 +535,6 @@
   </tr>
   </tbody>
 </table>
-
-
-
-
-
  
  
 <!-- table for Special Marine Services -->
