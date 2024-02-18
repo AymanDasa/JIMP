@@ -567,11 +567,11 @@
 			<span lang="ar-SA" class="labela1">سعر الوحدة</span><br>
 			<span lang="en-US" class="labele1"> U. Price </span>
 		</td>
-		<td width=10% align=center valign="middle">
+		<td width=12% align=center valign="middle">
 			<span lang="ar-SA" class="labela1">الوحدة</span><br>
 			<span lang="en-US" class="labele1"> Unit </span>
 		</td>
-		<td width=37% align=center valign="middle">
+		<td width=35% align=center valign="middle">
 			<span lang="ar-SA" class="labela1">الوصف</span><br>
 			<span lang="en-US" class="labele1"> Description </span>
 		</td>
@@ -594,6 +594,11 @@ $noSSLine='<tr>
 </tr>';
 if($SSPrice1>0){
 		$i=$i+1;
+		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService1."'; "; 
+				if($debug){echo "<b>query :</b>".$query1."<br>";} 
+				$codes = $dbop->query($query1)->fetchAll();    
+				 foreach ($codes as $code_row) { $code =$code_row['code'];}
+				
 		$html.='
   		<tr>
 			<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice1, 2,'.', '^')).'</span></td>
@@ -601,10 +606,14 @@ if($SSPrice1>0){
 			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice1).'</span></td>
 			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit1.'</span></td>
 			<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName1.' </span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($i)).'</span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
   		</tr>';}else{$html.=$noSSLine;} 
 if($SSPrice2>0){
 			$i=$i+1;
+			$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService2."'; "; 
+				if($debug){echo "<b>query :</b>".$query1."<br>";} 
+				$codes = $dbop->query($query1)->fetchAll();    
+				 foreach ($codes as $code_row) { $code =$code_row['code'];}
 		  $html.='
   		<tr>
 		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice1	, 2,'.', '^')).'</span></td>
@@ -612,10 +621,14 @@ if($SSPrice2>0){
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice2).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit2.'</span></td>
 		<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName2.' </span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($i)).'</span></td>
+		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
   	</tr>';}else{$html.=$noSSLine;} 
 if($SSPrice3>0){
 		$i=$i+1;
+		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService3."'; "; 
+				if($debug){echo "<b>query :</b>".$query1."<br>";} 
+				$codes = $dbop->query($query1)->fetchAll();    
+				 foreach ($codes as $code_row) { $code =$code_row['code'];}
 	  $html.='
   		<tr>
 		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice1, 2,'.', '^')).'</span></td>
@@ -623,9 +636,13 @@ if($SSPrice3>0){
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice3).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit3.'</span></td>
 		<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName3.' </span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($i)).'</span></td>
+		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
   	</tr>';}else{$html.=$noSSLine;} 
 if($SSPrice4>0){
+	$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService4."'; "; 
+				if($debug){echo "<b>query :</b>".$query1."<br>";} 
+				$codes = $dbop->query($query1)->fetchAll();    
+				 foreach ($codes as $code_row) { $code =$code_row['code'];}
 		$i=$i+1;
 	  $html.='
   		<tr>
@@ -634,10 +651,14 @@ if($SSPrice4>0){
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice4).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit4.'</span></td>
 		<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName4.' </span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($i)).'</span></td>
+		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
   	</tr>';}else{$html.=$noSSLine;} 
 if($SSPrice5>0){
 		$i=$i+1;
+		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService5."'; "; 
+				if($debug){echo "<b>query :</b>".$query1."<br>";} 
+				$codes = $dbop->query($query1)->fetchAll();    
+				 foreach ($codes as $code_row) { $code =$code_row['code'];}
 	  $html.='
 	  <tr>
 	  <td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice1, 2,'.', '^')).'</span></td>
@@ -645,7 +666,7 @@ if($SSPrice5>0){
 	  <td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice5).'</span></td>
 	  <td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit5.'</span></td>
 	  <td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName5.' </span></td>
-	  <td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($i)).'</span></td>
+	  <td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
 	</tr>';}else{$html.=$noSSLine;} 
 	$html.='
   	<tr>

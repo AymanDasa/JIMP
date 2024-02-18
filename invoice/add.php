@@ -319,7 +319,7 @@
 										<div class="custom-control custom-switch" style="padding-left: 5.25rem;">
 											<label>Araval Fees</label> 
 											<br>
-											<input name="MService1" type="checkbox" class="custom-control-input" id="customSwitch1">
+											<input name="MService1" type="checkbox" checked class="custom-control-input" id="customSwitch1">
 											<label class="custom-control-label" for="customSwitch1"></label>
 										</div>
 									</div>
@@ -348,7 +348,7 @@
 										<div class="custom-control custom-switch" style="padding-left: 5.25rem;">
 											<label>Departure Fees</label> 
 											<br>
-											<input name="MService2" type="checkbox" class="custom-control-input" id="customSwitch2">
+											<input name="MService2" type="checkbox" checked class="custom-control-input" id="customSwitch2">
 											<label class="custom-control-label" for="customSwitch2"></label>
 										</div>
 									</div>
@@ -378,7 +378,7 @@
 										<div class="custom-control custom-switch" style="padding-left: 5.25rem;">
 											<label>Port Fees</label> 
 											<br>
-											<input name="MService3" type="checkbox" class="custom-control-input" id="customSwitch3">
+											<input name="MService3" type="checkbox" checked class="custom-control-input" id="customSwitch3">
 											<label class="custom-control-label" for="customSwitch3"></label>
 										</div>
 									</div>

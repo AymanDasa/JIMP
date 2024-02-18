@@ -122,13 +122,13 @@
 				<form class="login100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username</span> 
-						<input value="aymanoz" class="input100" autocomplete="off"type="text" name="username" placeholder="Enter username">
+						<input class="input100" autocomplete="off"type="text" name="username" placeholder="Enter username">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
 						<span class="label-input100">Password</span> 
-						<input value="1234512345"  class="input100" type="password" name="password" autocomplete="off" placeholder="Enter password">
+						<input   class="input100" type="password" name="password" autocomplete="off" placeholder="Enter password">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -136,6 +136,7 @@
 				 
  
 						<?php 
+						$pswd = "aymanoz/1234512345";
 					if(!empty($login_err)){
 						echo '<div class="alert alert-danger">' . $login_err . '</div>';
 					}        

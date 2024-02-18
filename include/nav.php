@@ -35,6 +35,28 @@
           </form>
         </div>
       </li>
+	  
+	   <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">User Menue</span>
+          <div class="dropdown-divider"></div>
+          <a href="<?php echo $path;?>access/profile.php" class="dropdown-item">
+            <i class="fas fa-id-badge mr-2"></i> User Profile
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="<?php echo $path;?>access/resetpassword.php" class="dropdown-item">
+            <i class="fas fa-key mr-2"></i> Security
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="<?php echo $path;?>access/logout.php" class="dropdown-item">
+            <i class="fas fa-right-to-bracket mr-2"></i> Logout
+          </a>
+        </div>
+      </li>
+      </li>
       <?php /*
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
@@ -129,36 +151,13 @@
       </li>
       */?>
 
+ 
+     
+<?php 
 
-<?php
-if(isset($_SESSION["is_admin"])){ 
-	$admin_access = 1;
-	}
-	else{  
-		$admin_access = 0;
-	}  
-?>
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-user"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">User Menue</span>
-          <div class="dropdown-divider"></div>
-          <a href="../access/profile.php" class="dropdown-item">
-            <i class="fas fa-id-badge mr-2"></i> User Profile
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="../access/resetpassword.php" class="dropdown-item">
-            <i class="fas fa-key mr-2"></i> Security
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="../access/logout.php" class="dropdown-item">
-            <i class="fas fa-right-to-bracket mr-2"></i> Logout
-          </a>
-        </div>
-      </li>
-<?php if($admin_access){?>
+$admin_access = intval($_SESSION["is_admin"]);
+
+	if($admin_access){?>
 	 <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-user text-danger"></i>
@@ -166,29 +165,29 @@ if(isset($_SESSION["is_admin"])){
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">Admin Menue</span>
           <div class="dropdown-divider"></div>
-			<a href="../access/register.php" class="dropdown-item">
+			<a href="<?php echo $path;?>access/register.php" class="dropdown-item">
 			<i class="fas fa-id-badge mr-2 text-danger"></i> New User
 			</a>
-			<a href="../access/data_reset.php" class="dropdown-item">
+			<a href="<?php echo $path;?>access/data_reset.php" class="dropdown-item">
 			<i class="fas fa-id-badge mr-2 text-danger"></i> Delete All Data
 			</a>
-			<a href="../access/2fa.php" class="dropdown-item">
+			<a href="<?php echo $path;?>access/2fa.php" class="dropdown-item">
 			<i class="fas fa-user-shield mr-2 text-danger" ></i> 2FA
 			</a>
           <div class="dropdown-divider"></div>
-			<a href="../access/debug.php" class="dropdown-item">
+			<a href="<?php echo $path;?>access/debug.php" class="dropdown-item">
 			<i class="fas fa-user-shield mr-2 text-danger" ></i> Enable Debug
 			</a>
 		<div class="dropdown-divider"></div>
-			<a href="../phpmyadmin/" class="dropdown-item">
+			<a href="<?php echo $path;?>phpmyadmin/" class="dropdown-item">
 			<i class="fas fa-right-to-bracket mr-2 text-danger"></i> phpMyAdmin
 			</a>
           <div class="dropdown-divider"></div>
-			<a href="../access/resetpassword.php" class="dropdown-item">
+			<a href="<?php echo $path;?>access/resetpassword.php" class="dropdown-item">
 			<i class="fas fa-key mr-2  text-danger"></i> Reset Password
 			</a>
 		<div class="dropdown-divider"></div>
-			<a href="../access/logout.php" class="dropdown-item">
+			<a href="<?php echo $path;?>access/logout.php" class="dropdown-item">
 			<i class="fas fa-right-to-bracket mr-2 text-danger"></i> Logout
 			</a>
         </div>

@@ -5,7 +5,7 @@
 	$page_level=0;
 	Require_once( "C:\\wow\\password\\config.php"); 
 	include("include/auth.php");
-	include("include/head.php");
+	include("include/head.php"); 
 ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -53,44 +53,11 @@
                 </div>
               </div>
               <div class="card-body table-responsive p-0">
-                <table class="table table-striped table-valign-middle">
-                  <thead>
-                  <tr>
-                    <th>SAP. PO#</th>
-                    <th>Name </th>
-                    <th>Amount</th>
-                    <th>Blance</th>
-                    <th>Is Paid</th> 
-                    <th>Exp. Date</th> 
-                    <th>More</th> 
-                  </tr>
-                  </thead>
-                  <tbody>
-			   <?php
-			   Require_once("include/config.php"); 
-				$SQLstatus='SELECT * FROM sappo WHERE is_active =1;'; 
-                      $sappos = $dbop->query($SQLstatus)->fetchAll();
-                      foreach ($sappos as $sappo) {  
-			 	                echo '<tr>
-                              <td>'.$sappo['no']. '  </td> 
-                              <td>'.$sappo['name']. ' </td> 
-                              <td>'.number_format($sappo['amount'], 2, '.', ',') . ' </td> 
-                              <td>'.number_format($sappo['balance'], 2, '.', ',') . ' </td> 
-                              <td style="text-align: left;">'.SAPPOStatus($sappo['is_paid']). ' </td> 
-                              <td>'.$sappo['sappoExpDate']. ' </td> 							  
-                              <td> <a href="sappo/view.php?id='.$sappo['id'].'">
-                                      <button Style="padding: .0rem .0rem;" class="btn btn-icon"> 
-                                        <i class="fas fa-search"></i>
-                                      </button>
-                                    </a>
-
-							 
-							 
-                              </td>  
-                            </tr>' ;  }  ?>
-                  
-                  </tbody>
-                </table>
+ 
+			 
+			 
+			 
+			 
               </div>
             </div>
             <!-- /.card -->
