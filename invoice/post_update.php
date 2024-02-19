@@ -829,70 +829,100 @@ $dbop->query($SQL_UPDATE);
                     <tbody>
                     <?php if($MSericeInPrice){?>
                       <tr> 
-                          <td>Marine Services</td> 
+                          <td>Araval Fees</td> 
                           <td style="text-align: right;"> اجرة القدوم </td> 
                           <td style="text-align: right;"><?php echo number_format($MSericeInPrice, 2);?></td>
                       </tr>
                     <?php }
                     if($MSericeOutPrice){?>
                       <tr> 
-                          <td>Marine Services</td> 
+                          <td>Departure Fees</td> 
                           <td style="text-align: right;"> اجرة المغادرة </td> 
                           <td style="text-align: right;"><?php echo number_format($MSericeOutPrice, 2);?></td>
                       </tr>
                     <?php }
                     if($MovePortPrice){?>
                       <tr> 
-                          <td>Marine Services</td> 
+                          <td>Move Port Fees</td> 
                           <td style="text-align: right;">  اجرة الإنتقال </td> 
                           <td style="text-align: right;"><?php echo number_format($MovePortPrice, 2);?></td>
                       </tr>
                     <?php }
                     if($MSericeBathPrice){?>
                       <tr> 
-                          <td>Marine Services</td> 
+                          <td>Port Fees</td> 
                           <td style="text-align: right;">  اجرة الرصيف </td> 
                           <td style="text-align: right;"><?php echo number_format($MSericeBathPrice, 2);?></td>
                       </tr>
                     <?php }
                     if($MSericeAnchoragePrice){?>
                       <tr> 
-                          <td>Marine Services</td> 
+                          <td>Anchorage Fees</td> 
                           <td style="text-align: right;"> اجرة المخطاف </td> 
                           <td style="text-align: right;"><?php echo number_format($MSericeAnchoragePrice, 2);?></td>
                       </tr>
                     <?php  } 
-                      if($SSPrice1){?>
+                      if($SSPrice1){
+							$query = "SELECT `DescriptionEn`,`code` FROM `services` WHERE `Service_ID`=".$SService1." LIMIT 1;"; 
+									$DescriptionEns = $dbop->query($query)->fetchAll();   
+									foreach ($DescriptionEns as $DescriptionEn_row) {    
+							$DescriptionEn= $DescriptionEn_row['DescriptionEn'];
+							$code= $DescriptionEn_row['code'];
+							}?>
                       <tr> 
-                          <td>Special Services</td>
+                          <td><?php echo '['.$code.'] '.$DescriptionEn;?></td>
                           <td style="text-align: right;"><?php echo $SSName1;?></td> 
                           <td style="text-align: right;"><?php echo number_format($SSPrice1, 2);?></td>
                       </tr>
                       <?php } 
-                    if($SSPrice2){?>
+                    if($SSPrice2){
+							$query = "SELECT `DescriptionEn`,`code` FROM `services` WHERE `Service_ID`=".$SService2." LIMIT 1;"; 
+									$DescriptionEns = $dbop->query($query)->fetchAll();   
+									foreach ($DescriptionEns as $DescriptionEn_row) {    
+							$DescriptionEn= $DescriptionEn_row['DescriptionEn'];
+							$code= $DescriptionEn_row['code'];
+							}?>
                       <tr> 
-                          <td>Special Services</td>
+                          <td><?php echo '['.$code.'] '.$DescriptionEn;?></td>
                           <td style="text-align: right;"><?php echo $SSName2;?></td> 
                           <td style="text-align: right;"><?php echo number_format($SSPrice2, 2);?></td>
                       </tr>
                       <?php } 
-                    if($SSPrice3){?>
+                    if($SSPrice3){
+							$query = "SELECT `DescriptionEn`,`code` FROM `services` WHERE `Service_ID`=".$SService3." LIMIT 1;"; 
+									$DescriptionEns = $dbop->query($query)->fetchAll();   
+									foreach ($DescriptionEns as $DescriptionEn_row) {    
+							$DescriptionEn= $DescriptionEn_row['DescriptionEn'];
+							$code= $DescriptionEn_row['code'];
+							}?>
                       <tr> 
-                          <td>Special Services</td>
+                          <td><?php echo '['.$code.'] '.$DescriptionEn;?></td>
                           <td style="text-align: right;"><?php echo $SSName3;?></td> 
                           <td style="text-align: right;"><?php echo number_format($SSPrice3, 2);?></td>
                       </tr>
                       <?php } 
-                    if($SSPrice4){?>
+                    if($SSPrice4){
+							$query = "SELECT `DescriptionEn`,`code` FROM `services` WHERE `Service_ID`=".$SService4." LIMIT 1;"; 
+									$DescriptionEns = $dbop->query($query)->fetchAll();   
+									foreach ($DescriptionEns as $DescriptionEn_row) {    
+							$DescriptionEn= $DescriptionEn_row['DescriptionEn'];
+							$code= $DescriptionEn_row['code'];
+							}?>
                       <tr> 
-                          <td>Special Services</td>
+                          <td><?php echo '['.$code.'] '.$DescriptionEn;?></td>
                           <td style="text-align: right;"><?php echo $SSName4;?></td> 
                           <td style="text-align: right;"><?php echo number_format($SSPrice4, 2);?></td>
                       </tr>
                       <?php } 
-                    if($SSPrice5){?>
+                    if($SSPrice5){
+							$query = "SELECT `DescriptionEn`,`code` FROM `services` WHERE `Service_ID`=".$SService5." LIMIT 1;"; 
+									$DescriptionEns = $dbop->query($query)->fetchAll();   
+									foreach ($DescriptionEns as $DescriptionEn_row) {    
+							$DescriptionEn= $DescriptionEn_row['DescriptionEn'];
+							$code= $DescriptionEn_row['code'];
+							}?>
                       <tr> 
-                          <td>Special Services</td>
+                          <td><?php echo '['.$code.'] '.$DescriptionEn;?></td>
                           <td style="text-align: right;"><?php echo $SSName5;?></td> 
                           <td style="text-align: right;"><?php echo number_format($SSPrice5, 2);?></td>
                       </tr><?php }  ?>

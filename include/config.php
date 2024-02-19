@@ -8,6 +8,15 @@ function searchForArray($id, $array,$elmint) {
     }
     return null;
  }
+ 
+ function searchIMO($id, $array,$elmint) {
+    foreach ($array as $key => $val) {
+        if ($val[$elmint] == $id) {
+            return 1;
+        }
+    }
+    return 0;
+ }
  function SAPPOStatus($Status){
     switch($Status)
         {

@@ -5,7 +5,7 @@
 			Require_once("../include/auth.php"); 
 			Require_once("../include/config.php");
 			$is_active =0; 
-			$name=$cr =$vat =$conatct =$create_date=$update_date=" "; 
+			$name=$cr =$vat =$conatct =$create_date=$update_date=$Error_MSG='';; 
 					$today = date("Y-m-d H:i:s"); 
 							// option Agents 
 							$AgentOption='<option value=""></option>';
@@ -19,32 +19,45 @@
 
 
 			if(isset($_POST['add'])){
+				if($debug){echo "<b>POST_IMO :</b>".$_POST['IMO']."<br>";}
 				$IMO		=  	stripslashes(htmlentities( strip_tags($_POST['IMO'] )));
-				$query1 = " SELECT `IMO`  FROM `ship` WHERE NOT IMO='".$IMO."'; "; 
-				if($debug){echo "<b>query :</b>".$query1."<br>";} 
+				$query1 = " SELECT `IMO`  FROM `ship` WHERE IMO='".$IMO."'; "; 
+					if($debug){echo "<b>query :</b>".$query1."<br>";} 
 				$IMOs = $dbop->query($query1)->fetchAll();   
-				$DuplicateIMO=searchForArray($_POST['IMO'],$IMOs,'IMO'); 
-				if(isset($_POST['VAT'])){
-					$VAT	=	stripslashes(htmlentities( strip_tags($_POST['VAT'] ))); }
-					else{$VAT=0;}     
-				if($DuplicateIMO){echo "ERROR IMO : ".$IMO; exit();} 
+				
+				$DuplicateIMO=searchIMO($_POST['IMO'],$IMOs,'IMO'); 
+				if($debug){print_r($IMOs);} 				
+				if($debug){echo "<br><b>DuplicateIMO :</b>".$DuplicateIMO."<br>";} 		 	  
+				 
+				
+				
+				if(isset($_POST['VAT'])){$VAT	=	stripslashes(htmlentities( strip_tags($_POST['VAT'] ))); }else{$VAT=0;} 
+				if($debug){echo "<b>VAT :</b>".$VAT."<br>";} 
+				if($VAT=='on'){$VAT=1;}else{$VAT=0;}
+				
 						$IMO		=  	stripslashes(htmlentities( strip_tags($_POST['IMO'] )));
 						$ShipName	= 	stripslashes(htmlentities( strip_tags($_POST['ShipName'] )));
 						$AgentID	=  	stripslashes(htmlentities( strip_tags($_POST['AgentID'] )));
 						$Notes		=  	stripslashes(htmlentities( strip_tags($_POST['Notes'] )));
 						$Weight		=  	stripslashes(htmlentities( strip_tags($_POST['Weight'] )));
 						$Weight		=  	floatval($Weight);
-						if($debug){echo "<b>VAT :</b>".$VAT."<br>";} 
-						if($VAT=='on'){$VAT=1;}else{$VAT=0;}
 
-			
-				$query_INSERT="INSERT INTO `ship`  (`ShipName` ,`IMO` ,`Weight` ,`AgentID`,`VAT`,`Notes`)
+				if($DuplicateIMO){$Error_MSG='
+				<div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h5><i class="icon fas fa-ban"></i> Error: </h5>
+                  Duplicate IMO Number.
+                </div>
+				';}
+				else{
+					$query_INSERT="INSERT INTO `ship`  (`ShipName` ,`IMO` ,`Weight` ,`AgentID`,`VAT`,`Notes`)
 							VALUES ('".$ShipName."','".$IMO."',".$Weight.",".$AgentID.", ".$VAT.",'".$Notes."')"; 
 							if($debug){echo "<b>query_INSERT :</b>".$query_INSERT."<br>";}
 							 
-					  $dbop->query($query_INSERT);  
-					  if($debug){echo "<b>IMO :</b>".$IMO."<br>";}
-					  else{header("Refresh:0"); }
+					$dbop->query($query_INSERT);  
+					if($debug){echo "<b>IMO :</b>".$IMO."<br>";}
+					else{header("Refresh:0"); }
+				}
 
 			}   
         ?>   
@@ -101,6 +114,7 @@
 				<div class="card card-<?=$CardColor;?>">
 					<div class="card-header">
 						<h3 class="card-title">General Information</h3> 
+						<?php echo $Error_MSG;?>
 					</div>  
 					<div class="card-body"> 
 						<div class="row">

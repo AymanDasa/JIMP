@@ -537,7 +537,34 @@
 </table>
  
  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 <!-- table for Special Marine Services -->
+<!-- table for Special Marine Services -->
+<!-- table for Special Marine Services -->
+<!-- table for Special Marine Services -->
+<!-- table for Special Marine Services -->
+<!-- table for Special Marine Services -->
+<!-- table for Special Marine Services -->
+<!-- table for Special Marine Services -->
+
+
+
+
+
+
+
+
 
 <div><span style="font-size:155.0pt">&nbsp;</span></div>
 
@@ -587,13 +614,10 @@ $noSSLine='<tr>
 <td align=center valign="middle">&nbsp;</td>
 <td align=center valign="middle">&nbsp;</td>
 </tr>';
-if($SSPrice1>0){
-		$i=$i+1;
-		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService1."'; "; 
-				if($debug){echo "<b>query :</b>".$query1."<br>";} 
-				$codes = $dbop->query($query1)->fetchAll();    
-				 foreach ($codes as $code_row) { $code =$code_row['code'];}
-				
+if($SSPrice1>0){ 
+				$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService1."' LIMIT 1; ";  
+				$codes = $dbop->query($query1)->fetchAll();   
+				foreach ($codes as $code_row) { $code1 = strval($code_row['code']);}				
 		$html.='
   		<tr>
 			<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice1, 2,'.', '^')).'</span></td>
@@ -601,12 +625,10 @@ if($SSPrice1>0){
 			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice1).'</span></td>
 			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit1.'</span></td>
 			<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName1.' </span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1"> '.$code1.' </span></td>
   		</tr>';}else{$html.=$noSSLine;} 
-if($SSPrice2>0){
-			$i=$i+1;
-			$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService2."'; "; 
-				if($debug){echo "<b>query :</b>".$query1."<br>";} 
+if($SSPrice2>0){ 
+			$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService2."'; ";  
 				$codes = $dbop->query($query1)->fetchAll();    
 				 foreach ($codes as $code_row) { $code =$code_row['code'];}
 		  $html.='
@@ -618,10 +640,8 @@ if($SSPrice2>0){
 		<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName2.' </span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
   	</tr>';}else{$html.=$noSSLine;} 
-if($SSPrice3>0){
-		$i=$i+1;
-		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService3."'; "; 
-				if($debug){echo "<b>query :</b>".$query1."<br>";} 
+if($SSPrice3>0){ 
+		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService3."'; ";  
 				$codes = $dbop->query($query1)->fetchAll();    
 				 foreach ($codes as $code_row) { $code =$code_row['code'];}
 	  $html.='
@@ -634,11 +654,9 @@ if($SSPrice3>0){
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
   	</tr>';}else{$html.=$noSSLine;} 
 if($SSPrice4>0){
-	$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService4."'; "; 
-				if($debug){echo "<b>query :</b>".$query1."<br>";} 
+	$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService4."'; ";  
 				$codes = $dbop->query($query1)->fetchAll();    
 				 foreach ($codes as $code_row) { $code =$code_row['code'];}
-		$i=$i+1;
 	  $html.='
   		<tr>
 		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice1, 2,'.', '^')).'</span></td>
@@ -649,9 +667,7 @@ if($SSPrice4>0){
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
   	</tr>';}else{$html.=$noSSLine;} 
 if($SSPrice5>0){
-		$i=$i+1;
-		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService5."'; "; 
-				if($debug){echo "<b>query :</b>".$query1."<br>";} 
+		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService5."'; ";  
 				$codes = $dbop->query($query1)->fetchAll();    
 				 foreach ($codes as $code_row) { $code =$code_row['code'];}
 	  $html.='
@@ -671,6 +687,8 @@ if($SSPrice5>0){
 
   </tbody>
 </table>
+
+
 
 
 
@@ -729,20 +747,7 @@ if($SSPrice5>0){
 
 
 
-<!-- table for Note
 
-
-
-$name_user3
-$name_user4
-$name_user5
- 
-$job_user2 
-$job_user3 
-$job_user4 
-
--->
-  
 <div><span style="font-size:100.0pt">&nbsp;</span></div>
 
 <table dir="ltr" width=100% style="border-collapse:collapse;position:absolute;z-index:4" cellpadding="0" cellspacing="0" border="0">
