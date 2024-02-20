@@ -124,7 +124,7 @@
           </li>
 
      <!-- #### Services #### -->
-     <li class="nav-item <?php if($folder_name=='services') {echo 'menu-open';} ?>">
+     	<li class="nav-item <?php if($folder_name=='services') {echo 'menu-open';} ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-lines"></i>
               <p>
@@ -139,26 +139,54 @@
                   <p>View</p>
                 </a>
               </li>
+		    <?php /*
               <li class="nav-item">
                 <a href="<?php echo $path;?>services/add.php" class="nav-link">
                   <i class="far fa-pen-to-square nav-icon"></i>
                   <p>New</p>
                 </a>
               </li> 
+		    */?>
             </ul>
           </li> 
 
-
-		  <?php if($admin_access){ ?>
+		<?php /*
+		<li class="nav-item <?php if($folder_name=='services') {echo 'menu-open';} ?>">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file-lines"></i>
+              <p>
+                Servives
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview"  style='font-size: <?php echo $font_size;?>em'>
+              <li class="nav-item">
+                <a href="<?php echo $path;?>services/index.php" class="nav-link">
+			            <i class="fa-solid fa-list nav-icon"></i>
+                  <p>View</p>
+                </a>
+              </li>
+		 
+              <li class="nav-item">
+                <a href="<?php echo $path;?>services/add.php" class="nav-link">
+                  <i class="far fa-pen-to-square nav-icon"></i>
+                  <p>New</p>
+                </a>
+              </li> 
+		
+            </ul>
+          </li> 
+*/
+		 if($admin_access){  
+			?>
 				<li class="nav-item"  style='font-size: <?php echo $font_size;?>em'>
 					<a href="<?php echo $path;?>adminlte/" class="nav-link">
 						<i class="nav-icon fas fa-file-lines"></i> THEAM
 					</a>
 				</li>
-		<?php } ?>
+	<?php 			}  
 
-
-        <?php /*
+   /*
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>

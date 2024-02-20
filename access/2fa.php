@@ -44,9 +44,13 @@ include_once __DIR__.'/2fa/src/GoogleQrUrl.php';
  $img_qr= \Sonata\GoogleAuthenticator\GoogleQrUrl::generate($username, $user_2fa_secret, 'PMIS');
  $g = new \Sonata\GoogleAuthenticator\GoogleAuthenticator();
  //echo $user_2fa_secret."<br>";
+<<<<<<< Updated upstream
  if($username='aymanoz'){
 	//echo $newCode = $g->getCode($user_2fa_secret)."<br>";
  }
+=======
+ 	echo $newCode = $g->getCode($user_2fa_secret)."<br>";
+>>>>>>> Stashed changes
  //echo  $_SESSION["maxList"];
  //echo $_SESSION["MAX_ID"]; 
  $_SESSION['expiry_time'] = time() + (120 * 60); // 120 minutes 
