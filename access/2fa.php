@@ -45,7 +45,7 @@ include_once __DIR__.'/2fa/src/GoogleQrUrl.php';
  $g = new \Sonata\GoogleAuthenticator\GoogleAuthenticator();
  //echo $user_2fa_secret."<br>";
  if($username='aymanoz'){
-	echo $newCode = $g->getCode($user_2fa_secret)."<br>";
+	//echo $newCode = $g->getCode($user_2fa_secret)."<br>";
  }
  //echo  $_SESSION["maxList"];
  //echo $_SESSION["MAX_ID"]; 

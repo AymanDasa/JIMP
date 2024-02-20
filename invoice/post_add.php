@@ -72,7 +72,7 @@ function MSA($SWeight,$Days){
 	echo MSA($ShipWeight,$AnchorageDays);
 	*/
 }
-
+ // $MSericeBathPrice=MSB($ShipWeight,$MSFraction2,$PeriodDays); 
 
 function MSB($SWeight,$STFactor,$Days){
 	// MSP() function used to Callculate MService2 Only
@@ -80,17 +80,17 @@ function MSB($SWeight,$STFactor,$Days){
 	// $Days for Period Days
 	if ($SWeight<=500){
 		// if Ship Weight < 500
-		$MBPrice=($Days*500)*$STFactor;
+		$MBPrice=($Days*550)*$STFactor;
 		}
 	if ($SWeight>500 && $SWeight<=3000 ){
 		// if Ship Weight > 500 and Weight < 3000
-		$MBPrice=($Days*1000)*$STFactor;}
+		$MBPrice=($Days*1100)*$STFactor;}
 	if ($SWeight>3000 && $SWeight<=15000 ){
 		// if Ship Weight > 3000 and Weight < 15000
 		$MBPrice=($Days*1500)*$STFactor;}
 	if ($SWeight>15000 ){
 		// if Ship Weight > 15000 
-		$MBPrice=($Days*2000)*$STFactor;}
+		$MBPrice=($Days*2200)*$STFactor;}
 	return floatval($MBPrice);	
 	/*
 	How to use MSB Function:
@@ -101,36 +101,37 @@ function MSB($SWeight,$STFactor,$Days){
 
 function MSP($SWeight,$STFactor){
 	// MSP() function used to Callculate MService0 and MService1 Only
-	// $STFactor for Service Type Factor 
+	// $STFactor for Service Type Factor  
   $STFactor = floatval($STFactor);
 	if ($SWeight<=500){
 		// if Ship Weight < 500
-		$MPrice=(500)*$STFactor;
+		$MPrice=(2500)*$STFactor;
 		$cell1=$MPrice;
 		$cell2="";
 		$cell3="";
-		$cell4="";}
+		$cell4=""; }
 	if ($SWeight>500 && $SWeight<=3000 ){
-		// if Ship Weight > 500 and Weight < 3000
-		$MPrice=($SWeight*1)*$STFactor;
-		$cell1=500*$STFactor;
-		$cell2=($MPrice-$cell1);
+		// if Ship Weight > 500 and Weight < 3000 
+		$cell1=2500*$STFactor;
+		$cell2=(($SWeight-500)*1.15)*$STFactor;
 		$cell3="";
-		$cell4="";}
+		$cell4="";
+		$MPrice=2500+$cell2;}
 	if ($SWeight>3000 && $SWeight<=15000 ){
-		// if Ship Weight > 3000 and Weight < 15000
-		$MPrice=((0.15*$SWeight)+2550)*$STFactor;
-		$cell1=500*$STFactor;
-		$cell2=2500*$STFactor;
-		$cell3=($MPrice-$cell1-$cell2);
-		$cell4="";}
+		// if Ship Weight > 3000 and Weight < 15000 
+		$cell1=2500*$STFactor;
+		$cell2=2875*$STFactor;
+		$cell3=(($SWeight-3000)*0.17)*$STFactor;
+		$cell4="";
+		$MPrice=5375+$cell3;}
 	if ($SWeight>15000 ){
-		// if Ship Weight > 15000 
-		$MPrice=((0.10*$SWeight)+3300)*$STFactor;
-		$cell1=500*$STFactor;
-		$cell2=2500*$STFactor;
-		$cell3=1800*$STFactor;
-		$cell4=($MPrice-$cell1-$cell2-$cell3)*$STFactor;}
+		// if Ship Weight > 15000  
+		$cell1=2500*$STFactor;
+		$cell2=2875*$STFactor;
+		$cell3=2040*$STFactor;
+		$cell4=(($SWeight-15000)*0.1)*$STFactor;
+		$MPrice=7415+$cell4;}
+		
 	return array(floatval($cell1),floatval($cell2),floatval($cell3),floatval($cell4),floatval($MPrice));	
 	/*
 	How to use MSP Function:
@@ -381,7 +382,12 @@ $MovePort3 =$_POST['MovePort3'];
 
 
 if ($MService3==1) 	{ 
-    $MSericeBathPrice=MSB($ShipWeight,$MSFraction2,$PeriodDays); 
+    $MSericeBathPrice=MSB($ShipWeight,$MSFraction3,$PeriodDays); 
+	
+    if($debug){echo "<b>PeriodDays : </b>".$PeriodDays."<br>";}
+    if($debug){echo "<b>MSFraction3 : </b>".$MSFraction3."<br>";}
+    if($debug){echo "<b>ShipWeight : </b>".$ShipWeight."<br>";}
+    if($debug){echo "<b>MSericeBathPrice : </b>".$MSericeBathPrice."<br>";}
     }else{$MSericeBathPrice=0;} 
     $MSNote1                   =$_POST['MSNote1'];
     $MSNote2                   =$_POST['MSNote2'];
@@ -898,6 +904,8 @@ $maxIDrs = $dbop->query($aqlr)->fetchAll();
                 </div>
                 <div class="col-sm-1"> <a href="edit.php?id=<?php echo $maxID;?>">
                   <button type="button" class="btn btn-block btn-warning"><i class="fas fa-pen-to-square"></i></button> </a>
+                 <a href="../reports/pre_invoice.php?id=<?php echo $maxID;?>">
+                  <button type="button" class="btn btn-block btn-info"><i class="fas fa-pen-to-square"></i></button> </a>
                 </div>
               </div> 
             </div> 
