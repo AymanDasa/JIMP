@@ -195,8 +195,7 @@
 
 
 
-						.myfixed2 { 
-									position: absolute;
+						.myfixed2 {  
 						overflow: visible;
 						left: 9px;
 						top: 2px;
@@ -209,8 +208,7 @@
 						.table0{
 							dir:ltr;
 							width:100%;
-							border-collapse:collapse;
-							position:absolute;
+							border-collapse:collapse; 
 							top:0pt;
 							left:0pt;
 							z-index:4;  
@@ -321,9 +319,9 @@
 
 
 
-<div><span style="font-size:65.0pt">&nbsp;</span></div>
+<div><span style="font-size:5.0pt">&nbsp;</span></div>
 
-<table dir="ltr" width=100% style="border-collapse:collapse;position:absolute;z-index:4" cellspacing="1" border="1">
+<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
 	<tbody>
 		<tr>
 				<td align=right width=20% valign="middle" 	>
@@ -365,9 +363,9 @@
 
 
 
-<div><span style="font-size:60pt">&nbsp;</span></div>
+<div><span style="font-size:3pt">&nbsp;</span></div>
 
-<table dir="ltr" width=100% style="border-collapse:collapse;position:absolute;z-index:4" cellspacing="1" border="1">
+<table dir="ltr" width=100% style="border-collapse:collapse;z-index:4" cellspacing="1" border="1">
 	<tbody>
 		  <tr>
 			   	<td align=center width=10% valign="middle" height="30pt">
@@ -455,9 +453,9 @@
 
 
 
-<div><span style="font-size:120pt">&nbsp;</span></div>
+<div><span style="font-size:2pt">&nbsp;</span></div>
 
-<table dir="ltr" width=100% style="border-collapse:collapse;position:absolute;z-index:4" cellspacing="1" border="1">
+<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
   <tbody>
     <tr>
     <td colspan="7" align=center valign="middle"> 
@@ -566,9 +564,9 @@
 
 
 
-<div><span style="font-size:155.0pt">&nbsp;</span></div>
+<div><span style="font-size:2.0pt">&nbsp;</span></div>
 
-<table dir="ltr" width=100% style="border-collapse:collapse;position:absolute;z-index:4" cellspacing="1" border="1">
+<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">  
   <tbody>
     <tr>
     	<td colspan="6" align=center valign="middle">
@@ -633,7 +631,7 @@ if($SSPrice2>0){
 				 foreach ($codes as $code_row) { $code =$code_row['code'];}
 		  $html.='
   		<tr>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice1	, 2,'.', '^')).'</span></td>
+		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice2	, 2,'.', '^')).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut2).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice2).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit2.'</span></td>
@@ -646,7 +644,7 @@ if($SSPrice3>0){
 				 foreach ($codes as $code_row) { $code =$code_row['code'];}
 	  $html.='
   		<tr>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice1, 2,'.', '^')).'</span></td>
+		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice3, 2,'.', '^')).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut3).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice3).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit3.'</span></td>
@@ -659,7 +657,7 @@ if($SSPrice4>0){
 				 foreach ($codes as $code_row) { $code =$code_row['code'];}
 	  $html.='
   		<tr>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice1, 2,'.', '^')).'</span></td>
+		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice4, 2,'.', '^')).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut4).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice4).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit4.'</span></td>
@@ -672,7 +670,7 @@ if($SSPrice5>0){
 				 foreach ($codes as $code_row) { $code =$code_row['code'];}
 	  $html.='
 	  <tr>
-	  <td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice1, 2,'.', '^')).'</span></td>
+	  <td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice5, 2,'.', '^')).'</span></td>
 	  <td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut5).'</span></td>
 	  <td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice5).'</span></td>
 	  <td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit5.'</span></td>
@@ -687,17 +685,10 @@ if($SSPrice5>0){
 
   </tbody>
 </table>
+ 
+<div><span style="font-size:2.0pt">&nbsp;</span></div>
 
-
-
-
-
-
-
-
-<div><span style="font-size:120.0pt">&nbsp;</span></div>
-
-<table dir="ltr" width=100% style="border-collapse:collapse;position:absolute;z-index:4" cellspacing="1" border="1">
+<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
   <tbody>
    <tr>
     	<td align=right  width=15%	valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($MSTOTAL, 2,'.', '^')).'</span></td>
@@ -748,7 +739,7 @@ if($SSPrice5>0){
 
 
 
-<div><span style="font-size:100.0pt">&nbsp;</span></div>
+<div><span style="font-size:5.0pt">&nbsp;</span></div>
 
 <table dir="ltr" width=100% style="border-collapse:collapse;position:absolute;z-index:4" cellpadding="0" cellspacing="0" border="0">
 	<tbody>  
