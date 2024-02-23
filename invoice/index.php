@@ -86,7 +86,7 @@ $IsActive = 0 ;
                   </thead>
                   <tbody>
                   <?php 
-                      $invoices = $dbop->query('SELECT * FROM `invoice`  ')->fetchAll();
+                      $invoices = $dbop->query('SELECT * FROM `invoice` ORDER BY  `InvoiceID` DESC ')->fetchAll();
                       foreach ($invoices as $invoice) { 
                           
                           $InvoiceDate  = $invoice['InvoiceDate'];
@@ -186,8 +186,14 @@ $IsActive = 0 ;
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "responsive": true, 
+	 "lengthChange": false,  
+      "ordering": false,
+	 "autoWidth": false, 
+      "searching": true, 
+      "info": true,
+	 "paging": true,
+      "buttons": ["copy", "csv",   "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
