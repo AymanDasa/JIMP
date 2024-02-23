@@ -528,8 +528,8 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
 #########################################################################
 
 $TOTAL=$MSTOTAL+$SSTOTAL ;
-$VAT=$TOTAL*$ShipVAT;
-$VAT_TOTAL=$VAT+$TOTAL;
+$VAT=floatval(($TOTAL*$ShipVAT)*($vatP));
+$VAT_TOTAL=floatval($VAT+$TOTAL);
 
     if($debug){echo "<b>M. TOTAL :</b>".$MSTOTAL."<br>";}
     if($debug){echo "<b>S. TOTAL :</b>".$SSTOTAL."<br>";}
