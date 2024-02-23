@@ -77,8 +77,8 @@ $IsActive = 0 ;
                   <tr>
                       <th>#</th> 
                       <th>Date</th> 
-                      <th>Invoice No#</th>
                       <th>Ship Name</th> 
+                      <th>Agent Name</th>
                       <th>Agent Name</th>
                       <th>TOTAL (SAR)</th>
                       <th>View</th>
@@ -93,6 +93,7 @@ $IsActive = 0 ;
                           $InvoiceID    = $invoice['InvoiceID'];
                           $ShipName     = $invoice['ShipName']; 
                           $AgentNameEn  = $invoice['AgentNameEn']; 
+                          $AgentNameAr  = $invoice['AgentNameAr']; 
                           $VAT_TOTAL    = $invoice['VAT_TOTAL'];  
                           $Status       = $invoice['Status'];   
                           $date1=date_create($InvoiceDate); 
@@ -116,8 +117,8 @@ $IsActive = 0 ;
                           <td>'.date_format($date1,"Y-m-d"). ' </td>  
                           <td>'.$ShipName.'  </td>
                           <td>'.$AgentNameEn. ' </td> 
-                          <td>'.$AgentNameEn. ' </td> 
-                          <td style="text-align: right;">'.number_format($VAT_TOTAL). ' </td> 
+                          <td>'.$AgentNameAr. ' </td> 
+                          <td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td> 
                            
                           <td>  
 
@@ -132,13 +133,13 @@ $IsActive = 0 ;
                   </tbody>
                   <tfoot>
                   <tr>
-                      <th>#</th> 
+			   	  <th>#</th> 
                       <th>Date</th> 
-                      <th>Invoice No#</th>
                       <th>Ship Name</th> 
                       <th>Agent Name</th>
+                      <th>Agent Name</th>
                       <th>TOTAL (SAR)</th>
-                      <th>View</th> 
+                      <th>View</th>
                   </tr>
                   </tfoot>
                 </table>
