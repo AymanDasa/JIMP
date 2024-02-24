@@ -1,14 +1,59 @@
 <!DOCTYPE html>
-<?php   
-
-	 
+<?php    
 $folder_name =  basename(dirname(__FILE__));
 Require_once( "C:\\wow\\password\\config.php"); 
 Require_once("../include/auth.php"); 
 Require_once("../include/config.php"); 
-$SAPPOname = '';
-$IsActive = 0 ;	   
-     
+$SAPPOname =  $table_body= '';
+$IsActive = 0 ;	  
+$TotalInvoiceTable=0;
+if($_POST['DailyInvoiceReport']){ 
+	$InvoiceDate= $_POST['InvoiceDate']; 
+	$LinkPDF='<a href="../reports/DailyInvoiceReport.php?InvoiceDate='.$InvoiceDate.'">';
+			
+	$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."';";  
+	$invoices = $dbop->query($SQL)->fetchAll();    
+	foreach ($invoices as $invoice) {    
+		$InvoiceDate  = $invoice['InvoiceDate']; 
+		$InvoiceID    = $invoice['InvoiceID'];
+		$ShipName     = $invoice['ShipName']; 
+		$AgentNameEn  = $invoice['AgentNameEn']; 
+		$AgentNameAr  = $invoice['AgentNameAr']; 
+		$VAT_TOTAL    = $invoice['VAT_TOTAL']; 
+		$TotalInvoiceTable =  $TotalInvoiceTable +$VAT_TOTAL ;
+		$Status       = $invoice['Status'];   
+		$date1=date_create($InvoiceDate); 
+		switch(intval($Status)){  
+		  case 700:
+		    $Icons='<a href="edit.php?id='.$invoice["InvoiceID"].'" class="btn btn-warning">
+		    <i class="fas fa-pen-to-square"></i></a> 
+		    <a href="view.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
+		    <i class="fas fa-trash"></i></a>';
+		    break;
+		  case 800:
+		    $Icons='<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
+		    <i class="fas fa-print"></i></a>';
+		    break;
+		  default:
+			 echo $Icons="";
+		  } 
+	  $table_body .= '<tr>
+		<td>'.$InvoiceID. ' </td>  
+		<td>'.date_format($date1,"Y-m-d"). ' </td>  
+		<td>'.$ShipName.'  </td>
+		<td>'.$AgentNameEn. ' </td> 
+		<td>'.$AgentNameAr. ' </td> 
+		<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td>  
+		<td>   
+		  <div class="btn-group btn-group-sm"> 
+		    <a href="view.php?id='.$invoice['InvoiceID'].'" class="btn btn-info">
+		    <i class="fas fa-eye"></i></a>
+		    '.$Icons.'
+		  </div>
+		</td>  
+	   </tr>' ; }
+	
+	}  
 ?> 
 <html lang="en">
 <head>
@@ -45,8 +90,7 @@ $IsActive = 0 ;
   <!-- Navbar -->
   <?php include("../include/nav.php")?>
   <?php include("../include/aside.php")?>
-  <!-- /.navbar --> 
-
+  <!-- /.navbar -->  
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -64,103 +108,57 @@ $IsActive = 0 ;
           </div>
         </div>
       </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content
-
-
-
-
-
-				
-
-
-
- 		
-		
-		
-		-->
+    </section> 
+    <!-- Main content -->
     <section class="content">
-     <div class="container-fluid">
-		<div class="row">
-			<div class="col-12"> 
-				<div class="card">  
-					<div class="card-body">
-            				<h4>Custom Content Below</h4>
-						<ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
-						<li class="nav-item">
-							<a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true"> Daily Invoice Report</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Monthly Invoice Report</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Messages</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Settings</a>
-						</li>
-						</ul>
-						<div class="tab-content" id="custom-content-below-tabContent">
-						<div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
-							<form action="DailyInvoiceReport.php" method="post">
-								<div class="col-4"> 
-									<div class="form-group">
-										<label>Invoice Date</label>
-										<div class="input-group date" id="ClickInvoiceDate" data-target-input="nearest">
-											<input  name="InvoiceDate" type="text" class="form-control datetimepicker-input" data-target="#ClickInvoiceDate"/>
-											<div class="input-group-append" data-target="#ClickInvoiceDate" data-toggle="datetimepicker">
-												<div class="input-group-text">
-												<i class="fa fa-calendar"></i>
-												</div>
-											</div>
-										</div>  
-									</div>
-									<input type="hidden" name="DailyInvoiceReport" value="1">
-									<button type="submit" class="btn btn-info float-right">Genrate</button>
-								</div>
-							</form> 
-						</div>
-						<div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12"> 
+					<div class="card"> 
+						<div class="card-header">
+							<h3 class="card-title">Result</h3>
+							<div class="card-tools">  
+								<?php echo $LinkPDF;?> 
+								<button type="button" class="btn btn-success" > PDF </button>  </a>
+								<button type="button" class="btn btn-tool" data-card-widget="collapse">
+								<i class="fas fa-plus"></i>
+								</button> 
+							</div>
+						</div>  
+						<div class="card-body"> 
+						<table id="example1" class="table table-bordered table-striped">
+							<thead>
+							<tr>
+								<th>#</th> 
+								<th>Date</th> 
+								<th>Ship Name</th> 
+								<th>Agent Name</th>
+								<th>Agent Name</th>
+								<th>TOTAL (SAR)</th>
+								<th>View</th>
+							</tr>
+							</thead>
+							<tbody>
+								<?php echo $table_body;?>
+							</tbody>
+							<tfoot>
+							<tr>
+								<th>#</th> 
+								<th>Date</th> 
+								<th>Ship Name</th> 
+								<th>Agent Name</th>
+								<th>Agent Name</th>
+								<th style="text-align: right;"><?php echo number_format($TotalInvoiceTable,2,".");?></th>
+								<th>View</th>
+							</tr>
+							</tfoot>
+							</table>
 
-							<form action="MonthlyInvoiceReport.php" method="post">
-								<div class="col-4"> 
-									<div class="form-group">
-										<label>Invoice Date</label>
-										<div class="input-group date" id="ClickInvoiceMonth" data-target-input="nearest">
-											<input  name="InvoiceMonth" type="text" class="form-control datetimepicker-input" data-target="#ClickInvoiceMonth"/>
-											<div class="input-group-append" data-target="#ClickInvoiceMonth" data-toggle="datetimepicker">
-												<div class="input-group-text">
-												<i class="fa fa-calendar"></i>
-												</div>
-											</div>
-										</div>  
-									</div>
-									<input type="hidden" name="MonthlyInvoiceReport" value="1">
-									<button type="submit" class="btn btn-info float-right">Genrate</button>
-								</div>
-							</form> 
-
-						</div>
-						<div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
-
-
-
-						</div>
-						<div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
-
-	
-	
-						</div>
 						</div> 
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-
- 
-        <!-- /.row -->
-      </div>
+		</div> 
       <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -201,9 +199,8 @@ $IsActive = 0 ;
 <!-- Page specific script -->
 <script>
 $(function () { 
-    	//Date picker Date From todate
-    	$('#ClickInvoiceDate').datetimepicker({ format: 'YYYY-MM-DD' }); 
-  	$('#ClickInvoiceMonth').datetimepicker({ format: 'YYYY-MM' });
+    //Date picker Date From todate
+    $('#ClickInvoiceDate').datetimepicker({ format: 'YYYY-MM-DD' });
   });
 </script> 
 <script src="<?php echo $path;?>include/js/menu.js"></script>
