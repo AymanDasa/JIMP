@@ -406,6 +406,9 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
 #########################################################################
 #########################################################################
 
+	$query_company = "SELECT `vat` FROM `information` "; 
+    	$vats = $dbop->query($query_company)->fetchAll(); 
+    	foreach ($vats as $vat_row) {$vatP=floatval($vat_row['vat'])/100;} 
 
     $query = "SELECT * FROM `services` ORDER BY `Service_ID` ASC"; 
     $SSVs = $dbop->query($query)->fetchAll();
