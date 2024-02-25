@@ -315,11 +315,14 @@ $html= '
 								</td>
 								<td style="text-align:center; width:20%  ; height:20px ;" valign="middle">
 								<p>
-									<span lang="ar-SA">
-													المملكة العربية السعودية<br>
-													المؤسسة العامة للموانئ<br>
-													ميناء الملك عبد العزيز / الدمام<br>
-													www.ports.gov.sa
+									<span style="font-size:8pt" lang="ar-SA">
+										  المملكة العربية السعودية 
+										  <br>
+										الهيئة العامة للموانئ
+										<br>
+									 ميناء جدة الإسلامي
+										<br>
+										www.ports.gov.sa
 									</span>
 								</p>
 								</td>

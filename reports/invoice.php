@@ -257,12 +257,15 @@
 			  </td>
 			  <td align=center width=20% height="20" valign="middle" >
 				  <p>
-					  <span style="font-size:8pt" lang="ar-SA">
-										  المملكة العربية السعودية <br>
-										المؤسسة العامة للموانئ<br>
-									 ميناء جدة الإسلامي<br>
+						<span style="font-size:8pt" lang="ar-SA">
+										  المملكة العربية السعودية 
+										  <br>
+										الهيئة العامة للموانئ
+										<br>
+									 ميناء جدة الإسلامي
+										<br>
 										www.ports.gov.sa
-					  </span>
+						</span>
 				  </p>
 			  </td></tr>
 			</table>
