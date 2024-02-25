@@ -452,128 +452,118 @@
 	</tbody>
 </table>
 
-
-
-
-
-
-
-
-
+'; 
+if(intval($MSTOTAL)>0){ 
+/*
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ####################################        General Marine Services     ################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ##########################################################################################################   
+*/ 
+$html.=' 
 <div><span style="font-size:2pt">&nbsp;</span></div>
 
 <table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
-  <tbody>
-    <tr>
-    <td colspan="7" align=center valign="middle"> 
-    <span lang="en-US" class="titele1e" > General Marine Services </span>
-    <span lang="ar-SA" class="titela1"> الخدمات البحرية العامة </span> </td>
-  </tr>
-  <tr>
-    <td width=17% rowspan="6" align=center valign="middle"> &nbsp;
-     </td>
-    <td colspan="5" align=center valign="middle"><span lang="ar-SA" class="labela1">أجور الإرشاد</span></td>
-    <td rowspan="2" align=center valign="middle" ><span lang="ar-SA" class="labela1">الوزن</span></td>
-  </tr>
-  <tr>
-    <td colspan="3" align=center valign="middle"><span lang="ar-SA" class="labela1">أجور الإنتقال من رصيف الى اخر</span></td>
-    <td align=center valign="middle"><span lang="ar-SA" class="labela1">أجور المغادرة</span></td>
-    <td align=center valign="middle"><span lang="ar-SA" class="labela1">أجور القدوم</span></td>
-  </tr>
-  <tr>
-    <td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MC0, 2,'.', '^')).'</span></td>
-    <td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MB0, 2,'.', '^')).'</span></td>
-    <td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MA0, 2,'.', '^')).'</span></td>
-    <td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CB0, 2,'.', '^')).'</span></td>
-    <td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CA0, 2,'.', '^')).'</span></td>
-    <td width=18% align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1"> اقل من 500</span></td>
-  </tr>
-  <tr>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MC1, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MB1, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MA1, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CB1, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CA1, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1">من 500 الى 3000 </span></td>
-  </tr>
-  <tr>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MC2, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MB2, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MA2, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CB2, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CA2, 2,'.', '^')).'</span></td> 
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1">من 3000 الى 15000</span></td>
-  </tr>
-  <tr>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MC3, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MB3, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MA3, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CB3, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CA3, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1">اكثر من 15000</span></td>
-    
-  </tr>
-  <tr>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MGPrice, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MC, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MB, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MA, 2,'.', '^')).'</span></td> 
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MSericeOutPrice, 2,'.', '^')).'</span></td>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MSericeInPrice, 2,'.', '^')).'</span></td>
-    <td>&nbsp;</td>
-
-  </tr>
-  <tr>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MSericeBathPrice, 2,'.', '^')).'</span></td>
-    <td align=right colspan="2"><span lang="ar-SA" class="labela1">أجور استخدام الرصيف</span></td>
-    <td colspan="4" style="border-right-style:hidden;border-bottom-style:hidden">&nbsp;</td>
-  </tr>
-  <tr>
-    <td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MSericeAnchoragePrice, 2,'.', '^')).'</span></td>
-    <td align=right colspan="2"><span lang="ar-SA" class="labela1">أجور المخطاف '.$txtAncor.'</span></td>
-    <td colspan="4" style="border-right-style:hidden;border-bottom-style:hidden">&nbsp;</td>
-  </tr>
-  <tr>
-    <td align=right valign="middle">&nbsp;<span dir="rtl" lang="ar-SA" class="dataa1x">'.E2A(number_format($MSTOTAL, 2,'.', '^')).'</span></td>
-    <td  align=right colspan="2"><span lang="ar-SA" class="labela1"> المجموع</span></td>
-    <td colspan="4" style="border-right-style:hidden;border-bottom-style:hidden">&nbsp;</td>
-  </tr>
-  </tbody>
+  	<tbody>
+    		<tr>
+    			<td colspan="7" align=center valign="middle"> 
+				<span lang="en-US" class="titele1e" > General Marine Services </span>
+				<span lang="ar-SA" class="titela1"> الخدمات البحرية العامة </span> 
+			</td>
+  		</tr>
+  		<tr>
+    			<td width=17% rowspan="6" align=center valign="middle"> &nbsp;</td>
+			<td colspan="5" align=center valign="middle"><span lang="ar-SA" class="labela1">أجور الإرشاد</span></td>
+			<td rowspan="2" align=center valign="middle" ><span lang="ar-SA" class="labela1">الوزن</span></td>
+		</tr>
+		<tr>
+			<td colspan="3" align=center valign="middle"><span lang="ar-SA" class="labela1">أجور الإنتقال من رصيف الى اخر</span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="labela1">أجور المغادرة</span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="labela1">أجور القدوم</span></td>
+		</tr>
+		<tr>
+			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MC0, 2,'.', '^')).'</span></td>
+			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MB0, 2,'.', '^')).'</span></td>
+			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MA0, 2,'.', '^')).'</span></td>
+			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CB0, 2,'.', '^')).'</span></td>
+			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CA0, 2,'.', '^')).'</span></td>
+			<td width=18% align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1"> اقل من 500</span></td>
+		</tr>
+		<tr>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MC1, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MB1, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MA1, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CB1, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CA1, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1">من 500 الى 3000 </span></td>
+		</tr>
+		<tr>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MC2, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MB2, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MA2, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CB2, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CA2, 2,'.', '^')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1">من 3000 الى 15000</span></td>
+		</tr>
+		<tr>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MC3, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MB3, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MA3, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CB3, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($CA3, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1">اكثر من 15000</span></td>
+		</tr>
+		<tr>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MGPrice, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MC, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MB, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MA, 2,'.', '^')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MSericeOutPrice, 2,'.', '^')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MSericeInPrice, 2,'.', '^')).'</span></td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MSericeBathPrice, 2,'.', '^')).'</span></td>
+			<td align=right colspan="2"><span lang="ar-SA" class="labela1">أجور استخدام الرصيف</span></td>
+			<td colspan="4" style="border-right-style:hidden;border-bottom-style:hidden">&nbsp;</td>
+		</tr>
+		<tr>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.E2A(number_format($MSericeAnchoragePrice, 2,'.', '^')).'</span></td>
+			<td align=right colspan="2"><span lang="ar-SA" class="labela1">أجور المخطاف '.$txtAncor.'</span></td>
+			<td colspan="4" style="border-right-style:hidden;border-bottom-style:hidden">&nbsp;</td>
+		</tr>
+		<tr>
+			<td align=right valign="middle">&nbsp;<span dir="rtl" lang="ar-SA" class="dataa1x">'.E2A(number_format($MSTOTAL, 2,'.', '^')).'</span></td>
+			<td  align=right colspan="2"><span lang="ar-SA" class="labela1"> المجموع</span></td>
+			<td colspan="4" style="border-right-style:hidden;border-bottom-style:hidden">&nbsp;</td>
+  		</tr>
+  	</tbody>
 </table>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-<!-- table for Special Marine Services -->
-<!-- table for Special Marine Services -->
-<!-- table for Special Marine Services -->
-<!-- table for Special Marine Services -->
-<!-- table for Special Marine Services -->
-<!-- table for Special Marine Services -->
-<!-- table for Special Marine Services -->
-<!-- table for Special Marine Services -->
+';}
+
+/*
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ####################################        Special  Services     ######################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ##########################################################################################################   
+*/
+if(intval($SSTOTAL)>0){ 
+$html.='
 
 
+<div><span style="font-size:1.0pt">&nbsp;</span></div>
 
-
-
-
-
-
-
-<div><span style="font-size:2.0pt">&nbsp;</span></div>
-
-<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">  
+<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
   <tbody>
     <tr>
     	<td colspan="6" align=center valign="middle">
@@ -619,6 +609,7 @@ $noSSLine='<tr>
 <td align=center valign="middle">&nbsp;</td>
 <td align=center valign="middle">&nbsp;</td>
 </tr>';
+
 if($SSPrice1>0){ 
 				$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService1."' LIMIT 1; ";  
 				$codes = $dbop->query($query1)->fetchAll();   
@@ -638,7 +629,7 @@ if($SSPrice2>0){
 				 foreach ($codes as $code_row) { $code =$code_row['code'];}
 		  $html.='
   		<tr>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice2	, 2,'.', '^')).'</span></td>
+		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice2, 2,'.', '^')).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut2).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice2).'</span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit2.'</span></td>
@@ -691,11 +682,19 @@ if($SSPrice5>0){
   	</tr>
 
   </tbody>
-</table>
- 
+</table>';
+
+
+}
+
+
+
+
+
+$html.='
 <div><span style="font-size:2.0pt">&nbsp;</span></div>
 
-<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
+<table dir="ltr" width=100% style="border-collapse:collapse;z-index:4" cellspacing="1" border="1">
   <tbody>
    <tr>
     	<td align=right  width=15%	valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($MSTOTAL, 2,'.', '^')).'</span></td>
@@ -738,17 +737,23 @@ if($SSPrice5>0){
 
 
 
+'; 
+/*
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ######################################        Managers Information      ################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ##########################################################################################################   
+*/ 
+$html.='  
 
+<div><span style="font-size:10.0pt">&nbsp;</span></div>
 
-
-
-
-
-
-
-<div><span style="font-size:5.0pt">&nbsp;</span></div>
-
-<table dir="ltr" width=100% style="border-collapse:collapse;position:absolute;z-index:4" cellpadding="0" cellspacing="0" border="0">
+<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
 	<tbody>  
 			<tr>
 					
@@ -793,24 +798,69 @@ if($SSPrice5>0){
 
 
 
+'; 
+/*
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################       Bank  Information      #################################### 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ########################################################################################################## 
+  ##########################################################################################################   
+*/ 
+$html.='  
 
 
+<div><span style="font-size:12.0pt">&nbsp;</span></div>
+<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
+	<tbody> 
+		<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 	
+				
+		<td align=left width=50% " >
+		  	Below are the details of the aforementioned account with <br> First Saudi Bank   
+			<br>
+			Account name: West Coast Port Services Company
+			<br>
+			C.R number: 4030534211 
+			<br>
+			 Account number: 001-379501-242
+			<br>
+			IBAN number: SA7745000000242379501001 
+			<br>
+			Bank name: First Saudi Bank
+			<br>
+			Currency: SAR 
+			<br>
+			SWIFT code: SABBSAR 
+		</td>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-					</body></html>';
+		<td align=right width=50% ">
+		 
+		
+		فيما يلي تفاصيل الحساب المذكور مع  <br>   البنك السعودي الأول 
+		<br> 
+			إسم الحساب: شركة ساحل الغربية لخدمات الموانىء  
+			<br> 
+			رقم السجل التجاري: 4030534211 
+			<br>
+			رقم الحساب: 242-379501-001 
+			<br>
+			SA7745000000242379501001 : رقم الايبان
+			<br>
+			إسم البنك: البنك السعودي الأول
+			<br>
+			SABBSAR : رمز سويفت 
+			<br>
+			SAR : العملة
+		</td> 
+		<tr>
+	</tbody>
+</table> 
+ 
+</body></html>';
 
 			 
 				

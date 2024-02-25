@@ -587,7 +587,7 @@ if(intval($SSTOTAL)>0){
 $html.='
 
 
-<div><span style="font-size:155.0pt">&nbsp;</span></div>
+<div><span style="font-size:1.0pt">&nbsp;</span></div>
 
 <table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
   <tbody>
