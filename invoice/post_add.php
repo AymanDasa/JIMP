@@ -223,13 +223,13 @@ if($debug){echo "ArrivalDate :".$ArrivalDate."<br>";}
     $ArrivalDateG 	=$ArrivalDateX[1];
     $ArrivalDateH 	=$ArrivalDateX[2];
 
-if($_POST['DepartureDate']==""){$DepartureDate=date("Y-m-d H:i:s", time());}else{$DepartureDate=$_POST['DepartureDate']; } 
+if($_POST['DepartureDate']==""){$DepartureDate=NULL;$ADateY=0;}else{$DepartureDate=$_POST['DepartureDate']; } 
 if($debug){echo "DepartureDate :".$DepartureDate."<br>";}
     $DepartureDateX 	=TGH($DepartureDate);
     $DepartureDateT 	=$DepartureDateX[0];
     $DepartureDateG 	=$DepartureDateX[1];
     $DepartureDateH 	=$DepartureDateX[2]; 
-    if($ADateX*$ADateY){ $PeriodDays= PeriodDay($ArrivalDate,$DepartureDate);}else{$PeriodDays=0;}
+    if($ADateX*$ADateY){ $PeriodDays= PeriodDay($ArrivalDate,$DepartureDate);}else{$PeriodDays=1;}
 
 if($debug){echo "<b>ArrivalDate : </b>".$ArrivalDate."<br>";}
 if($debug){echo "<b>DepartureDate : </b>".$DepartureDate."<br>";}
