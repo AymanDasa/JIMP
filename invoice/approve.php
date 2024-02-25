@@ -10,8 +10,8 @@ $Status=800;
 if(isset($_POST['approved'])) {   
     if(isset($_POST['VAT_TOTAL'])){$VAT_TOTAL=intval($_POST['VAT_TOTAL']);}  else{exit();}
     $maxID=intval($_POST['maxID']);
-    if($VAT_TOTAL<500){
-        echo "Invoice less than 500 (SAR) please call admin, invoice # ".$_POST['maxID'];
+    if($VAT_TOTAL<0){
+        echo "Invoice less than 0 (SAR) please call admin, invoice # ".$_POST['maxID'];
         exit();
     }else{ 
       if($debug){echo "<b>Approved maxID :</b>".$maxID,"<br>";} 

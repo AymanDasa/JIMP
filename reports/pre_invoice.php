@@ -173,9 +173,9 @@
 	if($DepartureDateH0<1444){$DepartureDateH='';} 
 
 
-
 		} 
-	}else{exit();} // exit();  
+	}else{exit();} // exit(); 
+	
 	$MovePortName='';
 	if($MovePort1!=''){$MovePortName=$MovePortName.' / '.$MovePort1;}
 	if($MovePort2!=''){$MovePortName=$MovePortName.' / '.$MovePort2;}
@@ -184,11 +184,7 @@
 			$html='<!DOCTYPE html>
 					<head>
 						<style>
-							@page {
-								margin-top: 15px;
-								margin-left: 15px;
-								margin-right: 15px;
-								margin-bottom: 1px; }
+							@page { margin: 15px; }
 							@font-face {
 								font-family: "Arabic";
 								src:  url("DubaiRegular.ttf") format("truetype");
@@ -201,11 +197,9 @@
 								text-align:right;
 							} 
 
-						 
 
 
-						.myfixed2 { 
-									position: absolute;
+						.myfixed2 {  
 						overflow: visible;
 						left: 9px;
 						top: 2px;
@@ -218,264 +212,255 @@
 						.table0{
 							dir:ltr;
 							width:100%;
-							border-collapse:collapse;
-							position:absolute;
+							border-collapse:collapse; 
 							top:0pt;
 							left:0pt;
 							z-index:4;  
 						}
-						footer{
-							position: fixed;
-							left: 0px;
-							right: 0px;
-							height: 50px;
-							margin-bottom: -50px;
-						   }
 						</style>
 
 					</head> 
-	
-<body>   
+					<body>  
 '; 
 /*
-  ########################################################################################################## 
-  ########################################################################################################## 
-  ########################################################################################################## 
-  ########################################################################################################## 
-  ######################################        Company  Information      ################################## 
-  ########################################################################################################## 
-  ########################################################################################################## 
-  ########################################################################################################## 
-  ##########################################################################################################   
+	########################################################################################################## 
+	########################################################################################################## 
+	########################################################################################################## 
+	########################################################################################################## 
+	######################################        Company  Information      ################################## 
+	########################################################################################################## 
+	########################################################################################################## 
+	########################################################################################################## 
+	##########################################################################################################   
 */ 
-$html.=' 
-<table  cellpadding="0" cellspacing="0" border="1"  class="table0">
-	<tr>		
-		<td align=center width=20%  style="border-right-style:hidden" height="20" valign="middle">
-			<p>	
-				<span lang="ar-SA" style="font-size:8pt">   
-						المملكة العربية السعودية <br>
-						شركة ساحل الغربية لخدمات الموانئ <br>
-					'.E2A("0123456789").' تيلفون  	: 
-					<br>
-						'.E2A("0138574202").' فـاكس  	: 
-				</span>
-			</p>
-		</td>
-		<td align=center width=20% valign="middle" style="border-right-style:hidden">
-				<p>
-					<h1>PRE INVOICE</h1>
+$html.=' 				  
+					
+			<table  cellpadding="0" cellspacing="0" border="1"  class="table0">
+			<tr>		
+			<td align=center width=20%  style="border-right-style:hidden" height="20" valign="middle">
+				<p>	
+					<span lang="ar-SA" style="font-size:8pt">   
+						  المملكة العربية السعودية <br>
+						   شركة ساحل الغربية لخدمات الموانئ <br>
+						'.E2A("0123456789").' تيلفون  	:
+				   
+						<br>
+						 '.E2A("0138574202").' فـاكس  	:
+					
+					</span>
 				</p>
 			</td>
-			<td align=center width=20% height="20" valign="middle" style="border-right-style:hidden">
-					<span lang="ar-SA">  <br>
-					</span>
-				<br>
-					<span dir="ltr" style="font-size:12pt;font-family:DejaVuSansCondensed;color:red;direction:ltr;
-			unicode-bidi:embed" lang="en-US">PRE INVOICE-'.$InvoiceID.' </span> 
-			</td>
-			<td align=center width=20% height="65" valign="middle" style="border-right-style:hidden">
-				<p>
-					<span lang="ar-SA">
-						<img src="img/mawani.png" height="55px"> 
-					</span>
-			</p>
-			</td>
-			<td align=center width=20% height="20" valign="middle" >
-				<p>
-				<span style="font-size:8pt" lang="ar-SA">
-							المملكة العربية السعودية 
-							<br>
-							الهيئة العامة للموانئ
-							<br>
-						ميناء جدة الإسلامي
-							<br>
-							www.ports.gov.sa
-				</span>
+			<td align=center width=20% valign="middle" style="border-right-style:hidden">
+				  <p>
+					  <span lang="ar-SA">
+						  <img src="img/logo_s1.png" height="50px">
+					  </span>
+				  </p>
+			  </td>
+			  <td align=center width=20% height="20" valign="middle" style="border-right-style:hidden">
+					  <span lang="ar-SA"> PRE INVOICE<br>
+					  </span>
+				   <br>
+					   <span dir="ltr" style="font-size:12pt;font-family:DejaVuSansCondensed;color:red;language:en-US;direction:ltr;
+			  unicode-bidi:embed" lang="en-US">PRE INVOICE-'.$InvoiceID.' </span> 
+			  </td>
+			  <td align=center width=20% height="65" valign="middle" style="border-right-style:hidden">
+				  <p>
+					  <span lang="ar-SA">
+						  <img src="img/mawani.png" height="55px"> 
+					  </span>
 				</p>
-		</td>
-	</tr>
-</table>
+			  </td>
+			  <td align=center width=20% height="20" valign="middle" >
+				  <p>
+						<span style="font-size:8pt" lang="ar-SA">
+										  المملكة العربية السعودية 
+										  <br>
+										الهيئة العامة للموانئ
+										<br>
+									 ميناء جدة الإسلامي
+										<br>
+										www.ports.gov.sa
+						</span>
+				  </p>
+			  </td></tr>
+			</table>
 
 <style>
-	.titele1
-	{
-		font-size:15px; 
-		font-family:Verdana;  
-	}
-	.titela1
-	{
-		font-size:18px; 
-		text-align: right; 
-	}
-	.titele1e
-	{
-		font-size:20px; 
-		text-align: right; 
-	}
-	.labela1
-	{
-		font-size:13px; 
-		text-align: right;
-	}
-	.labele1
-	{
-		font-size:13px; 
-		font-family:Verdana; 
-	}
-	.dataa1  
-	{
-		font-size:15px; 
-		text-align: right;
-		font-family:Verdana;
-	}
-	.datae1  
-	{
-		font-size:15px; 
-		text-align: right;
-		font-family:Sans-serif; 
-	}
-	.dataa1x 
-	{
-		font-size:15px; 
-		text-align: right;
-		float: right;
-		display: inline;
-	}
-</style> 
-'; 
+ .titele1
+ {
+	font-size:15px; 
+ 	font-family:Verdana;  
+ }
+  .titela1
+ {
+ 	font-size:18px; 
+ 	text-align: right; 
+ }
+
+ .titele1e
+ {
+ 	font-size:20px; 
+ 	text-align: right; 
+ }
+
+  .labela1
+ {
+ 	font-size:13px; 
+ 	text-align: right;
+ }
+   .labele1
+ {
+ 	font-size:13px; 
+ 	font-family:Verdana; 
+ }
+  .dataa1  
+   {
+ 	font-size:15px; 
+ 	text-align: right;
+ 	font-family:Verdana;
+ }
+   .datae1  
+   {
+ 	font-size:15px; 
+ 	text-align: right;
+ 	font-family:Sans-serif; 
+ }
+ .dataa1x 
+ {
+ 	font-size:15px; 
+ 	text-align: right;
+ 	float: right;
+ 	display: inline;
+ }
+</style>
 
 
 
-/*
-  ########################################################################################################## 
-  ########################################################################################################## 
-  ########################################################################################################## 
-  ########################################################################################################## 
-  ######################################        Invoices Information      ################################## 
-  ########################################################################################################## 
-  ########################################################################################################## 
-  ########################################################################################################## 
-  ##########################################################################################################   
-*/ 
-$html.=' 
+
 <div><span style="font-size:5.0pt">&nbsp;</span></div>
 
 <table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
 	<tbody>
 		<tr>
-			<td align=right width=20% valign="middle" 	>
-				<span lang="ar-SA" class="labela1">'.E2A(date("H:i", strtotime($InvoiceDate))).'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.E2A(date("Y/m/d", strtotime($InvoiceDate))).'&nbsp; &nbsp;'.'  م   '.' </span> <br>
-				<span lang="ar-SA" class="labela1"> '.E2A($InvoiceDateH).'&nbsp; &nbsp;'.'  هـ  </span>
-			</td> 
-			<td align=right width=10% valign="middle" 	>
-				<span lang="ar-SA" class="labela1">&nbsp;&nbsp; التاريخ </span><br>
-				<span lang="en-US" class="labele1">Date&nbsp;&nbsp;</span>
-			</td> 
-			<td align=right width=36% valign="middle" style="border-bottom-style: hidden;">
-				<span lang="ar-SA" class="labela1">&nbsp;&nbsp;  اسم الوكيل </span><br>
-				<span lang="en-US" class="labele1">&nbsp;&nbsp; Agent Name </span>
-			</td>
-			<td align=right width=34% valign="middle" style="border-bottom-style: hidden;">
-				<span lang="ar-SA" class="labela1"> &nbsp;&nbsp;  اسم السفينة  </span><br>
-				<span lang="en-US" class="labele1"> Vessel Name&nbsp;&nbsp;</span>
-			</td>
-		</tr>
-		<tr>
-			<td align=center  valign="middle"> 
-				<span lang="en-US" class="labele1">WCPS - '.$InvoiceID.'</span> </td> 
-		 	<td align=right  valign="middle">
-				<span lang="ar-SA" class="labela1">&nbsp;&nbsp; رقم النظام </span><br>
-				<span lang="en-US" class="labele1">Sytem No.&nbsp;&nbsp;</span>
-			</td>
-			<td align=center   height="30pt" valign="middle">
-				<span lang="ar-SA" class="labela1">&nbsp;&nbsp;'.$AgentNameAr.'</span><br>
-				<span lang="en-US" class="labele1">'.$AgentNameEn.'</span> 
-			</td>	
-			<td align=center  height="30pt" valign="middle">
-				<p>  <span lang="en-US" class="labele1">&nbsp;&nbsp;'.$ShipName.'&nbsp;&nbsp;</span></p>
-			</td>
+				<td align=right width=20% valign="middle" 	>
+				 		<span lang="ar-SA" class="labela1">'.E2A(date("H:i", strtotime($InvoiceDate))).'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.E2A(date("Y/m/d", strtotime($InvoiceDate))).'&nbsp; &nbsp;'.'  م   '.' </span> <br>
+				  		<span lang="ar-SA" class="labela1"> '.E2A($InvoiceDateH).'&nbsp; &nbsp;'.'  هـ  </span>
+			  	</td> 
+				<td align=right width=10% valign="middle" 	>
+				  		<span lang="ar-SA" class="labela1">&nbsp;&nbsp; التاريخ </span><br>
+				  		<span lang="en-US" class="labele1">Date&nbsp;&nbsp;</span>
+			  	</td> 
+			  <td align=right width=36% valign="middle" style="border-bottom-style: hidden;">
+					  	<span lang="ar-SA" class="labela1">&nbsp;&nbsp;  اسم الوكيل </span><br>
+					  	<span lang="en-US" class="labele1">&nbsp;&nbsp; Agent Name </span>
+			  </td>
+			  <td align=right width=34% valign="middle" style="border-bottom-style: hidden;">
+					 	<span lang="ar-SA" class="labela1"> &nbsp;&nbsp;  اسم السفينة  </span><br>
+						<span lang="en-US" class="labele1"> Vessel Name&nbsp;&nbsp;</span>
+			  </td>
 		 </tr>
-	</tbody>
-</table> 
+		 <tr>
+		 	<td align=center  valign="middle"> 
+ 				<span lang="en-US" class="labele1">WCPS - '.$InvoiceID.'</span> 
+			  </td> 
+		 	<td align=right  valign="middle">
+				 		<span lang="ar-SA" class="labela1">&nbsp;&nbsp; رقم النظام </span><br>
+				  		<span lang="en-US" class="labele1">Sytem No.&nbsp;&nbsp;</span>
+			</td>
+			  <td align=center   height="30pt" valign="middle">
+				    	<span lang="ar-SA" class="labela1">&nbsp;&nbsp;'.$AgentNameAr.'</span><br>
+				  		<span lang="en-US" class="labele1">'.$AgentNameEn.'</span> 
+			  </td>	
+			  <td align=center  height="30pt" valign="middle">
+				  <p >  <span lang="en-US" class="labele1">&nbsp;&nbsp;'.$ShipName.'&nbsp;&nbsp;</span></p>
+			  </td>
+		 </tr>
+		 	</tbody>
+</table>
+
+
+
 
 <div><span style="font-size:3pt">&nbsp;</span></div>
 
 <table dir="ltr" width=100% style="border-collapse:collapse;z-index:4" cellspacing="1" border="1">
 	<tbody>
+		  <tr>
+			   	<td align=center width=10% valign="middle" height="30pt">
+					  <p>	<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$TripNo.'&nbsp;&nbsp; </span>&nbsp;<br></p>
+				</td>
+				<td align=right width=16% valign="middle">
+					  <p>	<span lang="ar-SA" class="labela1">رقم الرحلة </span><br>
+					  		<span lang="en-US" class="labele1" >Trip No</span></p>
+				</td>
+			  	<td align=center width=11% valign="middle">
+					  <p>	<span lang="ar-SA" class="labela1">&nbsp;'.E2A($ShipWeight).'&nbsp;&nbsp; </span>&nbsp;<br></p>
+				</td>
+				<td align=right width=21% valign="middle">
+					  <p>	<span lang="ar-SA" class="labela1"> سعة السفينة</span><br>
+					  		<span lang="en-US" class="labele1">G.R.T.</span></p>
+				</td>
+			 	<td align=right width=27% valign="middle">
+					  <p>	<span lang="ar-SA" class="labela1">&nbsp;'.E2A(date("H:i", strtotime($ArrivalDate))).'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.E2A(date("Y/m/d", strtotime($ArrivalDate))).'&nbsp; &nbsp;'.'م  </span>&nbsp;<br>
+					  		<span lang="ar-SA" class="labela1">&nbsp;'.E2A($ArrivalDateH).'&nbsp; &nbsp;'.' هـ  </span>&nbsp;</p>
+				</td> 
+				<td align=right width=15% valign="middle">
+					  <p>	<span lang="ar-SA" class="labela1"> تاريخ الوصول </span><br>
+					  		<span lang="en-US" class="labele1">Arrival Date</span></p>
+				</td>
+		 </tr>
 		<tr>
-			<td align=center width=10% valign="middle" height="30pt">
-				<p>	<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$TripNo.'&nbsp;&nbsp; </span>&nbsp;<br></p>
-			</td>
-			<td align=right width=16% valign="middle">
-				<p>	<span lang="ar-SA" class="labela1">رقم الرحلة </span><br>
-				<span lang="en-US" class="labele1" >Trip No</span></p>
-			</td>
-			<td align=center width=11% valign="middle">
-				<p>	<span lang="ar-SA" class="labela1">&nbsp;'.E2A($ShipWeight).'&nbsp;&nbsp; </span>&nbsp;<br></p>
-			</td>
-			<td align=right width=21% valign="middle">
-				<p>	<span lang="ar-SA" class="labela1"> سعة السفينة</span><br>
-				<span lang="en-US" class="labele1">G.R.T.</span></p>
-			</td>
-			<td align=right width=27% valign="middle">
-				<p>	<span lang="ar-SA" class="labela1">&nbsp;'.E2A(date("H:i", strtotime($ArrivalDate))).'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.E2A(date("Y/m/d", strtotime($ArrivalDate))).'&nbsp; &nbsp;'.'م  </span>&nbsp;<br>
-				<span lang="ar-SA" class="labela1">&nbsp;'.E2A($ArrivalDateH).'&nbsp; &nbsp;'.' هـ  </span>&nbsp;</p>
-			</td> 
-			<td align=right width=15% valign="middle">
-				<p>	<span lang="ar-SA" class="labela1"> تاريخ الوصول </span><br>
-				<span lang="en-US" class="labele1">Arrival Date</span></p>
-			</td>
-		</tr>
-		<tr>
-			<td align=center valign="middle" height="30pt">
-				<p>	<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$DockingNo.'&nbsp;&nbsp; </span>&nbsp;<br></p>
-			</td>
-			<td align=right  valign="middle">
-				<p>	<span lang="ar-SA" class="labela1">رصيف الإرساء </span><br>
-				<span lang="en-US" class="labele1">Docking Berth No</span></p>
-			</td>
-			<td align=center valign="middle">
-				<p>	<span lang="ar-SA" class="labela1">&nbsp;'.E2A(number_format($PeriodDays)).'&nbsp;&nbsp; </span>&nbsp;<br></p>
-			</td>
-			<td align=right valign="middle">
-				<p>	<span lang="ar-SA" class="labela1"> عدد ايام بقاء السفية بالرصيف</span><br>
-				<span lang="en-US" class="labele1">Period Days</span></p>
-			</td>
-			<td align=right  valign="middle">
-				<p>	<span lang="ar-SA"  class="labela1">&nbsp;'.E2A(date("H:i", strtotime($DepartureDate))).'&nbsp;&nbsp;&nbsp;&nbsp;'.E2A(date("Y/m/d", strtotime($DepartureDate))).'&nbsp; &nbsp;'.'م  </span>&nbsp;<br>
-				<span lang="ar-SA"  class="labela1">&nbsp;'.E2A($DepartureDateH).'&nbsp; &nbsp;'.' هـ  </span>&nbsp;</p>
-			</td> 
-			<td align=right  valign="middle">
-				<p>	<span lang="ar-SA" class="labela1"> تاريخ المغادرة </span><br>
-				<span lang="en-US"class="labele1">Arrival Date</span></p>
-			</td>  
-		</tr>
-		<tr>
-			<td align=center  valign="middle" height="30pt">
-				<p>	<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$RouteNo.'&nbsp;&nbsp; </span>&nbsp;<br></p>
-			</td>
-			<td align=right  valign="middle">
-				<p>	<span lang="ar-SA" class="labela1">رقم الطريق</span><br>
-				<span lang="en-US" class="labele1">Route No</span></p>
-			</td>
+				<td align=center valign="middle" height="30pt">
+					  <p>	<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$DockingNo.'&nbsp;&nbsp; </span>&nbsp;<br></p>
+				  	</td>
+				  	<td align=right  valign="middle">
+					  <p>	<span lang="ar-SA" class="labela1">رصيف الإرساء </span><br>
+					  		<span lang="en-US" class="labele1">Docking Berth No</span></p>
+				</td>
+				<td align=center valign="middle">
+				  	<p>	<span lang="ar-SA" class="labela1">&nbsp;'.E2A(number_format($PeriodDays)).'&nbsp;&nbsp; </span>&nbsp;<br></p>
+			  	</td>
+			  	<td align=right valign="middle">
+				  	<p>	<span lang="ar-SA" class="labela1"> عدد ايام بقاء السفية بالرصيف</span><br>
+				  		<span lang="en-US" class="labele1">Period Days</span></p>
+			  	</td>
+			  	<td align=right  valign="middle">
+					  <p>	<span lang="ar-SA"  class="labela1">&nbsp;'.E2A(date("H:i", strtotime($DepartureDate))).'&nbsp;&nbsp;&nbsp;&nbsp;'.E2A(date("Y/m/d", strtotime($DepartureDate))).'&nbsp; &nbsp;'.'م  </span>&nbsp;<br>
+					  		<span lang="ar-SA"  class="labela1">&nbsp;'.E2A($DepartureDateH).'&nbsp; &nbsp;'.' هـ  </span>&nbsp;</p>
+				</td> 
+				<td align=right  valign="middle">
+					  <p>	<span lang="ar-SA" class="labela1"> تاريخ المغادرة </span><br>
+					  		<span lang="en-US"class="labele1">Arrival Date</span></p>
+				</td> 
 
-			
-			<td align=center  valign="middle">
-				<p>	<span lang="ar-SA" class="labela1">&nbsp;'.E2A(number_format($AnchorageDays)).'&nbsp;&nbsp; </span>&nbsp;</p>
-			</td>
-			<td align=right  valign="middle">
-				<p>	<span lang="ar-SA" class="labela1"> عدد ايام بقاء السفية بالمخطاف</span><br>
-				<span lang="en-US" class="labele1">Anchorage Days</span></p>
-			</td>
-			<td align=left  valign="middle"> 
-					<p>	<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$MovePortName.'&nbsp;&nbsp; </span>&nbsp; </p>
-			</td> 
-			<td align=right  valign="middle">
-				<p>	<span lang="ar-SA" class="labela1"> رصيف الإنتقال </span><br>
-				<span lang="en-US" class="labele1"> Shifted Bath No</span></p>
-			</td>	
-		</tr> 
+		</tr>
+		<tr>
+				<td align=center  valign="middle" height="30pt">
+				  <p>	<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$RouteNo.'&nbsp;&nbsp; </span>&nbsp;<br></p>
+			  	</td>
+			  	<td align=right  valign="middle">
+				  <p>	<span lang="ar-SA" class="labela1">رقم الطريق</span><br>
+				  		<span lang="en-US" class="labele1">Route No</span></p>
+			  	</td>
+
+			 
+				<td align=center  valign="middle">
+				  	<p>	<span lang="ar-SA" class="labela1">&nbsp;'.E2A(number_format($AnchorageDays)).'&nbsp;&nbsp; </span>&nbsp;</p>
+			  	</td>
+			  	<td align=right  valign="middle">
+				  	<p>	<span lang="ar-SA" class="labela1"> عدد ايام بقاء السفية بالمخطاف</span><br>
+				  		<span lang="en-US" class="labele1">Anchorage Days</span></p>
+			  	</td>
+			  	<td align=left  valign="middle"> 
+					  <p>	<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$MovePortName.'&nbsp;&nbsp; </span>&nbsp; </p>
+				</td> 
+				<td align=right  valign="middle">
+					  <p>	<span lang="ar-SA" class="labela1"> رصيف الإنتقال </span><br>
+					  		<span lang="en-US" class="labele1"> Shifted Bath No</span></p>
+				</td>	
+		</tr>
+
 	</tbody>
 </table>
 
@@ -588,121 +573,121 @@ if(intval($SSTOTAL)>0){
 $html.='
 
 
-<div><span style="font-size:1.0pt">&nbsp;</span></div>
-
-<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
-  <tbody>
-	<tr>
-		<td colspan="6" align=center valign="middle">
-			<span lang="en-US" class="titele1e" > Special Marine Services </span>
-			<span lang="ar-SA" class="titela1"> الخدمات البحرية الخاصة </span>
-		</td>
-	</tr>
-	<tr>
-		<td width=15% align=center valign="middle">
-			<span lang="ar-SA" class="labela1">المبلغ</span><br>
-			<span lang="en-US" class="labele1"> Amount </span>
-		</td>
-		<td width=9% align=center valign="middle">
-			<span lang="ar-SA" class="labela1">العدد</span><br>
-			<span lang="en-US" class="labele1"> Qty. </span>
-		</td>
-		<td width=9% align=center valign="middle">
-			<span lang="ar-SA" class="labela1">سعر الوحدة</span><br>
-			<span lang="en-US" class="labele1"> U. Price </span>
-		</td>
-		<td width=12% align=center valign="middle">
-			<span lang="ar-SA" class="labela1">الوحدة</span><br>
-			<span lang="en-US" class="labele1"> Unit </span>
-		</td>
-		<td width=35% align=center valign="middle">
-			<span lang="ar-SA" class="labela1">الوصف</span><br>
-			<span lang="en-US" class="labele1"> Description </span>
-		</td>
-		<td width=6% align=center valign="middle">
-			<span lang="ar-SA" class="labela1">البند</span><br>
-			<span lang="en-US" class="labele1"> No  </span>
-		</td>
-	</tr>
-
-
-';
-$i=0; 
-
-if($SSPrice1>0){ 
-				$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService1."' LIMIT 1; ";  
-				$codes = $dbop->query($query1)->fetchAll();   
-				foreach ($codes as $code_row) { $code1 = strval($code_row['code']);}				
-		$html.='
-  		<tr>
-			<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice1, 2,'.', '^')).'</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut1).'</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice1).'</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit1.'</span></td>
-			<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName1.' </span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1"> '.$code1.' </span></td>
-  		</tr>';} 
-if($SSPrice2>0){ 
+	<div><span style="font-size:1.0pt">&nbsp;</span></div> 
+	<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
+	<tbody>
+		<tr>
+			<td colspan="6" align=center valign="middle">
+				<span lang="en-US" class="titele1e" > Special Marine Services </span>
+				<span lang="ar-SA" class="titela1"> الخدمات البحرية الخاصة </span>
+			</td>
+		</tr>
+		<tr>
+			<td width=15% align=center valign="middle">
+				<span lang="ar-SA" class="labela1">المبلغ</span><br>
+				<span lang="en-US" class="labele1"> Amount </span>
+			</td>
+			<td width=9% align=center valign="middle">
+				<span lang="ar-SA" class="labela1">العدد</span><br>
+				<span lang="en-US" class="labele1"> Qty. </span>
+			</td>
+			<td width=9% align=center valign="middle">
+				<span lang="ar-SA" class="labela1">سعر الوحدة</span><br>
+				<span lang="en-US" class="labele1"> U. Price </span>
+			</td>
+			<td width=12% align=center valign="middle">
+				<span lang="ar-SA" class="labela1">الوحدة</span><br>
+				<span lang="en-US" class="labele1"> Unit </span>
+			</td>
+			<td width=35% align=center valign="middle">
+				<span lang="ar-SA" class="labela1">الوصف</span><br>
+				<span lang="en-US" class="labele1"> Description </span>
+			</td>
+			<td width=6% align=center valign="middle">
+				<span lang="ar-SA" class="labela1">البند</span><br>
+				<span lang="en-US" class="labele1"> No  </span>
+			</td>
+		</tr> 
+	';
+	$i=0;  
+	if($SSPrice1>0){ 
+			$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService1."' LIMIT 1; ";  
+			$codes = $dbop->query($query1)->fetchAll();   
+			foreach ($codes as $code_row) { $code1 = strval($code_row['code']);}				
+			$html.='
+			<tr>
+				<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice1, 2,'.', '^')).'</span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut1).'</span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice1).'</span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit1.'</span></td>
+				<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName1.' </span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1"> '.$code1.' </span></td>
+			</tr>';}  
+	if($SSPrice2>0){ 
 			$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService2."'; ";  
-				$codes = $dbop->query($query1)->fetchAll();    
-				 foreach ($codes as $code_row) { $code =$code_row['code'];}
-		  $html.='
-  		<tr>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice2, 2,'.', '^')).'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut2).'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice2).'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit2.'</span></td>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName2.' </span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
-  	</tr>';} 
-if($SSPrice3>0){ 
-		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService3."'; ";  
-				$codes = $dbop->query($query1)->fetchAll();    
-				 foreach ($codes as $code_row) { $code =$code_row['code'];}
-	  $html.='
-  		<tr>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice3, 2,'.', '^')).'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut3).'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice3).'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit3.'</span></td>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName3.' </span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
-  	</tr>';} 
-if($SSPrice4>0){
-	$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService4."'; ";  
-				$codes = $dbop->query($query1)->fetchAll();    
-				 foreach ($codes as $code_row) { $code =$code_row['code'];}
-	  $html.='
-  		<tr>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice4, 2,'.', '^')).'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut4).'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice4).'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit4.'</span></td>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName4.' </span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
-  	</tr>';} 
-if($SSPrice5>0){
-		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService5."'; ";  
-				$codes = $dbop->query($query1)->fetchAll();    
-				 foreach ($codes as $code_row) { $code =$code_row['code'];}
-	  $html.='
-	  <tr>
-	  <td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice5, 2,'.', '^')).'</span></td>
-	  <td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut5).'</span></td>
-	  <td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice5).'</span></td>
-	  <td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit5.'</span></td>
-	  <td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName5.' </span></td>
-	  <td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
-	</tr>';} 
-	$html.='
-  	<tr>
-  		<td width=13%  align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSTOTAL, 2,'.', '^')).'</span></td>
-		<td align=left colspan="5"   valign="middle"><span lang="ar-SA" class="labela1">المجموع</span>
-  	</tr>
+			$codes = $dbop->query($query1)->fetchAll();    
+			foreach ($codes as $code_row) { $code =$code_row['code'];}
+			$html.='
+			<tr>
+			<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice2, 2,'.', '^')).'</span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut2).'</span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice2).'</span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit2.'</span></td>
+			<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName2.' </span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
+		</tr>';} 
+	if($SSPrice3>0){ 
+			$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService3."'; ";  
+			$codes = $dbop->query($query1)->fetchAll();    
+			foreach ($codes as $code_row) { $code =$code_row['code'];}
+		$html.='
+			<tr>
+			<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice3, 2,'.', '^')).'</span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut3).'</span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice3).'</span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit3.'</span></td>
+			<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName3.' </span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
+		</tr>';} 
+	if($SSPrice4>0){
+			$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService4."'; ";  
+			$codes = $dbop->query($query1)->fetchAll();    
+			foreach ($codes as $code_row) { $code =$code_row['code'];}
+		$html.='
+			<tr>
+				<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice4, 2,'.', '^')).'</span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut4).'</span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice4).'</span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit4.'</span></td>
+				<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName4.' </span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
+		</tr>';} 
+	if($SSPrice5>0){
+			$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService5."'; ";  
+					$codes = $dbop->query($query1)->fetchAll();    
+					foreach ($codes as $code_row) { $code =$code_row['code'];}
+		$html.='
+			<tr>
+				<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSPrice5, 2,'.', '^')).'</span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSQut5).'</span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.E2A($SSUPrice5).'</span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit5.'</span></td>
+				<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName5.' </span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
+			</tr>';}  
+		$html.='
+		<tr>
+			<td width=13%  align=right valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSTOTAL, 2,'.', '^')).'</span></td>
+			<td align=left colspan="5"   valign="middle"><span lang="ar-SA" class="labela1">المجموع</span>
+		</tr>
 
-  </tbody>
-</table>'; 
-} 
+	</tbody>
+	</table>';
+
+
+}
+
+
 
 /*
   ########################################################################################################## 
@@ -716,56 +701,59 @@ if($SSPrice5>0){
   ##########################################################################################################   
 */  
 
-$html.='
+$html.=' 
 <div><span style="font-size:2.0pt">&nbsp;</span></div>
 
 <table dir="ltr" width=100% style="border-collapse:collapse;z-index:4" cellspacing="1" border="1">
   <tbody>
-  ';
-if(intval($MSTOTA>0)){
+';
+if($MSTOTAL>0){
 $html.=' 
-   <tr>
-    	<td align=right  width=15%	valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($MSTOTAL, 2,'.', '^')).'</span></td>
-    	<td align=right  width=30%	valign="middle" style="border-right-style:hidden"><span lang="ar-SA" class="labela1">  الخدمات البحرية العامة</span></td>
-    	<td align=right  width=10%	valign="middle" style="border-right-style:hidden"> &nbsp;</td>
-    	<td align=left   width=30%	valign="middle" ><span lang="en-US"  class="labele1" >  General Marine Services</span></td>
-    	<td align=right  width=15% 	valign="middle"><span lang="en-US" class="datae1">'.number_format($MSTOTAL, 2).'</span></td>
+   	<tr>
+		<td align=right  width=15%	valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($MSTOTAL, 2,'.', '^')).'</span></td>
+		<td align=right  width=30%	valign="middle" style="border-right-style:hidden"><span lang="ar-SA" class="labela1">  الخدمات البحرية العامة</span></td>
+		<td align=right  width=10%	valign="middle" style="border-right-style:hidden"> &nbsp;</td>
+		<td align=left   width=30%	valign="middle" ><span lang="en-US"  class="labele1" >  General Marine Services</span></td>
+		<td align=right  width=15% 	valign="middle"><span lang="en-US" class="datae1">'.number_format($MSTOTAL, 2).'</span></td>
 	</tr>
-	';}
-	if(intval($SSTOTAL)>0){
-$html.=' 
-    <tr>
-    	<td align=right   valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSTOTAL, 2,'.', '^')).'</span></td>
-    	<td align=right   valign="middle" style="border-right-style:hidden"><span lang="ar-SA" class="labela1">  الخدمات البحرية الخاصة</span></td>
-    	<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
-    	<td align=left    valign="middle" ><span lang="en-US" class="labele1">  Special Marine Services</span></td>
-    	<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($SSTOTAL, 2).'</span></td>
-	</tr>
-	';} 
+';}
+if($SSTOTAL>0){
 $html.=' 
     <tr>
-    	<td align=right   valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($TOTAL, 2,'.', '^')).'</span></td>
-    	<td align=right   valign="middle" style="border-right-style:hidden"><span lang="ar-SA" class="labela1">    المجموع</span></td>
-    	<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
-    	<td align=left    valign="middle" ><span lang="en-US" class="labele1">Subtotal </span></td>
-    	<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($TOTAL, 2).'</span></td>
+		<td align=right   valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($SSTOTAL, 2,'.', '^')).'</span></td>
+		<td align=right   valign="middle" style="border-right-style:hidden"><span lang="ar-SA" class="labela1">  الخدمات البحرية الخاصة</span></td>
+		<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
+		<td align=left    valign="middle" ><span lang="en-US" class="labele1">  Special Marine Services</span></td>
+		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($SSTOTAL, 2).'</span></td>
 	</tr>
-	 <tr>
-    	<td align=right   valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($VAT, 2,'.', '^')).'</span></td>
-    	<td align=right   valign="middle" style="border-right-style:hidden"><span lang="ar-SA" class="labela1">ضريبة القيمة المضافة</span></td>
-    	<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
-    	<td align=left    valign="middle" ><span lang="en-US" class="labele1">VAT</span></td>
-    	<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($VAT, 2).'</span></td>
+';}
+$html.=' 
+    <tr>
+		<td align=right   valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($TOTAL, 2,'.', '^')).'</span></td>
+		<td align=right   valign="middle" style="border-right-style:hidden"><span lang="ar-SA" class="labela1">    المجموع</span></td>
+		<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
+		<td align=left    valign="middle" ><span lang="en-US" class="labele1">Subtotal </span></td>
+		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($TOTAL, 2).'</span></td>
 	</tr>
-	 <tr>
-    	<td align=right   valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($VAT_TOTAL, 2,'.', '^')).'</span></td>
-    	<td align=right   valign="middle" style="border-right-style:hidden"><span lang="ar-SA" class="labela1">  الإجمالي</span></td>
-    	<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
-    	<td align=left    valign="middle" ><span lang="en-US" class="labele1">Total</span></td>
-    	<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($VAT_TOTAL, 2).'</span></td>
+	<tr>
+		<td align=right   valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($VAT, 2,'.', '^')).'</span></td>
+		<td align=right   valign="middle" style="border-right-style:hidden"><span lang="ar-SA" class="labela1">ضريبة القيمة المضافة</span></td>
+		<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
+		<td align=left    valign="middle" ><span lang="en-US" class="labele1">VAT</span></td>
+		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($VAT, 2).'</span></td>
+	</tr>
+	<tr>
+		<td align=right   valign="middle"><span lang="ar-SA" class="dataa1">'.E2A(number_format($VAT_TOTAL, 2,'.', '^')).'</span></td>
+		<td align=right   valign="middle" style="border-right-style:hidden"><span lang="ar-SA" class="labela1">  الإجمالي</span></td>
+		<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
+		<td align=left    valign="middle" ><span lang="en-US" class="labele1">Total</span></td>
+		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($VAT_TOTAL, 2).'</span></td>
 	</tr>
   </tbody>
-</table>	 
+</table>	
+
+
+
 
 '; 
 /*

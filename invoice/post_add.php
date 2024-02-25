@@ -904,14 +904,18 @@ $maxIDrs = $dbop->query($aqlr)->fetchAll();
           <div class="col-12">
             <div class="callout callout-info">
               <div class="row mb-2">
-                <div class="col-sm-11"> 
+                <div class="col-sm-10"> 
                 <h5> Note:</h5> The invoice details below are intended for review. Kindly approve before printing becomes available.
                 </div>
-                <div class="col-sm-1"> <a href="edit.php?id=<?php echo $maxID;?>">
-                  <button type="button" class="btn btn-block btn-warning"><i class="fas fa-pen-to-square"></i></button> </a>
-                 <a href="../reports/pre_invoice.php?id=<?php echo $maxID;?>">
-                  <button type="button" class="btn btn-block btn-info"><i class="fas fa-pen-to-square"></i></button> </a>
+                <div class="col-sm-2">   
+			   	<a class="btn btn-app bg-warning" href="edit.php?id=<?php echo $maxID;?>">
+                  		<i class="fas fa-pen-to-square"></i>  
+                	</a>    
+			   	<a class="btn btn-app bg-secondary"  href="../reports/pre_invoice.php?id=<?php echo $maxID;?>">
+                  		<i class="fas fa-file-pdf"></i>  
+                	</a>  
                 </div>
+
               </div> 
             </div> 
             <!-- Main content -->
