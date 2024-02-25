@@ -28,6 +28,11 @@ function TGH($BDate){
 	$format="DD/MM/YYYY";									// Using Format
 	$HDate= $DateConv->GregorianToHijri($GDate,$format);	// Convert Gregorian Date to Hijri Date
 	$TDate= date("H:i", strtotime($BDate));					// Format the Date to Houer:Minits
+	$Date0 = intval(date('Y', strtotime($HDate)));
+	if($Date0<1444){
+		$HDate='';
+		$GDate='';
+	}   
 	return array($TDate,$GDate,$HDate);	
 	/*
 	How to use TGH Function:

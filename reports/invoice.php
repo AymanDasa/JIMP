@@ -167,10 +167,14 @@
 		$job_user4=$info['job_user4'];
 		$job_user5=$info['job_user5']; 
 	}
+	$ArrivalDate0 = intval(date('Y', strtotime($ArrivalDateH)));
+	if($ArrivalDate0<1444){$ArrivalDateH='';}  
+	$DepartureDateH0 = intval(date('Y', strtotime($DepartureDateH)));
+	if($DepartureDateH0<1444){$DepartureDateH='';} 
 
 
 		} 
-	}else{$InvoiceID=1;} // exit(); 
+	}else{exit();} // exit(); 
 	
 	$MovePortName='';
 	if($MovePort1!=''){$MovePortName=$MovePortName.' / '.$MovePort1;}
