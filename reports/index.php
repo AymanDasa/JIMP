@@ -66,20 +66,7 @@ $IsActive = 0 ;
       </div><!-- /.container-fluid -->
     </section>
 
-    <!-- Main content
-
-
-
-
-
-				
-
-
-
- 		
-		
-		
-		-->
+    <!-- Main content  	-->
     <section class="content">
      <div class="container-fluid">
 		<div class="row">
@@ -95,7 +82,7 @@ $IsActive = 0 ;
 							<a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Monthly Invoice Report</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Messages</a>
+							<a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Invoice List</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Settings</a>
@@ -143,7 +130,18 @@ $IsActive = 0 ;
 
 						</div>
 						<div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
-
+							<form action="FromToInvoice.php" method="POST">
+								<div class="col-4"> 
+									<div class="form-group">
+										<label>From invoice#</label> 
+											<input  name="FromInvoice" type="text" class="form-control" >    
+										<label>To invoice#</label> 
+											<input  name="ToInvoice" type="text" class="form-control" >   
+									</div>
+									<input type="hidden" name="FromToInvoice" value="1">
+									<button type="submit" class="btn btn-info float-right">Genrate</button>
+								</div>
+							</form> 
 
 
 						</div>

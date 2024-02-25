@@ -53,7 +53,12 @@ function searchForArray($id, $array,$elmint) {
         }
         return $Select;
      } 
-$admin_access = $_SESSION["is_admin"];
+if(isset($_SESSION["is_admin"])){$admin_access = $_SESSION["is_admin"];} 
+	else{
+		header('Location: ../access/logout.php');
+		exit; 
+	}
+
 $username_now=$_SESSION["username"];
 $debug_sql = "SELECT `debug` FROM `users` WHERE `username` = '".$username_now."' LIMIT 1 ;"; 
  

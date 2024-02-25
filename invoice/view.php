@@ -259,6 +259,7 @@ else{
                 <div class="col-12">
                   <h4>
                     <i class="fas fa-globe"></i> <?php echo $AgentNameAr;?> / <?php echo $AgentNameEn;?>
+					<a href="../agent/view.php?id=<?php echo $AgentID;?>"><i class="fa fa-external-link-square" aria-hidden="true"></i></a>
                     <small class="float-right">Date: <?php echo $InvoiceDate;?></small>
                   </h4>
                 </div>
@@ -451,8 +452,7 @@ else{
                       <button class="btn btn-success float-right" >
 				  <i class="fa-solid fa-print"></i> Print
                       </button> </a>
-				<?php }?>
-				?>
+				<?php }?> 
                   <!-- 
                   <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate PDF
