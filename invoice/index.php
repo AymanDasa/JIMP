@@ -97,20 +97,7 @@ $IsActive = 0 ;
                           $VAT_TOTAL    = $invoice['VAT_TOTAL'];  
                           $Status       = $invoice['Status'];   
                           $date1=date_create($InvoiceDate); 
-                          switch(intval($Status)){  
-                            case 700:
-                              $Icons='<a href="edit.php?id='.$invoice["InvoiceID"].'" class="btn btn-warning">
-                              <i class="fas fa-pen-to-square"></i></a> 
-                              <a href="view.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
-                              <i class="fas fa-trash"></i></a>';
-                              break;
-                            case 800:
-                              $Icons='<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
-                              <i class="fas fa-print"></i></a>';
-                              break;
-                            default:
-                                echo $Icons="";
-                            }
+                           
                             
                        echo '<tr>
                           <td>'.$InvoiceID. ' </td>  
@@ -125,7 +112,10 @@ $IsActive = 0 ;
                             <div class="btn-group btn-group-sm"> 
                               <a href="view.php?id='.$invoice['InvoiceID'].'" class="btn btn-info">
                               <i class="fas fa-eye"></i></a>
-                              '.$Icons.'
+                              <a href="edit.php?id='.$invoice["InvoiceID"].'" class="btn btn-warning">
+                              <i class="fas fa-pen-to-square"></i></a>   
+						<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
+                              <i class="fas fa-print"></i></a>
                             </div>
                           </td>  
                         </tr>' ; }
