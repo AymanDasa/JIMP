@@ -42,21 +42,16 @@
 		  $ServiceTypeName=$invoicev['ServiceTypeName'];
 		  $ServiceTypeFactor=$invoicev['ServiceTypeFactor'];
 		  $InvoiceDate=$invoicev['InvoiceDate'];
-		  $InvoiceDateT=$invoicev['InvoiceDateT'];
-		  $InvoiceDateH=$invoicev['InvoiceDateH'];
+		  $InvoiceDateT=$invoicev['InvoiceDateT']; 
 		  $ArrivalDate=$invoicev['ArrivalDate'];
-		  $ArrivalDateT=$invoicev['ArrivalDateT'];
-		  $ArrivalDateH=$invoicev['ArrivalDateH'];
+		  $ArrivalDateT=$invoicev['ArrivalDateT']; 
 		  $DepartureDate=$invoicev['DepartureDate'];
-		  $DepartureDateT=$invoicev['DepartureDateT'];
-		  $DepartureDateH=$invoicev['DepartureDateH'];
+		  $DepartureDateT=$invoicev['DepartureDateT']; 
 		  $PeriodDays=$invoicev['PeriodDays'];
 		  $AnchorageEntry=$invoicev['AnchorageEntry'];
-		  $AnchorageEntryT=$invoicev['AnchorageEntryT'];
-		  $AnchorageEntryH=$invoicev['AnchorageEntryH'];
+		  $AnchorageEntryT=$invoicev['AnchorageEntryT']; 
 		  $AnchorageLeave=$invoicev['AnchorageLeave'];
-		  $AnchorageLeaveT=$invoicev['AnchorageLeaveT'];
-		  $AnchorageLeaveH=$invoicev['AnchorageLeaveH'];
+		  $AnchorageLeaveT=$invoicev['AnchorageLeaveT']; 
 		  $AnchorageDays=$invoicev['AnchorageDays'];
 		  $MSericeAnchoragePrice=$invoicev['MSericeAnchoragePrice'];
 		  $MovePort1=$invoicev['MovePort1'];
@@ -167,10 +162,7 @@
 		$job_user4=$info['job_user4'];
 		$job_user5=$info['job_user5']; 
 	}
-	$ArrivalDate0 = intval(date('Y', strtotime($ArrivalDateH)));
-	if($ArrivalDate0<1444){$ArrivalDateH='';}  
-	$DepartureDateH0 = intval(date('Y', strtotime($DepartureDateH)));
-	if($DepartureDateH0<1444){$DepartureDateH='';} 
+	 
 
 
 		} 
@@ -345,7 +337,7 @@ $html.='
 		<tr>
 				<td align=right width=20% valign="middle" 	>
 				 		<span lang="ar-SA" class="labela1">'.E2A(date("H:i", strtotime($InvoiceDate))).'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.E2A(date("Y/m/d", strtotime($InvoiceDate))).'&nbsp; &nbsp;'.'  م   '.' </span> <br>
-				  		<span lang="ar-SA" class="labela1"> '.E2A($InvoiceDateH).'&nbsp; &nbsp;'.'  هـ  </span>
+				  		 
 			  	</td> 
 				<td align=right width=10% valign="middle" 	>
 				  		<span lang="ar-SA" class="labela1">&nbsp;&nbsp; التاريخ </span><br>
@@ -362,7 +354,7 @@ $html.='
 		 </tr>
 		 <tr>
 		 	<td align=center  valign="middle"> 
- 				<span lang="en-US" class="labele1">WCPS - '.$InvoiceID.'</span> 
+ 				<span lang="en-US" class="labele1">JD - '.$InvoiceID.'</span> 
 			  </td> 
 		 	<td align=right  valign="middle">
 				 		<span lang="ar-SA" class="labela1">&nbsp;&nbsp; رقم النظام </span><br>
@@ -383,82 +375,83 @@ $html.='
 
 
 <div><span style="font-size:3pt">&nbsp;</span></div>
-
+<style>
+.p10pt{
+	padding-top: 5px;
+	padding-bottom: 5px; 
+}
+</style>
 <table dir="ltr" width=100% style="border-collapse:collapse;z-index:4" cellspacing="1" border="1">
 	<tbody>
-		  <tr>
-			   	<td align=center width=10% valign="middle" height="30pt">
-					  <p>	<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$TripNo.'&nbsp;&nbsp; </span>&nbsp;<br></p>
-				</td>
-				<td align=right width=16% valign="middle">
-					  <p>	<span lang="ar-SA" class="labela1">رقم الرحلة </span><br>
-					  		<span lang="en-US" class="labele1" >Trip No</span></p>
-				</td>
-			  	<td align=center width=11% valign="middle">
-					  <p>	<span lang="ar-SA" class="labela1">&nbsp;'.E2A($ShipWeight).'&nbsp;&nbsp; </span>&nbsp;<br></p>
-				</td>
-				<td align=right width=21% valign="middle">
-					  <p>	<span lang="ar-SA" class="labela1"> سعة السفينة</span><br>
-					  		<span lang="en-US" class="labele1">G.R.T.</span></p>
-				</td>
-			 	<td align=right width=27% valign="middle">
-					  <p>	<span lang="ar-SA" class="labela1">&nbsp;'.E2A(date("H:i", strtotime($ArrivalDate))).'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.E2A(date("Y/m/d", strtotime($ArrivalDate))).'&nbsp; &nbsp;'.'م  </span>&nbsp;<br>
-					  		<span lang="ar-SA" class="labela1">&nbsp;'.E2A($ArrivalDateH).'&nbsp; &nbsp;'.' هـ  </span>&nbsp;</p>
-				</td> 
-				<td align=right width=15% valign="middle">
-					  <p>	<span lang="ar-SA" class="labela1"> تاريخ الوصول </span><br>
-					  		<span lang="en-US" class="labele1">Arrival Date</span></p>
-				</td>
-		 </tr>
 		<tr>
-				<td align=center valign="middle" height="30pt">
-					  <p>	<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$DockingNo.'&nbsp;&nbsp; </span>&nbsp;<br></p>
-				  	</td>
-				  	<td align=right  valign="middle">
-					  <p>	<span lang="ar-SA" class="labela1">رصيف الإرساء </span><br>
-					  		<span lang="en-US" class="labele1">Docking Berth No</span></p>
-				</td>
-				<td align=center valign="middle">
-				  	<p>	<span lang="ar-SA" class="labela1">&nbsp;'.E2A(number_format($PeriodDays)).'&nbsp;&nbsp; </span>&nbsp;<br></p>
-			  	</td>
-			  	<td align=right valign="middle">
-				  	<p>	<span lang="ar-SA" class="labela1"> عدد ايام بقاء السفية بالرصيف</span><br>
-				  		<span lang="en-US" class="labele1">Period Days</span></p>
-			  	</td>
-			  	<td align=right  valign="middle">
-					  <p>	<span lang="ar-SA"  class="labela1">&nbsp;'.E2A(date("H:i", strtotime($DepartureDate))).'&nbsp;&nbsp;&nbsp;&nbsp;'.E2A(date("Y/m/d", strtotime($DepartureDate))).'&nbsp; &nbsp;'.'م  </span>&nbsp;<br>
-					  		<span lang="ar-SA"  class="labela1">&nbsp;'.E2A($DepartureDateH).'&nbsp; &nbsp;'.' هـ  </span>&nbsp;</p>
-				</td> 
-				<td align=right  valign="middle">
-					  <p>	<span lang="ar-SA" class="labela1"> تاريخ المغادرة </span><br>
-					  		<span lang="en-US"class="labele1">Departure Date</span></p>
-				</td> 
-
+			<td align=center width=10% valign="middle" class="p10pt">
+					<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$TripNo.'&nbsp;&nbsp; </span>&nbsp; 
+			</td>
+			<td align=right width=16% valign="middle" class="p10pt">
+				<span lang="ar-SA" class="labela1">رقم الرحلة </span><br>
+				<span lang="en-US" class="labele1" >Trip No</span> 
+			</td>
+			<td align=center width=11%  class="p10pt">
+				<span lang="ar-SA" class="labela1">&nbsp;'.E2A($ShipWeight).'&nbsp;&nbsp; </span> 
+			</td>
+			<td align=right width=21% class="p10pt">
+				<span lang="ar-SA" class="labela1"> سعة السفينة</span><br>
+				<span lang="en-US" class="labele1">G.R.T.</span> 
+			</td>
+			<td align=right width=27% class="p10pt">
+				<span lang="ar-SA" class="labela1">&nbsp;'.E2A(date("H:i", strtotime($ArrivalDate))).'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.E2A(date("Y/m/d", strtotime($ArrivalDate))).'&nbsp; &nbsp;'.'م  </span>  	 
+			</td> 
+			<td align=right width=15% class="p10pt">
+				<span lang="ar-SA" class="labela1"> تاريخ الوصول </span><br>
+				<span lang="en-US" class="labele1">Arrival Date</span> 
+			</td>
 		</tr>
 		<tr>
-				<td align=center  valign="middle" height="30pt">
-				  <p>	<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$RouteNo.'&nbsp;&nbsp; </span>&nbsp;<br></p>
-			  	</td>
-			  	<td align=right  valign="middle">
-				  <p>	<span lang="ar-SA" class="labela1">رقم الطريق</span><br>
-				  		<span lang="en-US" class="labele1">Route No</span></p>
-			  	</td>
-
-			 
-				<td align=center  valign="middle">
-				  	<p>	<span lang="ar-SA" class="labela1">&nbsp;'.E2A(number_format($AnchorageDays)).'&nbsp;&nbsp; </span>&nbsp;</p>
-			  	</td>
-			  	<td align=right  valign="middle">
-				  	<p>	<span lang="ar-SA" class="labela1"> عدد ايام بقاء السفية بالمخطاف</span><br>
-				  		<span lang="en-US" class="labele1">Anchorage Days</span></p>
-			  	</td>
-			  	<td align=left  valign="middle"> 
-					  <p>	<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$MovePortName.'&nbsp;&nbsp; </span>&nbsp; </p>
-				</td> 
-				<td align=right  valign="middle">
-					  <p>	<span lang="ar-SA" class="labela1"> رصيف الإنتقال </span><br>
-					  		<span lang="en-US" class="labele1"> Shifted Bath No</span></p>
-				</td>	
+			<td align=center class="p10pt">
+				<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$DockingNo.'&nbsp;&nbsp; </span> 
+			</td>
+			<td align=right  class="p10pt">
+				<span lang="ar-SA" class="labela1">رصيف الإرساء </span><br>
+				<span lang="en-US" class="labele1">Docking Berth No</span> 
+			</td>
+			<td align=center class="p10pt">
+					<span lang="ar-SA" class="labela1">&nbsp;'.E2A(number_format($PeriodDays)).'&nbsp;&nbsp; </span> 
+			</td>
+			<td align=right class="p10pt">
+				<span lang="ar-SA" class="labela1"> عدد ايام بقاء السفية بالرصيف</span><br>
+				<span lang="en-US" class="labele1">Period Days</span> 
+			</td>
+			<td align=right class="p10pt">
+				<span lang="ar-SA"  class="labela1">&nbsp;'.E2A(date("H:i", strtotime($DepartureDate))).'&nbsp;&nbsp;&nbsp;&nbsp;'.E2A(date("Y/m/d", strtotime($DepartureDate))).'&nbsp; &nbsp;'.'م  </span> 
+							
+			</td> 
+			<td align=right  class="p10pt">
+				<span lang="ar-SA" class="labela1"> تاريخ المغادرة </span><br>
+				<span lang="en-US"class="labele1">Departure Date</span> 
+			</td>  
+		</tr>
+		<tr>
+			<td align=center class="p10pt">
+				<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$RouteNo.'&nbsp;&nbsp; </span> 
+			</td>
+			<td align=right  class="p10pt">
+				<span lang="ar-SA" class="labela1">رقم الطريق</span><br>
+				<span lang="en-US" class="labele1">Route No</span> 
+			</td> 
+			<td align=center  class="p10pt">
+				<span lang="ar-SA" class="labela1">&nbsp;'.E2A(number_format($AnchorageDays)).'&nbsp;&nbsp; </span> 
+			</td>
+			<td align=right class="p10pt">
+				<span lang="ar-SA" class="labela1"> عدد ايام بقاء السفية بالمخطاف</span><br>
+				<span lang="en-US" class="labele1">Anchorage Days</span> 
+			</td>
+			<td align=left class="p10pt">
+				<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$MovePortName.'&nbsp;&nbsp; </span> 
+			</td> 
+			<td align=right class="p10pt">
+				<span lang="ar-SA" class="labela1"> رصيف الإنتقال </span><br>
+				<span lang="en-US" class="labele1"> Shifted Bath No</span> 
+			</td>	
 		</tr>
 
 	</tbody>
