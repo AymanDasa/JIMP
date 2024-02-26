@@ -213,7 +213,7 @@ else{
                 <div class="card-header">
                   <div class="row mb-2">
                       <div class="col-sm-6">
-                          <h1>Invoice JD-<?php echo $maxID;?></h1>
+                          <h1>Invoice JD-<?php echo $InvoiceID ;?></h1>
                       </div>
                       <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
@@ -268,7 +268,7 @@ else{
               <!-- info row -->
               <div class="row invoice-info">
                 <div class="col-sm-4 invoice-col">
-                    <b>Invoice #JD-<?php echo $maxID;?></b><br> 
+                    <b>Invoice #JD-<?php echo $InvoiceID;?></b><br> 
                     <b>Vessel Name:<span class="tab"></span></b>  <?php echo $ShipName;?> <br> 
                     <b>Araival Date:<span class="tab"></span></b><?php echo $ArrivalDate;?><br>
                     <b>Departure Date:<span class="tab"></span></b> <?php echo $DepartureDate;?><br>

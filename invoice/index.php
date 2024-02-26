@@ -110,17 +110,17 @@ $IsActive = 0 ;
                           <td>  
 
                             <div class="btn-group btn-group-sm"> 
-                              <a href="view.php?id='.$invoice['InvoiceID'].'" class="btn btn-info">
+                              <a href="view.php?id='.$invoice['InvoiceID'].'" class="btn">
                               <i class="fas fa-eye"></i></a>
-                              <a href="edit.php?id='.$invoice["InvoiceID"].'" class="btn btn-warning">
+                              <a href="edit.php?id='.$invoice["InvoiceID"].'" class="btn">
                               <i class="fas fa-pen-to-square"></i></a>   
 						';
 						if($debug){echo '
-							<a href="../reports/invoice2.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
+							<a href="../reports/invoice2.php?id='.$invoice["InvoiceID"].'" class="btn">
 							<i class="fas fa-cross"></i></a>';}
 						echo '
-						<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
-                              <i class="fas fa-print"></i></a>
+						<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn">
+                              <i class="fas fa-file-pdf"></i></a>
                             </div>
                           </td>  
                         </tr>' ; }
