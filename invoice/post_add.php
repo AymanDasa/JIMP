@@ -73,7 +73,7 @@ function MSA($SWeight,$Days){
 		$MAPrice=intval($Days*500);}
 	return ($MAPrice);	
 	/*
-	How to use MSB Function:
+	How to use MSA Function:
 	echo MSA($ShipWeight,$AnchorageDays);
 	*/
 }
@@ -83,19 +83,14 @@ function MSB($SWeight,$STFactor,$Days){
 	// MSP() function used to Callculate MService2 Only
 	// $STFactor for Service Type Factor 
 	// $Days for Period Days
-	if ($SWeight<=500){
-		// if Ship Weight < 500
-		$MBPrice=($Days*550)*$STFactor;
-		}
-	if ($SWeight>500 && $SWeight<=3000 ){
-		// if Ship Weight > 500 and Weight < 3000
-		$MBPrice=($Days*1100)*$STFactor;}
-	if ($SWeight>3000 && $SWeight<=15000 ){
-		// if Ship Weight > 3000 and Weight < 15000
-		$MBPrice=($Days*1500)*$STFactor;}
-	if ($SWeight>15000 ){
-		// if Ship Weight > 15000 
-		$MBPrice=($Days*2200)*$STFactor;}
+	if ($SWeight<=500)						// if Ship Weight < 500 
+		{$MBPrice=($Days*550)*$STFactor; }
+	if ($SWeight>500 && $SWeight<=3000 )		// if Ship Weight > 500 and Weight < 3000 
+		{$MBPrice=($Days*1100)*$STFactor;}
+	if ($SWeight>3000 && $SWeight<=15000 ) 		// if Ship Weight > 3000 and Weight < 15000 
+		{$MBPrice=($Days*1500)*$STFactor;} 
+	if ($SWeight>15000 )					//if Ship Weight > 15000
+		{$MBPrice=($Days*2200)*$STFactor;}
 	return floatval($MBPrice);	
 	/*
 	How to use MSB Function:

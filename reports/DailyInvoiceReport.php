@@ -119,7 +119,7 @@ if(isset($_POST['InvoiceDate'])){
 											<br>
 											<span lang="ar-SA"> كشف الفواتير اليومية<br>
 											</span>
-											<span dir="ltr" style="font-family:Verdana;language:en-US;direction:ltr;unicode-bidi:embed" lang="en-US">
+											<span dir="ltr" style="font-family:Verdana;direction:ltr;unicode-bidi:embed" lang="en-US">
 												Daily Invoice Report  
 											</span><br> <?php echo $InvoiceDate; ?> التاريخ
 										</td>

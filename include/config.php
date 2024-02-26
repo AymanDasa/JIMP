@@ -64,5 +64,17 @@ $debug_sql = "SELECT `debug` FROM `users` WHERE `username` = '".$username_now."'
  
 $debug_sqlr = $dbop->query($debug_sql)->fetchAll();   
                 foreach ($debug_sqlr as $debug_row) { $debug = $debug_row['debug'] ; }  
-if($debug){echo "<b>Debug :</b>".$debug."<br>";}
+
+
+$info_sql = "SELECT `name`, `value` FROM `info`";
+$info_result = $dbop->query($info_sql)->fetchAll();   
+$info_data = array();
+foreach($info_result  as $row){ 
+		$name = $row['name'];
+    		$value = $row['value'];
+		$info_data[$name] = $value; 
+}
+// if($debug){echo "<b>Debug :</b>".$debug."<br>";}
+// if($debug){echo "<b>Debug :</b>";print_r($info_data);echo  "<br>";}
+
  ?>

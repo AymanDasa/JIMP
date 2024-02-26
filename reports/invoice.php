@@ -431,7 +431,7 @@ $html.='
 				</td> 
 				<td align=right  valign="middle">
 					  <p>	<span lang="ar-SA" class="labela1"> تاريخ المغادرة </span><br>
-					  		<span lang="en-US"class="labele1">Arrival Date</span></p>
+					  		<span lang="en-US"class="labele1">Departure Date</span></p>
 				</td> 
 
 		</tr>
@@ -756,6 +756,10 @@ $html.='
 
 
 '; 
+if($MSTOTAL>0 && $SSTOTAL>0){
+	$html.='<div><span style="font-size:5.0pt">&nbsp;</span></div>';}
+else{
+	$html.='<div><span style="font-size:100.0pt">&nbsp;</span></div>';}
 /*
   ########################################################################################################## 
   ########################################################################################################## 
@@ -769,7 +773,6 @@ $html.='
 */ 
 $html.='  
 
-<div><span style="font-size:100.0pt">&nbsp;</span></div>
 
 <table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
 	<tbody>  

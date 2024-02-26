@@ -114,11 +114,17 @@ $IsActive = 0 ;
                               <i class="fas fa-eye"></i></a>
                               <a href="edit.php?id='.$invoice["InvoiceID"].'" class="btn btn-warning">
                               <i class="fas fa-pen-to-square"></i></a>   
+						';
+						if($debug){echo '
+							<a href="../reports/invoice2.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
+							<i class="fas fa-cross"></i></a>';}
+						echo '
 						<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
                               <i class="fas fa-print"></i></a>
                             </div>
                           </td>  
                         </tr>' ; }
+				   
 					       ?>
                   </tbody>
                   <tfoot>

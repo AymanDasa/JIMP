@@ -258,11 +258,11 @@ $html.='
 				  </p>
 			  </td>
 			  <td align=center width=20% height="20" valign="middle" style="border-right-style:hidden">
-					  <span lang="ar-SA"> PRE INVOICE<br>
+					  <span lang="ar-SA"> فــــاتــــورة <br>
 					  </span>
 				   <br>
 					   <span dir="ltr" style="font-size:12pt;font-family:DejaVuSansCondensed;color:red;language:en-US;direction:ltr;
-			  unicode-bidi:embed" lang="en-US">PRE INVOICE-'.$InvoiceID.' </span> 
+			  unicode-bidi:embed" lang="en-US">JD-'.$InvoiceID.' </span> 
 			  </td>
 			  <td align=center width=20% height="65" valign="middle" style="border-right-style:hidden">
 				  <p>
@@ -431,7 +431,7 @@ $html.='
 				</td> 
 				<td align=right  valign="middle">
 					  <p>	<span lang="ar-SA" class="labela1"> تاريخ المغادرة </span><br>
-					  		<span lang="en-US"class="labele1">Departure Date</span></p>
+					  		<span lang="en-US"class="labele1">Arrival Date</span></p>
 				</td> 
 
 		</tr>
@@ -757,9 +757,9 @@ $html.='
 
 '; 
 if($MSTOTAL>0 && $SSTOTAL>0){
-	$html.='<div><span style="font-size:5.0pt">&nbsp;</span></div>';}
+	$html.='<div><span style="font-size:5.0pt">&nbsp;'.$MSTOTAL.'.'. $SSTOTAL.'</span></div>';}
 else{
-	$html.='<div><span style="font-size:100.0pt">&nbsp;</span></div>';}
+	$html.='<div><span style="font-size:100.0pt">&nbsp;'.$MSTOTAL.'.'. $SSTOTAL.'</span></div>';}
 /*
   ########################################################################################################## 
   ########################################################################################################## 
@@ -859,24 +859,22 @@ $html.='
 		</td>
 
 
-		<td align=right width=50% ">
-		 
-		
-		فيما يلي تفاصيل الحساب المذكور مع  <br>   البنك السعودي الأول 
-		<br> 
-			إسم الحساب: شركة ساحل الغربية لخدمات الموانىء  
+		<td align=right width=50% "> 
+			فيما يلي تفاصيل الحساب المذكور مع  <br>   البنك السعودي الأول 
 			<br> 
-			رقم السجل التجاري: 4030534211 
-			<br>
-			رقم الحساب: 242-379501-001 
-			<br>
-			SA7745000000242379501001 : رقم الايبان
-			<br>
-			إسم البنك: البنك السعودي الأول
-			<br>
-			SABBSAR : رمز سويفت 
-			<br>
-			SAR : العملة
+				إسم الحساب: شركة ساحل الغربية لخدمات الموانىء  
+				<br> 
+				رقم السجل التجاري: 4030534211 
+				<br>
+				رقم الحساب: 242-379501-001 
+				<br>
+				SA7745000000242379501001 : رقم الايبان
+				<br>
+				إسم البنك: البنك السعودي الأول
+				<br>
+				SABBSAR : رمز سويفت 
+				<br>
+				SAR : العملة
 		</td> 
 		<tr>
 	</tbody>
