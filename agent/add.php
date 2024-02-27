@@ -27,13 +27,17 @@
 							if($debug){echo "<b>query_INSERT :</b>".$query_INSERT."<br>";}
 							 
 					  $dbop->query($query_INSERT);  
+
+											
+						$alog_note = strval("AgentNameAr:".$AgentNameAr." + AgentCR:".$AgentCR."= AgentNameEn:".$AgentNameEn."    " );  
+						$SQL_activitylog="INSERT INTO `activitylog` 
+							( `alog_section`  ,	`alog_no`  ,	`alog_description`  ,	`alog_user` ,	`alog_note` 	) 
+							VALUE ('".$folder_name."' ,'".$AgentNameAr."' ,'Add  Agent',	'".$username_now."' ,'".$alog_note."' 	) ;";
+						$dbop->query($SQL_activitylog);   
+
+
 					  if($debug){echo "<b>IMO :</b>".$AgentCR."<br>";}  else{header("Refresh:20"); }
 			} 
-$alog_note = strval("AgentNameAr:".$AgentNameAr." + AgentCR:".$AgentCR."= AgentNameEn:".$AgentNameEn."    " );  
-$SQL_activitylog="INSERT INTO `activitylog` 
-	( `alog_section`  ,	`alog_no`  ,	`alog_description`  ,	`alog_user` ,	`alog_note` 	) 
-	VALUE ('".$folder_name."' ,'".$AgentNameAr."' ,'Add  Agent',	'".$username_now."' ,'".$alog_note."' 	) ;";
-$dbop->query($SQL_activitylog);   
         ?>   
 <html lang="en">
 <head>
