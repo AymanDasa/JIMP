@@ -55,7 +55,14 @@
 							if($debug){echo "<b>query_INSERT :</b>".$query_INSERT."<br>";}
 							 
 					$dbop->query($query_INSERT);  
-					if($debug){echo "<b>IMO :</b>".$IMO."<br>";}
+
+					$alog_note = strval("ShipName:".$ShipName." + IMO:".$IMO."  +  Weight:".$Weight."  + VAT:".$VAT."    " );  
+					$SQL_activitylog="INSERT INTO `activitylog` 
+						( `alog_section`  ,	`alog_no`  ,	`alog_description`  ,	`alog_user` ,	`alog_note` 	) 
+						VALUE ('".$folder_name."' ,'".$ShipName."' ,'Add Ship',	'".$username_now."' ,'".$alog_note."' 	) ;";
+					$dbop->query($SQL_activitylog);   
+					
+					if($debug){echo "<b>IMO :</b>".$IMO."<br>";}  
 					else{header("Refresh:0"); }
 				}
 

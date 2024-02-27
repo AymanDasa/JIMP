@@ -56,6 +56,13 @@
 					  if($debug){echo "<b>query :</b>".$query."<br>";} 
 					  $dbop->query($query);  
 					   if($debug){echo "<b>AgentCR :</b>".$AgentCR."<br>";}  else{header("Refresh:0");  }
+
+
+ $alog_note = strval("AgentID:".$AgentID." + AgentNameAr:".$AgentNameAr."  +  AgentCR:".$AgentCR."  + AgentNameEn:".$AgentNameEn."    " );  
+$SQL_activitylog="INSERT INTO `activitylog` 
+	( `alog_section`  ,	`alog_no`  ,	`alog_description`  ,	`alog_user` ,	`alog_note` 	) 
+	VALUE ('".$folder_name."' ,'".$AgentID."' ,'Update Agent',	'".$username_now."' ,'".$alog_note."' 	) ;";
+$dbop->query($SQL_activitylog);   
 			} 
 			 
 			  

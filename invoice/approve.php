@@ -25,8 +25,14 @@ if(isset($_POST['approved'])) {
         window.location.href= 'index.php'; // the redirect goes here
         },1200)
     </script>";  
-    }    
+    }     
+$alog_note = strval("Approved:".$maxID."   " );   
+    $SQL_activitylog="INSERT INTO `activitylog` 
+	    ( `alog_section`  ,	`alog_no`  ,	`alog_description`  ,	`alog_user` ,	`alog_note` 	) 
+	    VALUE ('".$folder_name."' ,'".$maxID."' ,'Update Invoice',	'".$username_now."' ,'".$alog_note."' 	) ;";
+    $dbop->query($SQL_activitylog); 
 } 
+
  ?>  
 <!DOCTYPE html>
 <html lang="en">

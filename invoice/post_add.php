@@ -804,7 +804,12 @@ $dbop->query($SQL_INSERT);
 $aqlr='SELECT MAX(InvoiceID) AS `LastID` FROM `invoice` LIMIT 1; ';
 $maxIDrs = $dbop->query($aqlr)->fetchAll();   
     foreach ($maxIDrs as $maxIDr) { $maxID = $maxIDr['LastID'];  }
- 
+
+$alog_note = strval("Inovice ".$maxIDr."MSTOTAL:".$MSTOTAL." + SSTOTAL:".$SSTOTAL."= TOTAL:".$TOTAL."  (VAT)= ".$VAT." VAT_TOTAL ".$VAT_TOTAL." " );    
+$SQL_activitylog="INSERT INTO `activitylog` 
+	( `alog_section`  ,	`alog_no`  ,	`alog_description`  ,	`alog_user` ,	`alog_note` 	) 
+	VALUE ('".$folder_name."' ,'".$maxID."' ,'Add New Invoice',	'".$username_now."' ,'".$alog_note."' 	) ;";
+$dbop->query($SQL_activitylog); 
  ?>  
 <!DOCTYPE html>
 <html lang="en">

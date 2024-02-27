@@ -673,7 +673,14 @@ if($debug){echo "<b>InvoiceID :</b>".$InvoiceID,"<br>";}
 if($debug){echo "<b>SQL_UPDATE :</b>".$SQL_UPDATE,"<br>";} 
  
 $dbop->query($SQL_UPDATE); 
+
 }
+
+$alog_note = strval("Inovice ".$InvoiceID."MSTOTAL:".$MSTOTAL." + SSTOTAL:".$SSTOTAL."= TOTAL:".$TOTAL."  (VAT)= ".$VAT." VAT_TOTAL ".$VAT_TOTAL." " );  
+$SQL_activitylog="INSERT INTO `activitylog` 
+	( `alog_section`  ,	`alog_no`  ,	`alog_description`  ,	`alog_user` ,	`alog_note` 	) 
+	VALUE ('".$folder_name."' ,'".$InvoiceID."' ,'Update Invoice',	'".$username_now."' ,'".$alog_note."' 	) ;";
+$dbop->query($SQL_activitylog); 
  ?>  
 <!DOCTYPE html>
 <html lang="en">
