@@ -163,6 +163,9 @@
 			$job_user3 =$info_data['job_user3'];
 			$job_user4 =$info_data['job_user4'];
 			$job_user5 =$info_data['job_user5']; 
+			$port_name =$info_data['port_name']; 
+			$AdressCompany =$info_data['AdressCompany']; 
+			$invoiceStart =$info_data['invoiceStart']; 
  
 	$ArrivalDate0 = intval(date('Y', strtotime($ArrivalDateH)));
 	if($ArrivalDate0<1444){$ArrivalDateH='';}  
@@ -244,13 +247,7 @@
 				<td align=center width=20%  style="border-right-style:hidden" height="20" valign="middle">
 					<p>	
 						<span lang="ar-SA" style="font-size:8pt">   
-							المملكة العربية السعودية <br>
-							شركة ساحل الغربية لخدمات الموانئ <br>
-							'."0123456789".' تيلفون  	:
-					
-							<br>
-							'."0138574202".' فـاكس  	:
-							
+						'.$AdressCompany.'
 						
 						</span>
 					</p>
@@ -267,7 +264,7 @@
 						</span>
 						<br>
 						<span dir="ltr" style="font-size:12pt;font-family:DejaVuSansCondensed;color:red;language:en-US;direction:ltr;
-				unicode-bidi:embed" lang="en-US">JD-'.$InvoiceID.' </span> 
+				unicode-bidi:embed" lang="en-US">'.$invoiceStart.$InvoiceID.' </span> 
 				<br> <span lang="ar-SA" style="font-size:8pt">   VAT : '.$company_vat.' </span>
 				</td>
 				<td align=center width=20% height="65" valign="middle" style="border-right-style:hidden">
@@ -284,7 +281,7 @@
 											<br>
 											الهيئة العامة للموانئ
 											<br>
-										ميناء جدة الإسلامي
+											'.$port_name.'
 											<br>
 											www.ports.gov.sa
 							</span>
@@ -443,7 +440,7 @@ $html.='
 		 </tr>
 		 <tr>
 		 	<td align=center  valign="middle"> 
- 				<span lang="en-US" class="labele1">JD - '.$InvoiceID.'</span> 
+ 				<span lang="en-US" class="labele1"> '.$invoiceStart.$InvoiceID.'</span> 
 			  </td> 
 		 	<td align=right  valign="middle">
 				<span lang="ar-SA" class="labela1">&nbsp;&nbsp; رقم النظام </span><br>

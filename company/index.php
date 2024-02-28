@@ -8,14 +8,12 @@
 		  
 		if(true) { 
 				// SELECT  AGENT
-				$query = "SELECT * FROM `config` ;"; 
-                	$configs = $dbop->query($query)->fetchAll();   
-				$datas = array(); 
-				foreach ($configs as $config) {   
-					$name    			=$config['name']; 
-					$value     			=$config['value'];  
-						array_push($datas,$name , $value );
-					} 
+				$query = "SELECT * FROM `info` WHERE `type` = 'text';";  
+				$result = $dbop->query($query)->fetchAll();    
+				$dataArray = array();
+				foreach ($result as $row) {
+				$dataArray[] = $row;
+				}
 					 
 			}  
 			$today = date("Y-m-d H:i:s");   
@@ -30,7 +28,7 @@
 					$company_name_ar	= $_POST['company_name_ar'];
 					$company_bldg_ar	= $_POST['company_bldg_ar'];
 					$company_pobox_ar	= $_POST['company_pobox_ar'];
-					$company_tel_ar		= $_POST['company_tel_ar'];
+					$company_tel_ar	= $_POST['company_tel_ar'];
 					$cc1				= $_POST['cc1'];
 					$cc2				= $_POST['cc2'];
 					$vat				= $_POST['vat'];
@@ -102,8 +100,7 @@
 		<section class="content-header">
 		<div class="container-fluid">
 			<div class="row mb-2">
-			<div class="col-sm-6">
-			<h1>  <?=$datas[1];?></h1> 
+			<div class="col-sm-6"> 
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
@@ -128,133 +125,17 @@
 					</div>   
 					<div class="card-body"> 
 						<div class="row">
-							<div class="col-sm-3">
+							
 							<!-- text input -->
-							<div class="form-group">
-								<label> <?=$datas[0];?></label>
-								<input type="text" class="form-control" name="company_name" value="<?=$datas[1];?>">
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label><?=$datas[2];?></label>
-								<input type="text" class="form-control" name="company_bldg" value="<?=$datas[3];?>">
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<!-- text input -->
-								<div class="form-group">
-									<label>company_pobox</label>
-									<input type="text" class="form-control" name="company_pobox" value="<?=$datas[5];?>">
-								</div>
-							</div> 
-							<div class="col-sm-3">
-							<!-- text input -->
-								<div class="form-group">
-									<label>company_tel</label>
-									<input type="text" class="form-control" name="company_tel" value="<?=$datas[7];?>">
-								</div>
-							</div> 
-						</div>
-						<div class="row">
-							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label> company_cr</label>
-								<input type="text" class="form-control" name="company_cr" value="<?=$datas[9];?>">
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label>company_vat</label>
-								<input type="text" class="form-control" name="company_vat" value="<?=$datas[11];?>">
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<!-- text input -->
-								<div class="form-group">
-									<label>company_name_ar</label>
-									<input type="text" class="form-control" name="company_name_ar" value="<?=$datas[13];?>">
-								</div>
-							</div> 
-							<div class="col-sm-3">
-							<!-- text input -->
-								<div class="form-group">
-									<label>company_bldg_ar</label>
-									<input type="text" class="form-control" name="company_bldg_ar" value="<?=$datas[15];?>">
-								</div>
-							</div> 
-						</div>
-						<div class="row">
-							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label> company_pobox_ar</label>
-								<input type="text" class="form-control" name="company_pobox_ar" value="<?=$datas[17];?>">
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label>company_tel_ar</label>
-								<input type="text" class="form-control" name="company_tel_ar" value="<?=$datas[19];?>">
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<!-- text input -->
-								<div class="form-group">
-									<label>cc1</label>
-									<input type="text" class="form-control" name="cc1" value="<?=$datas[21];?>">
-								</div>
-							</div> 
-							<div class="col-sm-3">
-							<!-- text input -->
-								<div class="form-group">
-									<label>cc2</label>
-									<input type="text" class="form-control" name="cc2" value="<?=$datas[23];?>">
-								</div>
-							</div> 
-						</div>
-						<div class="row">
-							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label>vat</label>
-								<input type="text" class="form-control" name="vat" value="<?=$datas[25];?>">
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label>company_logo</label>
-								<input type="text" class="form-control" name="company_logo" value="<?=$datas[27];?>">
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<!-- text input -->
-								<div class="form-group">
-									<label>company_contract</label>
-									<input type="text" class="form-control" name="company_contract" value="<?=$datas[29];?>">
-								</div>
-							</div> 
-							<div class="col-sm-3">
-							<!-- text input -->
-								<div class="form-group">
-									<label>company_vendor</label>
-									<input type="text" class="form-control" name="company_vendor" value="<?=$datas[31];?>">
-								</div>
-							</div> 
-						</div> 
-						<div class="row">
-							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label>Ref</label>
-								<input type="text" class="form-control" name="vat" value="<?php echo $datas[31];?>">
-							</div> 
-						</div> 
+							<?php 
+							foreach ($dataArray as $data) {
+								echo '<div class="col-sm-3"><div class="form-group"> 
+									   <label></label> 
+									   <input type="text" class="form-control" name="'.$data['name'].'" value="'.$data['name'].'">
+									   <input type="text" class="form-control" name="'.$data['value'].'" value="'.$data['value'].'">
+									 </div></div> ';}
+							?>
+							
 						<!-- input states --> 
 					 
 					</div>
