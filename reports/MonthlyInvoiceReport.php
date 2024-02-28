@@ -125,7 +125,7 @@ if(isset($_POST['InvoiceMonth'])){
 											<br>
 											<span lang="ar-SA"> كشف الفواتير الشهرية<br>
 											</span>
-											<span dir="ltr" style="font-family:Verdana;language:en-US;direction:ltr;unicode-bidi:embed" lang="en-US">
+											<span dir="ltr" style="font-family:Verdana;  direction:ltr;unicode-bidi:embed" lang="en-US">
 												Monthly Invoice Report  
 											</span><br> <?php echo $YY." - ".$MM; ?> التاريخ
 										</td>
