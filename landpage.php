@@ -52,10 +52,7 @@
                   </a>
                 </div>
               </div>
-              <div class="card-body table-responsive p-0">
- 
-			 
-			 
+              <div class="card-body table-responsive p-0"> 
 			 
 			 
               </div>

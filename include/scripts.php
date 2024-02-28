@@ -1,29 +1,29 @@
 
 <!-- jQuery -->
-<script src="<?php echo $path;?>adminlte/plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="<?php echo $path;?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
-<script src="<?php echo $path;?>adminlte/plugins/select2/js/select2.full.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/select2/js/select2.full.min.js"></script>
 <!-- Bootstrap4 Duallistbox -->
-<script src="<?php echo $path;?>adminlte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- InputMask -->
-<script src="<?php echo $path;?>adminlte/plugins/moment/moment.min.js"></script>
-<script src="<?php echo $path;?>adminlte/plugins/inputmask/jquery.inputmask.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/moment/moment.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/inputmask/jquery.inputmask.min.js"></script>
 <!-- date-range-picker -->
-<script src="<?php echo $path;?>adminlte/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap color picker -->
-<script src="<?php echo $path;?>adminlte/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="<?php echo $path;?>adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Bootstrap Switch -->
-<script src="<?php echo $path;?>adminlte/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- BS-Stepper -->
-<script src="<?php echo $path;?>adminlte/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/bs-stepper/js/bs-stepper.min.js"></script>
 <!-- dropzonejs -->
-<script src="<?php echo $path;?>adminlte/plugins/dropzone/min/dropzone.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/dropzone/min/dropzone.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?php echo $path;?>adminlte/dist/js/adminlte.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/dist/js/adminlte.min.js"></script>
 <!-- Page specific script -->
 <script>
   $(function () {

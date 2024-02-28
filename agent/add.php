@@ -47,12 +47,12 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free6/css/all.min.css">
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/fontawesome-free6/css/all.min.css">
   <!-- Theme style -->
     <!-- Select2 -->
-	<link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="<?php echo $path;?>adminlte/dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -200,6 +200,6 @@ $(function () {
   })
  
 </script>
-<script src="<?php echo $path;?>include/js/menu.js"></script>
+<script src="<?php echo $Homepath;?>include/js/menu.js"></script>
 </body>
 </html>

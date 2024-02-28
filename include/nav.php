@@ -179,7 +179,7 @@ $admin_access = intval($_SESSION["is_admin"]);
 			<i class="fas fa-user-shield mr-2 text-danger" ></i> Enable Debug
 			</a>
 		<div class="dropdown-divider"></div>
-			<a href="<?php echo $path;?>phpmyadmin/" class="dropdown-item">
+			<a href="<?php echo $Homepath;?>phpmyadmin/" class="dropdown-item">
 			<i class="fas fa-right-to-bracket mr-2 text-danger"></i> phpMyAdmin
 			</a>
           <div class="dropdown-divider"></div>

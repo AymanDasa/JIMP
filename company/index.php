@@ -81,11 +81,11 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/fontawesome-free/css/all.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo $path;?>adminlte/plugins/fontawesome-free6/css/all.min.css">
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/fontawesome-free6/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo $path;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -282,18 +282,18 @@
 <!-- ./wrapper -->
 
 <!-- jQuery --> 
-<script src="<?php echo $path;?>adminlte/plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="<?php echo $path;?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- bs-custom-file-input -->
-<script src="<?php echo $path;?>adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?php echo $path;?>adminlte/dist/js/adminlte.min.js"></script> 
+<script src="<?php echo $Homepath;?>adminlte/dist/js/adminlte.min.js"></script> 
 <script>
 $(function () {
   bsCustomFileInput.init();
 });
 </script>
-<script src="<?php echo $path;?>include/js/menu.js"></script>
+<script src="<?php echo $Homepath;?>include/js/menu.js"></script>
 </body>
 </html>
