@@ -85,7 +85,7 @@ $IsActive = 0 ;
 							<a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Invoice List</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Settings</a>
+							<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Export Invoices</a>
 						</li>
 						</ul>
 						<div class="tab-content" id="custom-content-below-tabContent">
@@ -147,7 +147,18 @@ $IsActive = 0 ;
 						</div>
 						<div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
 
-	
+							<form action="ExportToInvoice.php" method="POST">
+								<div class="col-4"> 
+									<div class="form-group">
+										<label>From invoice#</label> 
+											<input  name="ExportFromInvoice" type="text" class="form-control" >    
+										<label>To invoice#</label> 
+											<input  name="ExportToInvoice" type="text" class="form-control" >   
+									</div>
+									<input type="hidden" name="FromToInvoice" value="1">
+									<button type="submit" class="btn btn-info float-right">Genrate</button>
+								</div>
+							</form> 
 	
 						</div>
 						</div> 
@@ -201,7 +212,7 @@ $IsActive = 0 ;
 $(function () { 
     	//Date picker Date From todate
     	$('#ClickInvoiceDate').datetimepicker({ format: 'YYYY-MM-DD' }); 
-  	$('#ClickInvoiceMonth').datetimepicker({ format: 'YYYY-MM' });
+  	$('#ClickInvoiceMonth').datetimepicker({ format: 'YYYY-MM' }); 
   });
 </script> 
 <script src="<?php echo $path;?>include/js/menu.js"></script>

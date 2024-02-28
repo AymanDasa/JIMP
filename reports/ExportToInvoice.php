@@ -8,10 +8,10 @@ $SAPPOname =  $table_body= '';
 $IsActive = 0 ;	  
 $TotalInvoiceTable=0;
  
-if(isset($_POST['InvoiceDate'])){ 
-	$InvoiceDate= date_format(date_create($_POST['InvoiceDate']),"Y-m-d" ); 
-	$LinkPDF='<a href="DailyInvoiceReportPDF.php?InvoiceDate='.$InvoiceDate.'">'; 
-	 } 
+if(isset($_POST['FromToInvoice'])){ 
+	$FromInvoice	= intval($_POST['ExportFromInvoice']);
+	$ToInvoice	= intval($_POST['ExportToInvoice']); 
+	 } else{exit();}
 ?> 
 <html lang="en">
 <head>
@@ -86,7 +86,7 @@ if(isset($_POST['InvoiceDate'])){
 						<div class="card-header">
 							<h3 class="card-title">Result</h3>
 							<div class="card-tools">  
-								<?php echo $LinkPDF;?> 
+ <a href="ExportToInvoicePDF.php?FromInvoice=<?php echo $FromInvoice;?>&ToInvoice=<?php echo $ToInvoice;?>"> 
 								<button type="button" class="btn btn-success" > PDF </button>  </a>
 								<button type="button" class="btn btn-tool" data-card-widget="collapse">
 								<i class="fas fa-plus"></i>
@@ -117,11 +117,15 @@ if(isset($_POST['InvoiceDate'])){
 										</td>
 										<td style="text-align:center; width:20%  ; height:20px ;">
 											<br>
-											<span lang="ar-SA"> كشف الفواتير اليومية<br>
+											<span lang="ar-SA"> كشف الفواتير  <br>
 											</span>
 											<span dir="ltr" style="font-family:Verdana;direction:ltr;unicode-bidi:embed" lang="en-US">
-												Daily Invoice Report  
-											</span><br> <?php echo $InvoiceDate; ?> التاريخ
+												  From JD-<?php echo $FromInvoice; ?>    <br>
+												  To  JD-<?php echo $ToInvoice; ?>  
+											</span>    
+
+												
+	
 										</td>
 										<td style="text-align:center; width:20%  ; height:20px ;" valign="middle">
 										<p>
@@ -162,10 +166,10 @@ if(isset($_POST['InvoiceDate'])){
 									</tr>
 								</thead>
 								<tbody class="table_tbody">  
-									<?php
+									<?php 
 										$TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
-										$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."' AND `Status`= '800';";  
-										if($debug){echo "SQL :".$SQL."<br>";}   
+										$SQL = "SELECT *  FROM `invoice` WHERE `InvoiceID`  BETWEEN ".$FromInvoice." and ".$ToInvoice.";";   
+										 
 										$invoices = $dbop->query($SQL)->fetchAll();   
 										foreach ($invoices as $invoice) {     
 											$InvoiceID    = $invoice['InvoiceID'];
