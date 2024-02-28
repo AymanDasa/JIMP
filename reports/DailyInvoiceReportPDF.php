@@ -33,7 +33,7 @@ $i=0;
 if(isset($_GET['InvoiceDate'])){ 
 	$InvoiceDate= date_format(date_create($_GET['InvoiceDate']),"Y-m-d" );  
 	$TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
-	$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."';";   
+	$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."' AND `Status`= '800';";  
 	$invoices = $dbop->query($SQL)->fetchAll();   
 
 	$query_information = "SELECT * FROM `information`  LIMIT 1;"; 

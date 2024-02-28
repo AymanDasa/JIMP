@@ -97,8 +97,13 @@ $IsActive = 0 ;
                           $VAT_TOTAL    = $invoice['VAT_TOTAL'];  
                           $Status       = $invoice['Status'];   
                           $date1=date_create($InvoiceDate); 
-                           
-                            
+					 if($Status >700){
+					 	$approve_text = '<span style="color:#228b22;"><i class="fas fa-square-check"></i></span>';
+						$approve_vx='vv';
+					 }else{
+						$approve_text = '<span style="color:#e52b50;"><i class="fas fa-square-xmark"></i></span>';
+						$approve_vx='xx';	
+					 }
                        echo '<tr>
                           <td>'.$InvoiceID. ' </td>  
                           <td>'.date_format($date1,"Y-m-d"). ' </td>  
@@ -121,6 +126,10 @@ $IsActive = 0 ;
 						echo '
 						<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn">
                               <i class="fas fa-file-pdf"></i></a>
+						 
+						<spen href="#" class="btn">'.$approve_text.'	</spen>
+						<span hidden>'.$approve_vx.'</spen>
+
                             </div>
                           </td>  
                         </tr>' ; }

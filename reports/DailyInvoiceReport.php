@@ -164,7 +164,8 @@ if(isset($_POST['InvoiceDate'])){
 								<tbody class="table_tbody">  
 									<?php
 										$TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
-										$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."';";   
+										$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."' AND `Status`= '800';";  
+										if($debug){echo "SQL :".$SQL."<br>";}   
 										$invoices = $dbop->query($SQL)->fetchAll();   
 										foreach ($invoices as $invoice) {     
 											$InvoiceID    = $invoice['InvoiceID'];

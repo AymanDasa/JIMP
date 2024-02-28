@@ -1,5 +1,11 @@
 <?php
-  if($page_level){$path="../";}else{$path="";}
+  	if($page_level){
+		$path="../";
+		$Homepath="../../";
+	}else{
+		$path="";
+		$Homepath="../"; 
+	}
 	session_start();
 	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	$page=100;
