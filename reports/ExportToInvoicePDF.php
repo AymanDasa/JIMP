@@ -844,7 +844,7 @@ if($MSTOTAL>0 && $SSTOTAL>0){
 	$html.='<div><span style="font-size:5.0pt">&nbsp;</span></div>';}
 else{
 	$html.='<div><span style="font-size:100.0pt">&nbsp;</span></div>';}
-if($TotalPages>$xi){$html.=' <div class="page_break"></div>'; }
+if($TotalPages>=$xi){$html.=' <div class="page_break"></div>'; }
 
 
 
