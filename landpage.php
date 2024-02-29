@@ -3,6 +3,7 @@
 	
 <?php 
 	$page_level=0;
+	
 	Require_once( "C:\\wow\\password\\config.php"); 
 	include("include/auth.php");
 	include("include/head.php"); 

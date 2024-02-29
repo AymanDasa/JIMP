@@ -77,4 +77,21 @@ foreach($info_result  as $row){
 // if($debug){echo "<b>Debug :</b>".$debug."<br>";}
 // if($debug){echo "<b>Debug :</b>";print_r($info_data);echo  "<br>";}
 
+$sql="SELECT * FROM `users` WHERE  `username` ='".$username_now."';";
+$result = $dbop->query($sql)->fetchAll();
+$dataArray = array();
+foreach ($result as $row) {
+	$userid = $row['id'];
+	$username = $row['username'];
+	$f_name = $row['f_name'];
+	$l_name = $row['l_name'];
+	$avatar = $row['avatar'];
+	$created_at = $row['created_at'];
+	$is_admin = $row['is_admin'];
+	$is_active = $row['is_active'];
+	$clear_pass = $row['clear_pass'];
+	$user_2fa_enable = $row['user_2fa_enable'];
+	$user_2fa_secret = $row['user_2fa_secret'];
+	$user_2fa_code = $row['user_2fa_code']; 
+}  
  ?>

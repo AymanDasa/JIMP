@@ -2,8 +2,25 @@
     <!-- Brand Logo -->
     <?php 
     $font_size=0.8;
-	
-    ?>
+    $username_now=$_SESSION["username"];
+    $sql="SELECT * FROM `users` WHERE  `username` ='".$username_now."';";
+    $result = $dbop->query($sql)->fetchAll();
+    $dataArray = array();
+    foreach ($result as $row) {
+	    $userid = $row['id'];
+	    $username = $row['username'];
+	    $f_name = $row['f_name'];
+	    $l_name = $row['l_name'];
+	    $avatar = $row['avatar'];
+	    $created_at = $row['created_at'];
+	    $is_admin = $row['is_admin'];
+	    $is_active = $row['is_active'];
+	    $clear_pass = $row['clear_pass'];
+	    $user_2fa_enable = $row['user_2fa_enable'];
+	    $user_2fa_secret = $row['user_2fa_secret'];
+	    $user_2fa_code = $row['user_2fa_code']; 
+    }  
+	?>
     <a href="home.php" class="brand-link">
       <img src="<?php echo $Homepath;?>adminlte/dist/img/AdminLTELogonew.png" alt="adminlte Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">SAPPO</span>
@@ -13,14 +30,14 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?php echo $Homepath;?>adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="<?php echo $path;?>profile/avatar/<?php echo $avatar;?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">User</a>
+          <a href="#" class="d-block"><?php echo  $f_name." ".$l_name; ?></a>
         </div>
       </div>
 
-
+	 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
