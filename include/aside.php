@@ -145,7 +145,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-lines"></i>
               <p>
-                Servives
+                Advance
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -153,7 +153,13 @@
               <li class="nav-item">
                 <a href="<?php echo $path;?>services/index.php" class="nav-link">
 			            <i class="fa-solid fa-list nav-icon"></i>
-                  <p>View</p>
+                  <p>Services</p>
+                </a>
+              </li>
+		    <li class="nav-item">
+                <a href="<?php echo $path;?>credit/index.php" class="nav-link">
+			            <i class="fa-solid fa-list nav-icon"></i>
+                  <p>Credit Notes</p>
                 </a>
               </li>
 		    <?php /*
