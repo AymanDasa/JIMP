@@ -104,33 +104,33 @@ function MSP($SWeight,$STFactor){
 	// $STFactor for Service Type Factor  
   $STFactor = floatval($STFactor);
 	if ($SWeight<=500){
-		// if Ship Weight < 500
-		$MPrice=(2500)*$STFactor;
-		$cell1=$MPrice;
+		// if Ship Weight < 500 
+		$cell1=(2500)*$STFactor;
 		$cell2="";
 		$cell3="";
-		$cell4=""; }
+		$cell4=""; 
+		$MPrice=$cell1;}
 	if ($SWeight>500 && $SWeight<=3000 ){
 		// if Ship Weight > 500 and Weight < 3000 
 		$cell1=2500*$STFactor;
 		$cell2=(($SWeight-500)*1.15)*$STFactor;
 		$cell3="";
 		$cell4="";
-		$MPrice=2500+$cell2;}
+		$MPrice=$cell1+$cell2;}
 	if ($SWeight>3000 && $SWeight<=15000 ){
 		// if Ship Weight > 3000 and Weight < 15000 
 		$cell1=2500*$STFactor;
 		$cell2=2875*$STFactor;
 		$cell3=(($SWeight-3000)*0.17)*$STFactor;
 		$cell4="";
-		$MPrice=5375+$cell3;}
+		$MPrice=$cell1+$cell2+$cell3;}
 	if ($SWeight>15000 ){
 		// if Ship Weight > 15000  
 		$cell1=2500*$STFactor;
 		$cell2=2875*$STFactor;
 		$cell3=2040*$STFactor;
 		$cell4=(($SWeight-15000)*0.1)*$STFactor;
-		$MPrice=7415+$cell4;}
+		$MPrice=$cell1+$cell2+$cell3+$cell4;}
 		
 	return array(floatval($cell1),floatval($cell2),floatval($cell3),floatval($cell4),floatval($MPrice));	
 	/*
