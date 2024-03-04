@@ -34,7 +34,7 @@ if(isset($_POST['credit_notes'])) {
 
 
 */
-	$reason=stripslashes(htmlentities(strip_tags($_POST['reason'])));
+if(isset($_POST['reason'])){$reason=stripslashes(htmlentities(strip_tags($_POST['reason'])));}else{$reason='';}
 	if(isset($_POST['InvoiceID'])){$InvoiceID = intval($_POST['InvoiceID']);}
 	if(isset($_GET['InvoiceID'])) {$InvoiceID = intval($_GET['InvoiceID']);}
 	$query = "SELECT *  FROM `invoice` WHERE `InvoiceID`=".$InvoiceID." LIMIT 1;"; 
