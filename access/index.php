@@ -110,7 +110,9 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css"> 
 </head>
 <body>
-	
+	<style>
+		.login100-form-title::before {background-color:transparent ;}
+	</style>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
