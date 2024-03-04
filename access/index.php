@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <?php 
 				$page=1;
 				$ROOT='../demo1/dist/'; 
@@ -153,9 +152,13 @@
   <div class="card card-outline card-primary">
 
     <div class="card-header text-center">
-	<img src="../reports/img/logo_s1.png" style="width:200px" > 
-        <div  class="wrap-login100 login100-form-title" style="background-image: url(images/bg-01.jpg);">
-            
+	<img src="../include/img/logo_s1.png" style="width:200px" >
+	<?php 
+	$min = 10;
+	$max = 15;
+	$randomNumber = rand($min, $max); 
+	?> 
+        <div  class="wrap-login100 login100-form-title" style="width:100%; background-image: url(images/bg-<?php echo $randomNumber;?>.jpg);"> 
 		<span class="login100-form-title-1">
               Sign In
             </span>
