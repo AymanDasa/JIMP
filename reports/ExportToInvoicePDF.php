@@ -214,30 +214,18 @@ for($InvoiceID=$FromInvoice;$InvoiceID<=$ToInvoice; $InvoiceID++)
 			$job_user4 =$info_data['job_user4'];
 			$job_user5 =$info_data['job_user5']; 
  
-	$ArrivalDate0 = intval(date('Y', strtotime($ArrivalDateH)));
-	if($ArrivalDate0<1444){$ArrivalDateH='';}  
-	$DepartureDateH0 = intval(date('Y', strtotime($DepartureDateH)));
-	if($DepartureDateH0<1444){$DepartureDateH='';} 
-
-
-		}  
-	
-
-	 
-	// END QR FUNCTION
+		$ArrivalDate0 = intval(date('Y', strtotime($ArrivalDateH)));
+		if($ArrivalDate0<1444){$ArrivalDateH='';}  
+		$DepartureDateH0 = intval(date('Y', strtotime($DepartureDateH)));
+		if($DepartureDateH0<1444){$DepartureDateH='';} 
+	}   
+	  
 	$MovePortName='';
 	if($MovePort1!=''){$MovePortName=$MovePortName.' / '.$MovePort1;}
 	if($MovePort2!=''){$MovePortName=$MovePortName.' / '.$MovePort2;}
 	if($MovePort3!=''){$MovePortName=$MovePortName.' / '.$MovePort3;} 
 	if($ShipWeight<3000){$txtAncor="أقل من  ";}else { $txtAncor="أكثر من ";}
-			$html.=' 
-    
-        	<!-- Define header and footer blocks before your content -->
-		<header>
-			
-			
-		</header> 
-		';
+			$html.=' ';
 /*
   ########################################################################################################## 
   ########################################################################################################## 
@@ -249,55 +237,51 @@ for($InvoiceID=$FromInvoice;$InvoiceID<=$ToInvoice; $InvoiceID++)
   ########################################################################################################## 
   ##########################################################################################################   
 */ 
-$html.='
-		<footer>
-		
-<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
-<tbody>  
-		<tr>
-				
-			<td align=right width=33% " valign="top">
-				   <span lang="ar-SA" style="font-size:9pt">'.$job_user3.'</span>
-			</td> 
-				<td align=right width=34%   valign="top">
-			<span lang="ar-SA" style="font-size:9pt">'.$job_user2.'</span>
-			</td> 
-			<td align=right width=33%   valign="top">
-				<span lang="ar-SA" style="font-size:9pt">'.$job_user1.'</span>
-			</td> 
-		</tr>
-		<tr>
-				
-			<td align=right width=33%  valign="top">
-			<span lang="ar-SA" style="font-size:9pt">'.$name_user3.'</span>
-			</td> 
-			<td align=right width=34%   valign="top">
-			<span lang="ar-SA" style="font-size:9pt">'.$name_user2.'</span>
-			</td> 
-			<td align=right width=33%   valign="top">
-			<span lang="ar-SA" style="font-size:9pt">'.$name_user1.'</span>
-			</td> 
-		</tr>
-		<tr>
-				
-			<td align=right width=33% valign="top"><br> 
-				   <span lang="ar-SA" style="font-size:9pt">التوقيع : ........................</span>
-			</td> 
-			<td align=right width=34%   valign="top"><br>  
-				   <span lang="ar-SA" style="font-size:9pt">التوقيع : ........................</span>
-			</td> 
-			<td align=right width=33%   valign="top"><br> 
-				   <span lang="ar-SA" style="font-size:9pt">التوقيع : ........................</span>
-				   
-			</td> 
-		</tr>
-	 
-</tbody>
-</table> 
-
-<br>
-
-
+$html.=' 
+<footer> 	
+	<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
+		<tbody>  
+				<tr>
+						
+					<td align=right width=33% " valign="top">
+						<span lang="ar-SA" style="font-size:9pt">'.$job_user3.'</span>
+					</td> 
+						<td align=right width=34%   valign="top">
+					<span lang="ar-SA" style="font-size:9pt">'.$job_user2.'</span>
+					</td> 
+					<td align=right width=33%   valign="top">
+						<span lang="ar-SA" style="font-size:9pt">'.$job_user1.'</span>
+					</td> 
+				</tr>
+				<tr>
+						
+					<td align=right width=33%  valign="top">
+					<span lang="ar-SA" style="font-size:9pt">'.$name_user3.'</span>
+					</td> 
+					<td align=right width=34%   valign="top">
+					<span lang="ar-SA" style="font-size:9pt">'.$name_user2.'</span>
+					</td> 
+					<td align=right width=33%   valign="top">
+					<span lang="ar-SA" style="font-size:9pt">'.$name_user1.'</span>
+					</td> 
+				</tr>
+				<tr>
+						
+					<td align=right width=33% valign="top"><br> 
+						<span lang="ar-SA" style="font-size:9pt">التوقيع : ........................</span>
+					</td> 
+					<td align=right width=34%   valign="top"><br>  
+						<span lang="ar-SA" style="font-size:9pt">التوقيع : ........................</span>
+					</td> 
+					<td align=right width=33%   valign="top"><br> 
+						<span lang="ar-SA" style="font-size:9pt">التوقيع : ........................</span>
+						
+					</td> 
+				</tr>
+			
+		</tbody>
+	</table>  
+<br> 
 '; 
 /*
 ########################################################################################################## 
@@ -312,118 +296,116 @@ $html.='
 */ 
 
 $html.=' 
-			<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
-				<tbody> 
-					<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 	
-							
-					<td align=left width=50% " >
-							Below are the details of the aforementioned account with <br> First Saudi Bank   
-						<br>
-						Account name: West Coast Port Services Company
-						<br>
-						C.R number: 4030534211 
-						<br>
-						Account number: 001-379501-242
-						<br>
-						IBAN number: SA7745000000242379501001 
-						<br>
-						Bank name: First Saudi Bank
-						<br>
-						Currency: SAR 
-						<br>
-						SWIFT code: SABBSAR 
-					</td>
-					<!--  <td><img src="invoiceQR.png"></td>  -->
+	<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
+		<tbody> 
+			<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 	
+					
+			<td align=left width=50% " >
+					Below are the details of the aforementioned account with <br> First Saudi Bank   
+				<br>
+				Account name: West Coast Port Services Company
+				<br>
+				C.R number: 4030534211 
+				<br>
+				Account number: 001-379501-242
+				<br>
+				IBAN number: SA7745000000242379501001 
+				<br>
+				Bank name: First Saudi Bank
+				<br>
+				Currency: SAR 
+				<br>
+				SWIFT code: SABBSAR 
+			</td> 
+	
+			<td align=right width=50% ">
 			
-					<td align=right width=50% ">
-					
-					
-					فيما يلي تفاصيل الحساب المذكور مع  <br>   البنك السعودي الأول 
-					<br> 
-						إسم الحساب: شركة ساحل الغربية لخدمات الموانىء  
-						<br> 
-						رقم السجل التجاري: 4030534211 
-						<br>
-						رقم الحساب: 242-379501-001 
-						<br>
-						SA7745000000242379501001 : رقم الايبان
-						<br>
-						إسم البنك: البنك السعودي الأول
-						<br>
-						SABBSAR : رمز سويفت 
-						<br>
-						SAR : العملة
-					</td> 
-					<tr>
-				</tbody>
-			</table> 
-		</footer>
+			
+			فيما يلي تفاصيل الحساب المذكور مع  <br>   البنك السعودي الأول 
+			<br> 
+				إسم الحساب: شركة ساحل الغربية لخدمات الموانىء  
+				<br> 
+				رقم السجل التجاري: 4030534211 
+				<br>
+				رقم الحساب: 242-379501-001 
+				<br>
+				SA7745000000242379501001 : رقم الايبان
+				<br>
+				إسم البنك: البنك السعودي الأول
+				<br>
+				SABBSAR : رمز سويفت 
+				<br>
+				SAR : العملة
+			</td> 
+			<tr>
+		</tbody>
+	</table> 
+</footer>
 
-        <!-- Wrap the content of your PDF inside a main tag -->
+<!-- Wrap the content of your PDF inside a main tag -->
 <main>         
-<table  cellpadding="0" cellspacing="0" border="1" width=100%    class="table0">
-				<tr>		
-				<td align=center width=20%  style="border-right-style:hidden" height="20" valign="middle">
-					<p>	
-						<span lang="ar-SA" style="font-size:8pt">   
-							المملكة العربية السعودية <br>
-							شركة ساحل الغربية لخدمات الموانئ <br>
-							'."0123456789".' تيلفون  	:
-					
-							<br>
-							'."0138574202".' فـاكس  	:
-							
-						
-						</span>
-					</p>
-				</td>
-				<td align=center width=20% valign="middle" style="border-right-style:hidden">
-					<p>
-						<span lang="ar-SA">
-							<img src="img/logo_s1.png" height="50px">
-						</span>
-					</p>
-				</td>
-				<td align=center width=20% height="20" valign="middle" style="border-right-style:hidden">
-						<span lang="ar-SA"> فــــاتــــورة <br>
-						</span>
+	<table  cellpadding="0" cellspacing="0" border="1" width=100%    class="table0">
+		<tr>		
+			<td align=center width=20%  style="border-right-style:hidden" height="20" valign="middle">
+				<p>	
+					<span lang="ar-SA" style="font-size:8pt">   
+						المملكة العربية السعودية <br>
+						شركة ساحل الغربية لخدمات الموانئ <br>
+						'."0123456789".' تيلفون  	:
+				
 						<br>
-						<span dir="ltr" style="font-size:12pt;font-family:DejaVuSansCondensed;color:red;language:en-US;direction:ltr;
-				unicode-bidi:embed" lang="en-US">JD-'.$InvoiceID.' </span> 
-				<br> <span lang="ar-SA" style="font-size:8pt">   VAT : '.$company_vat.' </span>
-				</td>
-				<td align=center width=20% height="65" valign="middle" style="border-right-style:hidden">
-					<p>
-						<span lang="ar-SA">
-							<img src="img/mawani.png" height="55px"> 
+						'."0138574202".' فـاكس  	:
+						
+					
+					</span>
+				</p>
+			</td>
+			<td align=center width=20% valign="middle" style="border-right-style:hidden">
+				<p>
+					<span lang="ar-SA">
+						<img src="img/logo_s1.png" height="50px">
+					</span>
+				</p>
+			</td>
+			<td align=center width=20% height="20" valign="middle" style="border-right-style:hidden">
+					<span lang="ar-SA"> فــــاتــــورة <br>
+					</span>
+					<br>
+					<span dir="ltr" style="font-size:12pt;font-family:DejaVuSansCondensed;color:red;language:en-US;direction:ltr;
+			unicode-bidi:embed" lang="en-US">JD-'.$InvoiceID.' </span> 
+			<br> <span lang="ar-SA" style="font-size:8pt">   VAT : '.$company_vat.' </span>
+			</td>
+			<td align=center width=20% height="65" valign="middle" style="border-right-style:hidden">
+				<p>
+					<span lang="ar-SA">
+						<img src="img/mawani.png" height="55px"> 
+					</span>
+				</p>
+			</td>
+			<td align=center width=20% height="20" valign="middle" >
+				<p> <span style="font-size:8pt" lang="ar-SA">
+										المملكة العربية السعودية 
+										<br>
+										الهيئة العامة للموانئ
+										<br>
+									ميناء جدة الإسلامي
+										<br>
+										www.ports.gov.sa
 						</span>
-					</p>
-				</td>
-				<td align=center width=20% height="20" valign="middle" >
-					<p>
-							<span style="font-size:8pt" lang="ar-SA">
-											المملكة العربية السعودية 
-											<br>
-											الهيئة العامة للموانئ
-											<br>
-										ميناء جدة الإسلامي
-											<br>
-											www.ports.gov.sa
-							</span>
-					</p>
-					</td>
-				</tr>
-			</table> 
+				</p>
+			</td>
+		</tr>
+	</table> 
 <div><span style="font-size:5.0pt">&nbsp;</span></div>
 <table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
 	<tbody>
 		<tr>
 			<td align=right width=24% valign="middle" 	>';
-if(D0D(date("Y/m/d", strtotime($InvoiceDate)))){
-$html.='
-				<span lang="ar-SA" class="labela1">'. date("H:i", strtotime($InvoiceDate)) .'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date("Y/m/d", strtotime($InvoiceDate)).'&nbsp; &nbsp;'.'  م   '.' </span> <br>
-';}
-$html.='			
+				if(D0D(date("Y/m/d", strtotime($InvoiceDate)))){
+				$html.='
+					<span lang="ar-SA" class="labela1">'. date("H:i", strtotime($InvoiceDate)) .'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date("Y/m/d", strtotime($InvoiceDate)).'&nbsp; &nbsp;'.'  م   '.' </span> <br>
+				';}
+				$html.='			
 			</td> 
 			<td align=right width=11% valign="middle" 	>
 				<span lang="ar-SA" class="labela1">&nbsp;&nbsp; التاريخ </span><br>
@@ -437,23 +419,23 @@ $html.='
 				<span lang="ar-SA" class="labela1"> &nbsp;&nbsp;  اسم السفينة  </span><br>
 				<span lang="en-US" class="labele1"> Vessel Name&nbsp;&nbsp;</span>
 			</td>
-		 </tr>
-		 <tr>
-		 	<td align=center  valign="middle"> 
- 				<span lang="en-US" class="labele1">JD - '.$InvoiceID.'</span> 
-			  </td> 
-		 	<td align=right  valign="middle">
+		</tr>
+		<tr>
+			<td align=center  valign="middle"> 
+				<span lang="en-US" class="labele1">JD - '.$InvoiceID.'</span> 
+			</td> 
+			<td align=right  valign="middle">
 				<span lang="ar-SA" class="labela1">&nbsp;&nbsp; رقم النظام </span><br>
 				<span lang="en-US" class="labele1">Sytem No.&nbsp;&nbsp;</span>
 			</td>
-			  <td align=center   height="30pt" valign="middle">
+				<td align=center   height="30pt" valign="middle">
 				<span lang="ar-SA" class="labela1">&nbsp;&nbsp;'.$AgentNameAr.'</span><br>
 				<span lang="en-US" class="labele1">'.$AgentNameEn.'</span> 
-			  </td>	
-			  <td align=center  height="30pt" valign="middle">
-				  <p >  <span lang="en-US" class="labele1">&nbsp;&nbsp;'.$ShipName.'&nbsp;&nbsp;</span></p>
-			  </td>
-		 </tr>
+				</td>	
+				<td align=center  height="30pt" valign="middle">
+					<p >  <span lang="en-US" class="labele1">&nbsp;&nbsp;'.$ShipName.'&nbsp;&nbsp;</span></p>
+			</td>
+		</tr>
 	</tbody>
 </table> 
 <div><span style="font-size:3pt">&nbsp;</span></div>

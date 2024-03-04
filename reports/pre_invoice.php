@@ -176,8 +176,6 @@
 		} 
 	}else{exit();} // exit(); 
 	
-
-	// QR FUNCTION
  
 	// code by meYnot
 	function zatca_base64_tlv_encode($seller_name, $vat_registration_number, $invoice_datetime, $invoice_amount, $invoice_tax_amount)
@@ -193,7 +191,7 @@
 	 
 	$QR= zatca_base64_tlv_encode(  
 	    'Western Coast Port Services','311940454500003',$InvoiceDate,   $TOTAL,   $VAT); 
-	QRcode::png($QR, 'invoiceQR.png','S' ,2, 0);  
+	QRcode::png($QR, '../../phpqrcode/invoiceQR.png','S' ,2, 0);  
 	// END QR FUNCTION
 	$MovePortName='';
 	if($MovePort1!=''){$MovePortName=$MovePortName.' / '.$MovePort1;}
