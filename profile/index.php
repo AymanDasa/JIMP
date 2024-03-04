@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (!is_dir($uploadDirectory)) {
                     mkdir($uploadDirectory, 0777, true);
                 }
-			 $newFilename = $user_id."_".date("ymdHis")."." . $fileExtension; 
+			 $newFilename = $user_id."_".$username."." . $fileExtension; 
 			 $uploadFilePath = $uploadDirectory . $newFilename;
 			 if (file_exists($uploadFilePath)) {
                     unlink($uploadFilePath);
@@ -136,8 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
-	<link href="bootstrap5.3.3/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css"> 
 </head> 
 <style> 
 .img-account-profile {
