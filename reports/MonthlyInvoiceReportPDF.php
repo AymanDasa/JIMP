@@ -34,7 +34,7 @@ $MM=$_GET['MM'];
 $YY=$_GET['YY'];
 $MonthDate = " ".$MM."-".$YY." ";
 $TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
-
+$TotalInvoice_MSericeBathPrice=0;
 $SQL = "SELECT * FROM `invoice` WHERE MONTH(`InvoiceDate`) =".$MM." AND YEAR(`InvoiceDate`) = ".$YY."  AND `Status`= '800';";  
 $invoices = $dbop->query($SQL)->fetchAll();   
 
@@ -327,7 +327,7 @@ $html= '
 						<tbody> 
 						';
 
-
+							
 						foreach ($invoices as $invoice) {   
 							$i=$i+1;  
 							$InvoiceID    = $invoice['InvoiceID'];
@@ -351,15 +351,17 @@ $html= '
 							$MSericeOutPrice    = $invoice['MSericeOutPrice'];  
 							$TotalInvoice_MSericeOutPrice=  $TotalInvoice_MSericeOutPrice +$MSericeOutPrice ; 
 							$MSericeInPrice    	= $invoice['MSericeInPrice'];   
-							$TotalInvoice_MSericeInPrice=  $TotalInvoice_MSericeInPrice +$MSericeInPrice ; 
+							$TotalInvoice_MSericeInPrice=  $TotalInvoice_MSericeInPrice +$MSericeInPrice ;  
+							$MSericeBathPrice    	= $invoice['MSericeBathPrice'];   
+							$TotalInvoice_MSericeBathPrice=  $TotalInvoice_MSericeBathPrice +$MSericeBathPrice ; 
 							$html.= '<tr class="tableDay">
 									<td class="tableright">'.number_format($VAT_TOTAL,2,"."). ' </td>
 									<td class="tableright">'.number_format($VAT,2,"."). ' </td>
 									<td class="tableright">'.number_format($TOTAL,2,".").'  </td>
 									<td class="tableright">'.number_format($SSTOTAL,2,".").'  </td>
-									<td class="tableright">'.number_format($MSTOTAL,2,".").'  </td>
-									<td class="tableright">'.number_format($MSericeAnchoragePrice,2,".").'  </td>
 									<td class="tableright">'.number_format($MovePortPrice,2,".").'  </td>
+									<td class="tableright">'.number_format($MSericeAnchoragePrice,2,".").'  </td> 
+									<td class="tableright">'.number_format($MSericeBathPrice,2,".").'  </td> 
 									<td class="tableright">'.number_format($MSericeOutPrice,2,".").'  </td>
 									<td class="tableright">'.number_format($MSericeInPrice,2,".").'  </td> 
 									<td class="tableleft">'.$ShipName.' </td>  
@@ -367,15 +369,15 @@ $html= '
 								</tr>' ;
 						}
 						$html.= '<tr class="tableDayTotal"   ">
-								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_Table,2,".").' </b></td>
-								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_VAT,2,".").' </b></td>
-								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_TOTAL,2,".").' </b></td>
-								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_SSTOTAL,2,".").' </b></td>
-								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSTOTAL,2,".").' </b></td>
-								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_Anchorage,2,".").' </b></td>
-								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MovePortPrice,2,".").' </b></td>
-								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSericeOutPrice,2,".").' </b></td>
-								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSericeInPrice,2,".").' </b></td>
+								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_Table,2,".").' </td>
+								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_VAT,2,".").' </td>
+								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_TOTAL,2,".").' </td>
+								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_SSTOTAL,2,".").' </td>
+								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MovePortPrice,2,".").' </td>
+								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_Anchorage,2,".").' </td>
+								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSericeBathPrice,2,".").' </td>
+								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSericeOutPrice,2,".").' </td> 
+								<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSericeInPrice,2,".").' </td>
 								<td class="tableDayTotal">  </td> 
 								<td class="invoicecount"> 
 								عدد الفواتير  '.$i.'

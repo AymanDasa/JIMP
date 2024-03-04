@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <?php 
 				$page=1;
 				$ROOT='../demo1/dist/'; 
@@ -94,74 +95,124 @@
 		?>
 <html lang="en">
 <head>
-	<title>Login</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">  
-	<link rel="icon" type="image/png" href="../adminlte/dist/assets/media/logos/favicon.ico"/>  
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"> 
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"> 
-	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css"> 
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"> 	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css"> 
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css"> 
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"> 
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css"> 
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css"> 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>  Sign In </title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../adminlte/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="../../adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../adminlte/dist/css/adminlte.min.css">
 </head>
-<body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
-					<span class="login100-form-title-1">
-						Sign In
-					</span>
-				</div> 
-				<form class="login100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-						<span class="label-input100">Username</span> 
-						<input class="input100" autocomplete="off"type="text" name="username" placeholder="Enter username">
-						<span class="focus-input100"></span>
-					</div>
+<body class="hold-transition login-page">
+<div class="login-box" style="width: 710px;">
+  <!-- /.login-logo -->
+  <style>
+.login100-form-title {
+	width: 100%;
+	position: relative;
+	z-index: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	padding: 70px 15px 74px 15px;
+}
+.wrap-login100 {
+	width: 670px;
+	background: #fff;
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+}
+.login100-form-title-1 {
+	font-family: Poppins-Bold;
+	font-size: 30px;
+	color: #fff;
+	text-transform: uppercase;
+	line-height: 1.2;
+	text-align: center;
+  font-family: Poppins-Regular, sans-serif;
+} 
 
-					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-						<span class="label-input100">Password</span> 
-						<input   class="input100" type="password" name="password" autocomplete="off" placeholder="Enter password">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="flex-sb-m w-full p-b-30">
-				 
+  </style>
+  
  
-						<?php 
-						$pswd = "aymanoz/1234512345";
-					if(!empty($login_err)){
-						echo '<div class="alert alert-danger">' . $login_err . '</div>';
-					}        
-					?>
-					</div>
 
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
+  <div class="card card-outline card-primary">
+
+    <div class="card-header text-center">
+	<img src="../reports/img/logo_s1.png" style="width:200px" > 
+        <div  class="wrap-login100 login100-form-title" style="background-image: url(images/bg-01.jpg);">
+            
+		<span class="login100-form-title-1">
+              Sign In
+            </span>
+				</div> 
+    </div>	
+    <div class="card-body">  
+
+		<div class="row">
+		<div class="col-sm-3"> </div>
+			<div class="col-sm-6">
+				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+					<div class="input-group mb-3">
+					<input class="form-control" autocomplete="off" type="text" name="username" placeholder="username">
+					<div class="input-group-append">
+						<div class="input-group-text">
+						<span class="fas fa-user"></span>
+						</div>
 					</div>
-				</form>
+					</div> 
+					<div class="input-group mb-2">
+					<input type="password" class="form-control" type="password" name="password" autocomplete="off" placeholder="Password">
+					<div class="input-group-append">
+						<div class="input-group-text">
+						<span class="fas fa-lock"></span>
+						</div>
+					</div>
+					</div>
+					<div class="row">
+					<div class="col-8">
+						<div class="icheck-primary">
+						<input type="checkbox" id="remember">
+						<label for="remember">
+							Remember Me
+						</label>
+						</div>
+					</div>
+					<!-- /.col -->
+					<div class="col-4">
+						<button type="submit" class="btn btn-primary btn-block">Sign In</button>
+					</div>
+					<!-- /.col -->
+					</div>
+				</form> 
 			</div>
 		</div>
-	</div>
-	 
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script> 
-	<script src="vendor/animsition/js/animsition.min.js"></script> 
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script> 
-	<script src="vendor/select2/select2.min.js"></script> 
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script> 
-	<script src="vendor/countdowntime/countdowntime.js"></script> 
-	<script src="js/main.js"></script>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
 
+<!-- jQuery -->
+<script src="../../adminlte/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../adminlte/dist/js/adminlte.min.js"></script>
 </body>
 </html>

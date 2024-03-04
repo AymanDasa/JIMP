@@ -167,7 +167,7 @@ if(isset($_POST['FromToInvoice'])){
 								</thead>
 								<tbody class="table_tbody">  
 									<?php 
-										$TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
+										$TotalInvoice_Table=$TotalInvoice_MSericeBathPrice=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
 										$SQL = "SELECT *  FROM `invoice` WHERE `InvoiceID`  BETWEEN ".$FromInvoice." and ".$ToInvoice.";";   
 										 
 										$invoices = $dbop->query($SQL)->fetchAll();   
@@ -194,14 +194,16 @@ if(isset($_POST['FromToInvoice'])){
 											$TotalInvoice_MSericeOutPrice=  $TotalInvoice_MSericeOutPrice +$MSericeOutPrice ; 
 											$MSericeInPrice    	= $invoice['MSericeInPrice'];   
 											$TotalInvoice_MSericeInPrice=  $TotalInvoice_MSericeInPrice +$MSericeInPrice ; 
+											$MSericeBathPrice    	= $invoice['MSericeBathPrice'];   
+											$TotalInvoice_MSericeBathPrice=  $TotalInvoice_MSericeBathPrice +$MSericeBathPrice ; 
 											echo '<tr>
 												<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td>
 												<td style="text-align: right;">'.number_format($VAT,2,"."). ' </td>
 												<td style="text-align: right;">'.number_format($TOTAL,2,".").'  </td>
 												<td style="text-align: right;">'.number_format($SSTOTAL,2,".").'  </td>
-												<td style="text-align: right;">'.number_format($MSTOTAL,2,".").'  </td>
-												<td style="text-align: right;">'.number_format($MSericeAnchoragePrice,2,".").'  </td>
 												<td style="text-align: right;">'.number_format($MovePortPrice,2,".").'  </td>
+												<td style="text-align: right;">'.number_format($MSericeAnchoragePrice,2,".").'  </td> 
+												<td style="text-align: right;">'.number_format($MSericeBathPrice,2,".").'  </td> 
 												<td style="text-align: right;">'.number_format($MSericeOutPrice,2,".").'  </td>
 												<td style="text-align: right;">'.number_format($MSericeInPrice,2,".").'  </td> 
 												<td>'.$ShipName.' </td>  
@@ -212,9 +214,9 @@ if(isset($_POST['FromToInvoice'])){
 												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_VAT,2,".").' </td>
 												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_TOTAL,2,".").' </td>
 												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_SSTOTAL,2,".").' </td>
-												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSTOTAL,2,".").' </td>
-												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Anchorage,2,".").' </td>
 												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MovePortPrice,2,".").' </td>
+												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Anchorage,2,".").' </td>
+												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeBathPrice,2,".").' </td>
 												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeOutPrice,2,".").' </td> 
 												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeInPrice,2,".").' </td>
 												<td>  </td> 

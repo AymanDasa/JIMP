@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php   
+<?php    
 			$dbname = 'data';
 			Require_once( "C:\\wow\\password\\config.php"); 
 			Require_once("../include/auth.php"); 

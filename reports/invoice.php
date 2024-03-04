@@ -193,7 +193,7 @@
 	 
 	$QR= zatca_base64_tlv_encode(  
 	    'Western Coast Port Services','311940454500003',$InvoiceDate,   $TOTAL,   $VAT); 
-	QRcode::png($QR, 'invoiceQR.png','S' ,2, 0);  
+	QRcode::png($QR, '../../phpqrcode/invoiceQR.png','S' ,2, 0);  
 	// END QR FUNCTION
 	$MovePortName='';
 	if($MovePort1!=''){$MovePortName=$MovePortName.' / '.$MovePort1;}
@@ -856,15 +856,15 @@ $html.='
     </body>
 </html>
 '; 
- 
+	
 	$p = $Arabic->arIdentify($html);
 	for ($i = count($p)-1; $i >= 0; $i-=2) {
 		$utf8ar = $Arabic->utf8Glyphs(substr($html, $p[$i-1], $p[$i] - $p[$i-1]));
 		$html   = substr_replace($html, $utf8ar, $p[$i-1], $p[$i] - $p[$i-1]);
 	} 
-			  
+	$invID = str_pad($InvoiceID, 6, '0', STR_PAD_LEFT);		  
 	$Iday = date("Ymd", strtotime($InvoiceDate));
-	$filename = strval($InvoiceID)."_".strval($Iday);			
+	$filename = "JD-".strval($invID);			
 	$dompdf->loadHtml($html);
 	$dompdf->setPaper('A4', 'portrait');
 	$dompdf->render();
