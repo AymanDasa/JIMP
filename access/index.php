@@ -35,18 +35,18 @@
 							// Prepare a select statement
 		
 							
-							$sql="SELECT * FROM users WHERE username = '".$username."'";
+							$sql="SELECT * FROM users WHERE username = '".$username."' LIMIT 1";
 							$accounts  = $dbop->query($sql )->fetchArray();
-							 
-							$id =$accounts['id'] ;
-							$username =$accounts['username'] ;
-							$hashed_password =$accounts['password'] ;
-							$is_admin =$accounts['is_admin'] ;
-							$is_active =$accounts['is_active'] ; 
-							$maxList =$accounts['max_list'] ;  
-							$f_name = $accounts["f_name"] ; 
-							$l_name = $accounts["l_name"] ;  
-							
+							 foreach($accounts  as $account){
+							$id =$account['id'] ;
+							$username =$account['username'] ;
+							$hashed_password =$account['password'] ;
+							$is_admin =$account['is_admin'] ;
+							$is_active =$account['is_active'] ; 
+							$maxList =$account['max_list'] ;  
+							$f_name = $account["f_name"] ; 
+							$l_name = $account["l_name"] ;  
+						}
 							 
 							if( isset($id) ){ 
 								// Attempt to execute the prepared statement  
