@@ -85,7 +85,7 @@ $IsActive = 0 ;
 								<div class="col-4"> 
 									<div class="form-group">
 										<label>From #</label> 
-											<input value="820055"  name="InvoiceID" type="text" class="form-control" autocomplete="off" />    
+											<input    name="InvoiceID" type="text" class="form-control" autocomplete="off" />    
 									</div> 
 									<button type="submit" class="btn btn-info float-right">Genrate</button>
 								</div>

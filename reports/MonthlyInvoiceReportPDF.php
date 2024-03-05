@@ -30,8 +30,9 @@ function E2A($myText)
 	 
 $html= '';
 $i=0; 
-$MM=$_GET['MM'];
-$YY=$_GET['YY'];
+$string=strval($_GET['MMDD']); 
+$MM = intval(substr($string, 0, 2));
+$YY = intval(substr($string, 2));
 $MonthDate = " ".$MM."-".$YY." ";
 $TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
 $TotalInvoice_MSericeBathPrice=0;
