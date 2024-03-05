@@ -8,10 +8,7 @@ $SAPPOname =  $table_body= '';
 $IsActive = 0 ;	  
 $TotalInvoiceTable=0;
  
-if(isset($_POST['InvoiceDate'])){ 
-	$InvoiceDate= date_format(date_create($_POST['InvoiceDate']),"Y-m-d" ); 
-	$LinkPDF='<a href="DailyInvoiceReportPDF.php?InvoiceDate='.$InvoiceDate.'">'; 
-	 } 
+
 ?> 
 <html lang="en">
 <head>
@@ -86,8 +83,19 @@ if(isset($_POST['InvoiceDate'])){
 						<div class="card-header">
 							<h3 class="card-title">Result</h3>
 							<div class="card-tools">  
-								<?php echo $LinkPDF;?> 
-								<button type="button" class="btn btn-success" > PDF </button>  </a>
+	<?php  
+	if(isset($_POST['InvoiceDate'])){ 
+		$InvoiceDate= date_format(date_create($_POST['InvoiceDate']),"Y-m-d" );  
+			}  else{echo "Error please select Date";}
+			?> 
+								 
+
+<a href="DailyInvoiceReportXLS.php?InvoiceDate=<?php echo $InvoiceDate;?>" class="btn btn-app">  <i class="fas fa-file-excel"></i>  XLS  </a>								
+<a href="DailyInvoiceReportPDF.php?InvoiceDate=<?php echo $InvoiceDate;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
+ 							
+  
+
+
 								<button type="button" class="btn btn-tool" data-card-widget="collapse">
 								<i class="fas fa-plus"></i>
 								</button> 
