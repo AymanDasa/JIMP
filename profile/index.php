@@ -257,6 +257,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<script src="<?php echo $Homepath;?>adminlte/dist/js/adminlte.min.js"></script>  
 	<script src="../adminlte/plugins/jquery/jquery-1.10.2.min.js"></script>
 	<script src="bootstrap5.3.3/js/bootstrap.bundle.min.js"></script> 
-	<script src="<?php echo $Homepath;?>include/js/menu.js"></script>
+	<script src="<?php echo $path;?>include/js/menu.js"></script>
 </body>
 </html>

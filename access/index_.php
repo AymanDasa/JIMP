@@ -163,7 +163,7 @@
 	<script src="vendor/daterangepicker/moment.min.js"></script>
 	<script src="vendor/daterangepicker/daterangepicker.js"></script> 
 	<script src="vendor/countdowntime/countdowntime.js"></script> 
-	<script src="js/main.js"></script>
+	<script src="../include/js/menu.js"></script>
 
 </body>
 </html>

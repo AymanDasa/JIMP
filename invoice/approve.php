@@ -138,7 +138,7 @@ $alog_note = strval("Approved:".$maxID."   " );
 	<script src="<?php echo $Homepath;?>adminlte/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 
-<script src="<?php echo $Homepath;?>include/js/menu.js"></script>
+<script src="<?php echo $path;?>include/js/menu.js"></script>
 <?php echo $MyScript;?>
 </body>
 </html>

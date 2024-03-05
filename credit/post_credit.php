@@ -545,7 +545,7 @@ function approved() {
 </script>
  
       
-<script src="<?php echo $Homepath;?>include/js/menu.js"></script>
+<script src="<?php echo $path;?>include/js/menu.js"></script>
  
 </body>
 </html>
