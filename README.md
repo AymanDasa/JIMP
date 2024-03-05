@@ -7,13 +7,17 @@ Follow these step-by-step instructions to set up the project environment.
 Download the latest version of XAMPP from [XAMPP](https://sourceforge.net/projects/xampp/files/).
 Ensure to follow the installation instructions for your operating system.
 
-## 2. Composer 
+## 2.1 Composer 
 ### Download and install Composer
 Download Composer from [Composer](https://getcomposer.org/download/).
 Follow the installation instructions for your operating system.
 Composer is a dependency manager for PHP, and it is necessary for managing project dependencies.
 
-
+## 2.2 php Spread Sheet
+open cmd on  X:\xampp\hdocs\
+```bash
+composer require phpoffice/phpspreadsheet 
+```
 
  
 
