@@ -30,7 +30,7 @@ function E2A($myText)
 	 
 $html= '';
 $i=0; 
-$string=strval($_GET['MMDD']); 
+$string=strval($_GET['YM']); 
 $MM = intval(substr($string, 0, 2));
 $YY = intval(substr($string, 2));
 $MonthDate = " ".$MM."-".$YY." ";

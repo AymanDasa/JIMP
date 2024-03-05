@@ -90,13 +90,16 @@ if(isset($_POST['InvoiceMonth'])){
 						<div class="card-header">
 							<h3 class="card-title">Result</h3>
 							<div class="card-tools">  
-								 <form action="MonthlyInvoiceReportPDF.php" method="GET">
-									<input type="hidden" name="MM" value="<?php echo $MM;?>">
-									<input type="hidden" name="YY" value="<?php echo $YY;?>">
-									<button type="submit" class="btn btn-success" > PDF </button>   
+							
+
+								    
+ <a href="MonthlyInvoiceReportXLS.php?YM=<?php echo $MM.$YY;?>" class="btn btn-app">  <i class="fas fa-file-excel"></i>  XLS  </a>								
+ <a href="MonthlyInvoiceReportPDF.php?YM=<?php echo $MM.$YY;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
+ 							
+  
 									<button type="button" class="btn btn-tool" data-card-widget="collapse">
 									<i class="fas fa-plus"></i> </button> 
-								</form>
+						 
 							</div>
 						</div>  
 						<div class="card-body">     
