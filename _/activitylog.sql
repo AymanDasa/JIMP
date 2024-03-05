@@ -3,13 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2024 at 10:22 PM
+-- Generation Time: Mar 05, 2024 at 04:05 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+03:00";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -38,6 +38,13 @@ CREATE TABLE `activitylog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
+-- Dumping data for table `activitylog`
+--
+
+INSERT INTO `activitylog` (`alog_id`, `alog_time`, `alog_section`, `alog_no`, `alog_description`, `alog_user`, `alog_note`) VALUES
+(54873, '0000-00-00 00:00:00', 'agent', 'شركة التكامل الدولية للملاحة', 'Add  Agent', 'aymanoz', 'AgentNameAr:شركة التكامل الدولية للملاحة + AgentCR:403022= AgentNameEn:AL TAKAMUL MARITIME CO. LTD    ');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -55,7 +62,7 @@ ALTER TABLE `activitylog`
 -- AUTO_INCREMENT for table `activitylog`
 --
 ALTER TABLE `activitylog`
-  MODIFY `alog_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54873;
+  MODIFY `alog_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55117;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
