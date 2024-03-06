@@ -7,6 +7,11 @@
 	Require_once( "C:\\wow\\password\\config.php"); 
 	include("include/auth.php");
 	include("include/head.php"); 
+	
+	
+	
+	
+	
 ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

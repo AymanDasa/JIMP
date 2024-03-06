@@ -20,9 +20,20 @@
 	    $user_2fa_secret = $row['user_2fa_secret'];
 	    $user_2fa_code = $row['user_2fa_code']; 
     }  
+	
+$info_sql = "SELECT `name`, `value` FROM `info`";
+		$info_result = $dbop->query($info_sql)->fetchAll();   
+		$info_data = array();
+		$info_data = array_column($info_result, 'value', 'name'); 
+			$companyLogo =$info_data['companyLogo'];   
+			$companyXLogo =$info_data['companyXLogo']; 
+			$companySlog =$info_data['companySlog'];   
+			$info_data =[0];
+			$info_result=[0];  
+if($page_level==0){$xroot='';}else{$xroot='../';}
 	?>
-    <a href="home.php" class="brand-link">
-      <img src="../include/img/<?php echo $companySlog;?>_xlogo_s1.png" alt="adminlte Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="index.php" class="brand-link">
+      <img src="<?php echo $xroot;?>include/img/<?php echo $companyXLogo;?>" alt="<?php echo $companySlog;?>" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light"><?php echo $companySlog;?></span>
     </a>
     <!-- Sidebar -->
@@ -30,7 +41,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?php echo $path;?>profile/avatar/<?php echo $avatar;?>" class="img-circle elevation-2" alt="User Image">
+          <img src="<?php echo $xroot;?>profile/avatar/<?php echo $avatar;?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><?php echo  $f_name." ".$l_name; ?></a>

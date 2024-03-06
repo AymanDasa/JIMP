@@ -367,46 +367,9 @@ $html.='
 $html.=' 
 			<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
 				<tbody> 
-					<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 	
-							
-					<td align=left width=50% " >
-							Below are the details of the aforementioned account with <br> First Saudi Bank   
-						<br>
-						Account name: West Coast Port Services Company
-						<br>
-						C.R number: 4030534211 
-						<br>
-						Account number: 001-379501-242
-						<br>
-						IBAN number: SA7745000000242379501001 
-						<br>
-						Bank name: First Saudi Bank
-						<br>
-						Currency: SAR 
-						<br>
-						SWIFT code: SABBSAR 
-					</td>
-					<!--  <td><img src="invoiceQR.png"></td>  -->
-			
-					<td align=right width=50% ">
-					
-					
-					فيما يلي تفاصيل الحساب المذكور مع  <br>   البنك السعودي الأول 
-					<br> 
-						إسم الحساب: شركة ساحل الغربية لخدمات الموانىء  
-						<br> 
-						رقم السجل التجاري: 4030534211 
-						<br>
-						رقم الحساب: 242-379501-001 
-						<br>
-						SA7745000000242379501001 : رقم الايبان
-						<br>
-						إسم البنك: البنك السعودي الأول
-						<br>
-						SABBSAR : رمز سويفت 
-						<br>
-						SAR : العملة
-					</td> 
+					<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 	 
+					<td align=left width=50%">'.$footerEN.'</td>  
+					<td align=right width=50%">'.$footerAR.'</td> 
 					<tr>
 				</tbody>
 			</table> 

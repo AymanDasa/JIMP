@@ -89,6 +89,7 @@ include_once __DIR__.'/2fa/src/GoogleQrUrl.php';
   <link rel="stylesheet" href="../../adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../adminlte/dist/css/adminlte.min.css">
+   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 <style>
    .imgauth{ 

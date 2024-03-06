@@ -367,12 +367,8 @@ $html.='
 			<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
 				<tbody> 
 					<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 	 	
-						<td align=left width=50% " >
-							'.$footerEN.'
-						</td>  
-						<td align=right width=50% "> 
-						 '.$footerAR.'
-						</td> 
+						<td align=left width=50%">'.$footerEN.'</td>  
+						<td align=right width=50%">'.$footerAR.'</td> 
 					<tr>
 				</tbody>
 			</table> 
