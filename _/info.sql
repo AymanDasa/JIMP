@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2024 at 06:45 AM
+-- Generation Time: Mar 06, 2024 at 01:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,7 +50,7 @@ INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES
 (9, 'name_user5', NULL, 'text'),
 (10, 'job_user5', NULL, 'text'),
 (11, 'IBAN', 'SA7745000000242379501001', 'text'),
-(12, 'invoiceStart', 'JD-', 'text'),
+(12, 'invoiceStart', 'JBI-', 'text'),
 (13, 'com_fax', NULL, 'text'),
 (14, 'vat', '15', 'text'),
 (15, 'AdressMamwani', '<span style=\"font-size:8pt\" lang=\"ar-SA\">\nالمملكة العربية السعودية \n<br>\nالهيئة العامة للموانئ\n<br>\nميناء جدة الإسلامي\n<br>\nwww.ports.gov.sa\n</span>', 'textarea '),
@@ -60,9 +60,12 @@ INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES
 (19, 'mawniLogo', 'mawani.png', 'text'),
 (20, 'companyLogo', 'ECPO_logo_s1.png', 'text'),
 (21, 'company_vat', '311940454500003', 'text'),
-(22, 'port_name', 'ميناء جدة الإسلامي', 'text'),
+(22, 'port_name', 'ميناء الجبيل الصناعي', 'text'),
 (23, 'companyXLogo', 'ECPO_xlogo_s1.png', 'text'),
-(24, 'companySlog', 'ECPO', 'text');
+(24, 'companySlog', 'ECPO', 'text'),
+(25, 'LIMIT', '500', 'text'),
+(26, 'CompanyName', 'شركة ساحل الشرق لخدمات الموانئ', 'text'),
+(27, 'CompanyNam', 'شركة ساحل الشرق لخدمات الموانئ', 'text');
 
 --
 -- Indexes for dumped tables
@@ -82,7 +85,7 @@ ALTER TABLE `info`
 -- AUTO_INCREMENT for table `info`
 --
 ALTER TABLE `info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
