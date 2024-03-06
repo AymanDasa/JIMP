@@ -213,7 +213,7 @@ else{
                 <div class="card-header">
                   <div class="row mb-2">
                       <div class="col-sm-6">
-                          <h1>Invoice JD-<?php echo $InvoiceID ;?></h1>
+                          <h1>Invoice  <?php echo $invoiceStart.$InvoiceID ;?></h1>
                       </div>
                       <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
@@ -227,11 +227,9 @@ else{
                     </div>
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
-                        <a href="add.php">
-                          <button type="button" class="btn btn-success" >
-                            Add new invoice
-                          </button> 
-                        </a> 
+<a href="add.php" class="btn btn-app">  <i class="fas fa-plus"></i>  Add  </a>															
+<a href="../reports/pre_invoice.php?id=<?php echo $maxID;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
+ 	
                       </ol>
                     </div>
                   </div> 
@@ -268,7 +266,7 @@ else{
               <!-- info row -->
               <div class="row invoice-info">
                 <div class="col-sm-4 invoice-col">
-                    <b>Invoice #JD-<?php echo $InvoiceID;?></b><br> 
+                    <b>Invoice #<?php echo $invoiceStart.$InvoiceID ;?></b><br> 
                     <b>Vessel Name:<span class="tab"></span></b>  <?php echo $ShipName;?> <br> 
                     <b>Araival Date:<span class="tab"></span></b><?php echo $ArrivalDate;?><br>
                     <b>Departure Date:<span class="tab"></span></b> <?php echo $DepartureDate;?><br>

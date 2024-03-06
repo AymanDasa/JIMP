@@ -249,7 +249,8 @@ foreach ($SSCountQuerys as $SSCountQuery) {
 			<div class="col-md-12"> 
 				<!-- general form elements disabled  action="test.php"  --> 
 				<form action="post_update.php" method="POST"> 
-                <input type="hidden" name="maxID" value="<?=$invoiceID;?>">
+					<?php $InvoiceID=intval($_GET['id']);?>
+                <input type="hidden" name="maxID" value="<?php echo intval($InvoiceID);?>">  
 
 
 

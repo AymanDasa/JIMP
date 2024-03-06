@@ -94,4 +94,39 @@ foreach ($result as $row) {
 	$user_2fa_secret = $row['user_2fa_secret'];
 	$user_2fa_code = $row['user_2fa_code']; 
 }  
+
+$info_sql = "SELECT `name`, `value` FROM `info`";
+		$info_result = $dbop->query($info_sql)->fetchAll();   
+		$info_data = array();
+		$info_data = array_column($info_result, 'value', 'name');
+			$company_vat = $info_data['company_vat'];
+			$name_user1=$info_data['name_user1'];
+			$name_user2=$info_data['name_user2'];
+			$name_user3=$info_data['name_user3'];
+			$name_user4=$info_data['name_user4'];
+			$name_user5=$info_data['name_user5'];
+			$job_user1=$info_data['job_user1'];
+			$job_user2=$info_data['job_user2'];
+			$job_user3=$info_data['job_user3'];
+			$job_user4=$info_data['job_user4'];
+			$job_user5=$info_data['job_user5'];
+			
+			$IBAN =$info_data['IBAN'];
+			$invoiceStart =$info_data['invoiceStart']; // JB-
+			$com_fax =$info_data['com_fax'];
+			$vat =$info_data['vat'];
+			$AdressMamwani =$info_data['AdressMamwani']; 
+			$AdressCompany =$info_data['AdressCompany']; 
+			$footerAR =$info_data['footerAR']; 
+			$footerEN =$info_data['footerEN']; 
+			$mawniLogo =$info_data['mawniLogo']; 
+			$companyLogo =$info_data['companyLogo']; 
+			$company_vat =$info_data['company_vat']; 
+			$port_name =$info_data['port_name']; 
+			$companyXLogo =$info_data['companyXLogo']; 
+			$companySlog =$info_data['companySlog'];  
+			$LIMIT =$info_data['LIMIT'];  
+			$CompanyName =$info_data['CompanyName'];  
+			$info_data =[0];
+			$info_result=[0];  
  ?>

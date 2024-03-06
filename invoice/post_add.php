@@ -548,13 +548,17 @@ $VAT_TOTAL=floatval($VAT+$TOTAL);
     if($debug){echo "<b>TOTAL :</b>".$TOTAL."<br>";}
     if($debug){echo "<b>VAT :</b>".$VAT."<br>";}
     if($debug){echo "<b>G TOTAL:</b>".$VAT_TOTAL."<br>";}
-
+	
+		
+	// only ancorage services 
+	if((intval($MSericeInPrice)+intval($MSericeOutPrice)+intval($MSericeBathPrice))==0){
+		$PeriodDays='';
+	}
 #########################################################################
 #########################################################################
 ###########################  SQL INSERT #################################
 #########################################################################
 #########################################################################
-
 
 
 $SQL_INSERT="INSERT INTO `invoice` 
@@ -883,11 +887,13 @@ $dbop->query($SQL_activitylog);
                     </div>
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
-                        <a href="add.php">
-                          <button type="button" class="btn btn-success" >
-                            Add new invoice
-                          </button> 
-                        </a> 
+                        
+                          
+						  
+<a href="add.php" class="btn btn-app">  <i class="fas fa-plus"></i>  Add  </a>								
+<a href="edit.php?id=<?php echo $maxID;?>" class="btn btn-app">  <i class="fas fa-pen-to-square"></i>  Edit  </a>								
+<a href="../reports/pre_invoice.php?id=<?php echo $maxID;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
+ 		 
                       </ol>
                     </div>
                   </div> 
@@ -907,13 +913,9 @@ $dbop->query($SQL_activitylog);
                 <div class="col-sm-10"> 
                 <h5> Note:</h5> The invoice details below are intended for review. Kindly approve before printing becomes available.
                 </div>
-                <div class="col-sm-2">   
-			   	<a class="btn btn-app bg-warning" href="edit.php?id=<?php echo $maxID;?>">
-                  		<i class="fas fa-pen-to-square"></i>  
-                	</a>    
-			   	<a class="btn btn-app bg-secondary"  href="../reports/pre_invoice.php?id=<?php echo $maxID;?>">
-                  		<i class="fas fa-file-pdf"></i>  
-                	</a>  
+                <div class="col-sm-2">      
+					
+
                 </div>
 
               </div> 

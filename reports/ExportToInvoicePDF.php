@@ -198,21 +198,7 @@ for($InvoiceID=$FromInvoice;$InvoiceID<=$ToInvoice; $InvoiceID++)
 		  $OracleCode=$invoicev['OracleCode']; 
 		  
 		  
-		$info_sql = "SELECT `name`, `value` FROM `info`";
-		$info_result = $dbop->query($info_sql)->fetchAll();   
-		$info_data = array();
-		$info_data = array_column($info_result, 'value', 'name');
-			$company_vat = $info_data['company_vat'];
-			$name_user1=$info_data['name_user1'];
-			$name_user2=$info_data['name_user2'];
-			$name_user3=$info_data['name_user3'];
-			$name_user4=$info_data['name_user4'];
-			$name_user5=$info_data['name_user5'];
-			$job_user1 =$info_data['job_user1'];
-			$job_user2 =$info_data['job_user2'];
-			$job_user3 =$info_data['job_user3'];
-			$job_user4 =$info_data['job_user4'];
-			$job_user5 =$info_data['job_user5']; 
+		
  
 		$ArrivalDate0 = intval(date('Y', strtotime($ArrivalDateH)));
 		if($ArrivalDate0<1444){$ArrivalDateH='';}  
@@ -298,44 +284,12 @@ $html.='
 $html.=' 
 	<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
 		<tbody> 
-			<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 	
-					
+			<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 
 			<td align=left width=50% " >
-					Below are the details of the aforementioned account with <br> First Saudi Bank   
-				<br>
-				Account name: West Coast Port Services Company
-				<br>
-				C.R number: 4030534211 
-				<br>
-				Account number: 001-379501-242
-				<br>
-				IBAN number: SA7745000000242379501001 
-				<br>
-				Bank name: First Saudi Bank
-				<br>
-				Currency: SAR 
-				<br>
-				SWIFT code: SABBSAR 
-			</td> 
-	
-			<td align=right width=50% ">
-			
-			
-			فيما يلي تفاصيل الحساب المذكور مع  <br>   البنك السعودي الأول 
-			<br> 
-				إسم الحساب: شركة ساحل الغربية لخدمات الموانىء  
-				<br> 
-				رقم السجل التجاري: 4030534211 
-				<br>
-				رقم الحساب: 242-379501-001 
-				<br>
-				SA7745000000242379501001 : رقم الايبان
-				<br>
-				إسم البنك: البنك السعودي الأول
-				<br>
-				SABBSAR : رمز سويفت 
-				<br>
-				SAR : العملة
+				'.$footerEN.'
+			</td>  
+			<td align=right width=50% "> 
+			 '.$footerAR.'
 			</td> 
 			<tr>
 		</tbody>
@@ -350,7 +304,7 @@ $html.='
 				<p>	
 					<span lang="ar-SA" style="font-size:8pt">   
 						المملكة العربية السعودية <br>
-						شركة ساحل الغربية لخدمات الموانئ <br>
+						'.$CompanyName.' <br>
 						'."0123456789".' تيلفون  	:
 				
 						<br>
@@ -363,7 +317,7 @@ $html.='
 			<td align=center width=20% valign="middle" style="border-right-style:hidden">
 				<p>
 					<span lang="ar-SA">
-						<img src="img/logo_s1.png" height="50px">
+						<img src="img/'.$companyLogo.'" height="50px">
 					</span>
 				</p>
 			</td>
@@ -372,7 +326,7 @@ $html.='
 					</span>
 					<br>
 					<span dir="ltr" style="font-size:12pt;font-family:DejaVuSansCondensed;color:red;language:en-US;direction:ltr;
-			unicode-bidi:embed" lang="en-US">JD-'.$InvoiceID.' </span> 
+			unicode-bidi:embed" lang="en-US">'.$invoiceStart.$InvoiceID.' </span> 
 			<br> <span lang="ar-SA" style="font-size:8pt">   VAT : '.$company_vat.' </span>
 			</td>
 			<td align=center width=20% height="65" valign="middle" style="border-right-style:hidden">
@@ -388,7 +342,7 @@ $html.='
 										<br>
 										الهيئة العامة للموانئ
 										<br>
-									ميناء جدة الإسلامي
+										'.$port_name.'
 										<br>
 										www.ports.gov.sa
 						</span>

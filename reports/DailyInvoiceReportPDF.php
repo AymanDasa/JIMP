@@ -285,7 +285,7 @@ $html= '
 								<p> 
 									<span lang="ar-SA">   
 										المملكة العربية السعودية <br>
-										شركة الزامل للخدمات البحرية <br>
+										'.$CompanyName.' <br>
 										<span lang="ar-SA">هـاتف :8696300 013</span>
 										<br>
 										<span lang="ar-SA">فـاكس :8574202 013</span>      
@@ -294,8 +294,8 @@ $html= '
 								</td>
 								<td style="text-align:center; width:20%  ; height:20px ;">
 								<p>
-									<span lang="ar-SA"><br>
-										<img src="img/logo_s1.png" height="60px">
+									<span lang="ar-SA"><br> 
+										<img src="img/'.$companyLogo.'" height="70px">  
 									</span>
 								</p>
 								</td>
@@ -320,7 +320,7 @@ $html= '
 										  <br>
 										الهيئة العامة للموانئ
 										<br>
-									 ميناء جدة الإسلامي
+										'.$port_name.' 
 										<br>
 										www.ports.gov.sa
 									</span>

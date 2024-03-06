@@ -60,11 +60,7 @@ $IsActive = 0 ;
               <div class="card-header">
                 <h3 class="card-title">List of all Invoices</h3>
                   <div class="card-tools"> 
-                    <a href="add.php">
-                      <button type="button" class="btn btn-success" >
-                        Add new invoice
-                      </button> 
-                    </a>
+                    <a href="add.php" class="btn btn-app">  <i class="fas fa-plus"></i>  Add  </a>	
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                       <i class="fas fa-plus"></i>
                     </button> 
@@ -86,7 +82,8 @@ $IsActive = 0 ;
                   </thead>
                   <tbody>
                   <?php 
-                      $invoices = $dbop->query('SELECT * FROM `invoice` ORDER BY  `InvoiceID` DESC ')->fetchAll();
+					$SQL='SELECT * FROM `invoice` ORDER BY  `InvoiceID` DESC LIMIT '.$LIMIT.';';
+                      $invoices = $dbop->query($SQL)->fetchAll();
                       foreach ($invoices as $invoice) { 
                           
                           $InvoiceDate  = $invoice['InvoiceDate'];

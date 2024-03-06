@@ -151,8 +151,8 @@
 
   <div class="card card-outline card-primary">
 
-    <div class="card-header text-center">
-	<img src="../include/img/logo_s1.png" style="width:200px" >
+    <div class="card-header text-center"> 
+	<img src="../include/img/<?php echo $companySlog;?>_logo_s1.png" style="width:200px" >
 	<?php 
 	$min = 10;
 	$max = 15;

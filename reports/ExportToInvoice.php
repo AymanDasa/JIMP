@@ -111,7 +111,7 @@ if(isset($_POST['FromToInvoice'])){
 										<td style="text-align:center; width:20%  ; height:20px ;">
 										<p>
 											<span lang="ar-SA"><br>
-												<img src="img/logo_s1.png" height="40px">
+												<img src="../include/img/<?php echo $companySlog;?>_logo_s1.png" height="70px">
 											</span>
 										</p>
 										</td>
@@ -139,7 +139,8 @@ if(isset($_POST['FromToInvoice'])){
 											<span lang="ar-SA">
 															المملكة العربية السعودية<br>
 															المؤسسة العامة للموانئ<br>
-															ميناء الملك عبد العزيز / الدمام<br>
+															<?php echo $port_name;?>
+															<br>
 															www.ports.gov.sa
 											</span>
 										</p>

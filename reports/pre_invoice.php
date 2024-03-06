@@ -176,6 +176,8 @@
 		} 
 	}else{exit();} // exit(); 
 	
+
+	// QR FUNCTION
  
 	// code by meYnot
 	function zatca_base64_tlv_encode($seller_name, $vat_registration_number, $invoice_datetime, $invoice_amount, $invoice_tax_amount)
@@ -253,7 +255,7 @@
 				<td align=center width=20% valign="middle" style="border-right-style:hidden">
 					<p>
 						<span lang="ar-SA">
-							<img src="img/logo_s1.png" height="50px">
+							<img src="img/'.$companyLogo.'" height="50px">
 						</span>
 					</p>
 				</td>
@@ -854,15 +856,15 @@ $html.='
     </body>
 </html>
 '; 
- 
+	
 	$p = $Arabic->arIdentify($html);
 	for ($i = count($p)-1; $i >= 0; $i-=2) {
 		$utf8ar = $Arabic->utf8Glyphs(substr($html, $p[$i-1], $p[$i] - $p[$i-1]));
 		$html   = substr_replace($html, $utf8ar, $p[$i-1], $p[$i] - $p[$i-1]);
 	} 
-			  
+	$invID = str_pad($InvoiceID, 6, '0', STR_PAD_LEFT);		  
 	$Iday = date("Ymd", strtotime($InvoiceDate));
-	$filename = strval($InvoiceID)."_".strval($Iday);			
+	$filename = $invoiceStart.strval($invID);			
 	$dompdf->loadHtml($html);
 	$dompdf->setPaper('A4', 'portrait');
 	$dompdf->render();

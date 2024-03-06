@@ -544,7 +544,11 @@ $VAT_TOTAL=floatval($VAT+$TOTAL);
     if($debug){echo "<b>TOTAL :</b>".$TOTAL."<br>";}
     if($debug){echo "<b>VAT :</b>".$VAT."<br>";}
     if($debug){echo "<b>G TOTAL:</b>".$VAT_TOTAL."<br>";}
-
+	
+	// only ancorage services 
+		if((intval($MSericeInPrice)+intval($MSericeOutPrice)+intval($MSericeBathPrice))==0){
+			$PeriodDays='';
+		}
 #########################################################################
 #########################################################################
 ###########################  SQL INSERT #################################
@@ -745,7 +749,7 @@ $dbop->query($SQL_activitylog);
                 <div class="card-header">
                   <div class="row mb-2">
                       <div class="col-sm-6">
-                          <h1>Invoice JD-<?php echo $maxID;?></h1>
+                          <h1>Invoice <?php echo $invoiceStart.$maxID;?></h1>
                       </div>
                       <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
@@ -759,11 +763,10 @@ $dbop->query($SQL_activitylog);
                     </div>
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
-                        <a href="add.php">
-                          <button type="button" class="btn btn-success" >
-                            Add new invoice
-                          </button> 
-                        </a> 
+<a href="add.php" class="btn btn-app">  <i class="fas fa-plus"></i>  Add  </a>								
+<a href="edit.php?id=<?php echo $maxID;?>" class="btn btn-app">  <i class="fas fa-pen-to-square"></i>  Edit  </a>								
+<a href="../reports/pre_invoice.php?id=<?php echo $maxID;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
+ 	
                       </ol>
                     </div>
                   </div> 
@@ -780,14 +783,10 @@ $dbop->query($SQL_activitylog);
           <div class="col-12">
             <div class="callout callout-info">
                 <div class="row mb-2">
-                  <div class="col-sm-11"> 
+                  <div class="col-sm-12"> 
                   <h5> Note:</h5> The invoice details below are intended for review. Kindly approve before printing becomes available.
                   </div>
-                  <div class="col-sm-1"> <a href="edit.php?id=<?php echo $maxID;?>">
-                  <button type="button" class="btn btn-block btn-warning"><i class="fas fa-pen-to-square"></i></button> </a>
-                 <a href="../reports/pre_invoice.php?id=<?php echo $maxID;?>">
-                  <button type="button" class="btn btn-block btn-info"><i class="fas fa-pen-to-square"></i></button> </a>
-                </div>
+                 
                 </div> 
               </div> 
 
@@ -1004,7 +1003,7 @@ $dbop->query($SQL_activitylog);
                   <?php if(intval($Status==700)){?>
                     <form action="approve.php" method="POST">
                       <input type="hidden" name="VAT_TOTAL" value="<?php echo $VAT_TOTAL;?>"> 
-                      <input type="hidden" name="maxID" value="<?php echo $InvoiceID;?>"> 
+                      <input type="hidden" name="maxID" value="<?php echo $maxID;?>"> 
                       <button type="submit" name="approved"  class="btn btn-success float-right" >
                         <i class="far fa-credit-card"></i> Approve
                       </button>
