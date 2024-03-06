@@ -41,35 +41,25 @@
      <!-- Main content -->
 	<div class="content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            
-            <!-- /.card -->
-
+       
+        <!-- /.row -->
+	   <div class="row">
+          <div class="col-lg-12"> 
+            <!-- /.card --> 
             <div class="card">
               <div class="card-header border-0">
-                <h3 class="card-title">SAP. PO</h3>
-                <div class="card-tools">
-                  <a href="#" class="btn btn-tool btn-sm">
-                    <i class="fas fa-download"></i>
-                  </a>
-                  <a href="#" class="btn btn-tool btn-sm">
-                    <i class="fas fa-bars"></i>
-                  </a>
-                </div>
+                <h3 class="card-title">Not Approved Invoices</h3> 
               </div>
-              <div class="card-body table-responsive p-0"> 
-			 
-			 
+              <div class="card-body">  
+
+				<div class="row">
+					 
+				</div> 
               </div>
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-           
-          <!-- /.col-md-6 -->
+            </div> 
+          </div> 
         </div>
-        <!-- /.row -->
+
       </div>
       <!-- /.container-fluid -->
     </div>

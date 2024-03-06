@@ -91,6 +91,15 @@
 					}  
 					/******************************************************************************** */  
 					/******************************************************************************** */ 
+					$info_sql = "SELECT `name`, `value` FROM `info`";
+					$info_result = $dbop->query($info_sql)->fetchAll();   
+					$info_data = array();
+					$info_data = array_column($info_result, 'value', 'name'); 
+						$companyLogo =$info_data['companyLogo'];   
+						$companyXLogo =$info_data['companyXLogo']; 
+						$companySlog =$info_data['companySlog'];   
+						$info_data =[0];
+						$info_result=[0]; 
 		?>
 <html lang="en">
 <head>
@@ -152,7 +161,7 @@
   <div class="card card-outline card-primary">
 
     <div class="card-header text-center"> 
-	<img src="../include/img/<?php echo $companySlog;?>_logo_s1.png" style="width:200px" >
+	<img src="../include/img/<?php echo $companyLogo;?>" style="width:200px" >
 	<?php 
 	$min = 10;
 	$max = 15;
