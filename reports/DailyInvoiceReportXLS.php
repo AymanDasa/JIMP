@@ -221,8 +221,7 @@ if (1) {
  // exit();
     // Save the spreadsheet to a file
     $writer = new Xlsx($spreadsheet);
-    $filename = 'Daily_'.$string.'_data.xlsx';
-    $writer->save($filename);
+    $filename = 'Daily_'.$string.'_data.xlsx'; 
 
     // Set headers for download
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
