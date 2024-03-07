@@ -224,6 +224,7 @@ if (1) {
     $filename = 'Daily_'.$string.'_data.xlsx'; 
 
     // Set headers for download
+    header('Content-Type: text/html; charset=UTF-8');
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename="' . $filename . '"');
     header('Cache-Control: max-age=0');
