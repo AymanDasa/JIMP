@@ -142,6 +142,7 @@ if($debug){echo "<b>  ShipID:</b>".$ShipID."<br>";}
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/dropzone/min/dropzone.min.css">  
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 
 <body class="hold-transition sidebar-mini">
