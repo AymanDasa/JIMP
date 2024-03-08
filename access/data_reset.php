@@ -11,12 +11,17 @@ if(isset($_SESSION["is_admin"])){
 	} 
 if($_SESSION["is_admin"]){
 	Require_once('C://wow//password//db.php');  
+    Require_once("../include/config.php"); 
         if($_SERVER["REQUEST_METHOD"] == "POST"){   
-                    $t_name = trim($_POST["t_name"]);   
+                    $t_name = trim($_POST["t_name"]);  
+                    if($debug==0){echo "debug Error";exit;} 
 				if( $t_name == 'all_tables'){
 					//"TRUNCATE TABLE `data`.`invoice`"
 					//"TRUNCATE TABLE `data`.`sappo`"
-					$sappo  = $dbop->query("TRUNCATE TABLE `data`.`sappo`");
+					$sappo  = $dbop->query("TRUNCATE TABLE `data`.`activitylog`");
+					$sappo  = $dbop->query("TRUNCATE TABLE `data`.`agents`");
+					$sappo  = $dbop->query("TRUNCATE TABLE `data`.`payment`");
+					$sappo  = $dbop->query("TRUNCATE TABLE `data`.`ship`");
 					$invoice  = $dbop->query("TRUNCATE TABLE `data`.`invoice`");
 				}else{
 					header("location: index.php");
