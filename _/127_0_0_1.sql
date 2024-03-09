@@ -9,7 +9,7 @@ UPDATE `users` SET `signature` = 'nosignature.png' WHERE  1;
 -- INFO TANBLE
 INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'companyXLogo', 'ECPO_xlogo_s1.png', 'text'), (NULL, 'companySlog', 'WCPO', 'text'); 
 INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'LIMIT', '100', 'text'), (NULL, 'CompanyName', 'شركة ساحل الغربية لخدمات الموانئ', 'text'); 
-
+INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'PortPercentage', '10', 'text');
 
 DROP TABLE IF EXISTS `suppliers`;
 DROP TABLE IF EXISTS `sappo`;
