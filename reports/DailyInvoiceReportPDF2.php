@@ -15,7 +15,7 @@ Require_once("../include/config.php");
 $html= '';
 $i=0;
 if(1){ 
-	$InvoiceDate= date_format(date_create('2024-2-29'),"Y-m-d" );  
+	$InvoiceDate= date_format(date_create('2024-3-9'),"Y-m-d" );  
 	$TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
 	$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."' AND `Status`= '800';";  
 	$invoices = $dbop->query($SQL)->fetchAll();   
@@ -291,19 +291,20 @@ $html= '
 
 		<table class="table0">
 			<thead>
-				<tr class="tablecenterHead">
-					<th width="10%" class="tablecenterHead">الإجمالي </th>
-					<th width="10%" class="tablecenterHead">ضريبة <br>القيمة المضافه </th>
-					<th width="10%" class="tablecenterHead">المجموع</th>
-					<th width="10%" class="tablecenterHead">الخدمات البحرية <br> الخاصة</th>
-					<th width="10%" class="tablecenterHead">أجور الإنتقال من <br> رصيف الى اخر</th>
-					<th width="10%" class="tablecenterHead">أجور استخدام <br> المخطاف</th>
-					<th width="10%" class="tablecenterHead">أجور استخدام <br> الرصيف</th>
-					<th width="10%" class="tablecenterHead">أجور المغادرة</th>
-					<th width="10%" class="tablecenterHead">أجور القدوم</th>
-					<th width="20%" class="tablecenterHead">اسم السفينة</th>
-					<th width="8%"  class="tablecenterHead">رقم الفاتورة</th> 
-				</tr>
+			<tr class="tablecenterHead">
+					<th width="5%"  >Invoice</th>
+					<th width="5%"  >Date</th>
+					<th width="15%" >Vessel Name</th>
+					<th width="2%"  >GRT</th>
+					<th width="20%" >Agent Name</th>
+					<th width="5%"  >Gross Amount</th>
+					<th width="5%"  >VAT</th>
+					<th width="5%"  >Port Share</th>
+					<th width="5%"  >Port VAT</th>
+					<th width="5%"  >'.$companySlog .' Share</th> 
+					<th width="5%"  >'.$companySlog .' VAT</th>  
+					<th width="5%"  >Net Amount</th>
+			</tr>
 			</thead>
 			<tbody> '; 
 			foreach ($invoices as $invoice) {  
@@ -313,6 +314,7 @@ $html= '
 				$ShipName     = $invoice['ShipName']; 
 				$AgentNameEn  = $invoice['AgentNameEn']; 
 				$AgentNameAr  = $invoice['AgentNameAr']; 
+				$ShipWeight  = $invoice['ShipWeight']; 
 				$VAT_TOTAL    = $invoice['VAT_TOTAL'];  
 				$TotalInvoice_Table 	=  $TotalInvoice_Table +$VAT_TOTAL ; 
 				$VAT    		= $invoice['VAT']; 
@@ -331,18 +333,26 @@ $html= '
 				$TotalInvoice_MSericeOutPrice=  $TotalInvoice_MSericeOutPrice +$MSericeOutPrice ; 
 				$MSericeInPrice    	= $invoice['MSericeInPrice'];   
 				$TotalInvoice_MSericeInPrice=  $TotalInvoice_MSericeInPrice +$MSericeInPrice ; 
+
+				$PortShare =  (floatval($PortPercentage)/100) * floatval($TOTAL); 
+				$PortVAT 		 = 	floatval($PortShare) * (floatval($vat)/100)  ;
+				$ZamilShare 	 = 	(floatval($ZamilPercentage)/100) *  floatval($TOTAL); 
+				$ZamilVAT 	 = 	floatval($ZamilShare) * (floatval($vat)/100);	
+
 				$html.= '<tr class="tableDay">
-						<td class="tableright">'.number_format($VAT_TOTAL,2,"."). ' </td>
-						<td class="tableright">'.number_format($VAT,2,"."). ' </td>
-						<td class="tableright">'.number_format($TOTAL,2,".").'  </td>
-						<td class="tableright">'.number_format($SSTOTAL,2,".").'  </td>
-						<td class="tableright">'.number_format($MSTOTAL,2,".").'  </td>
-						<td class="tableright">'.number_format($MSericeAnchoragePrice,2,".").'  </td>
-						<td class="tableright">'.number_format($MovePortPrice,2,".").'  </td>
-						<td class="tableright">'.number_format($MSericeOutPrice,2,".").'  </td>
-						<td class="tableright">'.number_format($MSericeInPrice,2,".").'  </td> 
-						<td class="tableleft">'.$ShipName.' </td>  
+				
 						<td class="tablecenter">'.$InvoiceID.'</td>  
+						<td class="tableright">'.$InvoiceDate. ' </td>
+						<td class="tableleft">'.$ShipName. ' </td>
+						<td class="tableright">'.$ShipWeight.'  </td>
+						<td class="tableleft">'.$AgentNameEn.'  </td>
+						<td class="tableright">'.number_format($TOTAL,2,".").'  </td>
+						<td class="tableright">'.number_format($VAT,2,".").'  </td>
+						<td class="tableright">'.number_format($PortShare,2,".").'  </td>
+						<td class="tableright">'.number_format($PortVAT,2,".").'  </td>
+						<td class="tableright">'.number_format($ZamilShare,2,".").'  </td> 
+						<td class="tableright">'.number_format($ZamilVAT,2,".").'   </td>  
+						<td class="tableright">'.number_format($VAT_TOTAL,2,".").'  </td>  
 					</tr>' ;
 					if( ($pageNumper % 22)==0){
 					$html.=' </tbody> </table> 
@@ -394,34 +404,36 @@ $html= '
 		<table class="table0">
 			<thead>
 				<tr class="tablecenterHead">
-					<th width="10%" class="tablecenterHead">الإجمالي </th>
-					<th width="10%" class="tablecenterHead">ضريبة <br>القيمة المضافه </th>
-					<th width="10%" class="tablecenterHead">المجموع</th>
-					<th width="10%" class="tablecenterHead">الخدمات البحرية <br> الخاصة</th>
-					<th width="10%" class="tablecenterHead">أجور الإنتقال من <br> رصيف الى اخر</th>
-					<th width="10%" class="tablecenterHead">أجور استخدام <br> المخطاف</th>
-					<th width="10%" class="tablecenterHead">أجور استخدام <br> الرصيف</th>
-					<th width="10%" class="tablecenterHead">أجور المغادرة</th>
-					<th width="10%" class="tablecenterHead">أجور القدوم</th>
-					<th width="20%" class="tablecenterHead">اسم السفينة</th>
-					<th width="8%"  class="tablecenterHead">رقم الفاتورة</th> 
+							<th width="5%"  >Invoice</th>
+							<th width="5%"  >Date</th>
+							<th width="15%" >Vessel Name</th>
+							<th width="2%"  >GRT</th>
+							<th width="20%" >Agent Name</th>
+							<th width="5%"  >Gross Amount</th>
+							<th width="5%"  >VAT</th>
+							<th width="5%"  >Port Share</th>
+							<th width="5%"  >Port VAT</th>
+							<th width="5%"  >'.$companySlog .' Share</th> 
+							<th width="5%"  >'.$companySlog .' VAT</th>  
+							<th width="5%"  >Net Amount</th>
 				</tr>
 			</thead>
 			<tbody> '; }
 					}
 					$html.= '
 				<tr class="tableDayTotal"   ">
-					<td class="tableDayTotal"><b>'.number_format($TotalInvoice_Table,2,".").' </b></td>
-					<td class="tableDayTotal"><b>'.number_format($TotalInvoice_VAT,2,".").' </b></td>
-					<td class="tableDayTotal"><b>'.number_format($TotalInvoice_TOTAL,2,".").' </b></td>
-					<td class="tableDayTotal"><b>'.number_format($TotalInvoice_SSTOTAL,2,".").' </b></td>
-					<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSTOTAL,2,".").' </b></td>
-					<td class="tableDayTotal"><b>'.number_format($TotalInvoice_Anchorage,2,".").' </b></td>
-					<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MovePortPrice,2,".").' </b></td>
-					<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSericeOutPrice,2,".").' </b></td>
-					<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSericeInPrice,2,".").' </b></td>
-					<td class="tableDayTotal">  </td> 
-					<td class="invoicecount">  	عدد الفواتير  '.$i.' </td>  
+						<td class="tablecenter">'.$InvoiceID.'</td>  
+						<td class="tableright">'.$InvoiceDate. ' </td>
+						<td class="tableleft">'.$ShipName. ' </td>
+						<td class="tableright">'.$ShipWeight.'  </td>
+						<td class="tableleft">'.$AgentNameEn.'  </td>
+						<td class="tableright">'.number_format($TOTAL,2,".").'  </td>
+						<td class="tableright">'.number_format($VAT,2,".").'  </td>
+						<td class="tableright">'.number_format($PortShare,2,".").'  </td>
+						<td class="tableright">'.number_format($PortVAT,2,".").'  </td>
+						<td class="tableright">'.number_format($ZamilShare,2,".").'  </td> 
+						<td class="tableright">'.number_format($ZamilVAT,2,".").'   </td>  
+						<td class="tableright">'.number_format($VAT_TOTAL,2,".").'  </td>   
 				</tr>   ';  
 				$html.= '
 			</tbody>
@@ -467,13 +479,55 @@ $html= '
 		';
 		 
 		$PortShare 	=  (floatval($PortPercentage)/100) * floatval($TotalInvoice_TOTAL); 
-		$PortVAT 	=  floatval($PortShare) * floatval($vat)  ;
-		$ZamilShare =  (floatval($ZamilPercentage)/100) * floatval($TotalInvoice_TOTAL) ;
+		$PortVAT 		=  floatval($PortShare) * floatval($vat)  ;
+		$ZamilShare 	=  (floatval($ZamilPercentage)/100) * floatval($TotalInvoice_TOTAL) ;
 		$ZamilVAT 	=  floatval($ZamilShare) * floatval($vat);		 
 		
 		$html.='
 		';$html.=' <div class="page_break"></div>'; $html.='
-
+		<table class="table0">
+		<tbody  class="tableDay">
+			<tr>
+				<td style="text-align:center; width:20%  ; height:20px ;">
+				<p> <span lang="ar-SA">   
+						المملكة العربية السعودية <br>
+						'.$CompanyName.' <br>
+						<span lang="ar-SA">هـاتف :8696300 013</span>
+						<br>
+						<span lang="ar-SA">فـاكس :8574202 013</span>      
+					</span> </p>
+				</td>
+				<td style="text-align:center; width:20%  ; height:20px ;">
+					<p> <span lang="ar-SA"><br> 
+						<img src="img/'.$companyLogo.'" height="70px">  
+					</span> </p>
+				</td>
+				<td style="text-align:center; width:20%  ; height:20px ;"> 
+					<span lang="ar-SA"> كشف الفواتير اليومية<br>
+					</span>
+					<span dir="ltr" style="font-family:Verdana;language:en-US;direction:ltr;unicode-bidi:embed" lang="en-US">
+						Daily Invoice Report  
+					</span><br> '.$InvoiceDate.'   التاريخ
+				</td>
+				<td style="text-align:center; width:20%  ; height:20px ;" valign="middle">
+					<p> <span lang="ar-SA">
+						<img src="img/mawani.png" height="70px"> 
+					</span> </p>
+				</td>
+				<td style="text-align:center; width:20%  ; height:20px ;" valign="middle">
+					<p> <span style="font-size:8pt" lang="ar-SA">
+						المملكة العربية السعودية 
+						<br>
+						الهيئة العامة للموانئ
+						<br>
+						'.$port_name.' 
+						<br>
+						www.ports.gov.sa
+					</span> </p>
+				</td>
+			</tr>
+		</tbody>
+	</table> 
  
 	   <table   class="ter" width="100%"> 
 	   	<thead> 
@@ -519,7 +573,7 @@ for ($i = count($p)-1; $i >= 0; $i-=2) {
 	$html   = substr_replace($html, $utf8ar, $p[$i-1], $p[$i] - $p[$i-1]);
 }  
 $Iday = date("Ymd", strtotime($InvoiceDate));
-$filename = strval($InvoiceID)."_".strval($Iday);			
+$filename =  "D_".strval($Iday);			
 $dompdf->loadHtml($html);
 
 $dompdf->setPaper('A4', 'landscape');
