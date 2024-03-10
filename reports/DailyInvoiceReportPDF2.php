@@ -20,7 +20,7 @@ if(1){
 	$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."' AND `Status`= '800';";  
 	$invoices = $dbop->query($SQL)->fetchAll();   
 
-	$info_sql = "SELECT `name`, `value` FROM `info`";
+	$info_sql = "SELECT * FROM `info`";
 		$info_result = $dbop->query($info_sql)->fetchAll();   
 		$info_data = array();
 		$info_data = array_column($info_result, 'value', 'name'); 
