@@ -136,7 +136,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css"> 
+	<link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+	<link rel="icon" type="image/x-icon" href="../include/img/favicon.ico"> 
 </head> 
 <style> 
 .img-account-profile {

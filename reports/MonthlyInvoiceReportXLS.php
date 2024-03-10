@@ -220,10 +220,9 @@ if (1) {
 
     // Save the spreadsheet to a file
     $writer = new Xlsx($spreadsheet);
-    $filename = 'Monthly_'.$string.'_data.xlsx';
-    $writer->save($filename);
-
+    $filename = 'Monthly_'.$string.'_data.xlsx'; 
     // Set headers for download
+    header('Content-Type: text/html; charset=UTF-8');
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename="' . $filename . '"');
     header('Cache-Control: max-age=0');
