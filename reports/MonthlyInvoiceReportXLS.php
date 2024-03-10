@@ -39,8 +39,7 @@ if (1) {
     $sheet->setCellValue('F1'  ,  'AgentNameAr');
     $sheet->setCellValue('G1'  ,  'AgentNameEn');
     $sheet->setCellValue('H1'  ,  'ServiceType');
-    $sheet->setCellValue('I1'  ,  'ServiceTypeName');
-    $sheet->setCellValue('G1'  ,  'ServiceTypeFactor');
+    $sheet->setCellValue('I1'  ,  'ServiceTypeName'); 
     $sheet->setCellValue('K1'  ,  'InvoiceDate');
     $sheet->setCellValue('L1'  ,  'InvoiceDateT');
     $sheet->setCellValue('M1'  ,  'ArrivalDate');
@@ -136,8 +135,7 @@ if (1) {
 		$sheet->setCellValue('F'  . $rowNumber, $row['AgentNameAr']);
 		$sheet->setCellValue('G'  . $rowNumber, $row['AgentNameEn']);
 		$sheet->setCellValue('H'  . $rowNumber, $row['ServiceType']);
-		$sheet->setCellValue('I'  . $rowNumber, $row['ServiceTypeName']);
-		$sheet->setCellValue('G'  . $rowNumber, $row['ServiceTypeFactor']);
+		$sheet->setCellValue('I'  . $rowNumber, $row['ServiceTypeName']); 
 		$sheet->setCellValue('K'  . $rowNumber, $row['InvoiceDate']);
 		$sheet->setCellValue('L'  . $rowNumber, $row['InvoiceDateT']);
 		$sheet->setCellValue('M'  . $rowNumber, $row['ArrivalDate']);
