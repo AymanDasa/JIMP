@@ -8,7 +8,7 @@
 	include("include/auth.php");
 	include("include/head.php"); 
 	
-	
+	$debug =0;
 	
 	
 	
@@ -48,12 +48,81 @@
             <!-- /.card --> 
             <div class="card">
               <div class="card-header border-0">
-                <h3 class="card-title">Not Approved Invoices</h3> 
+                <h3 class="card-title">Pending Invoices</h3> 
               </div>
               <div class="card-body">  
 
 				<div class="row">
-					 
+				<table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                      <th>#</th> 
+                      <th>Date</th> 
+                      <th>Ship Name</th> 
+                      <th>Agent Name</th>
+                      <th>Agent Name</th>
+                      <th>TOTAL (SAR)</th>
+                      <th>View</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+					<?php 
+					$SQL='SELECT * FROM `invoice` WHERE `Status`="700" ORDER BY  `InvoiceID` DESC LIMIT 1000;';
+                      $invoices = $dbop->query($SQL)->fetchAll();
+						foreach ($invoices as $invoice) { 
+							  $InvoiceDate  = $invoice['InvoiceDate'];
+							  $InvoiceID    = $invoice['InvoiceID'];
+							  $ShipName     = $invoice['ShipName']; 
+							  $AgentNameEn  = $invoice['AgentNameEn']; 
+							  $AgentNameAr  = $invoice['AgentNameAr']; 
+							  $VAT_TOTAL    = $invoice['VAT_TOTAL'];  
+							  $Status       = $invoice['Status'];   
+							  $date1=date_create($InvoiceDate); 
+							 if($Status >700){
+								$approve_text = '<span style="color:#228b22;"><i class="fas fa-square-check"></i></span>';
+								$approve_vx='vv';
+							 }else{
+								$approve_text = '<span style="color:#e52b50;"><i class="fas fa-square-xmark"></i></span>';
+								$approve_vx='xx';	
+							 }
+							echo '<tr>
+									<td>'.$InvoiceID. ' </td>  
+									<td>'.date_format($date1,"Y-m-d"). ' </td>  
+									<td>'.$ShipName.'  </td>
+									<td>'.$AgentNameEn. ' </td> 
+									<td>'.$AgentNameAr. ' </td> 
+									<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td> 
+									<td>  
+										<div class="btn-group btn-group-sm"> 
+										  <a href="view.php?id='.$invoice['InvoiceID'].'" class="btn">
+										  <i class="fas fa-eye"></i></a>
+										  <a href="edit.php?id='.$invoice["InvoiceID"].'" class="btn">
+										  <i class="fas fa-pen-to-square"></i></a>';
+											if($debug){echo '
+												<a href="../reports/invoice2.php?id='.$invoice["InvoiceID"].'" class="btn">
+												<i class="fas fa-cross"></i></a>';
+												}
+											echo '<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn">
+												  <i class="fas fa-file-pdf"></i></a>
+												<spen href="#" class="btn">'.$approve_text.'	</spen>
+												<span hidden>'.$approve_vx.'</spen> 
+										</div>
+									</td>  
+								</tr>' ; 
+						}?>
+					</tbody>
+                  <tfoot>
+                  <tr>
+			   	  <th>#</th> 
+                      <th>Date</th> 
+                      <th>Ship Name</th> 
+                      <th>Agent Name</th>
+                      <th>Agent Name</th>
+                      <th>TOTAL (SAR)</th>
+                      <th>View</th>
+                  </tr>
+                  </tfoot>
+                </table> 
 				</div> 
               </div>
             </div> 
