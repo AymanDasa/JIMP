@@ -138,7 +138,7 @@ $dbop->query($SQL_activitylog);
 								<div class="col-sm-3">
 								<!-- text input -->
 								<div class="form-group">
-									<label>CR No#</label>
+									<label>CR / VAT No#</label>
 									<input type="text" class="form-control" name="AgentCR" value="<?=$AgentCR;?>" autocomplete="off">
 									<label>IBAN</label>
 									<input type="text" class="form-control" name="AgentBilling" value="<?=$AgentBilling;?>" autocomplete="off">

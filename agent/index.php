@@ -76,7 +76,7 @@
                   <thead>
                   <tr>
                       <th>Agent Name</th>
-                      <th>CR</th>
+                      <th>CR / VAT</th>
                       <th>IBAN</th>
                       <th>Conatct</th>
                       <th>Action</th>
@@ -116,7 +116,7 @@
                   <tfoot>
                   <tr>
                       <th>Agent Name</th>
-                      <th>CR</th>
+                      <th>CR / VAT</th>
                       <th>IBAN</th>
                       <th>Conatct</th>
                       <th>Action</th>
