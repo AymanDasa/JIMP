@@ -98,8 +98,7 @@ foreach ($result as $row) {
 $info_sql = "SELECT `name`, `value` FROM `info`";
 		$info_result = $dbop->query($info_sql)->fetchAll();   
 		$info_data = array();
-		$info_data = array_column($info_result, 'value', 'name');
-			$company_vat = $info_data['company_vat'];
+		$info_data = array_column($info_result, 'value', 'name'); 
 			$name_user1=$info_data['name_user1'];
 			$name_user2=$info_data['name_user2'];
 			$name_user3=$info_data['name_user3'];
@@ -129,6 +128,8 @@ $info_sql = "SELECT `name`, `value` FROM `info`";
 			$CompanyName =$info_data['CompanyName'];  
 			$EmptyLineAr =$info_data['EmptyLineAr'];  
 			$EmptyLineEn =$info_data['EmptyLineEn'];  
+			$PortPercentage=floatval($info_data['PortPercentage']);
+			$CPSPercentage=floatval(100-$PortPercentage);
 			$info_data =[0];
 			$info_result=[0];  
  ?>

@@ -17,7 +17,7 @@
 			if($digit<1)return '';
 			else{ return $myText;} 
 		}
-		function D0D($myText)
+	function D0D($myText)
 		{ 
 		    $dateTime = DateTime::createFromFormat("Y/m/d", $myText); 
 		    if ($dateTime !== false) { 
