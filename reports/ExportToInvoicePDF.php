@@ -60,6 +60,9 @@ function X0X($myText)
             }
 		  main{
 			width:100%;
+		  } 
+		  .labele1s{
+			font-size:10px;
 		  }
 		  .page_break { page-break-before: always; }
         </style>
@@ -73,6 +76,10 @@ if(isset($_GET['FromInvoice']) && isset($_GET['ToInvoice'])){
 }else{exit();}
 $TotalPages = $ToInvoice - $FromInvoice;
 
+$query_max = "SELECT MAX(`InvoiceID`) as InvoiceIDMax  FROM `invoice` LIMIT 1;"; 
+$maxs = $dbop->query($query_max)->fetchAll();
+	foreach ($maxs as $row) { $max_invoice = intval($row['InvoiceIDMax']); }
+	if($max_invoice < $ToInvoice){echo "ERROR Invoice number : " . $ToInvoice ; exit();}
 for($InvoiceID=$FromInvoice;$InvoiceID<=$ToInvoice; $InvoiceID++)		
 {		
 	
@@ -205,7 +212,11 @@ for($InvoiceID=$FromInvoice;$InvoiceID<=$ToInvoice; $InvoiceID++)
 		$DepartureDateH0 = intval(date('Y', strtotime($DepartureDateH)));
 		if($DepartureDateH0<1444){$DepartureDateH='';} 
 	}   
-	  
+
+	$query = "SELECT *  FROM `agents` WHERE `AgentID`=".$AgentID." LIMIT 1;"; 
+	$ships = $dbop->query($query)->fetchAll();   
+	foreach ($ships as $ship) {  $AgentVAT =$ship['AgentCR'];  }
+
 	$MovePortName='';
 	if($MovePort1!=''){$MovePortName=$MovePortName.' / '.$MovePort1;}
 	if($MovePort2!=''){$MovePortName=$MovePortName.' / '.$MovePort2;}
@@ -269,16 +280,10 @@ $html.='
 	</table>  
 <br> 
 '; 
-/*
-########################################################################################################## 
-########################################################################################################## 
-########################################################################################################## 
+/* 
 ########################################################################################################## 
 ########################################       Bank  Information      #################################### 
 ########################################################################################################## 
-########################################################################################################## 
-########################################################################################################## 
-##########################################################################################################   
 */ 
 
 $html.=' 
@@ -294,8 +299,21 @@ $html.='
 			<tr>
 		</tbody>
 	</table> 
-</footer>
+</footer>';
 
+/*
+########################################################################################################## 
+########################################################################################################## 
+########################################################################################################## 
+########################################################################################################## 
+#######################################     COMPANY INFO ADN LOGO     #################################### 
+########################################################################################################## 
+########################################################################################################## 
+########################################################################################################## 
+##########################################################################################################   
+*/ 
+
+$html.=' 
 <!-- Wrap the content of your PDF inside a main tag -->
 <main>         
 	<table  cellpadding="0" cellspacing="0" border="1" width=100%    class="table0">
@@ -349,7 +367,21 @@ $html.='
 				</p>
 			</td>
 		</tr>
-	</table> 
+	</table> ';
+
+	/*
+	########################################################################################################## 
+	########################################################################################################## 
+	########################################################################################################## 
+	########################################################################################################## 
+	########################################      INVOICE INFORMATION     #################################### 
+	########################################################################################################## 
+	########################################################################################################## 
+	########################################################################################################## 
+	##########################################################################################################   
+	*/ 
+	
+$html.=' 
 <div><span style="font-size:5.0pt">&nbsp;</span></div>
 <table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
 	<tbody>
@@ -384,7 +416,8 @@ $html.='
 			</td>
 				<td align=center   height="30pt" valign="middle">
 				<span lang="ar-SA" class="labela1">&nbsp;&nbsp;'.$AgentNameAr.'</span><br>
-				<span lang="en-US" class="labele1">'.$AgentNameEn.'</span> 
+				<span lang="en-US" class="labele1">'.$AgentNameEn.'</span> <br>
+				<span lang="en-US" class="labele1s">'.$AgentVAT.'</span> 
 				</td>	
 				<td align=center  height="30pt" valign="middle">
 					<p >  <span lang="en-US" class="labele1">&nbsp;&nbsp;'.$ShipName.'&nbsp;&nbsp;</span></p>
@@ -464,8 +497,8 @@ $html.='
 				<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$RouteNo.'&nbsp;&nbsp; </span> 
 			</td>
 			<td align=right  class="p10pt">
-				<span lang="ar-SA" class="labela1">رقم الطريق</span><br>
-				<span lang="en-US" class="labele1">Route No</span> 
+				<span lang="ar-SA" class="labela1"> '.$EmptyLineAr.' </span><br>
+				<span lang="en-US" class="labele1">'.$EmptyLineEn.'</span> 
 			</td> 
 			<td align=center  class="p10pt">
 				<span lang="ar-SA" class="labela1">&nbsp;'.X0X(number_format($AnchorageDays)).'&nbsp;&nbsp; </span> 

@@ -168,6 +168,13 @@
 	    $result.= chr(5) . chr( strlen($invoice_tax_amount) ) . $invoice_tax_amount;
 	    return base64_encode($result);
 	}
+ 
+    $query = "SELECT *  FROM `agents` WHERE `AgentID`=".$AgentID." LIMIT 1;"; 
+    $ships = $dbop->query($query)->fetchAll();   
+    foreach ($ships as $ship) {  $AgentVAT =$ship['AgentCR'];  }
+
+
+	// 
 	include_once('../../phpqrcode/qrlib.php');
 	 
 	$QR= zatca_base64_tlv_encode(  
@@ -215,6 +222,9 @@
 		  main{
 			width:100%;
 		  }
+		  .labele1s{
+			font-size:10px;
+		  }
         </style>
     </head>
     <body>
@@ -226,8 +236,7 @@
 				<td align=center width=20%  style="border-right-style:hidden" height="20" valign="middle">
 					<p>	
 						<span lang="ar-SA" style="font-size:8pt">   
-						'.$AdressCompany.'
-						
+						'.$AdressCompany.' 
 						</span>
 					</p>
 				</td>
@@ -346,9 +355,9 @@ $html.='
 $html.=' 
 			<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
 				<tbody> 
-					<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 	 
-					<td align=left width=50%">'.$footerEN.'</td>  
-					<td align=right width=50%">'.$footerAR.'</td> 
+					<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 	 	
+						<td align=left width=50%">'.$footerEN.'</td>  
+						<td align=right width=50%">'.$footerAR.'</td> 
 					<tr>
 				</tbody>
 			</table> 
@@ -363,21 +372,20 @@ $html.='
 			<td align=right width=24% valign="middle" 	>';
 if(D0D(date("Y/m/d", strtotime($InvoiceDate)))){
 $html.='
-				<span lang="ar-SA" class="labela1">'. date("H:i", strtotime($InvoiceDate)) .'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date("Y/m/d", strtotime($InvoiceDate)).'&nbsp; &nbsp;'.'  م   '.' </span> <br>
+				<span lang="ar-SA" class="labela1">'. date("H:i", strtotime($InvoiceDate)) .'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date("Y/m/d", strtotime($InvoiceDate)). ' </span> <br>
 ';}
 $html.='			
 			</td> 
 			<td align=right width=11% valign="middle" 	>
-				<span lang="ar-SA" class="labela1">&nbsp;&nbsp; التاريخ </span><br>
-				<span lang="en-US" class="labele1">Date&nbsp;&nbsp;</span>
+				<span lang="ar-SA" class="labela1">&nbsp;Date &nbsp; التاريخ </span><br> 
 			</td> 
 			<td align=right width=36% valign="middle" style="border-bottom-style: hidden;">
-				<span lang="ar-SA" class="labela1">&nbsp;&nbsp;  اسم الوكيل </span><br>
-				<span lang="en-US" class="labele1">&nbsp;&nbsp; Agent Name </span>
+				<span lang="ar-SA" class="labela1">&nbsp;Agent Name &nbsp;  اسم الوكيل </span><br>
+		 
 			</td>
 			<td align=right width=29% valign="middle" style="border-bottom-style: hidden;">
-				<span lang="ar-SA" class="labela1"> &nbsp;&nbsp;  اسم السفينة  </span><br>
-				<span lang="en-US" class="labele1"> Vessel Name&nbsp;&nbsp;</span>
+				<span lang="ar-SA" class="labela1"> &nbsp;Vessel Name&nbsp;  اسم السفينة  </span><br>
+				 
 			</td>
 		 </tr>
 		 <tr>
@@ -389,8 +397,9 @@ $html.='
 				<span lang="en-US" class="labele1">Sytem No.&nbsp;&nbsp;</span>
 			</td>
 			  <td align=center   height="30pt" valign="middle">
-				<span lang="ar-SA" class="labela1">&nbsp;&nbsp;'.$AgentNameAr.'</span><br>
-				<span lang="en-US" class="labele1">'.$AgentNameEn.'</span> 
+				<span lang="ar-SA" class="labela1"> '.$AgentNameEn.'</span><br>
+				<span lang="en-US" class="labele1">'.$AgentNameAr.'</span> <br>
+				<span lang="en-US" class="labele1s">'.$AgentVAT.'</span> 
 			  </td>	
 			  <td align=center  height="30pt" valign="middle">
 				  <p >  <span lang="en-US" class="labele1">&nbsp;&nbsp;'.$ShipName.'&nbsp;&nbsp;</span></p>
@@ -426,7 +435,7 @@ $html.='
 			';
 if(D0D(date("Y/m/d", strtotime($ArrivalDate)))){
 $html.='
-<span lang="ar-SA" class="labela1">&nbsp;'.date("H:i", strtotime($ArrivalDate)).'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date("Y/m/d", strtotime($ArrivalDate)).'&nbsp; &nbsp;'.'م  </span>
+<span lang="ar-SA" class="labela1">&nbsp;'.date("H:i", strtotime($ArrivalDate)).'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date("Y/m/d", strtotime($ArrivalDate)).' </span>
 ';}
 $html.='	
 				  	 
@@ -454,7 +463,7 @@ $html.='
 			<td align=right class="p10pt">';
 			if(D0D(date("Y/m/d", strtotime($DepartureDate)))){
 			$html.='
-			<span lang="ar-SA"  class="labela1">&nbsp;'.date("H:i", strtotime($DepartureDate)).'&nbsp;&nbsp;&nbsp;&nbsp;'.date("Y/m/d", strtotime($DepartureDate)).'&nbsp; &nbsp;'.'م  </span> 
+			<span lang="ar-SA"  class="labela1">&nbsp;'.date("H:i", strtotime($DepartureDate)).'&nbsp;&nbsp;&nbsp;&nbsp;'.date("Y/m/d", strtotime($DepartureDate)).' </span> 
 			';}
 			$html.='	
 				
@@ -470,8 +479,8 @@ $html.='
 				<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$RouteNo.'&nbsp;&nbsp; </span> 
 			</td>
 			<td align=right  class="p10pt">
-				<span lang="ar-SA" class="labela1">رقم الطريق</span><br>
-				<span lang="en-US" class="labele1">Route No</span> 
+				<span lang="ar-SA" class="labela1"> '.$EmptyLineAr.' </span><br>
+				<span lang="en-US" class="labele1">'.$EmptyLineEn.'</span> 
 			</td> 
 			<td align=center  class="p10pt">
 				<span lang="ar-SA" class="labela1">&nbsp;'.X0X(number_format($AnchorageDays)).'&nbsp;&nbsp; </span> 

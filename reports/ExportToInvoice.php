@@ -12,6 +12,10 @@ if(isset($_POST['FromToInvoice'])){
 	$FromInvoice	= intval($_POST['ExportFromInvoice']);
 	$ToInvoice	= intval($_POST['ExportToInvoice']); 
 	 } else{exit();}
+	$query_max = "SELECT MAX(`InvoiceID`) as InvoiceIDMax  FROM `invoice` LIMIT 1;"; 
+	$maxs = $dbop->query($query_max)->fetchAll();
+	foreach ($maxs as $row) { $max_invoice = intval($row['InvoiceIDMax']); }
+	if($max_invoice < $ToInvoice){echo "ERROR Invoice number : " . $ToInvoice ; exit();}
 ?> 
 <html lang="en">
 <head>
