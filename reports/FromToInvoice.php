@@ -10,8 +10,16 @@ $TotalInvoiceTable=0;
  
 if(isset($_POST['FromToInvoice'])){ 
 	$FromInvoice	= intval($_POST['FromInvoice']);
-	$ToInvoice	= intval($_POST['ToInvoice']); 
-	 } else{exit();}
+	$ToInvoice		= intval($_POST['ToInvoice']); 
+	 } else{
+		echo "Error From To invoice";
+		if($debug){echo "<b>_POST -> FromToInvoice :</b>".$FromToInvoice,"<br>";} 
+		if($debug){echo "<b>_POST -> FromInvoice :</b>".$FromInvoice,"<br>";} 
+		if($debug){echo "<b>_POST -> ToInvoice :</b>".$ToInvoice,"<br>";} 
+		exit();}
+		// for test only 
+		$FromInvoice	= 10;
+		$ToInvoice		= 50;
 ?> 
 <html lang="en">
 <head>
