@@ -37,21 +37,7 @@ $MonthDate = " ".$MM."-".$YY." ";
 $TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
 $TotalInvoice_MSericeBathPrice=0;
 $SQL = "SELECT * FROM `invoice` WHERE MONTH(`InvoiceDate`) =".$MM." AND YEAR(`InvoiceDate`) = ".$YY."  AND `Status`= '800';";  
-$invoices = $dbop->query($SQL)->fetchAll();   
-
-$query_information = "SELECT * FROM `information`  LIMIT 1;"; 
-	$infos = $dbop->query($query_information)->fetchAll(); 
-	foreach ($infos as $info) {
-		$name_user1=$info['name_user1'];
-		$name_user2=$info['name_user2'];
-		$name_user3=$info['name_user3'];
-		$name_user4=$info['name_user4'];
-		$name_user5=$info['name_user5'];
-		$job_user1=$info['job_user1'];
-		$job_user2=$info['job_user2'];
-		$job_user3=$info['job_user3'];
-		$job_user4=$info['job_user4'];
-		$job_user5=$info['job_user5']; }
+$invoices = $dbop->query($SQL)->fetchAll();    
 
  $html='';
  

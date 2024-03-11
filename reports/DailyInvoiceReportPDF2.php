@@ -18,33 +18,7 @@ if(1){
 	$InvoiceDate= date_format(date_create('2024-3-9'),"Y-m-d" );  
 	$TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
 	$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."' AND `Status`= '800';";  
-	$invoices = $dbop->query($SQL)->fetchAll();   
-
-	$info_sql = "SELECT `name`, `value` FROM `info`;";
-		$info_result = $dbop->query($info_sql)->fetchAll();   
-		$info_data = array();
-		$info_data = array_column($info_result, 'value', 'name'); 
-			$companyLogo =$info_data['companyLogo'];   
-			$companyXLogo =$info_data['companyXLogo']; 
-			$companySlog =$info_data['companySlog'];    
-			$name_user1	=$info_data['name_user1'];
-			$name_user2	=$info_data['name_user2'];
-			$name_user3	=$info_data['name_user3'];
-			$name_user4	=$info_data['name_user4'];
-			$name_user5	=$info_data['name_user5'];
-			$job_user1	=$info_data['job_user1'];
-			$job_user2	=$info_data['job_user2'];
-			$job_user3	=$info_data['job_user3'];
-			$job_user4	=$info_data['job_user4'];
-			$job_user5	=$info_data['job_user5'];   
-			
-			$PortPercentage 	= number_format(floatval($info_data['PortPercentage']),2); 
-			$ZamilPercentage 	= 100 - $PortPercentage;  
-			$vat = number_format(floatval($info_data['vat']),2);
-
-			$info_data =[0];
-			$info_result=[0];  
-
+	$invoices = $dbop->query($SQL)->fetchAll();    
 	 }   
 $html= ''; 
 $pageNumper =1;

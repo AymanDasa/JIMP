@@ -145,28 +145,7 @@
 		  $VAT=$invoicev['VAT'];
 		  $VAT_TOTAL=$invoicev['VAT_TOTAL']; 
 		  $Status=$invoicev['Status'];  
-		  $OracleCode=$invoicev['OracleCode']; 
-		  
-		  
-		$info_sql = "SELECT `name`, `value` FROM `info`";
-		$info_result = $dbop->query($info_sql)->fetchAll();   
-		$info_data = array();
-		$info_data = array_column($info_result, 'value', 'name');
-			$company_vat = $info_data['company_vat'];
-			$name_user1=$info_data['name_user1'];
-			$name_user2=$info_data['name_user2'];
-			$name_user3=$info_data['name_user3'];
-			$name_user4=$info_data['name_user4'];
-			$name_user5=$info_data['name_user5'];
-			$job_user1 =$info_data['job_user1'];
-			$job_user2 =$info_data['job_user2'];
-			$job_user3 =$info_data['job_user3'];
-			$job_user4 =$info_data['job_user4'];
-			$job_user5 =$info_data['job_user5']; 
-			$port_name =$info_data['port_name']; 
-			$AdressCompany =$info_data['AdressCompany']; 
-			$invoiceStart =$info_data['invoiceStart']; 
- 
+		  $OracleCode=$invoicev['OracleCode'];  
 	$ArrivalDate0 = intval(date('Y', strtotime($ArrivalDateH)));
 	if($ArrivalDate0<1444){$ArrivalDateH='';}  
 	$DepartureDateH0 = intval(date('Y', strtotime($DepartureDateH)));
