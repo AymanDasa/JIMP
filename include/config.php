@@ -127,6 +127,8 @@ $info_sql = "SELECT `name`, `value` FROM `info`";
 			$companySlog =$info_data['companySlog'];  
 			$LIMIT =$info_data['LIMIT'];  
 			$CompanyName =$info_data['CompanyName'];  
+			$EmptyLineAr =$info_data['EmptyLineAr'];  
+			$EmptyLineEn =$info_data['EmptyLineEn'];  
 			$info_data =[0];
 			$info_result=[0];  
  ?>

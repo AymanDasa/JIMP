@@ -11,6 +11,9 @@ INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'companyXLogo',
 INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'LIMIT', '100', 'text'), (NULL, 'CompanyName', 'شركة ساحل الغربية لخدمات الموانئ', 'text'); 
 INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'PortPercentage', '10', 'text');
 
+INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'companyNameAr', 'شركة الغربية لخدمة الموانئ', 'text'), (NULL, 'companyNameEn', 'Western Port Services Company ', 'text');
+
+
 DROP TABLE IF EXISTS `suppliers`;
 DROP TABLE IF EXISTS `sappo`;
 DROP TABLE IF EXISTS `member`; 
