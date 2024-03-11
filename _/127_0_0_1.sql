@@ -10,9 +10,10 @@ UPDATE `users` SET `signature` = 'nosignature.png' WHERE  1;
 INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'companyXLogo', 'ECPO_xlogo_s1.png', 'text'), (NULL, 'companySlog', 'WCPO', 'text'); 
 INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'LIMIT', '100', 'text'), (NULL, 'CompanyName', 'شركة ساحل الغربية لخدمات الموانئ', 'text'); 
 INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'PortPercentage', '10', 'text');
+ 
+INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'EmptyLineEn', 'Route No', 'text'), (NULL, 'EmptyLineAr', 'رقم الطريق', 'text'); 
 
-INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'companyNameAr', 'شركة الغربية لخدمة الموانئ', 'text'), (NULL, 'companyNameEn', 'Western Port Services Company ', 'text');
-
+INSERT INTO `info` (`id`, `name`, `value`, `type`) VALUES (NULL, 'EmptyLineEn', 'Route No', 'text'), (NULL, 'EmptyLineAr', 'رقم الطريق', 'text'); 
 
 DROP TABLE IF EXISTS `suppliers`;
 DROP TABLE IF EXISTS `sappo`;
