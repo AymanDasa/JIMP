@@ -207,9 +207,7 @@ $IsActive = 0 ;
       "autoWidth": false,
       "responsive": true,
     });
-  });
-
- 
+  }); 
 </script>
 <script> 
   var $sidebar = $('.control-sidebar')

@@ -143,21 +143,7 @@ function MSP($SWeight,$STFactor){
 		$CX =$MServiceX[4]; // Total
 	*/
 }
-
-function E2A($myText)
-{$digit = (string)$myText;
-if(empty($digit))
-return '';
-$ar_digit = array(
-'&#1632;', '&#1633;', '&#1634;', '&#1635;', '&#1636;', '&#1637;', '&#1638;', '&#1639;', '&#1640;', '&#1641;',
-'-'=>'-',','=>'&#1548;','.'=>'&#44','/'=>'/',':'=>':',' '=>'  ');
-$arabic_digit = '';
-$length = strlen($digit);
-for($i=0;$i<$length;$i++){
-	if(isset($ar_digit[$digit[$i]]))
-		$arabic_digit .= $ar_digit[$digit[$i]];}
-return $arabic_digit;}
-
+ 
 function VWS($SWeight)
 {
 	if($SWeight<500){return 1;}

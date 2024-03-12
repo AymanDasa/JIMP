@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <?php    
-			$folder_name =  basename(dirname(__FILE__));
-			Require_once( "C:\\wow\\password\\config.php"); 
-			Require_once("../include/auth.php"); 
-			Require_once("../include/config.php"); 
-			  
-	    
-			$query = "SELECT `value` FROM `config`  WHERE  `name`='SSCount' LIMIT 1;"; 
-			$SSCountQuerys = $dbop->query($query)->fetchAll();   
-			foreach ($SSCountQuerys as $SSCountQuery) {    
-				$SSCount = intval($SSCountQuery['value']) ;
-			} 
-			$today = date("Y-m-d H:i:s"); 
-      $InvoiceID=1;
-	 $ERROR=0;
-if(isset($_POST['credit_notes'])) {
+$folder_name =  basename(dirname(__FILE__));
+Require_once( "C:\\wow\\password\\config.php"); 
+Require_once("../include/auth.php"); 
+Require_once("../include/config.php");   
+$today = date("Y-m-d H:i:s");  
+if(1) {
 #########################################################################
 #########################################################################
 #######################  Functions & Class  #############################
@@ -22,22 +13,27 @@ if(isset($_POST['credit_notes'])) {
 #########################################################################
     
 /*
-
- 
-					$InvoiceID  
-					$ShipID
-					$credit_amount 
-					$issue_date 
-					$reason 
-					$ShipWeight
-					name="CN"  
-
+ 	$CreditID
+	$InvoiceID
+	$ShipID
+	$AgentID
+	$CreditDate
+	$InvoiceDat
+	$Reason
+	$Note
+	$MSTOTAL
+	$SSTOTAL
+	$TOTAL
+	$VAT
+	$VAT_TOTAL
+	$Status
 
 */
 if(isset($_POST['reason'])){$reason=stripslashes(htmlentities(strip_tags($_POST['reason'])));}else{$reason='';}
 	if(isset($_POST['InvoiceID'])){$InvoiceID = intval($_POST['InvoiceID']);}
 	if(isset($_GET['InvoiceID'])) {$InvoiceID = intval($_GET['InvoiceID']);}
-	$query = "SELECT *  FROM `invoice` WHERE `InvoiceID`=".$InvoiceID." LIMIT 1;"; 
+	if($InvoiceID>0){$query = "SELECT *  FROM `credit`;"; }else{}
+	
 if($debug){echo "<b>G query:</b>".$query."<br>";}  	
 if($debug){echo "<b>G InvoiceID:</b>".$InvoiceID."<br>";}  	
 		$InvoiceID = intval($_POST['InvoiceID']); 
