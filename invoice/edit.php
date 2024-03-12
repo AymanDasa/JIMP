@@ -391,7 +391,7 @@ foreach ($SSCountQuerys as $SSCountQuery) {
 								<!-- %%  From Date   %%% -->
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">   
 										<div class="form-group">
-											<label>Route No</label> 
+											<label><?php echo $EmptyLineEn ;?></label> 
 											<input type="text" class="form-control" name="RouteNo"  value="<?php echo $RouteNo;?>" >
 										</div> 
 									</div>
