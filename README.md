@@ -74,14 +74,6 @@ Expand-Archive -Path passord.zip -DestinationPath c:\wow\passord\
 Note: Ensure that you adjust paths and commands based on your system configuration.
 
 
-
-## 9. Office Document Export
-### install Office  phpspreadsheet
-open cmd on  X:\xampp\hdocs\
-```
-composer require phpoffice/phpspreadsheet
-```
-
 # Grate Job 🚀
 Now, your environment should be set up for the project. If you encounter any issues, refer to the project documentation or seek assistance from the community.
 
