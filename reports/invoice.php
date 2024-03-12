@@ -182,9 +182,7 @@
 	QRcode::png($QR, '../../phpqrcode/invoiceQR.png','S' ,2, 0);  
 	// END QR FUNCTION
 	$MovePortName='';
-	if($MovePort1!=''){$MovePortName=$MovePortName.' / '.$MovePort1;}
-	if($MovePort2!=''){$MovePortName=$MovePortName.' / '.$MovePort2;}
-	if($MovePort3!=''){$MovePortName=$MovePortName.' / '.$MovePort3;} 
+	if($MovePort1!=''){$MovePortName=$MovePort1;} 
 	if($ShipWeight<3000){$txtAncor="أقل من  ";}else { $txtAncor="أكثر من ";}
 			$html='
 			<html>
