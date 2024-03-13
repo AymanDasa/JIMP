@@ -83,7 +83,7 @@ $IsActive = 0 ;
                   </thead>
                   <tbody>
                   <?php 
-					$SQL='SELECT * FROM `invoice` ORDER BY  `InvoiceID` DESC LIMIT '.$LIMIT.';';
+					$SQL='SELECT * FROM `invoice` WHERE `Status`> 0 ORDER BY  `InvoiceID` DESC LIMIT '.$LIMIT.' ;';
                       $invoices = $dbop->query($SQL)->fetchAll();
                       foreach ($invoices as $invoice) { 
                           

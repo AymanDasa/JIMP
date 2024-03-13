@@ -33,6 +33,8 @@ $reason='';
 if(isset($_POST['reason'])){$reason=stripslashes(htmlentities(strip_tags($_POST['reason'])));}  
 if(isset($_POST['InvoiceID'])){$InvoiceID = intval($_POST['InvoiceID']);} 
  
+if($debug){echo "<b>InvoiceID :</b>".$InvoiceID,"<br>";} 
+if($debug){echo "<b>reason :</b>".$reason,"<br>";} 
 // if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 #########################################################################
@@ -41,8 +43,9 @@ if(isset($_POST['InvoiceID'])){$InvoiceID = intval($_POST['InvoiceID']);}
 #########################################################################
 #########################################################################
 if($InvoiceID){
-	if(isset($_POST['VAT_TOTAL'])){$User_Total = floatval($_POST['VAT_TOTAL']);} 
+	if(isset($_POST['VAT_TOTAL'])){$User_Total = floatval($_POST['VAT_TOTAL']);}  
 	$SQL1= "SELECT * FROM `invoice` WHERE  `InvoiceID` ='".$InvoiceID."' AND `Status` > '0' LIMIT 1;";
+	if($debug){echo "<b>SQL1 :</b>".$SQL1,"<br>";} 
 	$inv = $dbop->query($SQL1)->fetchAll();
 		foreach ($inv as $row) { 
 			$InvoiceID	= $row['InvoiceID'];		
@@ -55,7 +58,7 @@ if($InvoiceID){
 			$VAT			= $row['VAT'];	
 			$VAT_TOTAL	= floatval($row['VAT_TOTAL']);		
 			$Status		= $row['Status'];	
-		} 
+		}  
 if( $VAT_TOTAL == $User_Total) {
 			$SQL_INSERT="INSERT INTO `credit` 
 				(    `InvoiceID`,
@@ -78,10 +81,11 @@ if( $VAT_TOTAL == $User_Total) {
 					".$SSTOTAL.",					
 					".$TOTAL.",				
 					".$VAT.",				
-					".$VAT_TOTAL.");"; 
-					echo $SQL_INSERT;
+					".$VAT_TOTAL.");";  
+					if($debug){echo "<b>SQL_INSERT :</b>".$SQL_INSERT,"<br>";} 
 				$dbop->query($SQL_INSERT);  
-			$SQL_Update="UPDATE `invoice` SET `Status` = '0' WHERE `invoice`.`InvoiceID` = ".$InvoiceID.";"; 
+			$SQL_Update="UPDATE `invoice` SET `Status` = '0' WHERE `invoice`.`InvoiceID` = ".$InvoiceID.";";  
+			if($debug){echo "<b>SQL_Update :</b>".$SQL_Update,"<br>";} 
 				$dbop->query($SQL_Update);
 
 			$alog_note = strval("credit_notes".$InvoiceID."AgentID:".$AgentID." + TOTAL:".$TOTAL."  (VAT)= ".$VAT." credit_amount ".$VAT_TOTAL." " );    
@@ -135,7 +139,7 @@ if( $VAT_TOTAL == $User_Total) {
 							<div class="card-header">
 								<div class="row mb-2">
 									<div class="col-sm-6">
-										<h1>CN-<?php echo $InvoiceID;?></h1>
+										<h1>Credit Notes List</h1>
 									</div>
 									<div class="col-sm-6">
 										<ol class="breadcrumb float-sm-right">
@@ -148,11 +152,9 @@ if( $VAT_TOTAL == $User_Total) {
 									<div class="col-sm-6"></div>
 									<div class="col-sm-6">
 										<ol class="breadcrumb float-sm-right">
-											<a href="../invoice/add.php">
-												<button type="button" class="btn btn-success" >
-													Add new invoice
-												</button> 
-											</a> 
+										<button type="button" class="btn btn-app" data-toggle="modal" data-target="#modal-lg">
+											Add 	 
+											</button> 
 										</ol>
 									</div>
 								</div> 
@@ -183,15 +185,7 @@ if( $VAT_TOTAL == $User_Total) {
 					<div class="row">   
 						<div class="col-12"> 
 							<div class="card">
-								<div class="card-header">
-										<h3 class="card-title">List of all Invoices</h3>
-										<div class="card-tools"> 
-											
-											<button type="button" class="btn btn-app" data-toggle="modal" data-target="#modal-lg">
-											Add 	 
-											</button> 
-										</div>
-								</div> 
+						 
 								<!-- /.card-header  class="" style="width:100%">-->
 								<div class="card-body"> 
 									<table id="example1" class="table table-bordered table-striped display nowrap">
@@ -205,10 +199,8 @@ if( $VAT_TOTAL == $User_Total) {
 												<th>SServices Amount</th>
 												<th>TOTAL (SAR)</th>
 												<th>VAT (SAR)</th>
-												<th>TOTAL With VAT (SAR)</th> 
-												<th>Reson</th>
-												<th>Credit Note Date</th>
-												<th>Print</th>
+												<th>TOTAL With VAT (SAR)</th>  
+												<th>Info</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -245,10 +237,14 @@ if( $VAT_TOTAL == $User_Total) {
 													<td style="text-align: right;">'.number_format($SSTOTAL,2,"."). ' </td> 
 													<td style="text-align: right;">'.number_format($TOTAL,2,"."). ' </td> 
 													<td style="text-align: right;">'.number_format($VAT,2,"."). ' </td> 
-													<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td> 
-													<td>'.$reason. ' </td>  
-													<td>'.$CreditDate. ' </td>  
-													<td><a href="../report/cr_invoice.php?id='.$InvoiceID.'"><i class="fa-solid fa-file-pdf"></i></a> </td>  
+													<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td>   
+													<td> 
+														<div class="btn-group btn-group-sm"> 
+															<a href="view.php?id='.$InvoiceID.'" class="btn">
+																<i class="fas fa-eye"></i>
+															</a>
+														</div>
+													 </td>  
 												</tr>' ; } ?>
 										</tbody>
 										<tfoot>
@@ -261,10 +257,8 @@ if( $VAT_TOTAL == $User_Total) {
 												<th>SServices Amount</th>
 												<th>TOTAL (SAR)</th>
 												<th>VAT (SAR)</th>
-												<th>TOTAL With VAT (SAR)</th> 
-												<th>Reson</th>
-												<th>Credit Note Date</th>
-												<th>Print</th>
+												<th>TOTAL With VAT (SAR)</th>   
+												<th>Info</th>
 											</tr>
 										</tfoot>
 									</table>
@@ -342,17 +336,7 @@ if( $VAT_TOTAL == $User_Total) {
 <script>
   $(function () {
     $("#example1").DataTable({ 
-	 responsive: {
-        details: {
-            display: DataTable.Responsive.display.modal({
-                header: function (row) {
-                    var data = row.data();
-                    return 'Details for Credit Note # ' + data[0]  ;
-                }
-            }),
-            renderer: DataTable.Responsive.renderer.tableAll()
-        }
-    },
+	 "responsive": true, 
 	 "lengthChange": false,  
       "ordering": false,
 	 "autoWidth": false, 
