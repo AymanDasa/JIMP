@@ -10,6 +10,10 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="<?php echo $path;?>company/index.php" class="nav-link">Company</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="https://github.com/AymanDasa/JIMP/discussions" class="nav-link">🚀Community <span class="right badge badge-danger">New</span></a>
+      </li>
+      
     </ul>
 
     <!-- Right navbar links -->
