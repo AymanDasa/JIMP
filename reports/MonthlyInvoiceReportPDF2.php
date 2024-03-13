@@ -364,11 +364,157 @@ $html.= '
 			</tr> 
 		</tbody>
 	</table>  
+	';$html.=' <div class="page_break"></div>';
+	
+	
+	
+$html.= '
+<table class="table0">
+	<tbody  class="tableDay">
+		<tr>
+			<td style="text-align:center; width:20%  ; height:20px ;">
+			<p> 
+				<span lang="ar-SA">   
+					المملكة العربية السعودية <br>
+					'.$CompanyName.' <br>
+					<span lang="ar-SA">هـاتف :8696300 013</span>
+					<br>
+					<span lang="ar-SA">فـاكس :8574202 013</span>      
+				</span>
+			</p>
+			</td>
+			<td style="text-align:center; width:20%  ; height:20px ;">
+			<p>
+				<span lang="ar-SA"><br>
+					<img src="img/'.$companyLogo.'" height="60px">
+				</span>
+			</p>
+			</td>
+			<td style="text-align:center; width:20%  ; height:20px ;"> 
+				<span lang="ar-SA"> عكس الفواتير الشهرية<br>
+				</span>
+				<span dir="ltr" style="font-family:Verdana;language:en-US;direction:ltr;unicode-bidi:embed" lang="en-US">
+					Monthly Credit Note Report  
+				</span><br> '.$MonthDate .'   التاريخ
+			</td>
+			<td style="text-align:center; width:20%  ; height:20px ;" valign="middle">
+			<p>
+				<span lang="ar-SA">
+					<img src="img/mawani.png" height="70px"> 
+				</span>
+			</p>
+			</td>
+			<td style="text-align:center; width:20%  ; height:20px ;" valign="middle">
+			<p>
+				<span style="font-size:8pt" lang="ar-SA">
+						المملكة العربية السعودية 
+						<br>
+					الهيئة العامة للموانئ
+					<br>
+					'.$port_name.'
+					<br>
+					www.ports.gov.sa
+				</span>
+			</p>
+			</td>
+		</tr>
+	</tbody>
+</table>  
+<br><br><br><br><br><br><br><br>
+';  
+$CN_MSTOTAL	=$CN_non_VATabl_gross=$CN_CPSP_Share=0;	
+$CN_SSTOTAL	=$CN_VATabl_gross=$CN_PORT_TotalVAT=0;	
+$CN_TOTAL		=$CN_PORT_TotalShare=$CN_CPSP_TotalVAT =0;
+$CN_VAT		=$CN_CPSP_TotalShare=$CN_PORT_VAT =0;	
+$CN_VAT_TOTAL 	=$CN_PORT_Share=$CN_CPSP_VAT = 0;
+	$html.='	 
+	<table class="table0">
+		<thead>
+			<tr class="tablecenterHead">
+				<th class="tablecenterHead">#</th> 
+				<th class="tablecenterHead">Date</th> 
+				<th style="width:35%;" class="tablecenterHead">Agent Name</th> 
+				<th class="tablecenterHead">Ship Name</th> 
+				<th class="tablecenterHead">Marine Amount</th>
+				<th class="tablecenterHead">SServices Amount</th>
+				<th class="tablecenterHead">TOTAL (SAR)</th>
+				<th class="tablecenterHead">VAT (SAR)</th>
+				<th class="tablecenterHead">TOTAL With VAT (SAR)</th>   
+			</tr>
+		</thead>
+		<tbody> ';
+			$query_credit = "SELECT *  FROM `credit` WHERE MONTH(`InvoiceDate`) =".$MM." AND YEAR(`InvoiceDate`) = ".$YY. "; ";
+			$credits = $dbop->query($query_credit)->fetchAll();   
+			foreach ($credits as $row) {   
+			$InvoiceID	= $row['InvoiceID'];
+			$InvoiceDate	= $row['InvoiceDate'];
+			$CreditDate	= $row['CreditDate'];
+			$AgentID		= intval($row['AgentID']);
+			$ShipID		= intval($row['ShipID']);
+			$reason		= $row['reason'];
+			$MSTOTAL		= floatval($row['MSTOTAL']);  
+			$SSTOTAL		= floatval($row['SSTOTAL']);  
+			$TOTAL		= floatval($row['TOTAL']);  
+			$VAT			= floatval($row['VAT']);  
+			$VAT_TOTAL 	= floatval($row['VAT_TOTAL']);  
+			$Note		= $row['Note'];   
+			$CN_MSTOTAL	=$CN_MSTOTAL	+$MSTOTAL	;
+			$CN_SSTOTAL	=$CN_SSTOTAL	+$SSTOTAL	;
+			$CN_TOTAL		=$CN_TOTAL	+$TOTAL	;
+			$CN_VAT		=$CN_VAT		+$VAT ;
+			$CN_VAT_TOTAL 	=$CN_VAT_TOTAL +$VAT_TOTAL ;
 
 
+			if($VAT>0){$CN_non_VATabl_gross= $CN_non_VATabl_gross+$TOTAL;} 
+				else{$CN_VATabl_gross= $CN_VATabl_gross+$TOTAL;} 
+				
+			$CN_CPSP_VAT 		= floatval(($CPSPercentage*$CN_VAT)  	/100);
+			$CN_PORT_VAT 		= floatval(($PortPercentage*$CN_VAT)  /100);
+			$CN_CPSP_TotalVAT 	= $CN_CPSP_TotalVAT + $CN_CPSP_VAT  ;
+			$CN_PORT_TotalVAT 	= $CN_PORT_TotalVAT +$CN_PORT_VAT  ;
+			$CN_CPSP_Share 	= ($CN_TOTAL*$CPSPercentage)  /100;        
+			$CN_PORT_Share 	= ($CN_TOTAL*$PortPercentage)  /100;    
+			$CN_CPSP_TotalShare = $CN_CPSP_TotalShare + $CN_CPSP_Share  ;
+			$CN_PORT_TotalShare = $CN_PORT_TotalShare +$CN_PORT_Share  ; 
+			 
+			$date1=date_create($InvoiceDate);  
+		$query = "SELECT `AgentNameEn`  FROM `agents` WHERE `AgentID`=".$AgentID." LIMIT 1;"; 
+			$agents = $dbop->query($query)->fetchAll();   
+			foreach ($agents as $row) {   
+				$AgentNameEn  =	$row['AgentNameEn']; } 
+		$query = "SELECT `ShipName`  FROM `ship` WHERE `ShipID`=".$ShipID." LIMIT 1;"; 
+			$ships = $dbop->query($query)->fetchAll();   
+			foreach ($ships as $row) {  
+				$ShipName 	= 	$row['ShipName'];   } 
+				
+				$html.= '<tr class="tableDay">
+				<td class="tableleft">CN-'.$InvoiceID. ' </td>  
+				<td class="tableleft">'.date_format($date1,"Y-m-d"). ' </td>  
+				<td class="tableleft">'.$AgentNameEn.'  </td>
+				<td class="tableleft">'.$ShipName. ' </td>  
+				<td  class="tableright">'.number_format($MSTOTAL,2,"."). ' </td> 
+				<td  class="tableright">'.number_format($SSTOTAL,2,"."). ' </td> 
+				<td  class="tableright">'.number_format($TOTAL,2,"."). ' </td> 
+				<td  class="tableright">'.number_format($VAT,2,"."). ' </td> 
+				<td  class="tableright">'.number_format($VAT_TOTAL,2,"."). ' </td>     
+			</tr>' ; 
+		}
+$html.= '	<tr class="tableDay">
+			<td class="tableleft">  </td>  
+			<td class="tableleft"> </td>  
+			<td class="tableleft">  </td>
+			<td class="tableright">TOTAL</td>  
+			<td  class="tableright">'.number_format($CN_MSTOTAL,2,"."). ' </td> 
+			<td  class="tableright">'.number_format($CN_SSTOTAL,2,"."). ' </td> 
+			<td  class="tableright">'.number_format($CN_TOTAL,2,"."). ' </td> 
+			<td  class="tableright">'.number_format($CN_VAT,2,"."). ' </td> 
+			<td  class="tableright">'.number_format($CN_VAT_TOTAL,2,"."). ' </td>    
+		</tr>' ;
 
-	';$html.=' <div class="page_break"></div>'; $html.='	
-
+	$html.=' 
+	</tbody>
+	</table>    
+	<div class="page_break"></div>'; $html.='	 
 	<table class="table0">
 		<tbody  class="tableDay">
 			<tr>
@@ -424,29 +570,61 @@ $html.= '
 	<table class="table0">
 		<thead>
 			<tr class="tablecenterHead"> 
-				<th width="65px" class="tablerightMz">Gross With VAT</th>
-				<th width="65px" class="tablerightMz">NON-VAT Gross</th> 
-				<th width="65px" class="tablerightMz">VAT Gross</th>
+				<th width="65px" class="tablerightMz">Gross With VAT</th> 
 				<th width="65px" class="tablerightMz">VAT</th>
+ 
+				<th width="65px" class="tablerightMz">VAT Gross</th>
+				<th width="65px" class="tablerightMz">NON-VAT Gross</th>
+
+
 				<th width="65px"  class="tablerightMz">'.$companySlog.' VAT<br>'.$CPSPercentage.'%</th>
 				<th width="65px" class="tablerightMz">Port VAT<br>'.$PortPercentage.'%</th>
+
+
 				<th width="65px" class="tablerightMz">Amount</th>
+
 				<th width="65px" class="tablerightMz">'.$companySlog.' Share<br>'.$CPSPercentage.'%</th>
 				<th width="65px" class="tablerightMz">Port Share<br>'.$PortPercentage.'%</th> 
 			</tr>
 		</thead> 
 		<tbody>
 			<tr class="tableDayTotal"> 
-					<td class="tableright">'.number_format($TotalInvoice_Table,2,".").' </td> 
+					<td class="tableright">'.number_format($TotalInvoice_Table,2,".").' </td>  
+					<td class="tableright">'.number_format($TotalInvoice_VAT,2,".").' </td>  
+
 					<td class="tableright">'.number_format($VATabl_gross,2,".").' </td>  
-					<td class="tableright">'.number_format($non_VATabl_gross,2,".").' </td>  
-					<td class="tableright">'.number_format($TotalInvoice_VAT,2,".").' </td>   
-					<td class="tableright">'.number_format($CPSP_TotalVAT,2,".").' </td>  
-					<td class="tableright">'.number_format($PORT_TotalVAT,2,".").' </td>  
-					<td class="tableright">'.number_format($TotalInvoice_TOTAL,2,".").' </td>  
-					<td class="tableright">'.number_format($CPSP_TotalShare,2,".").' </td>   
+					<td class="tableright">'.number_format($non_VATabl_gross,2,".").' </td> 
+
+					<td class="tableright">'.number_format($CPSP_TotalVAT,2,".").' </td>   
+					<td class="tableright">'.number_format($PORT_TotalVAT,2,".").' </td>   
+ 
+
+					<td class="tableright">'.number_format($TotalInvoice_TOTAL,2,".").' </td> 
+
+					<td class="tableright">'.number_format($CPSP_TotalShare,2,".").' </td> 
 					<td class="tableright">'.number_format($PORT_TotalShare,2,".").' </td>    
 			</tr>  
+			' ;
+			 if($CN_TOTAL>0){
+			$html.='  
+			<tr class="tableDayTotal"> 
+					<td class="tableright">  - '.number_format($CN_TOTAL,2,"."). '</td> 
+					<td class="tableright">  - '.number_format($CN_VAT,2,".").'</td>  
+
+					<td class="tableright">  - '.number_format($CN_VATabl_gross,2,".").'</td>  
+					<td class="tableright">  - '.number_format($CN_non_VATabl_gross,2,".").'</td>
+					
+					<td class="tableright">  - '.number_format($CN_CPSP_VAT,2,".").'</td>  
+					<td class="tableright">  - '.number_format($CN_PORT_VAT,2,".").'</td> 
+  
+					<td class="tableright">  - '.number_format($CN_TOTAL	,2,".").'</td>  
+					 
+					<td class="tableright">  - '.number_format($CN_CPSP_Share,2,".").'</td>
+					<td class="tableright">  - '.number_format($CN_PORT_Share,2,".").'</td>    
+			</tr> 
+			' ;
+			  }
+			$html.='  
 		</tbody>
 	</table>  
  <br>';  
