@@ -1,26 +1,18 @@
 <?php    
-			$folder_name =  basename(dirname(__FILE__));
-			Require_once( "C:\\wow\\password\\config.php"); 
-			Require_once("../include/auth.php"); 
-			Require_once("../include/config.php"); 
-			  
-	    
-			$query = "SELECT `value` FROM `config`  WHERE  `name`='SSCount' LIMIT 1;"; 
-			$SSCountQuerys = $dbop->query($query)->fetchAll();   
-			foreach ($SSCountQuerys as $SSCountQuery) {    
-				$SSCount = intval($SSCountQuery['value']) ;
-			} 
-			$today = date("Y-m-d H:i:s"); 
-
-	if(isset($_POST['InvoiceID'])){$InvoiceID = intval($_POST['InvoiceID']);}
-	if(isset($_GET['InvoiceID'])) {$InvoiceID = intval($_GET['InvoiceID']);}
-if(isset($InvoiceID ) ) {
+$folder_name =  basename(dirname(__FILE__));
+Require_once( "C:\\wow\\password\\config.php"); 
+Require_once("../include/auth.php"); 
+Require_once("../include/config.php");   
+$today = date("Y-m-d H:i:s");  
+if(isset($_GET['id'])) {
 #########################################################################
 #########################################################################
 #######################  Functions & Class  #############################
 #########################################################################
-#########################################################################  
-    $query = "SELECT *  FROM `invoice` WHERE `InvoiceID`=".$InvoiceID." LIMIT 1;";  
+#########################################################################
+    $InvoiceID = intval($_GET['id']);  
+    $query = "SELECT *  FROM `invoice` WHERE `InvoiceID`=".$InvoiceID." AND `Status` = 0 LIMIT 1;"; 
+
     $invoicevs = $dbop->query($query)->fetchAll();   
     foreach ($invoicevs as $invoicev) {   
       $ShipID=$invoicev['ShipID'];
@@ -57,8 +49,7 @@ if(isset($InvoiceID ) ) {
       $DockingNo=$invoicev['DockingNo'];
       $RouteNo=$invoicev['RouteNo'];
       $ShiftedNo=$invoicev['ShiftedNo'];
-      $Reason=$invoicev['Reason'];
-      $Note=$invoicev['Note'];
+      $Reason=$invoicev['Reason']; 
       $MSFraction1=$invoicev['MSFraction1'];
       $MSFraction2=$invoicev['MSFraction2'];
       $MSFraction3=$invoicev['MSFraction3'];
@@ -143,8 +134,16 @@ if(isset($InvoiceID ) ) {
 
 }
 else{
-	//exit();
+	exit();
+}  
+$query_credit = "SELECT *  FROM `credit` WHERE `InvoiceID`=".$InvoiceID."  LIMIT 1;"; 
+$credits = $dbop->query($query_credit)->fetchAll();   
+foreach ($credits as $row) {   
+	$CreditDate	= $row['CreditDate'];
+	$reason		= $row['reason'];
+	$Note		= $row['Note'];  
 }
+
  ?>  
 <!DOCTYPE html>
 <html lang="en">
@@ -209,12 +208,12 @@ else{
                 <div class="card-header">
                   <div class="row mb-2">
                       <div class="col-sm-6">
-                          <h1>Invoice JD-<?php echo $InvoiceID ;?></h1>
+                          <h1> Credit Note #  CN-<?php echo  $InvoiceID ;?></h1>
                       </div>
                       <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
                           <li class="breadcrumb-item"><a href="#">Home</a></li>
-                          <li class="breadcrumb-item active">Invoice</li>
+                          <li class="breadcrumb-item active"><a href="index.php">Credit Note</a></li>
                       </ol>
                       </div>
                   </div>
@@ -223,11 +222,9 @@ else{
                     </div>
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
-                        <a href="../invoice/add.php">
-                          <button type="button" class="btn btn-success" >
-                            Add new invoice
-                          </button> 
-                        </a> 
+<a href="add.php" class="btn btn-app">  <i class="fas fa-plus"></i>  Add  </a>															
+<a href="../reports/pre_invoice.php?id=<?php echo $InvoiceID;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
+ 	
                       </ol>
                     </div>
                   </div> 
@@ -242,10 +239,10 @@ else{
       <div class="container-fluid">
         <div class="row">
           <div class="col-12"> 
-            <?php if(intval($Status==700)){?>
-              <div class="callout callout-info">
+            <?php if(intval($Status==0)){?>
+              <div class="callout callout-danger">
                 <h5><i class="fas fa-info"></i> Note:</h5>
-                The invoice details below are intended for review. Kindly approve before printing becomes available.
+                The Credit Note  details below . Reason : <?php echo $reason;?>
               </div> 
             <?php }?> 
             <!-- Main content -->
@@ -264,7 +261,8 @@ else{
               <!-- info row -->
               <div class="row invoice-info">
                 <div class="col-sm-4 invoice-col">
-                    <b>Invoice #JD-<?php echo $InvoiceID;?></b><br> 
+                    <b>Credit Note # CN-<?php echo $InvoiceID ;?></b><br> 
+                    <b>CN Date </b> <?php echo $CreditDate ;?> <br>  
                     <b>Vessel Name:<span class="tab"></span></b>  <?php echo $ShipName;?> <br> 
                     <b>Araival Date:<span class="tab"></span></b><?php echo $ArrivalDate;?><br>
                     <b>Departure Date:<span class="tab"></span></b> <?php echo $DepartureDate;?><br>
@@ -376,88 +374,58 @@ else{
                     </tbody>
                   </table>
                 </div>
-			 <div class="col-6">  
-					<div class="form-group">
-						<label>Reason</label>  
-						<textarea class="form-control" rows="5" name="reason" > </textarea>
-					</div>    
-				</div>  
                 <!-- /.col -->
               </div>
               <!-- /.row -->
-		    <form action="post_credit.php" method="POST">
-				<div class="row">
-					<!-- accepted payments column -->
-					
-					
-						<div class="col-6">
-							<hr style="border-top: 2px solid black;">
-						
-							<p class="lead">Invoice Summary</p>
-							<div class="table-responsive">
-								<table class="table">
-								<tr>
-								<th style="width:50%"><b>Service</b></th>
-								<td style="text-align: right;"><b>SAR</b></td>
-								</tr>
-								<tr>
-								<th style="width:50%">Marine Services:</th>
-								<td style="text-align: right;"><?php echo number_format($MSTOTAL, 2);?></td>
-								</tr>
-								<tr>
-								<th style="width:50%">Special Service:</th>
-								<td style="text-align: right;"><?php echo number_format($SSTOTAL, 2);?></td>
-								</tr>
-								<tr>
-								<th style="width:50%">Sub Total:</th>
-								<td style="text-align: right;"><?php echo number_format($TOTAL, 2);?></td>
-								</tr>
-								<tr>
-								<th>VAT (15%)</th>
-								<td style="text-align: right;"><?php echo number_format($VAT, 2);?></td>
-								</tr> 
-								<tr>
-								<th>Grand Total:</th>
-								<td style="text-align: right;"><b><?php echo number_format($VAT_TOTAL, 2);?><b></td>
-								</tr>
-								</table>
-							</div>
-							
-						</div> 
-						
-					<!-- /.col -->
-				</div>
-				<!-- /.row -->
 
-				<!-- this row will not appear when printing -->
-				<div class="row no-print">
-					<div class="col-12">
-					<!-- 
-						<a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-					-->
-					<?php if(intval($Status==700)){?> 
-						<?php }
-						else {?>    
-							
-								<input type="hidden" name="InvoiceID" value="<?php echo $InvoiceID;?>"> 
-								<input type="hidden" name="AgentID" value="<?php echo $AgentID;?>"> 
-								<input type="hidden" name="credit_amount" value="<?php echo $credit_amount;?>"> 
-								<input type="hidden" name="issue_date" value="<?php echo $issue_date;?>"> 
-								<input type="hidden" name="reason" value="<?php echo $reason;?>">   
-								<button type="submit" name="credit_notes"  class="btn btn-danger float-right" >
-									<i class="fa-solid fa-stop"></i> Credit Note
-								</button>
-						
-						<?php }?> 
-					<!-- 
-					<button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-						<i class="fas fa-download"></i> Generate PDF
-					</button>
-					-->
-					</div>
-				</div>
-		    </form>
-                   
+              <div class="row">
+                <!-- accepted payments column -->
+                
+                
+                <div class="col-6">
+                <hr style="border-top: 2px solid black;">
+                  
+                <p class="lead">Invoice Summary</p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tr>
+                        <th style="width:50%"><b>Service</b></th>
+                        <td style="text-align: right;"><b>SAR</b></td>
+                      </tr>
+                      <tr>
+                        <th style="width:50%">Marine Services:</th>
+                        <td style="text-align: right;"><?php echo number_format($MSTOTAL, 2);?></td>
+                      </tr>
+                      <tr>
+                        <th style="width:50%">Special Service:</th>
+                        <td style="text-align: right;"><?php echo number_format($SSTOTAL, 2);?></td>
+                      </tr>
+                      <tr>
+                        <th style="width:50%">Sub Total:</th>
+                        <td style="text-align: right;"><?php echo number_format($TOTAL, 2);?></td>
+                      </tr>
+                      <tr>
+                        <th>VAT (15%)</th>
+                        <td style="text-align: right;"><?php echo number_format($VAT, 2);?></td>
+                      </tr> 
+                      <tr>
+                        <th>Grand Total:</th>
+                        <td style="text-align: right;"><b><?php echo number_format($VAT_TOTAL, 2);?><b></td>
+                      </tr>
+                    </table>
+                  </div>
+                  
+                </div>
+                     
+                
+
+              
+
+
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+ 
             </div>
             <!-- /.invoice -->
           </div><!-- /.col -->

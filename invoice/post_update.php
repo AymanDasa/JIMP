@@ -335,50 +335,24 @@ if($_POST['MSFraction3']){$MSFraction3 = floatval($_POST['MSFraction3']); }else{
     
     
 
-//  Marine Service 3  IS FOR MovePort1 AND MovePort2 MovePort3
+//  Marine Service 3  IS FOR MovePort 
 //	$MovePort 
-$MovePort1 =$_POST['MovePort1'];
-$MovePort2 =$_POST['MovePort2'];
-$MovePort3 =$_POST['MovePort3'];
+$MovePort1 =$_POST['MovePort1']; 
+$countMovePort1 = count(explode(',',$MovePort1)) ; 
+if($debug){echo "<b>countMovePort1 : </b>".$countMovePort1."<br>";}
     if( $MovePort1!="") 
-        { 
-            $MAX=MSP($ShipWeight,1);
-            $MA0=floatval($MAX[0])/2 ;
-            $MA1=floatval($MAX[1])/2 ;
-            $MA2=floatval($MAX[2])/2 ;
-            $MA3=floatval($MAX[3])/2 ;
-            $MA=$MA0+$MA1+$MA2+$MA3;
-            $XMove.=$MovePort1;
-            if($debug){echo "XMove :".$XMove."<br>";}
-        } else{$MA=$MA0=$MA1=$MA2=$MA3="";}
-    if( $MovePort2!="") 
-        { 
-            $MBX=MSP($ShipWeight,1);
-            $MB0=floatval($MBX[0])/2 ;
-            $MB1=floatval($MBX[1])/2 ;
-            $MB2=floatval($MBX[2])/2 ;
-            $MB3=floatval($MBX[3])/2 ;
-            $MB=$MB0+$MB1+$MB2+$MB3;
-            $XMove.=' & '.$MovePort1;
-            if($debug){echo "XMove :".$XMove."<br>";}
-        }else{$MB=$MB0=$MB1=$MB2=$MB3='';}
-    if( $MovePort3!="") 
-        { 
-            $MCX=MSP($ShipWeight,1);
-            $MC0=floatval($MCX[0])/2 ;
-            $MC1=floatval($MCX[1])/2 ;
-            $MC2=floatval($MCX[2])/2 ;
-            $MC3=floatval($MCX[3])/2 ;
-            $MC=$MC0+$MC1+$MC2+$MC3;
-            $XMove.=' & '.$MovePort2;
-            if($debug){echo "XMove :".$XMove."<br>";}
-        } else{$MC=$MC0=$MC1=$MC2=$MC3='';}
-    $MovePortPrice=floatval($MA) +floatval($MB) + floatval($MC);
-
-    if($debug){echo "<b>MA : </b>".$MA."<br>";}
-    if($debug){echo "<b>MB : </b>".$MB."<br>";}
-    if($debug){echo "<b>MC : </b>".$MC."<br>";}
-    if($debug){echo "<b>MovePortPrice : </b>".$MovePortPrice."<br>";}
+        	{ 
+			$MAX=MSP($ShipWeight,1);
+			$MA0=(floatval($MAX[0])*$countMovePort1)/2 ;
+			$MA1=(floatval($MAX[1])*$countMovePort1)/2 ;
+			$MA2=(floatval($MAX[2])*$countMovePort1)/2 ;
+			$MA3=(floatval($MAX[3])*$countMovePort1)/2 ;
+			$MA=$MA0+$MA1+$MA2+$MA3;
+            	if($debug){echo "XMove :".$XMove."<br>";}
+        	} else{$MA=$MA0=$MA1=$MA2=$MA3="";} 
+$MovePortPrice=floatval($MA) ;
+if($debug){echo "<b>MA : </b>".$MA."<br>";} 
+if($debug){echo "<b>MovePortPrice : </b>".$MovePortPrice."<br>";}
        
 //  Marine Service 4  IS FOR USING PORT BATH
 //$MService[3] 
@@ -614,16 +588,6 @@ $SQL_UPDATE ="UPDATE `invoice` SET
   `MA1`                     ='$MA1',   
   `MA2`                     ='$MA2',   
   `MA3`                     ='$MA3',   
-  `MB`                      ='$MB',   
-  `MB0`                     ='$MB0',   
-  `MB1`                     ='$MB1',   
-  `MB2`                     ='$MB2',   
-  `MB3`                     ='$MB3',   
-  `MC`                      ='$MC',   
-  `MC0`                     ='$MC0',   
-  `MC1`                     ='$MC1',   
-  `MC2`                     ='$MC2',   
-  `MC3`                     ='$MC3',   
   `MovePortPrice`           ='$MovePortPrice',           
   `MSericeBathPrice`        ='$MSericeBathPrice',               
   `MSNote1`                 ='$MSNote1',       

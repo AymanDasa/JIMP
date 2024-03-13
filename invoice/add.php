@@ -253,10 +253,7 @@
 									</div>
 								<!-- %%  Partial/Final  %%% -->     
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3"> 
-										<div class="form-group">
-											<label>MovePort 2</label> 
-											<input type="text" class="form-control" name="MovePort2"  >
-										</div>
+									 
 									</div>
 							</div>  
 							<!-- %%%%%%%%%%%%%%%%%%%% row4   %%%%%%%%%%%%%%%%%%%%%%%% -->    
@@ -281,10 +278,7 @@
 										</div> 
 									</div>
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">   
-										<div class="form-group">
-											<label>MovePort 3</label> 
-											<input type="text" class="form-control" name="MovePort3"  >
-										</div> 
+										 
 									</div>
 							</div>  
 							<div class="row">
