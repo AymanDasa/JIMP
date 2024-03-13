@@ -144,7 +144,7 @@
 		  $is_VAT=$invoicev['is_VAT'];
 		  $VAT=$invoicev['VAT'];
 		  $VAT_TOTAL=$invoicev['VAT_TOTAL']; 
-		  $Status=$invoicev['Status'];  
+		  $Status=intval($invoicev['Status']);  
 		  $OracleCode=$invoicev['OracleCode'];  
 	$ArrivalDate0 = intval(date('Y', strtotime($ArrivalDateH)));
 	if($ArrivalDate0<1444){$ArrivalDateH='';}  
@@ -155,7 +155,7 @@
 		} 
 	}else{exit();} // exit(); 
 	
-
+	if($Status==0){$invoiceStart="CN-";}
 	// QR FUNCTION
  
 	// code by meYnot
@@ -246,9 +246,23 @@
 					</p>
 				</td>
 				<td align=center width=20% height="20" valign="middle" style="border-right-style:hidden">
-						<span lang="ar-SA"> فــــاتــــورة <br>
-						</span>
+';	
+if($Status==0){
+$html.='	
+<span lang="ar-SA">
+عكس فاتورة
+  </span><br>
+						CREDIT NOTE
 						<br>
+
+';}else{
+$html.='						
+						<span lang="ar-SA"> فــــاتــــورة 
+						</span><br>
+						INVOICE
+						<br>
+';}
+$html.='						
 						<span dir="ltr" style="font-size:12pt;font-family:DejaVuSansCondensed;color:red;language:en-US;direction:ltr;
 				unicode-bidi:embed" lang="en-US">'.$invoiceStart.$InvoiceID.' </span> 
 				<br> <span lang="ar-SA" style="font-size:8pt">   VAT : '.$company_vat.' </span>

@@ -223,7 +223,7 @@ foreach ($credits as $row) {
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
 <a href="add.php" class="btn btn-app">  <i class="fas fa-plus"></i>  Add  </a>															
-<a href="../reports/pre_invoice.php?id=<?php echo $InvoiceID;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
+<a href="../reports/invoice.php?id=<?php echo $InvoiceID;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
  	
                       </ol>
                     </div>
