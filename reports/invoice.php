@@ -154,8 +154,17 @@
 
 		} 
 	}else{exit();} // exit(); 
-	
-	if($Status==0){$invoiceStart="CN-";}
+	$CreditNote = '';
+	if($Status==0){
+		$invoiceStart="CN-";
+		$query_credit="SELECT * FROM `credit` WHERE `InvoiceID` =".$InvoiceID." LIMIT 1";
+		$credits = $dbop->query($query_credit)->fetchAll();   
+		foreach ($credits as $row) {
+			$reason=$row['reason'];	
+			$CreditDate=$row['CreditDate'];	
+		}
+		$CreditNote = "CN-".$InvoiceID." Reason: ".$reason . " ON ".$CreditDate;
+	}
 	// QR FUNCTION
  
 	// code by meYnot
@@ -249,10 +258,8 @@
 ';	
 if($Status==0){
 $html.='	
-<span lang="ar-SA">
-عكس فاتورة
-  </span><br>
-						CREDIT NOTE
+ <br>
+ <span dir="ltr" style="font-size:12pt;color:red;">CREDIT NOTE</span>
 						<br>
 
 ';}else{
@@ -802,10 +809,11 @@ $html.='
   </tbody>
 </table>	
 
+<br>
 
 
 
-'; 
+<div style="font-size:12px;">'.$CreditNote.'</div>'; 
 if($MSTOTAL>0 && $SSTOTAL>0){
 	$html.='<div><span style="font-size:5.0pt">&nbsp;</span></div>';}
 else{
