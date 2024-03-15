@@ -82,6 +82,16 @@ $html= '
 		left:0pt;
 		z-index:4;  
 		}
+	.table30{
+		bordercolor:#B4B4B4;
+		dir:center;
+		width:44%;
+		border-collapse:collapse; 
+		top:0pt; 
+		margin-left: auto;
+		margin-right: auto;
+		z-index:4;  
+		}
 	.titele1{
 		font-size:15px; 
 		font-family:Verdana;  
@@ -606,6 +616,8 @@ $html.= '	<tr class="tableDay">
 			</tr>  
 			' ;
 			 if($CN_TOTAL>0){
+				$CPSP_color='#fcb0b7';
+				$PORT_color='#A8DBA8';
 			$html.='  
 			<tr class="tableDayTotal"> 
 					<td class="tableright">  - '.number_format($CN_VAT_TOTAL,2,"."). '</td> 
@@ -622,11 +634,69 @@ $html.= '	<tr class="tableDay">
 					<td class="tableright">  - '.number_format($CN_CPSP_Share,2,".").'</td>
 					<td class="tableright">  - '.number_format($CN_PORT_Share,2,".").'</td>    
 			</tr> 
-			' ;
-			  }
-			$html.='  
+			<tr class="tableDayTotal"> 
+					<td class="tableright">  '.number_format(floatval($TotalInvoice_Table-$CN_VAT_TOTAL),2,"."). '</td> 
+					<td class="tableright">  '.number_format(floatval($TotalInvoice_VAT-$CN_VAT),2,".").'</td>  
+
+					<td class="tableright">  '.number_format(floatval($VATabl_gross-$CN_VATabl_gross),2,".").'</td>  
+					<td class="tableright">  '.number_format(floatval($non_VATabl_gross-$CN_non_VATabl_gross),2,".").'</td>
+					
+					<td class="tableright">  '.number_format(floatval($CPSP_TotalVAT-$CN_CPSP_VAT),2,".").'</td>  
+					<td class="tableright">  '.number_format(floatval($PORT_TotalVAT-$CN_PORT_VAT),2,".").'</td> 
+  
+					<td class="tableright">  '.number_format(floatval($TotalInvoice_TOTAL-$CN_TOTAL),2,".").'</td>  
+					 
+					<td class="tableright">  '.number_format(floatval($CPSP_TotalShare-$CN_CPSP_Share),2,".").'</td>
+					<td class="tableright">  '.number_format(floatval($PORT_TotalShare-$CN_PORT_Share),2,".").'</td>    
+			</tr> 
+
+			
 		</tbody>
 	</table>  
+
+
+
+
+
+	<br><br><br> 
+	<br><br><br> 
+	<table class="table30">
+		<thead>
+			<tr class="tablecenterHead">  
+				<th   class="tablerightMz">Amount</th>
+				<th   class="tablerightMz">VAT</th>  
+				<th  class="tablerightMz" style="background: '.$CPSP_color.';">'.$companySlog.' Share<br>'.$CPSPercentage.'%</th>
+				<th   class="tablerightMz" style="background: '.$CPSP_color.';">'.$companySlog.' VAT<br>'.$CPSPercentage.'%</th>  
+				<th  class="tablerightMz" style="background: '.$PORT_color.';">Port Share<br>'.$PortPercentage.'%</th> 
+				<th  class="tablerightMz" style="background: '.$PORT_color.';">Port VAT<br>'.$PortPercentage.'%</th> 
+			</tr>
+		</thead>   
+		' ;
+			  }
+			  
+			  $CELL1 = floatval($TotalInvoice_TOTAL-$CN_TOTAL); 
+			  $CELL2 = floatval($TotalInvoice_VAT-$CN_VAT);
+			  $CELL3 = floatval($CPSP_TotalShare-$CN_CPSP_Share); 
+			  $CELL4 = floatval($CPSP_TotalVAT-$CN_CPSP_VAT);
+			  $CELL5 = floatval($PORT_TotalShare-$CN_PORT_Share); 
+			  $CELL6 = floatval($PORT_TotalVAT-$CN_PORT_VAT);
+			$html.=' 
+			<tbody> 
+				<tr class="tableDayTotal"> 
+					<td class="tableright">'.number_format($CELL1,2,".").' </td>  
+					<td class="tableright">'.number_format($CELL2,2,".").' </td>  
+					<td class="tableright" style="background: '.$CPSP_color.';">'.number_format($CELL3,2,".").' </td>  
+					<td class="tableright"  style="background: '.$CPSP_color.';">'.number_format($CELL4,2,".").' </td>  
+					<td class="tableright"  style="background: '.$PORT_color.';">'.number_format($CELL5,2,".").' </td>  
+					<td class="tableright"  style="background: '.$PORT_color.';">'.number_format($CELL6,2,".").' </td>  
+				</tr>
+			</tbody>
+
+		</table>
+
+
+
+
  <br>';  
 /*
 ##########################################################################################
@@ -634,8 +704,8 @@ $html.= '	<tr class="tableDay">
 ##########################################################################################
 */
 $html.= ' 
-<br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br> 
+<br><br><br><br><br><br><br> 
 <table  style="width:100%;border-collapse:collapse; " cellpadding="0" cellspacing="0" border="0">
 	<tbody>  
 			<tr> 	
