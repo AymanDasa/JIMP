@@ -82,37 +82,26 @@ if($page_level==0){$xroot='';}else{$xroot='../';}
             </ul>
           </li> 
         <!-- #### Ship #### --> 
-		<li class="nav-item"  style='font-size: <?php echo $font_size;?>em'>
+		<li class="nav-item">
 			<a href="<?php echo $path;?>ship/index.php" class="nav-link">
 				<i class="nav-icon fas fa-ship"></i> Vessels
 			</a>
 		</li>
 
           <!-- #### Agent #### --> 
-		<li class="nav-item"  style='font-size: <?php echo $font_size;?>em'>
+		<li class="nav-item">
 			<a href="<?php echo $path;?>agent/index.php" class="nav-link">
 				<i class="nav-icon fas fa-user-group"></i> Agents
 			</a>
 		</li>
 
-		<li class="nav-item <?php if($folder_name=='reports') {echo 'menu-open';} ?>">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-layer-group"></i>
-              <p>
-              Reports  
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview"  style='font-size: <?php echo $font_size;?>em'>
-              <li class="nav-item">
+		<li class="nav-item">
                 <a href="<?php echo $path;?>reports/index.php" class="nav-link">
-			 <i class="fa-solid fa-list nav-icon"></i>
-                  <p>Dashbord</p>
-                </a>
-              </li>
-             
-            </ul>
-          </li>
+			 <i class="nav-icon fas fa-layer-group"></i>  Report  </a>
+  		</li>
+
+
+ 
 
      <!-- #### Services #### -->
      	<li class="nav-item <?php if($folder_name=='services') {echo 'menu-open';} ?>">
