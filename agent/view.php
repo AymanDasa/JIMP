@@ -129,17 +129,18 @@ $dbop->query($SQL_activitylog);
 								<div class="col-sm-6">
 								<!-- text input  -->
 								<div class="form-group">
+								<label>Company Name En</label>
+									<input type="text" class="form-control is-invalid" name="AgentNameEn" value="<?=$AgentNameEn;?>" autocomplete="off">
+								
 									<label>Company Name Ar</label>
 									<input type="text" class="form-control" name="AgentNameAr" value="<?=$AgentNameAr;?>" autocomplete="off">
-									<label>Company Name En</label>
-									<input type="text" class="form-control" name="AgentNameEn" value="<?=$AgentNameEn;?>" autocomplete="off">
 								</div>
 								</div>
 								<div class="col-sm-3">
 								<!-- text input -->
 								<div class="form-group">
 									<label>CR / VAT No#</label>
-									<input type="text" class="form-control" name="AgentCR" value="<?=$AgentCR;?>" autocomplete="off">
+									<input type="text" class="form-control  is-invalid" name="AgentCR" value="<?=$AgentCR;?>" autocomplete="off">
 									<label>IBAN</label>
 									<input type="text" class="form-control" name="AgentBilling" value="<?=$AgentBilling;?>" autocomplete="off">
 								</div>

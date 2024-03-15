@@ -5,7 +5,8 @@ Require_once( "C:\\wow\\password\\config.php");
 Require_once("../include/auth.php"); 
 Require_once("../include/config.php"); 
 $SAPPOname = $Error_MSG='';
-$IsActive = 0 ;	   
+$IsActive = 0 ;
+$NoError = 1;	   
 if($debug){echo "<b>IsActive :</b>".$IsActive."<br>";} 
 
 if(isset($_POST['add'])){
@@ -21,7 +22,7 @@ if(isset($_POST['add'])){
 	if(isset($_POST['VAT'])){$VAT	=	stripslashes(htmlentities( strip_tags($_POST['VAT'] ))); }else{$VAT=0;} 
 	if($debug){echo "<b>VAT :</b>".$VAT."<br>";} 
 	if($VAT=='on'){$VAT=1;}else{$VAT=0;}
-			$NoError = 1;
+			
 			$IMO		=  	stripslashes(htmlentities( strip_tags($_POST['IMO'] )));
 			$ShipName	= 	stripslashes(htmlentities( strip_tags($_POST['ShipName'] ))); 
 			$Notes		=  	stripslashes(htmlentities( strip_tags($_POST['Notes'] )));
@@ -133,6 +134,7 @@ if(isset($_POST['add'])){
                       <th>IMO</th>  
                       <th>Weight</th> 
                       <th>VAT</th> 
+                      <th></th> 
                   </tr>
                   </thead>
                   <tbody>
@@ -148,15 +150,16 @@ if(isset($_POST['add'])){
                           if($VAT){$isVAT="15%";} else{$isVAT="";}  
 
                        echo '<tr>
-                          <td><a href="view.php?id='.$ShipID.'" class="btn">
-					 		<i class="fas fa-pen-to-square"></i> 
-					 	</a>'.$ShipID. '  </td>  
-						
-						 <td>'.$ShipName.'  </td>
-                          <td style="text-align: right;">'.$IMO. ' </td>  
-                          <td style="text-align: right;">'.$Weight. ' </td>  
-                          <td style="text-align: right;">'.$isVAT. ' </td>  
-                        </tr>' ; }
+                    		<td>'.$ShipID. '  </td>   
+						<td>'.$ShipName.'  </td>
+                          	<td style="text-align: right;">'.$IMO. ' </td>  
+                          	<td style="text-align: right;">'.$Weight. ' </td>  
+                          	<td style="text-align: right;">'.$isVAT. ' </td>  
+						<td>	<a href="view.php?id='.$ShipID.'" style="color: black;" >
+								<i class="fas fa-pen-to-square fa-lg"></i> 
+							</a>
+						</td>
+                        	</tr>' ; }
 					       ?>
                   </tbody>
                   <tfoot>
@@ -166,6 +169,7 @@ if(isset($_POST['add'])){
                       <th>IMO</th>  
                       <th>Weight</th> 
                       <th>VAT</th>  
+                      <th></th>  
                   </tr>
                   </tfoot>
                 </table>
@@ -179,77 +183,80 @@ if(isset($_POST['add'])){
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
-	 
-      <div class="modal fade" id="modal-lg">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Add New Vessel</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<form action="#" method="POST">
-				<div class="modal-body">
-					<div class="col-md-12">  
-						<input type="hidden" name="id" >  
-						<div class="row">
-							<div class="col-sm-12">
-								<!-- text input   -->
-								<div class="form-group">
-									<label>Vessel Name</label>
-									<input type="text" class="form-control is-invalid" name="ShipName"  autocomplete="off">
-								</div>
-							</div>
-						</div> 
-						<div class="row">
-							<div class="col-sm-6">
-								<!-- text input -->
-								<div class="form-group">
-									<label>IMO#</label>
-									<input type="text" class="form-control" name="IMO"  autocomplete="off">
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<!-- text input -->
-								<div class="form-group">
-									<label>G.R.T.</label>
-									<input type="text" class="form-control  is-invalid" name="Weight"  autocomplete="off">
-								</div>
-							</div>
-							
-						</div>
-						<div class="row">
-							<div class="col-sm-2">
-								<div class="form-group">
-									<div class="custom-control custom-switch"> 
-										<input name="VAT" type="checkbox" checked class="custom-control-input" id="customSwitch1">
-										<label class="custom-control-label" for="customSwitch1">VAT 15%</label>
+
+
+	<!-- /. modal --> 
+		<div class="modal fade" id="modal-lg">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Add New Vessel</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form action="#" method="POST">
+					<div class="modal-body">
+						<div class="col-md-12">  
+							<input type="hidden" name="id" >  
+							<div class="row">
+								<div class="col-sm-12">
+									<!-- text input   -->
+									<div class="form-group">
+										<label>Vessel Name</label>
+										<input type="text" class="form-control is-invalid" name="ShipName"  autocomplete="off">
 									</div>
 								</div>
+							</div> 
+							<div class="row">
+								<div class="col-sm-6">
+									<!-- text input -->
+									<div class="form-group">
+										<label>IMO#</label>
+										<input type="text" class="form-control" name="IMO"  autocomplete="off">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<!-- text input -->
+									<div class="form-group">
+										<label>G.R.T.</label>
+										<input type="text" class="form-control  is-invalid" name="Weight"  autocomplete="off">
+									</div>
+								</div>
+								
 							</div>
-						</div> 
-						<div class="row">
-							<div class="col-sm-12">
-							<!-- textarea -->
-								<div class="form-group">
-									<label>Notes</label>
-									<textarea class="form-control" rows="3" name="Notes" ></textarea>
+							<div class="row">
+								<div class="col-sm-2">
+									<div class="form-group">
+										<div class="custom-control custom-switch"> 
+											<input name="VAT" type="checkbox" checked class="custom-control-input" id="customSwitch1">
+											<label class="custom-control-label" for="customSwitch1">VAT 15%</label>
+										</div>
+									</div>
 								</div>
 							</div> 
-						</div>  
-					</div> 
-				</div>
-				<div class="modal-footer justify-content-between">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="submit" name="add" value="add"  class="btn btn-primary">Save changes</button>
-				</div>  
-			</form> 
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
+							<div class="row">
+								<div class="col-sm-12">
+								<!-- textarea -->
+									<div class="form-group">
+										<label>Notes</label>
+										<textarea class="form-control" rows="3" name="Notes" ></textarea>
+									</div>
+								</div> 
+							</div>  
+						</div> 
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" name="add" value="add"  class="btn btn-primary">Save changes</button>
+					</div>  
+				</form> 
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+		</div>
+	<!-- /. modal -->
 
     </section>
     <!-- /.content -->

@@ -98,67 +98,8 @@
 			<!-- left column --> 
 			<div class="col-md-12"> 
 				<!-- general form elements disabled -->
-				<form action="#" method="POST">
-				<input type="hidden" name="id"  value="<?=$AgentID;?>">
-				<div class="card card-<?=$CardColor;?>">
-					<div class="card-header">
-						<h3 class="card-title">General Information</h3> 
-					</div>  
-					<div class="card-body"> 
-						<div class="row">
-							<div class="col-sm-6">
-							<!-- text input  -->
-							<div class="form-group">
-								
-								<label>Company Name En</label>
-								 <input type="text"  class="form-control is-invalid" name="AgentNameEn" autocomplete="off">
-								<label>Company Name Ar</label>
-								 <input type="text" class="form-control" name="AgentNameAr"  autocomplete="off">
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<!-- text input -->
-							<div class="form-group">
-								<label>CR / VAT No#</label>
-								<input type="text" class="form-control is-invalid" class="form-control" name="AgentCR" autocomplete="off">
-								<label>IBAN</label>
-								<input type="text" class="form-control" name="AgentBilling" autocomplete="off">
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<!-- text input   -->
-							<div class="form-group">
-							<label>AgentPhone</label>
-								<input type="text" class="form-control" name="AgentPhone" autocomplete="off">
-							<label>Contact Name</label>
-								<input type="text" class="form-control" name="AgentContactName"  autocomplete="off">
-							</div>
-							</div>
-							
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-							<!-- textarea -->
-							<div class="form-group">
-								<label>Contact Address</label>
-								<textarea class="form-control" rows="3" name="AgentNotes" ></textarea>
-							</div>
-							</div>
-							<div class="col-sm-3">
-							<div class="form-group">
-								<label>Email</label>
-								<input type="text" class="form-control" name="AgentEmail" autocomplete="off"> 
-								<label>Other</label>
-								<input type="text" class="form-control" name="AgentEx2" autocomplete="off"> 
-							</div>
-							</div>
-						</div> 
-						<!-- input states --> 
-						</form>
-					</div>
-					<div class="card-footer">
-						<button type="submit" name="add" value="add" class="btn btn-info">Save</button>
-					</div> 
+				<form action="#" method="POST">    
+						
 				<!-- /.card-body -->
 				</div>
 				</form>
