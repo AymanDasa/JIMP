@@ -72,11 +72,12 @@ $IsActive = 0 ;
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                      <th>#</th> 
+			   <th>#</th> 
                       <th>Date</th> 
                       <th>Ship Name</th> 
                       <th>Agent Name</th>
-                      <th>Agent Name</th>
+                      <th>TOTAL</th>
+                      <th>VAT</th>
                       <th>TOTAL (SAR)</th>
                       <th>View</th>
                   </tr>
@@ -91,7 +92,8 @@ $IsActive = 0 ;
                           $InvoiceID    = $invoice['InvoiceID'];
                           $ShipName     = $invoice['ShipName']; 
                           $AgentNameEn  = $invoice['AgentNameEn']; 
-                          $AgentNameAr  = $invoice['AgentNameAr']; 
+                          $TOTAL  		= $invoice['TOTAL']; 
+                          $VAT  		= $invoice['VAT']; 
                           $VAT_TOTAL    = $invoice['VAT_TOTAL'];  
                           $Status       = $invoice['Status'];   
                           $date1=date_create($InvoiceDate); 
@@ -107,7 +109,8 @@ $IsActive = 0 ;
                           <td>'.date_format($date1,"Y-m-d"). ' </td>  
                           <td>'.$ShipName.'  </td>
                           <td>'.$AgentNameEn. ' </td> 
-                          <td>'.$AgentNameAr. ' </td> 
+                          <td> '.number_format($TOTAL,2,"."). '</td> 
+                          <td> '.number_format($VAT,2,"."). '</td> 
                           <td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td> 
                            
                           <td>  
@@ -140,7 +143,8 @@ $IsActive = 0 ;
                       <th>Date</th> 
                       <th>Ship Name</th> 
                       <th>Agent Name</th>
-                      <th>Agent Name</th>
+                      <th>TOTAL</th>
+                      <th>VAT</th>
                       <th>TOTAL (SAR)</th>
                       <th>View</th>
                   </tr>

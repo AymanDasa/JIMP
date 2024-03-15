@@ -1,17 +1,10 @@
 <?php    
-			$folder_name =  basename(dirname(__FILE__));
-			Require_once( "C:\\wow\\password\\config.php"); 
-			Require_once("../include/auth.php"); 
-			Require_once("../include/config.php"); 
-			  
-	    
-			$query = "SELECT `value` FROM `config`  WHERE  `name`='SSCount' LIMIT 1;"; 
-			$SSCountQuerys = $dbop->query($query)->fetchAll();   
-			foreach ($SSCountQuerys as $SSCountQuery) {    
-				$SSCount = intval($SSCountQuery['value']) ;
-			} 
-			$today = date("Y-m-d H:i:s"); 
-      $maxID=1;
+$folder_name =  basename(dirname(__FILE__));
+Require_once( "C:\\wow\\password\\config.php"); 
+Require_once("../include/auth.php"); 
+Require_once("../include/config.php");   
+$today = date("Y-m-d H:i:s"); 
+$maxID=1;
 if(isset($_POST['save'])) {
 #########################################################################
 #########################################################################

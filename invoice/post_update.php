@@ -1,12 +1,10 @@
 <?php    
-			$folder_name =  basename(dirname(__FILE__));
-			Require_once( "C:\\wow\\password\\config.php"); 
-			Require_once("../include/auth.php"); 
-			Require_once("../include/config.php"); 
-      $SSCount = 5 ;
-			$today = date("Y-m-d H:i:s"); 
-           
-
+$folder_name =  basename(dirname(__FILE__));
+Require_once( "C:\\wow\\password\\config.php"); 
+Require_once("../include/auth.php"); 
+Require_once("../include/config.php"); 
+$SSCount = 5 ;
+$today = date("Y-m-d H:i:s");  
 if(isset($_POST['Update'])) {
 #########################################################################
 #########################################################################

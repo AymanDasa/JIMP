@@ -16,34 +16,11 @@
                     $ShipID   			=$ship['ShipID'];
                     $IMO     			=$ship['IMO'];
                     $ShipName     		=$ship['ShipName'];        
-                    $Weight     		=$ship['Weight'];        
-                    $AgentID     		=$ship['AgentID'];        
+                    $Weight     		=$ship['Weight'];           
                     $VAT				=$ship['VAT'];        
                     $Notes     			=$ship['Notes'];      }
 					$del_tag=''; 	  
-					$today = date("Y-m-d H:i:s");
-					$query_agents = "SELECT *  FROM `agents` WHERE `AgentID`=".$AgentID." LIMIT 1;"; 
-					  $agents = $dbop->query($query_agents)->fetchAll();   
-					  foreach ($agents as $agent) {  
-						if(isset($agent['AgentNameAr'])){$AgentNameAr = $agent['AgentNameAr'];}else{$AgentNameAr ="";}
-					  	}  
-					  if($debug){echo "<b>query_agents :</b>".$query_agents."<br>";} 
-					  if($debug){echo "<b>AgentNameAr :</b>".$AgentNameAr."<br>";} 
-
-					// option AgentNameAr 
-					$AgentOption='<option value=""></option>';
-					$query = "SELECT `AgentID`,`AgentNameAr`,`AgentCR` FROM `agents`;"; 
-					$Agents = $dbop->query($query)->fetchAll();   
-					foreach ($Agents as $Agents) {   
-						$ThisID =intval($Agents['AgentID']);
-						$AgentsID=intval($AgentID);
-						if($ThisID==$AgentsID){$select="selected";}else{$select="";}
-						$AgentOption.='
-						<option value="'.$Agents['AgentID'].'" '.$select.'>'.$Agents['AgentNameAr'].' CR:'.$Agents['AgentCR'].'</option>';
-					}
-					// option AgentNameAr
-
-
+					$today = date("Y-m-d H:i:s"); 
 			if(isset($_POST['Update'])){
 				$query1 = " SELECT `IMO`  FROM `ship` WHERE NOT IMO='".$IMO."'; "; 
 				if($debug){echo "<b>query :</b>".$query1."<br>";} 
@@ -55,8 +32,6 @@
 				if($DuplicateIMO){echo "ERROR IMO : ".$IMO; exit();} 
 						$IMO		=  	stripslashes(htmlentities( strip_tags($_POST['IMO'] )));
 						$ShipName	= 	stripslashes(htmlentities( strip_tags($_POST['ShipName'] )));
-						
-						$AgentID	=  	stripslashes(htmlentities( strip_tags($_POST['AgentID'] )));
 						$Notes		=  	stripslashes(htmlentities( strip_tags($_POST['Notes'] )));
 						$Weight		=  	stripslashes(htmlentities( strip_tags($_POST['Weight'] )));
 						$Weight		=  	floatval($Weight);
@@ -65,8 +40,7 @@
 				$query_UPDATE="UPDATE `ship` SET 
 							`IMO` = '".$IMO."', 
 							`ShipName` = '".$ShipName."', 
-							`Weight` = '".$Weight."', 
-							`AgentID` = '".$AgentID."', 
+							`Weight` = '".$Weight."',  
 							`VAT` = '$VAT', 
 							`Notes` ='$Notes', 
 							`Weight` = '".$Weight."' 
@@ -75,7 +49,7 @@
 							 
 					  $dbop->query($query_UPDATE);  
 					  if($debug){echo "<b>IMO :</b>".$IMO."<br>";}
-					  else{header("Refresh:0"); }
+					  else{header('Location: index.php'); }
 
 			}   
         ?>   
@@ -141,20 +115,7 @@
 									<input type="text" class="form-control" name="ShipName" value="<?=$ShipName;?>">
 								</div>
 							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-6">
-								<!-- text input   -->
-								<div class="form-group">
-										<label>Agents</label> 
-										<select name="AgentID" class="form-control select2">
-											<?=$AgentOption;?>
-										</select>
-									</div>  
-							</div>
-						</div>
-
+						</div> 
 						<div class="row">
 							<div class="col-sm-3">
 								<!-- text input -->

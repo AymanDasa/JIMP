@@ -81,56 +81,19 @@ if($page_level==0){$xroot='';}else{$xroot='../';}
               </li> 
             </ul>
           </li> 
-        <!-- #### Ship #### -->
-          <li class="nav-item <?php if($folder_name=='ship') {echo 'menu-open';} ?>">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-file-lines"></i>
-              <p>
-                Ship
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview"  style='font-size: <?php echo $font_size;?>em'>
-              <li class="nav-item">
-                <a href="<?php echo $path;?>ship/index.php" class="nav-link">
-			            <i class="fa-solid fa-list nav-icon"></i>
-                  <p>View</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo $path;?>ship/add.php" class="nav-link">
-                  <i class="far fa-pen-to-square nav-icon"></i>
-                  <p>New</p>
-                </a>
-              </li> 
-            </ul>
-          </li> 
+        <!-- #### Ship #### --> 
+		<li class="nav-item"  style='font-size: <?php echo $font_size;?>em'>
+			<a href="<?php echo $path;?>ship/index.php" class="nav-link">
+				<i class="nav-icon fas fa-ship"></i> Vessels
+			</a>
+		</li>
 
-          <!-- #### Agent #### -->
-          <li class="nav-item <?php if($folder_name=='agent') {echo 'menu-open';} ?>">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-file-lines"></i>
-              <p>
-                Agent
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview"  style='font-size: <?php echo $font_size;?>em'>
-              <li class="nav-item">
-                <a href="<?php echo $path;?>agent/index.php" class="nav-link">
-			            <i class="fa-solid fa-list nav-icon"></i>
-                  <p>View</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo $path;?>agent/add.php" class="nav-link">
-                  <i class="far fa-pen-to-square nav-icon"></i>
-                  <p>New</p>
-                </a>
-              </li> 
-            </ul>
-          </li> 
-           
+          <!-- #### Agent #### --> 
+		<li class="nav-item"  style='font-size: <?php echo $font_size;?>em'>
+			<a href="<?php echo $path;?>agent/index.php" class="nav-link">
+				<i class="nav-icon fas fa-user-group"></i> Agents
+			</a>
+		</li>
 
 		<li class="nav-item <?php if($folder_name=='reports') {echo 'menu-open';} ?>">
             <a href="#" class="nav-link">

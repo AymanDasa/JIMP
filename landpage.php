@@ -94,15 +94,15 @@
 									<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td> 
 									<td>  
 										<div class="btn-group btn-group-sm"> 
-										  <a href="view.php?id='.$invoice['InvoiceID'].'" class="btn">
+										  <a href="invoice/view.php?id='.$invoice['InvoiceID'].'" class="btn">
 										  <i class="fas fa-eye"></i></a>
-										  <a href="edit.php?id='.$invoice["InvoiceID"].'" class="btn">
+										  <a href="invoice/edit.php?id='.$invoice["InvoiceID"].'" class="btn">
 										  <i class="fas fa-pen-to-square"></i></a>';
 											if($debug){echo '
-												<a href="../reports/invoice2.php?id='.$invoice["InvoiceID"].'" class="btn">
+												<a href="reports/invoice2.php?id='.$invoice["InvoiceID"].'" class="btn">
 												<i class="fas fa-cross"></i></a>';
 												}
-											echo '<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn">
+											echo '<a href="reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn">
 												  <i class="fas fa-file-pdf"></i></a>
 												<spen href="#" class="btn">'.$approve_text.'	</spen>
 												<span hidden>'.$approve_vx.'</spen> 

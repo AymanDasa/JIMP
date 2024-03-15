@@ -4,9 +4,66 @@ $folder_name =  basename(dirname(__FILE__));
 Require_once( "C:\\wow\\password\\config.php"); 
 Require_once("../include/auth.php"); 
 Require_once("../include/config.php"); 
-$SAPPOname = '';
+$SAPPOname = $Error_MSG='';
 $IsActive = 0 ;	   
 if($debug){echo "<b>IsActive :</b>".$IsActive."<br>";} 
+
+if(isset($_POST['add'])){
+	if($debug){echo "<b>POST_IMO :</b>".$_POST['IMO']."<br>";}
+	$IMO		=  	stripslashes(htmlentities( strip_tags($_POST['IMO'] )));
+	$query1 = " SELECT `IMO`  FROM `ship` WHERE IMO='".$IMO."'; "; 
+		if($debug){echo "<b>query :</b>".$query1."<br>";} 
+	$IMOs = $dbop->query($query1)->fetchAll();    
+	$DuplicateIMO=searchIMO($_POST['IMO'],$IMOs,'IMO'); 
+	if($debug){print_r($IMOs);} 				
+	if($debug){echo "<br><b>DuplicateIMO :</b>".$DuplicateIMO."<br>";} 		 	  
+		 
+	if(isset($_POST['VAT'])){$VAT	=	stripslashes(htmlentities( strip_tags($_POST['VAT'] ))); }else{$VAT=0;} 
+	if($debug){echo "<b>VAT :</b>".$VAT."<br>";} 
+	if($VAT=='on'){$VAT=1;}else{$VAT=0;}
+			$NoError = 1;
+			$IMO		=  	stripslashes(htmlentities( strip_tags($_POST['IMO'] )));
+			$ShipName	= 	stripslashes(htmlentities( strip_tags($_POST['ShipName'] ))); 
+			$Notes		=  	stripslashes(htmlentities( strip_tags($_POST['Notes'] )));
+			$Weight		=  	stripslashes(htmlentities( strip_tags($_POST['Weight'] )));
+			$Weight		=  	floatval($Weight);
+	if($Weight < 1){  
+	 	 $Error_MSG= '
+		<script>
+			$(document).ready(function() { 
+				toastr.error("Sorry, Wrong G.R.T"); 
+			});
+			</script>'; 
+		 $NoError = $NoError * 0 ;}
+
+	if($DuplicateIMO){
+		$Error_MSG= '
+		<script>
+			$(document).ready(function() { 
+				toastr.error("Sorry, Duplicate IMO"); 
+			});
+			</script>'; 
+		 $NoError = $NoError * 0 ;}
+		 
+	if($NoError)
+	 {
+		$query_INSERT="INSERT INTO `ship`  (`ShipName` ,`IMO` ,`Weight` ,`VAT`,`Notes`)
+				VALUES ('".$ShipName."','".$IMO."',".$Weight.", ".$VAT.",'".$Notes."')"; 
+				if($debug){echo "<b>query_INSERT :</b>".$query_INSERT."<br>";}
+					
+		$dbop->query($query_INSERT);  
+
+		$alog_note = strval("ShipName:".$ShipName." + IMO:".$IMO."  +  Weight:".$Weight."  + VAT:".$VAT."    " );  
+		$SQL_activitylog="INSERT INTO `activitylog` 
+			( `alog_section`  ,	`alog_no`  ,	`alog_description`  ,	`alog_user` ,	`alog_note` 	) 
+			VALUE ('".$folder_name."' ,'".$ShipName."' ,'Add Ship',	'".$username_now."' ,'".$alog_note."' 	) ;";
+		$dbop->query($SQL_activitylog);   
+		
+		if($debug){echo "<b>IMO :</b>".$IMO."<br>";}  
+		else{header("Refresh:0"); }
+	}
+
+			} 
 ?>
 <html lang="en">
 <head>
@@ -24,6 +81,7 @@ if($debug){echo "<b>IsActive :</b>".$IsActive."<br>";}
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/toastr/toastr.min.css"> 
   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -40,12 +98,12 @@ if($debug){echo "<b>IsActive :</b>".$IsActive."<br>";}
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Ships</h1>
+            <h1>Vessels </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
-              <li class="breadcrumb-item active"><?php echo ucwords(basename(dirname(__FILE__)));?></li>
+              <li class="breadcrumb-item active">Vessels </li>
             </ol>
           </div>
         </div>
@@ -59,30 +117,22 @@ if($debug){echo "<b>IsActive :</b>".$IsActive."<br>";}
           <div class="col-12"> 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">List of all Ships</h3>
-                  <div class="card-tools"> 
-                    <a href="add.php">
-                      <button type="button" class="btn btn-success" >
-                        Add new Ship
-                      </button> 
-                    </a>
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-plus"></i>
-                    </button> 
+                <h3 class="card-title">List of all Vessels</h3>
+                  <div class="card-tools">  
+				<a href="add.php" class="btn btn-app" data-toggle="modal" data-target="#modal-lg">  <i class="fas fa-plus"></i>  Add  </a>	 
                   </div>
+			  
               </div> 
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                      <th>#</th> 
+                      <th>#</th>  
+                      <th>Vessel Name</th> 
                       <th>IMO</th>  
-                      <th>Ship Name</th> 
-                      <th>Weight</th>
-                      <th>Agent Name</th>
-                      <th>VAT</th>
-                      <th>View</th>
+                      <th>Weight</th> 
+                      <th>VAT</th> 
                   </tr>
                   </thead>
                   <tbody>
@@ -93,44 +143,29 @@ if($debug){echo "<b>IsActive :</b>".$IsActive."<br>";}
                           $ShipID   = $invoice['ShipID'];
                           $IMO      = $invoice['IMO'];
                           $ShipName = $invoice['ShipName']; 
-                          $Weight   = $invoice['Weight']; 
-                          $AgentID  = $invoice['AgentID'];  
+                          $Weight   = $invoice['Weight'];  
                           $VAT      = $invoice['VAT'];    
-                          if($VAT){$isVAT="15%";} else{$isVAT="";} 
-
-                          $query = "SELECT *  FROM `agents` WHERE `AgentID`=".$AgentID." LIMIT 1;"; 
-                            $agents = $dbop->query($query)->fetchAll();   
-                            foreach ($agents as $agent) {  
-                              if(isset($agent['AgentNameAr'])){$AgentNameAr = $agent['AgentNameAr'];}else{$AgentNameAr ="";}
-                            }  
+                          if($VAT){$isVAT="15%";} else{$isVAT="";}  
 
                        echo '<tr>
-                          <td>'.$ShipID. ' </td>  
+                          <td><a href="view.php?id='.$ShipID.'" class="btn">
+					 		<i class="fas fa-pen-to-square"></i> 
+					 	</a>'.$ShipID. '  </td>  
+						
+						 <td>'.$ShipName.'  </td>
                           <td style="text-align: right;">'.$IMO. ' </td>  
-                          <td>'.$ShipName.'  </td>
-                          <td style="text-align: right;">'.$Weight. ' </td> 
-                          <td>'.$AgentNameAr. ' </td> 
-                          <td style="text-align: right;">'.$isVAT. ' </td> 
-
-                          <td>   
-                            <div class="btn-group btn-group-sm"> 
-                              <a href="view.php?id='.$ShipID.'" class="btn btn-info">
-                              <i class="fas fa-eye"></i></a> 
-                            </div>
-                          </td>  
-                             
+                          <td style="text-align: right;">'.$Weight. ' </td>  
+                          <td style="text-align: right;">'.$isVAT. ' </td>  
                         </tr>' ; }
 					       ?>
                   </tbody>
                   <tfoot>
                   <tr>
-                      <th>#</th> 
+                      <th>#</th>  
+                      <th>Vessels Name</th> 
                       <th>IMO</th>  
-                      <th>Ship Name</th> 
-                      <th>Weight</th>
-                      <th>Agent Name</th>
-                      <th>VAT</th> 
-                      <th>View</th>
+                      <th>Weight</th> 
+                      <th>VAT</th>  
                   </tr>
                   </tfoot>
                 </table>
@@ -144,6 +179,78 @@ if($debug){echo "<b>IsActive :</b>".$IsActive."<br>";}
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
+	 
+      <div class="modal fade" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Add New Vessel</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form action="#" method="POST">
+				<div class="modal-body">
+					<div class="col-md-12">  
+						<input type="hidden" name="id" >  
+						<div class="row">
+							<div class="col-sm-12">
+								<!-- text input   -->
+								<div class="form-group">
+									<label>Vessel Name</label>
+									<input type="text" class="form-control is-invalid" name="ShipName"  autocomplete="off">
+								</div>
+							</div>
+						</div> 
+						<div class="row">
+							<div class="col-sm-6">
+								<!-- text input -->
+								<div class="form-group">
+									<label>IMO#</label>
+									<input type="text" class="form-control" name="IMO"  autocomplete="off">
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<!-- text input -->
+								<div class="form-group">
+									<label>G.R.T.</label>
+									<input type="text" class="form-control  is-invalid" name="Weight"  autocomplete="off">
+								</div>
+							</div>
+							
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<div class="form-group">
+									<div class="custom-control custom-switch"> 
+										<input name="VAT" type="checkbox" checked class="custom-control-input" id="customSwitch1">
+										<label class="custom-control-label" for="customSwitch1">VAT 15%</label>
+									</div>
+								</div>
+							</div>
+						</div> 
+						<div class="row">
+							<div class="col-sm-12">
+							<!-- textarea -->
+								<div class="form-group">
+									<label>Notes</label>
+									<textarea class="form-control" rows="3" name="Notes" ></textarea>
+								</div>
+							</div> 
+						</div>  
+					</div> 
+				</div>
+				<div class="modal-footer justify-content-between">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" name="add" value="add"  class="btn btn-primary">Save changes</button>
+				</div>  
+			</form> 
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
     </section>
     <!-- /.content -->
   </div>
@@ -158,7 +265,10 @@ if($debug){echo "<b>IsActive :</b>".$IsActive."<br>";}
 <script src="<?php echo $Homepath;?>adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo $Homepath;?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
+<!-- DataTables  & Plugins --> 
+<script src="<?php echo $Homepath;?>adminlte/plugins/toastr/toastr.min.js"></script> 
+
+   
 <script src="<?php echo $Homepath;?>adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo $Homepath;?>adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo $Homepath;?>adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -193,6 +303,7 @@ if($debug){echo "<b>IsActive :</b>".$IsActive."<br>";}
 
  
 </script>
+<?php echo $Error_MSG;?>
 <script> 
   var $sidebar = $('.control-sidebar')
   var $container = $('<div />', {

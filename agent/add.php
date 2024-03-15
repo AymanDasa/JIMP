@@ -7,10 +7,8 @@
 			$is_active =0; 
 			$name=$cr =$vat =$conatct =$create_date=$update_date=" "; 
 					$today = date("Y-m-d H:i:s");  
-				 
-			if(isset($_POST['add'])){
-				
-				
+					$Xcont = 1;
+			if(isset($_POST['add'])){ 
 						$AgentNameAr		=  	stripslashes(htmlentities( strip_tags($_POST['AgentNameAr'] )));
 						$AgentNameEn		= 	stripslashes(htmlentities( strip_tags($_POST['AgentNameEn'] )));
 						$AgentCR			=  	stripslashes(htmlentities( strip_tags($_POST['AgentCR'] )));
@@ -21,6 +19,18 @@
 						$AgentContactName	=  	stripslashes(htmlentities( strip_tags($_POST['AgentContactName'] )));
 						$AgentNotes			=  	stripslashes(htmlentities( strip_tags($_POST['AgentNotes'] )));  
 			
+						if( $AgentNameEn =='' ){echo "Error Agent Name En";exit();} 
+						if( $AgentCR =='' ){echo "Error Agent CR ";exit();} 
+
+						$sql = "SELECT  * FROM `agents`  WHERE `AgentNameEn` ='".$AgentNameEn."' LIMIT 1;";
+						$result  =  $dbop->query($sql ) ;  
+						$Xcont  =  $result->numRows() ;  
+						if($Xcont > 0){echo "Error Agent Name En   ";exit();}  
+						$sql = "SELECT  * FROM `agents`  WHERE `AgentCR` ='".$AgentCR."' LIMIT 1;";
+						$result  =  $dbop->query($sql ) ;  
+						$Xcont  =  $result->numRows() ;    
+						if($Xcont >0){echo "Error Agent CR ";exit();}			
+						
 				$query_INSERT="INSERT INTO `agents`  
 							(`AgentNameAr` ,`AgentNameEn` ,`AgentCR` ,`AgentEmail`,`AgentBilling`,`AgentEx2`,`AgentPhone`,`AgentContactName`,`AgentNotes`)
 							VALUES ('".$AgentNameAr."', '".$AgentNameEn."','".$AgentCR."','".$AgentEmail."','".$AgentBilling."','".$AgentEx2."','".$AgentPhone."','".$AgentContactName."','".$AgentNotes."');"; 
@@ -99,17 +109,18 @@
 							<div class="col-sm-6">
 							<!-- text input  -->
 							<div class="form-group">
+								
+								<label>Company Name En</label>
+								 <input type="text"  class="form-control is-invalid" name="AgentNameEn" autocomplete="off">
 								<label>Company Name Ar</label>
 								 <input type="text" class="form-control" name="AgentNameAr"  autocomplete="off">
-								<label>Company Name En</label>
-								 <input type="text" class="form-control" name="AgentNameEn" autocomplete="off">
 							</div>
 							</div>
 							<div class="col-sm-3">
 							<!-- text input -->
 							<div class="form-group">
 								<label>CR / VAT No#</label>
-								<input type="text" class="form-control" name="AgentCR" autocomplete="off">
+								<input type="text" class="form-control is-invalid" class="form-control" name="AgentCR" autocomplete="off">
 								<label>IBAN</label>
 								<input type="text" class="form-control" name="AgentBilling" autocomplete="off">
 							</div>
