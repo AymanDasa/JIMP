@@ -74,7 +74,7 @@ $IsActive = 0 ;
 			<div class="col-12"> 
 				<div class="card">  
 					<div class="card-body">
-            				<h4>Custom Content Below</h4>
+            				<h4>Custom Report</h4>
 						<ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
 						<li class="nav-item">
 							<a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true"> Daily Report</a>

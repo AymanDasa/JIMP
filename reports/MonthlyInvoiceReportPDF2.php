@@ -498,7 +498,7 @@ $CN_VAT_TOTAL 	=$CN_PORT_Share=$CN_CPSP_VAT = 0;
 				<td  class="tableright">'.number_format($VAT,2,"."). ' </td> 
 				<td  class="tableright">'.number_format($VAT_TOTAL,2,"."). ' </td>     
 			</tr>' ; 
-		}
+ }
 $html.= '	<tr class="tableDay">
 			<td class="tableleft">  </td>  
 			<td class="tableleft"> </td>  
@@ -608,7 +608,7 @@ $html.= '	<tr class="tableDay">
 			 if($CN_TOTAL>0){
 			$html.='  
 			<tr class="tableDayTotal"> 
-					<td class="tableright">  - '.number_format($CN_TOTAL,2,"."). '</td> 
+					<td class="tableright">  - '.number_format($CN_VAT_TOTAL,2,"."). '</td> 
 					<td class="tableright">  - '.number_format($CN_VAT,2,".").'</td>  
 
 					<td class="tableright">  - '.number_format($CN_VATabl_gross,2,".").'</td>  
