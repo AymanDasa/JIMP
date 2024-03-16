@@ -33,7 +33,7 @@
 						// Validate credentials
 						if(empty($username_err) && empty($password_err)){
 							// Prepare a select statement
-		
+							$Activate2FA = intval(trim($_POST["Activate2FA"])); 
 							
 							$sql="SELECT * FROM users WHERE username = '".$username."'  LIMIT 1;";
 							$accounts  = $dbop->query($sql)->fetchArray(); 
@@ -46,14 +46,14 @@
 							$maxList =$accounts['max_list'] ;  
 							$f_name = $accounts["f_name"] ; 
 							$l_name = $accounts["l_name"] ;  
-						 
+							
 							 
 							if( isset($id) ){ 
 								// Attempt to execute the prepared statement  
 									if(password_verify($password, $hashed_password)){
 										// Password is correct, so start a new session
 										session_start();
-		
+										
 										// Store data in COSTOM session variables 
 										$_SESSION["username"] = $username; 
 										$_SESSION["id"] = $id;                        
@@ -64,6 +64,7 @@
 										$_SESSION["f_name"] = $f_name;   
 										$_SESSION["l_name"] = $l_name;         
 										$_SESSION["data6"] = '';  
+										$_SESSION["Activate2FA"] = $Activate2FA;  
 										     
 										// Redirect user to 2fa page
 										
@@ -91,6 +92,7 @@
 					}  
 					/******************************************************************************** */  
 					/******************************************************************************** */ 
+					$Activate2FA =1;
 					$info_sql = "SELECT `name`, `value` FROM `info`";
 					$info_result = $dbop->query($info_sql)->fetchAll();   
 					$info_data = array();
@@ -98,6 +100,7 @@
 						$companyLogo =$info_data['companyLogo'];   
 						$companyXLogo =$info_data['companyXLogo']; 
 						$companySlog =$info_data['companySlog'];   
+						$Activate2FA =intval($info_data['Activate2FA']);   
 						$info_data =[0];
 						$info_result=[0]; 
 		?>
@@ -207,6 +210,7 @@
 					</div>
 					<!-- /.col -->
 					</div>
+					<input type="hidden" name="Activate2FA" value="<?php echo $Activate2FA;?>"/>
 				</form> 
 			</div>
 		</div>
