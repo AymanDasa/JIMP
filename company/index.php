@@ -3,87 +3,52 @@
 			$dbname = 'data';
 			Require_once( "C:\\wow\\password\\config.php"); 
 			Require_once("../include/auth.php"); 
-			Require_once("../include/config.php"); 
-			 
-		  
-		if(true) { 
-				// SELECT  AGENT
-				$query = "SELECT * FROM `info` WHERE `type` = 'text';";  
-				$result = $dbop->query($query)->fetchAll();    
-				$dataArray = array();
-				foreach ($result as $row) {
-				$dataArray[] = $row;
-				}
-					 
-			}  
-			$today = date("Y-m-d H:i:s");   
+			Require_once("../include/config.php");  
+			$today = date("Y-m-d H:i:s"); 
+			$Error_MSG='';   
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	// Loop through POST data to update each field in the database
+	foreach ($_POST as $field_name => $new_value) {
+		// Sanitize input to prevent SQL injection 
+	   // $field_name = mysqli_real_escape_string($dbop, $field_name);
+        // $new_value = mysqli_real_escape_string($dbop, $new_value);
+		
+	  // $field_name = $dbop->real_escape_string($field_name);
+       //  $new_value = $dbop->real_escape_string($new_value);
+	   $field_name = stripslashes ( strip_tags(($field_name)));
+        $new_value = stripslashes ( strip_tags(($new_value)));
 
-				if(isset($_POST['UpdateCompnayProfile'])) {
-					$company_name		= $_POST['company_name'];
-					$company_bldg		= $_POST['company_bldg'];
-					$company_pobox		= $_POST['company_pobox'];
-					$company_tel		= $_POST['company_tel'];
-					$company_cr		= $_POST['company_cr'];
-					$company_vat		= $_POST['company_vat'];
-					$company_name_ar	= $_POST['company_name_ar'];
-					$company_bldg_ar	= $_POST['company_bldg_ar'];
-					$company_pobox_ar	= $_POST['company_pobox_ar'];
-					$company_tel_ar	= $_POST['company_tel_ar'];
-					$cc1				= $_POST['cc1'];
-					$cc2				= $_POST['cc2'];
-					$vat				= $_POST['vat'];
-					$company_logo		= $_POST['company_logo'];
-					$company_contract	= $_POST['company_contract'];
-					$CompanyVendor		= $_POST['company_vendor'];
-				 
-					// Use prepared statements to prevent SQL injection
-					$valuesToUpdate = [
-						'company_name',
-						'company_bldg',
-						'company_pobox',
-						'company_tel',
-						'company_cr',
-						'company_vat',
-						'company_name_ar',
-						'company_bldg_ar',
-						'company_pobox_ar',
-						'company_tel_ar',
-						'cc1',
-						'cc2',
-						'vat',
-						'company_logo',
-						'company_contract',
-						'CompanyVendor',  // Adjust the case based on your actual value
-					 ];
-					 foreach ($valuesToUpdate as $value) {
-						$query = "UPDATE `config` SET `value` = ? WHERE `name` = ?";
-						$statement = $dbop->prepare($query);
-						$result = $statement->execute([$$value, $value]);
-						
-						// Check for success or handle errors
-						if (!$result) {
-						    echo "Update failed for $value";
-						    break;  // Stop the loop on the first failure, you may adjust this based on your needs
-						}
-					 } 
-					header("refresh:0");
-				 } 
-		  
-        ?>   
+		// Update the database with the new value
+		$sql = "UPDATE `info` SET `value`='$new_value' WHERE `active` = 1 AND `name`='$field_name';";
+		$dbop->query($sql); 
+	}
+	
+ 
+		$Error_MSG= '
+		<script>
+			$(document).ready(function() { 
+				toastr.success("Updated"); 
+			});
+			</script>'; 
+  
+	} ?>   
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo ucwords(basename(dirname(__FILE__)));?></title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <title><?php echo ucwords(basename(dirname(__FILE__)));?></title>  
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/fontawesome-free/css/all.min.css">
-  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/fontawesome-free/css/all.min.css"> 
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/fontawesome-free6/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/toastr/toastr.min.css"> 
   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -120,35 +85,43 @@
 			<!-- left column --> 
 			<div class="col-md-12"> 
 				<!-- general form elements disabled -->
-				<form action="index.php" method="POST">  
-					<div class="card-header">
-						<h3 class="card-title">General Information</h3> 
-					</div>   
-					<div class="card-body"> 
-						<div class="row">
-							
-							<!-- text input -->
-							<?php 
-							foreach ($dataArray as $data) {
-								echo '<div class="col-sm-3"><div class="form-group"> 
-									   <label></label> 
-									   <input type="text" class="form-control" name="'.$data['name'].'" value="'.$data['name'].'">
-									   <input type="text" class="form-control" name="'.$data['value'].'" value="'.$data['value'].'">
-									 </div></div> ';}
-							?>
-							
-						<!-- input states --> 
-					 
+				<div class="card">
+				<div class="card-body">
+		<?php 		
+		$line_count=0; 
+$sql = "SELECT * FROM `info` WHERE `active` = 1  "; 
+$result = $dbop->query($sql)->fetchAll();
+
+    // Output data of each row within a form
+    echo '<form action="#" method="post" class="form-horizontal">';
+    foreach ($result as $row) {
+        // Create label for the field
+        $label = ucfirst(str_replace('_', ' ', $row["name"]));
+        // Output the label and editable input field 
+        echo "	<div class=form-group'>
+			  	<div class='row'>
+					<div class='col-2 col-form-label'> 
+						<label >{$label}:</label>
 					</div>
-					<div class="card-footer">
-						<button type="submit" name="UpdateCompnayProfile"  class="btn btn-info">save</button>
-					</div>  
+					<div class='col-8'> 
+						<input type='text' class='form-control' name='{$row["name"]}' value='{$row["value"]}'>
 					</div>
-				</form>
+		    		</div>
+			</div>  ";
+	   $line_count++;
+	   if ($line_count % 10 == 0) {
+		echo "<hr>"; } 
+	}
+    echo '<input type="submit" value="Submit">';
+    echo '</form>';
+ 
+?>
 				<!-- /.card -->
 				<!-- general form elements disabled -->
 				
 				<!-- /.card -->
+			</div>
+			</div>
 			</div>
 			<!--/.col (right) -->
 			</div>
@@ -163,19 +136,35 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery --> 
+<!-- jQuery -->
 <script src="<?php echo $Homepath;?>adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo $Homepath;?>adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- bs-custom-file-input -->
-<script src="<?php echo $Homepath;?>adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- DataTables  & Plugins --> 
+<script src="<?php echo $Homepath;?>adminlte/plugins/toastr/toastr.min.js"></script> 
+
+   
+<script src="<?php echo $Homepath;?>adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/jszip/jszip.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo $Homepath;?>adminlte/dist/js/adminlte.min.js"></script> 
+<!-- Page specific script -->
 <script>
 $(function () {
   bsCustomFileInput.init();
 });
 </script>
+<?php echo $Error_MSG;?>
 <script src="<?php echo $path;?>include/js/menu.js"></script>
 </body>
 </html>
