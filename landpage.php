@@ -3,14 +3,35 @@
 	
 <?php 
 	$page_level=0;
-	
-	Require_once( "C:\\wow\\password\\config.php"); 
+	$today = date("Y-m-d H:i:s");
+	Require_once( "C:\\wow\\password\\config.php");  
 	include("include/auth.php");
-	include("include/head.php"); 
-	
+	include("include/head.php");  
 	$debug =0;
 	
 	
+// ######################################################################
+// ########################## 	NEW ICON 		#######################
+// ######################################################################
+$newIcon='';
+// Remove the old one in " nav.php " Change the Date and Add echo $newIcon;
+$given_date = "2024-03-23 01:01:01";
+if ($today < $given_date) {
+	
+	$newIcon='
+	<style> 
+		.shake {  animation: shake 0.2s infinite; } 
+				@keyframes shake { 
+			0% { transform: rotate(0deg); }
+			25% { transform: rotate(5deg); }
+			50% { transform: rotate(0eg); }
+			75% { transform: rotate(-5deg); }
+			100% { transform: rotate(0deg); }
+				} 
+	</style>
+	<span class="constant-tilt-shake"> 
+		<span class="right badge badge-danger shake">New</span>
+	</span> ';}
 	
 ?>
 <body class="hold-transition sidebar-mini">
