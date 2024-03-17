@@ -120,7 +120,7 @@ if(isset($_POST['add'])){
               <div class="card-header">
                 <h3 class="card-title">List of all Vessels</h3>
                   <div class="card-tools">  
-				<a href="add.php" class="btn btn-app" data-toggle="modal" data-target="#modal-lg">  <i class="fas fa-plus"></i>  Add  </a>	 
+				<a href="#" class="btn btn-app" data-toggle="modal" data-target="#modal-lg">  <i class="fas fa-plus"></i>  Add  </a>	 
                   </div>
 			  
               </div> 

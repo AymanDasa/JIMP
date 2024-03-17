@@ -1,5 +1,6 @@
 <?php
-$today = date("Y-m-d H:i:s"); 
+$today = date("Y-m-d H:i:s");
+$is_admin =intval($_SESSION["is_admin"]);  
 function searchForArray($id, $array,$elmint) {
     foreach ($array as $key => $val) {
         if ($val[$elmint] === $id) {

@@ -6,32 +6,36 @@
 			Require_once("../include/config.php");  
 			$today = date("Y-m-d H:i:s"); 
 			$Error_MSG='';   
+			 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	// Loop through POST data to update each field in the database
-	foreach ($_POST as $field_name => $new_value) {
-		// Sanitize input to prevent SQL injection 
-	   // $field_name = mysqli_real_escape_string($dbop, $field_name);
-        // $new_value = mysqli_real_escape_string($dbop, $new_value);
-		
-	  // $field_name = $dbop->real_escape_string($field_name);
-       //  $new_value = $dbop->real_escape_string($new_value);
-	   $field_name = stripslashes ( strip_tags(($field_name)));
-        $new_value = stripslashes ( strip_tags(($new_value)));
+	if(isset($_POST['Update'])){
+		// Loop through POST data to update each field in the database
+		foreach ($_POST as $field_name => $new_value) {
+			// Sanitize input to prevent SQL injection  
+		   $field_name = stripslashes ( strip_tags(($field_name)));
+			$new_value = stripslashes ( strip_tags(($new_value)));
 
-		// Update the database with the new value
-		$sql = "UPDATE `info` SET `value`='$new_value' WHERE `active` = 1 AND `name`='$field_name';";
-		$dbop->query($sql); 
-	}
-	
+			// Update the database with the new value
+			$sql = "UPDATE `info` SET `value`='$new_value' WHERE `active` = 1 AND `name`='$field_name';";
+			$dbop->query($sql); 
+		
+			$Error_MSG= '<script>
+							$(document).ready(function() { toastr.success("Updated"); });
+						</script>'; } 
+			}
+	if(isset($_POST['add'])){ 
+			$new_name = stripslashes 	(($_POST['name']));
+			$new_value = stripslashes 	(($_POST['value']));
+			$sql ="INSERT INTO `info` ( `name`, `value` ) VALUES ( '".$new_name."', '".$new_value."' );";
+			$dbop->query($sql);  
+			$Error_MSG= '<script>
+							$(document).ready(function() { toastr.success("Add New"); });
+						</script>'; 
+	} 
  
-		$Error_MSG= '
-		<script>
-			$(document).ready(function() { 
-				toastr.success("Updated"); 
-			});
-			</script>'; 
-  
-	} ?>   
+	
+}
+ ?>   
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -88,48 +92,106 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<div class="card">
 				<div class="card-body">
 		<?php 		
-		$line_count=0; 
-$sql = "SELECT * FROM `info` WHERE `active` = 1  "; 
+$line_count=0; 	
+$sql = "SELECT * FROM `info` WHERE `active` = 1;  "; 
+if($is_admin){$sql = "SELECT * FROM `info`; "; }
 $result = $dbop->query($sql)->fetchAll();
 
     // Output data of each row within a form
     echo '<form action="#" method="post" class="form-horizontal">';
     foreach ($result as $row) {
+		$id_delete= $row["id"] ;
         // Create label for the field
         $label = ucfirst(str_replace('_', ' ', $row["name"]));
+		 
         // Output the label and editable input field 
         echo "	<div class=form-group'>
 			  	<div class='row'>
 					<div class='col-2 col-form-label'> 
 						<label >{$label}:</label>
 					</div>
-					<div class='col-8'> 
+					<div class='col-8'>  
 						<input type='text' class='form-control' name='{$row["name"]}' value='{$row["value"]}'>
+						
 					</div>
 		    		</div>
 			</div>  ";
 	   $line_count++;
 	   if ($line_count % 10 == 0) {
 		echo "<hr>"; } 
-	}
-    echo '<input type="submit" value="Submit">';
-    echo '</form>';
- 
-?>
-				<!-- /.card -->
+	}?> 
+<button type="submit" name="Update" value="Update" class="btn btn-app"><i class="fas fa-plus"></i> Update</button>
+
+<?php if($is_admin){ ?>
+	<a href="#" class="btn btn-app" data-toggle="modal" data-target="#modal-lg">  
+		<i class="fas fa-plus"></i>  Add  </a>	 
+	</div>
+<?php } ?>
+</form> 
+	 
+
+					<!-- /.card -->
 				<!-- general form elements disabled -->
 				
 				<!-- /.card -->
 			</div>
+			
 			</div>
 			</div>
+				
 			<!--/.col (right) -->
 			</div>
+		
 			<!-- /.row -->
 		</div><!-- /.container-fluid -->
+		
+		<div class="modal fade" id="modal-lg">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Add New info</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form action="#" method="POST">
+						<div class="modal-body">
+							<div class="col-md-12">  
+								  
+								<div class="row">
+									<div class="col-sm-6">
+										<!-- text input   -->
+										<div class="form-group">
+											<label>Info Name</label>
+											<input type="text" class="form-control is-invalid" name="name"  autocomplete="off">
+										</div>
+									</div> 
+									<div class="col-sm-6">
+										<!-- text input -->
+										<div class="form-group">
+											<label>Info Value</label>
+											<input type="text" class="form-control" name="value"  autocomplete="off">
+										</div>
+									</div> 
+								</div> 
+							</div> 
+						</div>
+						<div class="modal-footer justify-content-between">
+							<button type="button" class="btn btn-default" name="add" data-dismiss="modal">Close</button>
+							<button type="submit" name="add" value="add"  class="btn btn-primary">Save changes</button>
+						</div>  
+					</form> 
+				</div>
+				<!-- /.modal-content -->
+			</div>
+		<!-- /.modal-dialog -->
+		</div>
+	
+	
 		</section>
 		<!-- /.content -->
 	</div>
+		
 <!-- /.content-wrapper -->
 	<?php include('../include/footer.php');?>
 	<aside class="control-sidebar control-sidebar-dark"> </aside>
