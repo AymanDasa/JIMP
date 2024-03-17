@@ -1,6 +1,7 @@
 <?php
 $today = date("Y-m-d H:i:s");
-$is_admin =intval($_SESSION["is_admin"]);  
+$is_admin =intval($_SESSION["is_admin"]); 
+
 function searchForArray($id, $array,$elmint) {
     foreach ($array as $key => $val) {
         if ($val[$elmint] === $id) {
@@ -160,7 +161,8 @@ $info_sql = "SELECT `name`, `value` FROM `info`";
 			$EmptyLineAr =$info_data['EmptyLineAr'];  
 			$EmptyLineEn =$info_data['EmptyLineEn'];  
 			$PortPercentage=floatval($info_data['PortPercentage']);
-			$CPSPercentage=floatval(100-$PortPercentage);
+			$CPSPercentage=floatval(100-$PortPercentage); 
+			$AfterMarch=intval($info_data['AfterMarch']); 
 			$info_data =[0];
 			$info_result=[0];  
 			

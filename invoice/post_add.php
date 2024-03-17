@@ -55,6 +55,7 @@ function PeriodDay($startTimeStamp,$endTimeStamp)
 	*/
 }
 
+	 
 function MSA($SWeight,$Days){
 	// MSP() function used to Callculate MService4 Only 
 	// $Days for Anchorage Days
@@ -70,72 +71,131 @@ function MSA($SWeight,$Days){
 	echo MSA($ShipWeight,$AnchorageDays);
 	*/
 }
- // $MSericeBathPrice=MSB($ShipWeight,$MSFraction2,$PeriodDays); 
-
-function MSB($SWeight,$STFactor,$Days){
-	// MSP() function used to Callculate MService2 Only
-	// $STFactor for Service Type Factor 
-	// $Days for Period Days
-	if ($SWeight<=500)						// if Ship Weight < 500 
-		{$MBPrice=($Days*550)*$STFactor; }
-	if ($SWeight>500 && $SWeight<=3000 )		// if Ship Weight > 500 and Weight < 3000 
-		{$MBPrice=($Days*1100)*$STFactor;}
-	if ($SWeight>3000 && $SWeight<=15000 ) 		// if Ship Weight > 3000 and Weight < 15000 
-		{$MBPrice=($Days*1500)*$STFactor;} 
-	if ($SWeight>15000 )					//if Ship Weight > 15000
-		{$MBPrice=($Days*2200)*$STFactor;}
-	return floatval($MBPrice);	
-	/*
-	How to use MSB Function:
-	echo MSB($ShipWeight,$ServiceTypeFactor,$PeriodDays);
-	*/
-}
 
 
-function MSP($SWeight,$STFactor){
-	// MSP() function used to Callculate MService0 and MService1 Only
-	// $STFactor for Service Type Factor  
-  $STFactor = floatval($STFactor);
-	if ($SWeight<=500){
-		// if Ship Weight < 500 
-		$cell1=(2500)*$STFactor;
-		$cell2="";
-		$cell3="";
-		$cell4=""; 
-		$MPrice=$cell1;}
-	if ($SWeight>500 && $SWeight<=3000 ){
-		// if Ship Weight > 500 and Weight < 3000 
-		$cell1=2500*$STFactor;
-		$cell2=(($SWeight-500)*1.15)*$STFactor;
-		$cell3="";
-		$cell4="";
-		$MPrice=$cell1+$cell2;}
-	if ($SWeight>3000 && $SWeight<=15000 ){
-		// if Ship Weight > 3000 and Weight < 15000 
-		$cell1=2500*$STFactor;
-		$cell2=2875*$STFactor;
-		$cell3=(($SWeight-3000)*0.17)*$STFactor;
-		$cell4="";
-		$MPrice=$cell1+$cell2+$cell3;}
-	if ($SWeight>15000 ){
-		// if Ship Weight > 15000  
-		$cell1=2500*$STFactor;
-		$cell2=2875*$STFactor;
-		$cell3=2040*$STFactor;
-		$cell4=(($SWeight-15000)*0.1)*$STFactor;
-		$MPrice=$cell1+$cell2+$cell3+$cell4;}
+ 
+ if($AfterMarch==0)
+		{ 
+
+			// $MSericeBathPrice=MSB($ShipWeight,$MSFraction2,$PeriodDays); 
+
+			function MSB($SWeight,$STFactor,$Days){
+			// MSP() function used to Callculate MService2 Only
+			// $STFactor for Service Type Factor 
+			// $Days for Period Days
+			if ($SWeight<=500)						// if Ship Weight < 500 
+				{$MBPrice=($Days*550)*$STFactor; }
+			if ($SWeight>500 && $SWeight<=3000 )		// if Ship Weight > 500 and Weight < 3000 
+				{$MBPrice=($Days*1100)*$STFactor;}
+			if ($SWeight>3000 && $SWeight<=15000 ) 		// if Ship Weight > 3000 and Weight < 15000 
+				{$MBPrice=($Days*1500)*$STFactor;} 
+			if ($SWeight>15000 )					//if Ship Weight > 15000
+				{$MBPrice=($Days*2200)*$STFactor;}
+			return floatval($MBPrice);	
+			/*
+			How to use MSB Function:
+			echo MSB($ShipWeight,$ServiceTypeFactor,$PeriodDays);
+			*/
+			}
+
+			function MSP($SWeight,$STFactor){
+				// MSP() function used to Callculate MService0 and MService1 Only
+				// $STFactor for Service Type Factor  
+			  $STFactor = floatval($STFactor);
+				if ($SWeight<=500){
+					// if Ship Weight < 500 
+					$cell1=(2500)*$STFactor;
+					$cell2="";
+					$cell3="";
+					$cell4=""; 
+					$MPrice=$cell1;}
+				if ($SWeight>500 && $SWeight<=3000 ){
+					// if Ship Weight > 500 and Weight < 3000 
+					$cell1=2500*$STFactor;
+					$cell2=(($SWeight-500)*1.15)*$STFactor;
+					$cell3="";
+					$cell4="";
+					$MPrice=$cell1+$cell2;}
+				if ($SWeight>3000 && $SWeight<=15000 ){
+					// if Ship Weight > 3000 and Weight < 15000 
+					$cell1=2500*$STFactor;
+					$cell2=2875*$STFactor;
+					$cell3=(($SWeight-3000)*0.17)*$STFactor;
+					$cell4="";
+					$MPrice=$cell1+$cell2+$cell3;}
+				if ($SWeight>15000 ){
+					// if Ship Weight > 15000  
+					$cell1=2500*$STFactor;
+					$cell2=2875*$STFactor;
+					$cell3=2040*$STFactor;
+					$cell4=(($SWeight-15000)*0.1)*$STFactor;
+					$MPrice=$cell1+$cell2+$cell3+$cell4;}
+					
+				return array(floatval($cell1),floatval($cell2),floatval($cell3),floatval($cell4),floatval($MPrice));	
+			}
+		}
+		else
+		{ 	
+			// $MSericeBathPrice=MSB($ShipWeight,$MSFraction2,$PeriodDays); 
+
+			function MSB($SWeight,$STFactor,$Days){
+				// MSP() function used to Callculate MService2 Only
+				// $STFactor for Service Type Factor 
+				// $Days for Period Days
+				if ($SWeight<=500)						// if Ship Weight < 500 
+					{$MBPrice=($Days*500)*$STFactor; }
+				if ($SWeight>500 && $SWeight<=3000 )		// if Ship Weight > 500 and Weight < 3000 
+					{$MBPrice=($Days*1000)*$STFactor;}
+				if ($SWeight>3000 && $SWeight<=15000 ) 		// if Ship Weight > 3000 and Weight < 15000 
+					{$MBPrice=($Days*1500)*$STFactor;} 
+				if ($SWeight>15000 )					//if Ship Weight > 15000
+					{$MBPrice=($Days*2000)*$STFactor;}
+				return floatval($MBPrice);	
+				/*
+				How to use MSB Function:
+				echo MSB($ShipWeight,$ServiceTypeFactor,$PeriodDays);
+				*/
+			}
+
+				function MSP($SWeight,$STFactor){
+					// MSP() function used to Callculate MService0 and MService1 Only
+					// $STFactor for Service Type Factor  
+				  $STFactor = floatval($STFactor);
+					if ($SWeight<=500){
+						// if Ship Weight < 500 
+						$cell1=(500)*$STFactor;
+						$cell2="";
+						$cell3="";
+						$cell4=""; 
+						$MPrice=$cell1;}
+					if ($SWeight>500 && $SWeight<=3000 ){
+						// if Ship Weight > 500 and Weight < 3000 
+						$cell1=500*$STFactor;
+						$cell2=(($SWeight-500)*1.0)*$STFactor;
+						$cell3="";
+						$cell4="";
+						$MPrice=$cell1+$cell2;}
+					if ($SWeight>3000 && $SWeight<=15000 ){
+						// if Ship Weight > 3000 and Weight < 15000 
+						$cell1=500*$STFactor;
+						$cell2=2500*$STFactor;
+						$cell3=(($SWeight-3000)*0.15)*$STFactor;
+						$cell4="";
+						$MPrice=$cell1+$cell2+$cell3;}
+					if ($SWeight>15000 ){
+						// if Ship Weight > 15000  
+						$cell1=500*$STFactor;
+						$cell2=2500*$STFactor;
+						$cell3=1800*$STFactor;
+						$cell4=(($SWeight-15000)*0.1)*$STFactor;
+						$MPrice=$cell1+$cell2+$cell3+$cell4;}
+						
+					return array(floatval($cell1),floatval($cell2),floatval($cell3),floatval($cell4),floatval($MPrice));	
+					}
 		
-	return array(floatval($cell1),floatval($cell2),floatval($cell3),floatval($cell4),floatval($MPrice));	
-	/*
-	How to use MSP Function:
-	$MServiceX=MSP($ShipWeight,$ServiceTypeFactor);
-		$CX0=$MServiceX[0]; // cell 0
-		$CX1=$MServiceX[1]; // cell 1
-		$CX2=$MServiceX[2]; // cell 2
-		$CX3=$MServiceX[3]; // cell 3
-		$CX =$MServiceX[4]; // Total
-	*/
-}
+		}
+ 
+ 
  
 function VWS($SWeight)
 {
