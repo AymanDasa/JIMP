@@ -1,5 +1,5 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
+    <!-- Left navbar links --> 
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -8,10 +8,12 @@
         <a href="<?php echo $path;?>index.php" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?php echo $path;?>company/index.php" class="nav-link">Company</a>
+        	<a href="<?php echo $path;?>company/index.php" class="nav-link">Company 
+			<?php echo $newIcon;?>
+		</a> 
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="https://github.com/AymanDasa/JIMP/discussions" class="nav-link">🚀Community <span class="right badge badge-danger">New</span></a>
+        <a href="https://github.com/AymanDasa/JIMP/discussions" class="nav-link">🚀Community </a>
       </li>
       
     </ul>

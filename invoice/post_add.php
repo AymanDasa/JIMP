@@ -1,17 +1,10 @@
 <?php    
-			$folder_name =  basename(dirname(__FILE__));
-			Require_once( "C:\\wow\\password\\config.php"); 
-			Require_once("../include/auth.php"); 
-			Require_once("../include/config.php"); 
-			  
-	    
-			$query = "SELECT `value` FROM `config`  WHERE  `name`='SSCount' LIMIT 1;"; 
-			$SSCountQuerys = $dbop->query($query)->fetchAll();   
-			foreach ($SSCountQuerys as $SSCountQuery) {    
-				$SSCount = intval($SSCountQuery['value']) ;
-			} 
-			$today = date("Y-m-d H:i:s"); 
-      $maxID=1;
+$folder_name =  basename(dirname(__FILE__));
+Require_once( "C:\\wow\\password\\config.php"); 
+Require_once("../include/auth.php"); 
+Require_once("../include/config.php");   
+$today = date("Y-m-d H:i:s"); 
+$maxID=1;
 if(isset($_POST['save'])) {
 #########################################################################
 #########################################################################
@@ -370,10 +363,8 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
 #########################################################################
 #########################################################################
 
-
-    $query_company = "SELECT `vat` FROM `information` "; 
-    $vats = $dbop->query($query_company)->fetchAll(); 
-    foreach ($vats as $vat_row) {$vatP=floatval($vat_row['vat'])/100;} 
+ 
+    $vat=floatval($vat/100); 
     $query = "SELECT * FROM `services` ORDER BY `Service_ID` ASC"; 
     $SSVs = $dbop->query($query)->fetchAll();
     $i=1;   
@@ -500,7 +491,7 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
 #########################################################################
 
 $TOTAL=$MSTOTAL+$SSTOTAL ;
-$VAT=floatval(($TOTAL*$ShipVAT)*($vatP));
+$VAT=floatval(($TOTAL*$ShipVAT)*($vat));
 $VAT_TOTAL=floatval($VAT+$TOTAL);
 
     if($debug){echo "<b>M. TOTAL :</b>".$MSTOTAL."<br>";}

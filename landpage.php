@@ -3,14 +3,35 @@
 	
 <?php 
 	$page_level=0;
-	
-	Require_once( "C:\\wow\\password\\config.php"); 
+	$today = date("Y-m-d H:i:s");
+	Require_once( "C:\\wow\\password\\config.php");  
 	include("include/auth.php");
-	include("include/head.php"); 
-	
+	include("include/head.php");  
 	$debug =0;
 	
 	
+// ######################################################################
+// ########################## 	NEW ICON 		#######################
+// ######################################################################
+$newIcon='';
+// Remove the old one in " nav.php " Change the Date and Add echo $newIcon;
+$given_date = "2024-03-23 01:01:01";
+if ($today < $given_date) {
+	
+	$newIcon='
+	<style> 
+		.shake {  animation: shake 0.2s infinite; } 
+				@keyframes shake { 
+			0% { transform: rotate(0deg); }
+			25% { transform: rotate(5deg); }
+			50% { transform: rotate(0eg); }
+			75% { transform: rotate(-5deg); }
+			100% { transform: rotate(0deg); }
+				} 
+	</style>
+	<span class="constant-tilt-shake"> 
+		<span class="right badge badge-danger shake">New</span>
+	</span> ';}
 	
 ?>
 <body class="hold-transition sidebar-mini">
@@ -94,15 +115,15 @@
 									<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td> 
 									<td>  
 										<div class="btn-group btn-group-sm"> 
-										  <a href="view.php?id='.$invoice['InvoiceID'].'" class="btn">
+										  <a href="invoice/view.php?id='.$invoice['InvoiceID'].'" class="btn">
 										  <i class="fas fa-eye"></i></a>
-										  <a href="edit.php?id='.$invoice["InvoiceID"].'" class="btn">
+										  <a href="invoice/edit.php?id='.$invoice["InvoiceID"].'" class="btn">
 										  <i class="fas fa-pen-to-square"></i></a>';
 											if($debug){echo '
-												<a href="../reports/invoice2.php?id='.$invoice["InvoiceID"].'" class="btn">
+												<a href="reports/invoice2.php?id='.$invoice["InvoiceID"].'" class="btn">
 												<i class="fas fa-cross"></i></a>';
 												}
-											echo '<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn">
+											echo '<a href="reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn">
 												  <i class="fas fa-file-pdf"></i></a>
 												<spen href="#" class="btn">'.$approve_text.'	</spen>
 												<span hidden>'.$approve_vx.'</spen> 

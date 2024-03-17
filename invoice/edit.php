@@ -51,8 +51,6 @@ $invoiceID = intval($_GET['id']);
 		$AnchorageDays=$invoicev['AnchorageDays'];
 		$MSericeAnchoragePrice=$invoicev['MSericeAnchoragePrice'];
 		$MovePort1=$invoicev['MovePort1'];
-		$MovePort2=$invoicev['MovePort2'];
-		$MovePort3=$invoicev['MovePort3'];
 		$TripNo=$invoicev['TripNo'];
 		$DockingNo=$invoicev['DockingNo'];
 		$RouteNo=$invoicev['RouteNo'];
@@ -79,17 +77,7 @@ $invoiceID = intval($_GET['id']);
 		$MA0=$invoicev['MA0'];
 		$MA1=$invoicev['MA1'];
 		$MA2=$invoicev['MA2'];
-		$MA3=$invoicev['MA3'];
-		$MB=$invoicev['MB'];
-		$MB0=$invoicev['MB0'];
-		$MB1=$invoicev['MB1'];
-		$MB2=$invoicev['MB2'];
-		$MB3=$invoicev['MB3'];
-		$MC=$invoicev['MC'];
-		$MC0=$invoicev['MC0'];
-		$MC1=$invoicev['MC1'];
-		$MC2=$invoicev['MC2'];
-		$MC3=$invoicev['MC3'];
+		$MA3=$invoicev['MA3']; 
 		$MovePortPrice=$invoicev['MovePortPrice'];
 		$MSericeBathPrice=$invoicev['MSericeBathPrice'];
 		$MSNote1=$invoicev['MSNote1'];
@@ -146,14 +134,14 @@ else{
 
 // option AgentNameAr 
     $AgentOption='<option value=""></option>';
-    $query = "SELECT `AgentID`,`AgentNameAr`,`AgentCR` FROM `agents`;"; 
+    $query = "SELECT `AgentID`,`AgentNameEn`,`AgentCR` FROM `agents`;"; 
     $Agents = $dbop->query($query)->fetchAll();   
     foreach ($Agents as $Agents) {   
         $ThisID =intval($Agents['AgentID']);
         $AgentsID=intval($AgentID);
         if($ThisID==$AgentsID){$select="selected";}else{$select="";}
         $AgentOption.='
-        <option value="'.$Agents['AgentID'].'" '.$select.'>'.$Agents['AgentNameAr'].' CR:'.$Agents['AgentCR'].'</option>';
+        <option value="'.$Agents['AgentID'].'" '.$select.'>'.$Agents['AgentNameEn'].' CR:'.$Agents['AgentCR'].'</option>';
     }
 // option AgentNameAr
 
@@ -380,10 +368,7 @@ foreach ($SSCountQuerys as $SSCountQuery) {
 									</div>
 								<!-- %%  Partial/Final  %%% -->     
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3"> 
-										<div class="form-group">
-											<label>MovePort 2</label> 
-											<input type="text" class="form-control" name="MovePort2"  value="<?php echo $MovePort2;?>" >
-										</div>
+								 
 									</div>
 							</div>  
 							<!-- %%%%%%%%%%%%%%%%%%%% row4   %%%%%%%%%%%%%%%%%%%%%%%% -->    
@@ -408,10 +393,7 @@ foreach ($SSCountQuerys as $SSCountQuery) {
 										</div> 
 									</div>
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">   
-										<div class="form-group">
-											<label>MovePort 3</label> 
-											<input type="text" class="form-control" name="MovePort3"  value="<?php echo $MovePort3;?>" >
-										</div> 
+										 
 									</div>
 							</div>  
 							<div class="row">

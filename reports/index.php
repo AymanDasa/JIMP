@@ -74,19 +74,19 @@ $IsActive = 0 ;
 			<div class="col-12"> 
 				<div class="card">  
 					<div class="card-body">
-            				<h4>Custom Content Below</h4>
+            				<h4>Custom Report</h4>
 						<ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
 						<li class="nav-item">
-							<a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true"> Daily Invoice Report</a>
+							<a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true"> Daily Report</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Monthly Invoice Report</a>
+							<a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Monthly Report</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Invoice List</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Export Invoices</a>
+							<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Export</a>
 						</li>
 						</ul>
 						<div class="tab-content" id="custom-content-below-tabContent">

@@ -1,5 +1,6 @@
 <?php
-
+$today = date("Y-m-d H:i:s");
+$is_admin =intval($_SESSION["is_admin"]);  
 function searchForArray($id, $array,$elmint) {
     foreach ($array as $key => $val) {
         if ($val[$elmint] === $id) {
@@ -77,6 +78,32 @@ foreach($info_result  as $row){
 // if($debug){echo "<b>Debug :</b>".$debug."<br>";}
 // if($debug){echo "<b>Debug :</b>";print_r($info_data);echo  "<br>";}
 
+// ######################################################################
+// ########################## 	NEW ICON 		#######################
+// ######################################################################
+$newIcon='';
+// Remove the old one in " nav.php " Change the Date and Add echo $newIcon;
+$given_date = "2024-03-23 01:01:01";
+if ($today < $given_date) {
+	
+	$newIcon='
+	<style> 
+		.shake {  animation: shake 0.2s infinite; } 
+				@keyframes shake { 
+			0% { transform: rotate(0deg); }
+			25% { transform: rotate(5deg); }
+			50% { transform: rotate(0eg); }
+			75% { transform: rotate(-5deg); }
+			100% { transform: rotate(0deg); }
+				} 
+	</style>
+	<span class="constant-tilt-shake"> 
+		<span class="right badge badge-danger shake">New</span>
+	</span> ';}
+// #####################################################################
+// #######################  SELECT  FROM  users  #######################
+// #####################################################################
+
 $sql="SELECT * FROM `users` WHERE  `username` ='".$username_now."';";
 $result = $dbop->query($sql)->fetchAll();
 $dataArray = array();
@@ -94,6 +121,10 @@ foreach ($result as $row) {
 	$user_2fa_secret = $row['user_2fa_secret'];
 	$user_2fa_code = $row['user_2fa_code']; 
 }  
+
+// #####################################################################
+// #######################  SELECT  FROM  info   #######################
+// #####################################################################
 
 $info_sql = "SELECT `name`, `value` FROM `info`";
 		$info_result = $dbop->query($info_sql)->fetchAll();   
@@ -132,4 +163,9 @@ $info_sql = "SELECT `name`, `value` FROM `info`";
 			$CPSPercentage=floatval(100-$PortPercentage);
 			$info_data =[0];
 			$info_result=[0];  
+			
+	 
+
+ 
  ?>
+

@@ -10,11 +10,11 @@
 	   
 		// option Agents 
         	$AgentOption='<option value=""></option>';
-				 	$query = "SELECT `AgentID`,`AgentNameAr`,`AgentCR` FROM `agents`;"; 
+				 	$query = "SELECT `AgentID`,`AgentNameEn`,`AgentCR` FROM `agents`;"; 
 					$Agents = $dbop->query($query)->fetchAll();   
 					foreach ($Agents as $Agents) {    
             $AgentOption.='
-			<option value="'.$Agents['AgentID'].'">'.$Agents['AgentNameAr'].' CR:'.$Agents['AgentCR'].'</option>';
+			<option value="'.$Agents['AgentID'].'">'.$Agents['AgentNameEn'].' CR:'.$Agents['AgentCR'].'</option>';
 					}
 				// option Agents
 
