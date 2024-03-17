@@ -1,5 +1,4 @@
 <?php    
-
 use Dompdf\Dompdf;
 use Dompdf\Options;
 require '../../dompdf/vendor/autoload.php';
@@ -455,7 +454,7 @@ $CN_VAT_TOTAL 	=$CN_PORT_Share=$CN_CPSP_VAT = 0;
 		<tbody> ';
 			$query_credit = "SELECT *  FROM `credit` WHERE MONTH(`InvoiceDate`) =".$MM." AND YEAR(`InvoiceDate`) = ".$YY. "; ";
 			$credits = $dbop->query($query_credit)->fetchAll();   
-			foreach ($credits as $row) {   
+foreach ($credits as $row) {   
 			$InvoiceID	= $row['InvoiceID'];
 			$InvoiceDate	= $row['InvoiceDate'];
 			$CreditDate	= $row['CreditDate'];
@@ -497,34 +496,35 @@ $CN_VAT_TOTAL 	=$CN_PORT_Share=$CN_CPSP_VAT = 0;
 			foreach ($ships as $row) {  
 				$ShipName 	= 	$row['ShipName'];   } 
 				
-				$html.= '<tr class="tableDay">
-				<td class="tableleft">CN-'.$InvoiceID. ' </td>  
-				<td class="tableleft">'.date_format($date1,"Y-m-d"). ' </td>  
-				<td class="tableleft">'.$AgentNameEn.'  </td>
-				<td class="tableleft">'.$ShipName. ' </td>  
-				<td  class="tableright">'.number_format($MSTOTAL,2,"."). ' </td> 
-				<td  class="tableright">'.number_format($SSTOTAL,2,"."). ' </td> 
-				<td  class="tableright">'.number_format($TOTAL,2,"."). ' </td> 
-				<td  class="tableright">'.number_format($VAT,2,"."). ' </td> 
-				<td  class="tableright">'.number_format($VAT_TOTAL,2,"."). ' </td>     
+				$html.= '
+				<tr class="tableDay">
+					<td class="tableleft">CN-'.$InvoiceID. ' </td>  
+					<td class="tableleft">'.date_format($date1,"Y-m-d"). ' </td>  
+					<td class="tableleft">'.$AgentNameEn.'  </td>
+					<td class="tableleft">'.$ShipName. ' </td>  
+					<td  class="tableright">'.number_format($MSTOTAL,2,"."). ' </td> 
+					<td  class="tableright">'.number_format($SSTOTAL,2,"."). ' </td> 
+					<td  class="tableright">'.number_format($TOTAL,2,"."). ' </td> 
+					<td  class="tableright">'.number_format($VAT,2,"."). ' </td> 
+					<td  class="tableright">'.number_format($VAT_TOTAL,2,"."). ' </td>     
 			</tr>' ; 
  }
 $html.= '	<tr class="tableDay">
-			<td class="tableleft">  </td>  
-			<td class="tableleft"> </td>  
-			<td class="tableleft">  </td>
-			<td class="tableright">TOTAL</td>  
-			<td  class="tableright">'.number_format($CN_MSTOTAL,2,"."). ' </td> 
-			<td  class="tableright">'.number_format($CN_SSTOTAL,2,"."). ' </td> 
-			<td  class="tableright">'.number_format($CN_TOTAL,2,"."). ' </td> 
-			<td  class="tableright">'.number_format($CN_VAT,2,"."). ' </td> 
-			<td  class="tableright">'.number_format($CN_VAT_TOTAL,2,"."). ' </td>    
-		</tr>' ;
-
-	$html.=' 
+				<td class="tableleft">  </td>  
+				<td class="tableleft"> </td>  
+				<td class="tableleft">  </td>
+				<td class="tableright">TOTAL</td>  
+				<td  class="tableright">'.number_format($CN_MSTOTAL,2,"."). ' </td> 
+				<td  class="tableright">'.number_format($CN_SSTOTAL,2,"."). ' </td> 
+				<td  class="tableright">'.number_format($CN_TOTAL,2,"."). ' </td> 
+				<td  class="tableright">'.number_format($CN_VAT,2,"."). ' </td> 
+				<td  class="tableright">'.number_format($CN_VAT_TOTAL,2,"."). ' </td>    
+		</tr> 
 	</tbody>
 	</table>    
-	<div class="page_break"></div>'; $html.='	 
+	'; 
+	
+$html.='<div class="page_break"></div>'; $html.='	 
 	<table class="table0">
 		<tbody  class="tableDay">
 			<tr>

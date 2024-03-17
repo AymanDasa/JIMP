@@ -11,22 +11,7 @@ require_once '../../dompdf/vendor/src/Arabic.php';
 $Arabic = new ArPHP\I18N\Arabic(); 
 Require_once( "C:\\wow\\password\\config.php"); 
 Require_once("../include/auth.php"); 
-Require_once("../include/config.php"); 
-function E2A($myText)
-	{
-		$digit = (string)$myText;
-		if(empty($digit))return '';
-		if($digit<1)return '';
-		// &#8199;
-		$ar_digit = array('&#1632;', '&#1633;', '&#1634;', '&#1635;', '&#1636;', '&#1637;', '&#1638;', '&#1639;', '&#1640;', '&#1641;',
-							'-'=>'-','.'=>'/',','=>'/','/'=>'/',':'=>':',' '=>'-','^'=>',');
-		$arabic_digit = '';
-		$length = strlen($digit);
-		for($i=0;$i<$length;$i++){
-			if(isset($ar_digit[$digit[$i]]))
-				$arabic_digit .= $ar_digit[$digit[$i]];}
-		return $arabic_digit;
-	}
+Require_once("../include/config.php");  
 	 
 $html= '';
 $i=0;
@@ -35,34 +20,8 @@ if(isset($_GET['InvoiceDate'])){
 	$TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
 	$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."' AND `Status`= '800';";  
 	$invoices = $dbop->query($SQL)->fetchAll();    
-	 } 
-$html= '
-<!DOCTYPE html>
-<html lang="en"> 
-
-<head> 
-    <link href="../adminlte/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/> 
-       
-    <link href="../adminlte/plugins.css" rel="stylesheet" type="text/css"/>
-    <link href="../adminlte/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>   
-</head>
-<body>
-
-    <section class="content">
-		<div class="container-fluid">
-			<div class="row">  
-				<div class="col-12">   
-							 
-						   
-							 
-								';
-									 
-										
-
-
-
-$html= '';
-
+	 }  
+$html= ''; 
 $html= '
 <html> 
 <head>   
@@ -256,9 +215,7 @@ $html= '
 						</style>
 
 </head>
-<body> 
-
-
+<body>  
 	<section class="content">
 		<div class="container-fluid">
 			<div class="row">  
