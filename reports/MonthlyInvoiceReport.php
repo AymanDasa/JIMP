@@ -191,37 +191,31 @@ if(isset($_POST['InvoiceMonth'])){
  
 										$invoices = $dbop->query($SQL)->fetchAll();   
 										foreach ($invoices as $invoice) {     
+											$Status    	= intval($invoice['Status']);   
 											$InvoiceID    = $invoice['InvoiceID'];
 											$ShipName     = $invoice['ShipName']; 
 											$AgentNameEn  = $invoice['AgentNameEn']; 
 											$AgentNameAr  = $invoice['AgentNameAr']; 
 											$VAT_TOTAL    = $invoice['VAT_TOTAL'];  
-											$TotalInvoice_Table 	=  $TotalInvoice_Table +$VAT_TOTAL ; 
 											$VAT    		= $invoice['VAT']; 
-											$TotalInvoice_VAT=  $TotalInvoice_VAT +$VAT ; 
 											$TOTAL    	= $invoice['TOTAL'];  
-											$TotalInvoice_TOTAL=  $TotalInvoice_TOTAL +$TOTAL ; 
 											$SSTOTAL    	= $invoice['SSTOTAL'];  
-											$TotalInvoice_SSTOTAL=  $TotalInvoice_SSTOTAL +$SSTOTAL ; 
 											$MSTOTAL    	= $invoice['MSTOTAL'];  
-											$TotalInvoice_MSTOTAL=  $TotalInvoice_MSTOTAL +$MSTOTAL ; 
 											$MSericeAnchoragePrice	= $invoice['MSericeAnchoragePrice'];  
-											$TotalInvoice_Anchorage=  $TotalInvoice_Anchorage +$MSericeAnchoragePrice ; 
 											$MovePortPrice    	= $invoice['MovePortPrice'];  
-											$TotalInvoice_MovePortPrice=  $TotalInvoice_MovePortPrice +$MovePortPrice ; 
-											$MSericeOutPrice    = $invoice['MSericeOutPrice'];  
-											$TotalInvoice_MSericeOutPrice=  $TotalInvoice_MSericeOutPrice +$MSericeOutPrice ; 
+											$MSericeOutPrice    = $invoice['MSericeOutPrice'];   
 											$MSericeInPrice    	= $invoice['MSericeInPrice'];   
-											$TotalInvoice_MSericeInPrice=  $TotalInvoice_MSericeInPrice +$MSericeInPrice ; 
-											$MSericeBathPrice    	= $invoice['MSericeBathPrice'];   
-											$TotalInvoice_MSericeBathPrice=  $TotalInvoice_MSericeBathPrice +$MSericeBathPrice ; 
-											$Status    	= intval($invoice['Status']);   
-											 if($Status==0){
+											$MSericeBathPrice    	= $invoice['MSericeBathPrice'];    
+											
+											if($Status==0){
 												$invoiceStart='CN-';
 												$red='_red';
+												$neg='-';
+ 
 											}else{
 												$invoiceStart=$orginalinvoiceStart;
 												$red='';
+												$neg=''; 
 											}
 											
 											
@@ -230,35 +224,19 @@ if(isset($_POST['InvoiceMonth'])){
 									
 									<td class="td_c'.$red.'">'.$invoiceStart.$InvoiceID.'</td>   
 									<td class="td_l'.$red.'">'.$ShipName.' </td>  
-									<td class="td_r'.$red.'">'.number_format($MSericeInPrice,2,".").'  </td> 
-									<td class="td_r'.$red.'">'.number_format($MSericeOutPrice,2,".").'  </td>
-									<td class="td_r'.$red.'">'.number_format($MovePortPrice,2,".").'  </td>
-									<td class="td_r'.$red.'">'.number_format($MSericeBathPrice,2,".").'  </td> 
-									<td class="td_r'.$red.'">'.number_format($MSericeAnchoragePrice,2,".").'  </td>  
-									<td class="td_r'.$red.'">'.number_format($MSTOTAL,2,".").'  </td> 
-									<td class="td_r'.$red.'">'.number_format($SSTOTAL,2,".").'  </td>
-									<td class="td_r'.$red.'">'.number_format($TOTAL,2,".").'  </td>
-									<td class="td_r'.$red.'">'.number_format($VAT,2,"."). ' </td>
-									<td class="td_r'.$red.'">'.number_format($VAT_TOTAL,2,"."). ' </td>
-									
-
-
-
+									<td class="td_r'.$red.'">'.$neg.number_format($MSericeInPrice,2,".").'  </td> 
+									<td class="td_r'.$red.'">'.$neg.number_format($MSericeOutPrice,2,".").'  </td>
+									<td class="td_r'.$red.'">'.$neg.number_format($MovePortPrice,2,".").'  </td>
+									<td class="td_r'.$red.'">'.$neg.number_format($MSericeBathPrice,2,".").'  </td> 
+									<td class="td_r'.$red.'">'.$neg.number_format($MSericeAnchoragePrice,2,".").'  </td>  
+									<td class="td_r'.$red.'">'.$neg.number_format($MSTOTAL,2,".").'  </td> 
+									<td class="td_r'.$red.'">'.$neg.number_format($SSTOTAL,2,".").'  </td>
+									<td class="td_r'.$red.'">'.$neg.number_format($TOTAL,2,".").'  </td>
+									<td class="td_r'.$red.'">'.$neg.number_format($VAT,2,"."). ' </td>
+									<td class="td_r'.$red.'">'.$neg.number_format($VAT_TOTAL,2,"."). ' </td> 
 
 								</tr>' ;}
-								echo '<tr>
-									<td>  </td> 
-									<td>  </td>  
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeInPrice,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeOutPrice,2,".").' </td> 
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeBathPrice,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Anchorage,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MovePortPrice,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_SSTOTAL,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_TOTAL,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_VAT,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Table,2,".").' </td>
-						 		</tr>'; ?> 
+							  ?> 
 								</tbody>
 							</table> 
 						</div> 
