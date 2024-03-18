@@ -144,6 +144,7 @@ $info_sql = "SELECT `name`, `value` FROM `info`";
 			
 			$IBAN =$info_data['IBAN'];
 			$invoiceStart =$info_data['invoiceStart']; // JB-
+			$orginalinvoiceStart=$invoiceStart;
 			$com_fax =$info_data['com_fax'];
 			$vat =$info_data['vat'];
 			$AdressMamwani =$info_data['AdressMamwani']; 
@@ -162,12 +163,8 @@ $info_sql = "SELECT `name`, `value` FROM `info`";
 			$EmptyLineEn =$info_data['EmptyLineEn'];  
 			$PortPercentage=floatval($info_data['PortPercentage']);
 			$CPSPercentage=floatval(100-$PortPercentage); 
-			$AfterMarch=intval($info_data['AfterMarch']); 
+			$AfterMarch=intval($info_data['AfterMarch']);   
 			$info_data =[0];
-			$info_result=[0];  
-			
-	 
-
- 
+			$info_result=[0];   
  ?>
 

@@ -108,7 +108,7 @@ include_once __DIR__.'/2fa/src/GoogleQrUrl.php';
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-  <img class="imgauth" src="../access/2fa/src/auth.png"> 
+  <img class="imgauth" src="../access/2fa/src/auth2.png"> 
   </div>
   <!-- /.login-logo -->
   <div class="card">

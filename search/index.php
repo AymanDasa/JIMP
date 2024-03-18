@@ -5,94 +5,12 @@ Require_once( "C:\\wow\\password\\config.php");
 Require_once("../include/auth.php"); 
 Require_once("../include/config.php");   
 $today = date("Y-m-d H:i:s");  
-$ERROR=0;
-#########################################################################
-#########################################################################
-#######################  Functions & Class  #############################
-#########################################################################
-#########################################################################
-    
-/*
- 	$CreditID
-	$InvoiceID
-	$ShipID
-	$AgentID 
-	$InvoiceDat
-	$Reason
-	$Note
-	$MSTOTAL
-	$SSTOTAL
-	$TOTAL
-	$VAT
-	$VAT_TOTAL
-	$Status
-
-*/
+$ERROR=0; 
 $InvoiceID = $VAT_TOTAL= 0;
 $reason='';
-if(isset($_POST['reason'])){$reason=stripslashes(htmlentities(strip_tags($_POST['reason'])));}  
-if(isset($_POST['InvoiceID'])){$InvoiceID = intval($_POST['InvoiceID']);} 
+if(isset($_POST['search'])){$search=stripslashes(htmlentities(strip_tags($_POST['search'])));}   
  
-if($debug){echo "<b>InvoiceID :</b>".$InvoiceID,"<br>";} 
-if($debug){echo "<b>reason :</b>".$reason,"<br>";} 
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-#########################################################################
-#########################################################################
-###########################  SQL INSERT #################################
-#########################################################################
-#########################################################################
-if($InvoiceID){
-	if(isset($_POST['VAT_TOTAL'])){$User_Total = floatval($_POST['VAT_TOTAL']);}  
-	$SQL1= "SELECT * FROM `invoice` WHERE  `InvoiceID` ='".$InvoiceID."' AND `Status` > '0' LIMIT 1;";
-	if($debug){echo "<b>SQL1 :</b>".$SQL1,"<br>";} 
-	$inv = $dbop->query($SQL1)->fetchAll();
-		foreach ($inv as $row) { 
-			$InvoiceID	= $row['InvoiceID'];		
-			$ShipID		= $row['ShipID'];	
-			$AgentID 		= $row['AgentID'];		
-			$InvoiceDate	= $row['InvoiceDate'];	  
-			$MSTOTAL		= $row['MSTOTAL'];	
-			$SSTOTAL		= $row['SSTOTAL'];	
-			$TOTAL		= $row['TOTAL'];	
-			$VAT			= $row['VAT'];	
-			$VAT_TOTAL	= floatval($row['VAT_TOTAL']);		
-			$Status		= $row['Status'];	
-		}  
-if( $VAT_TOTAL == $User_Total) {
-			$SQL_INSERT="INSERT INTO `credit` 
-				(    `InvoiceID`,
-					`ShipID`,
-					`AgentID`,
-					`InvoiceDate`,
-					`reason`, 
-					`MSTOTAL`,
-					`SSTOTAL`,
-					`TOTAL`,
-					`VAT`,
-					`VAT_TOTAL`)  
-					VALUES ( 
-					".$InvoiceID.",					
-					".$ShipID.",				
-					".$AgentID .",					
-					'".$InvoiceDate."',					
-					'".$reason."', 				
-					".$MSTOTAL.",					
-					".$SSTOTAL.",					
-					".$TOTAL.",				
-					".$VAT.",				
-					".$VAT_TOTAL.");";  
-					if($debug){echo "<b>SQL_INSERT :</b>".$SQL_INSERT,"<br>";} 
-				$dbop->query($SQL_INSERT);  
-			$SQL_Update="UPDATE `invoice` SET `Status` = '0' WHERE `invoice`.`InvoiceID` = ".$InvoiceID.";";  
-			if($debug){echo "<b>SQL_Update :</b>".$SQL_Update,"<br>";} 
-				$dbop->query($SQL_Update); 
-			$alog_note = strval("credit_notes".$InvoiceID."AgentID:".$AgentID." + TOTAL:".$TOTAL."  (VAT)= ".$VAT." credit_amount ".$VAT_TOTAL." " );    
-			$SQL_activitylog="INSERT INTO `activitylog` ( `alog_section`  ,	`alog_no`  ,	`alog_description`  ,	`alog_user` ,	`alog_note` 	) 
-				VALUE ('".$folder_name."' ,'".$InvoiceID."' ,'Credit Notes',	'".$username_now."' ,'".$alog_note."' 	) ;";
-			$dbop->query($SQL_activitylog); 
-			} 
-		} 
+if($debug){echo "<b>search :</b>".$search,"<br>";} 
  
  ?>  
 
@@ -138,25 +56,16 @@ if( $VAT_TOTAL == $User_Total) {
 							<div class="card-header">
 								<div class="row mb-2">
 									<div class="col-sm-6">
-										<h1>Credit Notes List</h1>
+										<h1>Search Result</h1>
 									</div>
 									<div class="col-sm-6">
 										<ol class="breadcrumb float-sm-right">
 											<li class="breadcrumb-item"><a href="#">Home</a></li>
-											<li class="breadcrumb-item active"> Credit Notes</li>
+											<li class="breadcrumb-item active"> Search</li>
 										</ol>
 									</div>
 								</div>
-								<div class="row mb-2">
-									<div class="col-sm-6"></div>
-									<div class="col-sm-6">
-										<ol class="breadcrumb float-sm-right">
-										<button type="button" class="btn btn-app" data-toggle="modal" data-target="#modal-lg">
-											Add 	 
-											</button> 
-										</ol>
-									</div>
-								</div> 
+								 
 							</div> 
 						</div> 
 					</div>    
@@ -203,50 +112,60 @@ if( $VAT_TOTAL == $User_Total) {
 											</tr>
 										</thead>
 										<tbody>
-											<?php 
-												$SQL='SELECT * FROM `credit` ORDER BY  `InvoiceID` DESC ;';
-												$credits = $dbop->query($SQL)->fetchAll();
-												foreach ($credits as $row) {  
-													$InvoiceID  	= $row['InvoiceID'];
-													$InvoiceDate	= $row['InvoiceDate'];
-													$CreditDate	= $row['CreditDate'];
-													$ShipID     	= $row['ShipID'];   
-													$AgentID     	= $row['AgentID'];   
-													$MSTOTAL  	= $row['MSTOTAL']; 
-													$SSTOTAL  	= $row['SSTOTAL']; 
-													$TOTAL  		= $row['TOTAL']; 
-													$VAT  		= $row['VAT']; 
-													$VAT_TOTAL    = $row['VAT_TOTAL'];  
-													$reason       = $row['reason'];   
-													$date1=date_create($InvoiceDate);   
-														$query = "SELECT `AgentNameEn`  FROM `agents` WHERE `AgentID`=".$AgentID." LIMIT 1;"; 
-														$agents = $dbop->query($query)->fetchAll();   
-														foreach ($agents as $row) {   
-															$AgentNameEn  =	$row['AgentNameEn']; } 
-														$query = "SELECT `ShipName`  FROM `ship` WHERE `ShipID`=".$ShipID." LIMIT 1;"; 
-														$ships = $dbop->query($query)->fetchAll();   
-														foreach ($ships as $row) {  
-														    	$ShipName 	= 	$row['ShipName'];   }
+											<?php  
+												 $SQL1 = "SELECT * FROM `full_invoice_view` WHERE `InvoiceID` LIKE '%$search%' OR `ShipName` LIKE '%$search%'  LIMIT ".$LIMIT.";";
+                                                  
+                                                 if($debug){echo "<b>SQL1 :</b>".$SQL1,"<br>";} 
+                                                 $inv = $dbop->query($SQL1)->fetchAll();
+                                                     foreach ($inv as $row) { 
+                                                         $InvoiceID	        = $row['InvoiceID'];		
+                                                         $ShipName		    = $row['ShipName'];	
+                                                         $highlightedName = str_ireplace($search, "<span style='background-color: yellow;'>$search</span>", $ShipName);
+                                                         $AgentID 		    = $row['AgentID'];		
+                                                         $InvoiceDate	= $row['InvoiceDate'];	  
+                                                         $AgentNameEn 	= $row['AgentNameEn'];	  
+                                                         $MSTOTAL		= $row['MSTOTAL'];	
+                                                         $SSTOTAL		= $row['SSTOTAL'];	
+                                                         $TOTAL		    = $row['TOTAL'];	
+                                                         $VAT			= $row['VAT'];	
+                                                         $VAT_TOTAL	    = floatval($row['VAT_TOTAL']);		 
+														 $Status       = intval($invoice['Status']);  
+													    $date1=date_create($InvoiceDate);  
+                                                        if($Status==0){$invoiceStart='CN-';}else{$invoiceStart=$orginalinvoiceStart;}
+                                                        if($Status >700){
+                                                            $approve_text = '<span style="color:#228b22;"><i class="fas fa-square-check"></i></span>';
+                                                            $approve_vx='vv';
+                                                        }else{
+                                                           $approve_text = '<span style="color:#e52b50;"><i class="fas fa-square-xmark"></i></span>';
+                                                           $approve_vx='xx';	
+                                                        }
+
 											echo '<tr>
-													<td>CN-'.$InvoiceID. ' </td>  
+													<td>'.$invoiceStart.$InvoiceID. ' </td>   
 													<td>'.date_format($date1,"Y-m-d"). ' </td>  
 													<td>'.$AgentNameEn.'  </td>
-													<td>'.$ShipName. ' </td>  
+													<td>'.$highlightedName. ' </td>  
 													<td style="text-align: right;">'.number_format($MSTOTAL,2,"."). ' </td> 
 													<td style="text-align: right;">'.number_format($SSTOTAL,2,"."). ' </td> 
 													<td style="text-align: right;">'.number_format($TOTAL,2,"."). ' </td> 
 													<td style="text-align: right;">'.number_format($VAT,2,"."). ' </td> 
 													<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td>   
-													<td style="text-align: right;">
-														<div class="btn-group btn-group-sm"> 
+													<td> 
+                                                        <div class="btn-group btn-group-sm"> 
                                                             <a href="view.php?id='.$InvoiceID.'" class="btn">
-                                                           	 	<i class="fas fa-eye"></i>
-															</a> 
+                                                            <i class="fas fa-eye"></i></a>
+                                                            <a href="edit.php?id='.$InvoiceID.'" class="btn">
+                                                            <i class="fas fa-pen-to-square"></i></a> ';
+                                                            if($debug){echo '
+                                                                <a href="../reports/invoice2.php?id='.$InvoiceID.'" class="btn">
+                                                                <i class="fas fa-cross"></i></a>';}
+                                                            echo '
                                                             <a href="../reports/invoice.php?id='.$InvoiceID.'" class="btn">
-                                                          		<i class="fas fa-file-pdf"></i>
-															</a>  
+                                                                    <i class="fas fa-file-pdf"></i></a> 
+                                                            <spen href="#" class="btn">'.$approve_text.'	</spen>
+                                                            <span hidden>'.$approve_vx.'</spen> 
                                                         </div>
-													</td>   
+													 </td>  
 												</tr>' ; } ?>
 										</tbody>
 										<tfoot>

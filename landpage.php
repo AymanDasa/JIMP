@@ -37,7 +37,8 @@ if ($today < $given_date) {
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
-  <?php include("include/nav.php")?> 
+  <?php 	$page_level=0;
+   include("include/nav.php")?> 
   <!-- /.navbar --> 
   <!-- Main Sidebar Container -->
   <?php include("include/aside.php")?>   

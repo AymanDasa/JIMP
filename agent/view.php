@@ -205,7 +205,7 @@ $dbop->query($SQL_activitylog);
 				<div class="col-md-12">  
 					<div class="card card-<?=$CardColor;?>">
 						<div class="card-header">
-							<h3 class="card-title">Last 100 Invoices</h3> 
+							<h3 class="card-title">Last <?php echo $LIMIT;?> Invoices</h3> 
 						</div>  
 						<div class="card-body">  
 									<table id="example1" class="table table-bordered table-striped">
@@ -222,7 +222,8 @@ $dbop->query($SQL_activitylog);
 										</thead>
 										<tbody>
 											<?php 
-											$invoices = $dbop->query('SELECT * FROM `invoice` WHERE `AgentID`='.$AgentID.' ORDER BY  `InvoiceID` DESC LIMIT 100')->fetchAll();
+											$SQL3='SELECT * FROM `full_invoice_view` WHERE `AgentID`='.$AgentID.' ORDER BY  `InvoiceID` DESC LIMIT '.$LIMIT.';';
+											$invoices = $dbop->query($SQL3)->fetchAll();
 											foreach ($invoices as $invoice) { 
 												
 												$InvoiceDate  = $invoice['InvoiceDate'];
@@ -233,17 +234,25 @@ $dbop->query($SQL_activitylog);
 												$MSTOTAL  = $invoice['MSTOTAL']; 
 												$SSTOTAL  = $invoice['SSTOTAL']; 
 												$VAT_TOTAL    = $invoice['VAT_TOTAL'];  
-												$Status       = $invoice['Status'];   
+												$Status       = intval($invoice['Status']);   
+												if($Status==0){$invoiceStart='CN-';}else{$invoiceStart=$orginalinvoiceStart;}
 												$date1=date_create($InvoiceDate); 
+												if($Status >700){
+													$approve_text = '<span style="color:#228b22;"><i class="fas fa-square-check"></i></span>';
+													$approve_vx='vv';
+												}else{
+												   $approve_text = '<span style="color:#e52b50;"><i class="fas fa-square-xmark"></i></span>';
+												   $approve_vx='xx';	
+												}
 												switch(intval($Status)){  
 												case 700:
-													$Icons='<a href="../invoice/edit.php?id='.$invoice["InvoiceID"].'" class="btn btn-warning">
+													$Icons='<a href="../invoice/edit.php?id='.$InvoiceID.'" class="btn btn-warning">
 													<i class="fas fa-pen-to-square"></i></a> 
-													<a href="../invoice/view.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
+													<a href="../invoice/view.php?id='.$InvoiceID.'" class="btn btn-danger">
 													<i class="fas fa-trash"></i></a>';
 													break;
 												case 800:
-													$Icons='<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn btn-danger">
+													$Icons='<a href="../reports/invoice.php?id='.$InvoiceID.'" class="btn btn-danger">
 													<i class="fas fa-print"></i></a>';
 													break;
 												default:
@@ -258,11 +267,18 @@ $dbop->query($SQL_activitylog);
 												<td style="text-align: right; width:10%"">'.number_format($SSTOTAL,2,","). ' </td> 
 												<td style="text-align: right; width:12%"">'.number_format($VAT_TOTAL,2,"."). ' </td> 
 												<td style="text-align: right; width:5%"">  
-													<div class="btn-group btn-group-sm"> 
-														<a href="../invoice/view.php?id='.$invoice['InvoiceID'].'" class="btn btn-info">
-														<i class="fas fa-eye"></i></a>
-														'.$Icons.'
-													</div>
+													 
+												<div class="btn-group btn-group-sm"> 
+													<a href="../invoice/view.php?id='.$invoiceStart.$InvoiceID.'" class="btn">
+													<i class="fas fa-eye"></i></a> 
+													<a href="../reports/invoice.php?id='.$InvoiceID.'" class="btn">
+															<i class="fas fa-file-pdf"></i></a> 
+													<spen href="#" class="btn">'.$approve_text.'	</spen>
+													<span hidden>'.$approve_vx.'</spen> 
+												</div>
+
+
+
 												</td>  
 											</tr>' ; }
 													?>

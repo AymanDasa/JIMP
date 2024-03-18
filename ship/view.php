@@ -172,6 +172,110 @@
 			<!-- /.row -->
 		</div><!-- /.container-fluid -->
 		</section>
+		
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+				<!-- left column --> 
+				<div class="col-md-12">  
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Last <?php echo $LIMIT;?> Invoices</h3> 
+						</div>  
+						<div class="card-body">  
+									<table id="example1" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>#</th> 
+												<th>Date</th> 
+												<th>Agent Name</th> 
+												<th>Marine Service</th>
+												<th>Special Services</th>
+												<th>TOTAL+VAT (SAR)</th>
+												<th>View</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php 
+											$SQL3='SELECT * FROM `full_invoice_view` WHERE `ShipID`='.$ShipID.' ORDER BY  `InvoiceID` DESC LIMIT '.$LIMIT.';';
+											
+											$invoices = $dbop->query($SQL3)->fetchAll();
+											foreach ($invoices as $invoice) { 
+												
+												$InvoiceDate  = $invoice['InvoiceDate'];
+												$InvoiceID    = $invoice['InvoiceID'];
+												$ShipName     = $invoice['ShipName']; 
+												$AgentNameEn  = $invoice['AgentNameEn'];  
+												$MSTOTAL  = $invoice['MSTOTAL']; 
+												$SSTOTAL  = $invoice['SSTOTAL']; 
+												$VAT_TOTAL    = $invoice['VAT_TOTAL'];  
+												$Status       = intval($invoice['Status']);   
+												if($Status==0){$invoiceStart='CN-';}else{$invoiceStart=$orginalinvoiceStart;}
+												$date1=date_create($InvoiceDate); 
+												if($Status >700){
+													$approve_text = '<span style="color:#228b22;"><i class="fas fa-square-check"></i></span>';
+													$approve_vx='vv';
+												}else{
+												   $approve_text = '<span style="color:#e52b50;"><i class="fas fa-square-xmark"></i></span>';
+												   $approve_vx='xx';	
+												}
+												switch(intval($Status)){  
+												case 700:
+													$Icons='<a href="../invoice/edit.php?id='.$InvoiceID.'" class="btn btn-warning">
+													<i class="fas fa-pen-to-square"></i></a> 
+													<a href="../invoice/view.php?id='.$InvoiceID.'" class="btn btn-danger">
+													<i class="fas fa-trash"></i></a>';
+													break;
+												case 800:
+													$Icons='<a href="../reports/invoice.php?id='.$InvoiceID.'" class="btn btn-danger">
+													<i class="fas fa-print"></i></a>';
+													break;
+												default:
+													echo $Icons="";
+												}
+												
+											echo '<tr>
+												<td>'.$invoiceStart.$InvoiceID. ' </td>  
+												<td>'.date_format($date1,"Y-m-d"). ' </td>  
+												<td>'.$AgentNameEn.'  </td>
+												<td style="text-align: right; width:10%">'.number_format($MSTOTAL,2,","). ' </td> 
+												<td style="text-align: right; width:10%"">'.number_format($SSTOTAL,2,","). ' </td> 
+												<td style="text-align: right; width:12%"">'.number_format($VAT_TOTAL,2,"."). ' </td> 
+												<td style="text-align: right; width:5%"">  
+													 
+												<div class="btn-group btn-group-sm"> 
+													<a href="../invoice/view.php?id='.$InvoiceID.'" class="btn">
+													<i class="fas fa-eye"></i></a>
+													 
+													<a href="../reports/invoice.php?id='.$InvoiceID.'" class="btn">
+															<i class="fas fa-file-pdf"></i></a> 
+													<spen href="#" class="btn">'.$approve_text.'	</spen>
+													<span hidden>'.$approve_vx.'</spen> 
+												</div>
+
+
+
+												</td>  
+											</tr>' ; }
+													?>
+										</tbody>
+										<tfoot>
+											<tr>
+												<th>#</th> 
+												<th>Date</th> 
+												<th>Agent Name</th> 
+												<th>Marine Service</th>
+												<th>Special Services</th>
+												<th>TOTAL+VAT (SAR)</th>
+												<th>View</th>
+											</tr>
+										</tfoot>
+									</table>  
+						</div>
+					</div> 
+				</div>
+			</div> 
+		</section>
 		<!-- /.content -->
 	</div>
 <!-- /.content-wrapper -->

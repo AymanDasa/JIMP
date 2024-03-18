@@ -126,7 +126,7 @@ License: For each use you must have a valid license purchased only from above li
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div  class="xdiv"> 
-                    <img class="imgauth" src="../access/2fa/src/auth.png"> 
+                    <img class="imgauth" src="../access/2fa/src/auth2.png"> 
 				</div> 
 				<form class="login100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 					<div class="wrap-input100  m-b-26"  > 

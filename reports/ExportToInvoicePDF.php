@@ -11,6 +11,7 @@ $Arabic = new ArPHP\I18N\Arabic();
 Require_once( "C:\\wow\\password\\config.php"); 
 Require_once("../include/auth.php"); 
 Require_once("../include/config.php"); 
+$orginalinvoiceStart=$invoiceStart;
 $xi=0;
 function X0X($myText)
 	{
@@ -204,7 +205,7 @@ for($InvoiceID=$FromInvoice;$InvoiceID<=$ToInvoice; $InvoiceID++)
 		  $Status=$invoicev['Status'];  
 		  $OracleCode=$invoicev['OracleCode']; 
 		  
-		  
+		
 		
  
 		$ArrivalDate0 = intval(date('Y', strtotime($ArrivalDateH)));
@@ -222,6 +223,7 @@ for($InvoiceID=$FromInvoice;$InvoiceID<=$ToInvoice; $InvoiceID++)
 	if($MovePort2!=''){$MovePortName=$MovePortName.' / '.$MovePort2;}
 	if($MovePort3!=''){$MovePortName=$MovePortName.' / '.$MovePort3;} 
 	if($ShipWeight<3000){$txtAncor="أقل من  ";}else { $txtAncor="أكثر من ";}
+	if($Status==0){$invoiceStart="CN-";}else{$invoiceStart=$orginalinvoiceStart;}
 			$html.=' ';
 /*
   ########################################################################################################## 
