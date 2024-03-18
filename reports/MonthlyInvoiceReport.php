@@ -82,6 +82,13 @@ if(isset($_POST['InvoiceMonth'])){
 	.table_tbody{
 		font-size: 14px;  
 		}
+	.td_r{ text-align: right; }
+	.td_r_red{  text-align: right; color:red;} 
+	.td_c{ text-align: center; }
+	.td_c_red{  text-align: center; color:red;}
+	.td_l{ text-align: left; }
+	.td_l_red{  text-align: left; color:red;}
+
     </style>
     <section class="content">
 		<div class="container-fluid">
@@ -159,24 +166,28 @@ if(isset($_POST['InvoiceMonth'])){
 							<table class="table table-bordered">
 								<thead class="table_heade">
 									<tr>
-										<th style="text-align:center;vertical-align:middle" width="10%">الإجمالي </th>
-										<th style="text-align:center;vertical-align:middle" width="10%">ضريبة <br>القيمة المضافه </th>
-										<th style="text-align:center;vertical-align:middle" width="10%">المجموع</th>
-										<th style="text-align:center;vertical-align:middle" width="10%">الخدمات البحرية <br> الخاصة</th>
-										<th style="text-align:center;vertical-align:middle" width="10%">أجور الإنتقال من <br> رصيف الى اخر</th>
-										<th style="text-align:center;vertical-align:middle" width="10%">أجور استخدام <br> المخطاف</th>
-										<th style="text-align:center;vertical-align:middle" width="10%">أجور استخدام <br> الرصيف</th>
-										<th style="text-align:center;vertical-align:middle" width="10%">أجور المغادرة</th>
-										<th style="text-align:center;vertical-align:middle" width="10%">أجور القدوم</th>
-										<th style="text-align:center;vertical-align:middle" width="20%">اسم السفينة</th>
-										<th style="text-align:center;vertical-align:middle" width="8%">رقم الفاتورة</th> 
+										 
+										<th style="text-align:center;vertical-align:middle;" width="8%"> Invoice#</th>  
+										<th style="text-align:center;vertical-align:middle;" width="20%">Vessel</th> 
+										<th style="text-align:center;vertical-align:middle;" width="7%">Arrival </th>
+										<th style="text-align:center;vertical-align:middle;" width="7%">Departure </th>
+										<th style="text-align:center;vertical-align:middle;" width="7%">Shifting </th>
+										<th style="text-align:center;vertical-align:middle;" width="7%">Port Fess</th>
+										<th style="text-align:center;vertical-align:middle;" width="7%">Anchor </th> 
+										<th style="text-align:center;vertical-align:middle;" width="7%">Marine S.</th>
+										<th style="text-align:center;vertical-align:middle;" width="7%">Special S.</th>
+										<th style="text-align:center;vertical-align:middle;" width="7%">Total</th>
+										<th style="text-align:center;vertical-align:middle;" width="7%">VAT</th>
+										<th style="text-align:center;vertical-align:middle;" width="7%">Total With VAT</th>
+
+										
 									</tr>
 								</thead>
 								<tbody class="table_tbody">  
 									<?php
 										$TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_MSericeBathPrice=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
 									 
-										$SQL = "SELECT * FROM `invoice` WHERE MONTH(`InvoiceDate`) =".$MM." AND YEAR(`InvoiceDate`) = ".$YY."  AND `Status`= '800';";  
+										$SQL = "SELECT * FROM `full_invoice_view` WHERE MONTH(`InvoiceDate`) =".$MM." AND YEAR(`InvoiceDate`) = ".$YY."   ;";  
  
 										$invoices = $dbop->query($SQL)->fetchAll();   
 										foreach ($invoices as $invoice) {     
@@ -204,35 +215,50 @@ if(isset($_POST['InvoiceMonth'])){
 											$TotalInvoice_MSericeInPrice=  $TotalInvoice_MSericeInPrice +$MSericeInPrice ; 
 											$MSericeBathPrice    	= $invoice['MSericeBathPrice'];   
 											$TotalInvoice_MSericeBathPrice=  $TotalInvoice_MSericeBathPrice +$MSericeBathPrice ; 
-											
+											$Status    	= intval($invoice['Status']);   
+											 if($Status==0){
+												$invoiceStart='CN-';
+												$red='_red';
+											}else{
+												$invoiceStart=$orginalinvoiceStart;
+												$red='';
+											}
 											
 											
 								echo '<tr>
-									<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td>
-									<td style="text-align: right;">'.number_format($VAT,2,"."). ' </td>
-									<td style="text-align: right;">'.number_format($TOTAL,2,".").'  </td>
-									<td style="text-align: right;">'.number_format($SSTOTAL,2,".").'  </td>
-									<td style="text-align: right;">'.number_format($MovePortPrice,2,".").'  </td>
-									<td style="text-align: right;">'.number_format($MSericeAnchoragePrice,2,".").'  </td> 
-									<td style="text-align: right;">'.number_format($MSericeBathPrice,2,".").'  </td> 
-									<td style="text-align: right;">'.number_format($MSericeOutPrice,2,".").'  </td>
-									<td style="text-align: right;">'.number_format($MSericeInPrice,2,".").'  </td> 
-									<td>'.$ShipName.' </td>  
-									<td style="text-align: center;">'.$InvoiceID.'</td>  
+									
+									
+									<td class="td_c'.$red.'">'.$invoiceStart.$InvoiceID.'</td>   
+									<td class="td_l'.$red.'">'.$ShipName.' </td>  
+									<td class="td_r'.$red.'">'.number_format($MSericeInPrice,2,".").'  </td> 
+									<td class="td_r'.$red.'">'.number_format($MSericeOutPrice,2,".").'  </td>
+									<td class="td_r'.$red.'">'.number_format($MovePortPrice,2,".").'  </td>
+									<td class="td_r'.$red.'">'.number_format($MSericeBathPrice,2,".").'  </td> 
+									<td class="td_r'.$red.'">'.number_format($MSericeAnchoragePrice,2,".").'  </td>  
+									<td class="td_r'.$red.'">'.number_format($MSTOTAL,2,".").'  </td> 
+									<td class="td_r'.$red.'">'.number_format($SSTOTAL,2,".").'  </td>
+									<td class="td_r'.$red.'">'.number_format($TOTAL,2,".").'  </td>
+									<td class="td_r'.$red.'">'.number_format($VAT,2,"."). ' </td>
+									<td class="td_r'.$red.'">'.number_format($VAT_TOTAL,2,"."). ' </td>
+									
+
+
+
+
 								</tr>' ;}
 								echo '<tr>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Table,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_VAT,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_TOTAL,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_SSTOTAL,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MovePortPrice,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Anchorage,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeBathPrice,2,".").' </td>
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeOutPrice,2,".").' </td> 
-									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeInPrice,2,".").' </td>
 									<td>  </td> 
 									<td>  </td>  
-											</tr>'; ?> 
+									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeInPrice,2,".").' </td>
+									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeOutPrice,2,".").' </td> 
+									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeBathPrice,2,".").' </td>
+									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Anchorage,2,".").' </td>
+									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MovePortPrice,2,".").' </td>
+									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_SSTOTAL,2,".").' </td>
+									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_TOTAL,2,".").' </td>
+									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_VAT,2,".").' </td>
+									<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Table,2,".").' </td>
+						 		</tr>'; ?> 
 								</tbody>
 							</table> 
 						</div> 

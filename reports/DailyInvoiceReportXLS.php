@@ -4,8 +4,7 @@ require '../../vendor/autoload.php'; // Include the PhpSpreadsheet library
 
 $folder_name =  basename(dirname(__FILE__));
 Require_once( "C:\\wow\\password\\config.php"); 
-Require_once("../include/auth.php"); 
-Require_once("../include/config.php"); 
+Require_once("../include/auth.php");  
 $SAPPOname =  $table_body= '';
 $IsActive = 0 ;	  
 $TotalInvoiceTable=0;
@@ -18,8 +17,16 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 if(isset($_GET['InvoiceDate'])){ 
 $InvoiceDate= date_format(date_create($_GET['InvoiceDate']),"Y-m-d" );  }
 $string=$InvoiceDate;
+
+$info_sql = "SELECT `name`, `value` FROM `info`";
+		$info_result = $dbop->query($info_sql)->fetchAll();   
+		$info_data = array();
+		$info_data = array_column($info_result, 'value', 'name');  
+		$invoiceStart =$info_data['invoiceStart']; // JB- 
+		$orginalinvoiceStart=$invoiceStart;
+		
 $TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
-$SQL = "SELECT * FROM `full_invoice_view` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."' AND `Status`= '800';";  
+$SQL = "SELECT * FROM `full_invoice_view` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."'  ;";  
 // echo $SQL; exit();
 $result = $dbop->query($SQL)->fetchAll();   
 
@@ -127,8 +134,15 @@ if (1) {
     // Fetch and write data to the spreadsheet
     $rowNumber = 2;
    	foreach($result as $row){ 
-		//echo  $row['InvoiceID']."<br>"; 
-		$sheet->setCellValue('A'  . $rowNumber, $row['InvoiceID']);
+		//echo  $row['InvoiceID']."<br>";
+		$Status =intval($row['Status']);
+		if($Status==0){
+			$invoiceStart='CN-';  
+		}else{
+			$invoiceStart=$orginalinvoiceStart;   
+		}
+		$InvoiceID=$invoiceStart.$row['InvoiceID'];
+		$sheet->setCellValue('A'  . $rowNumber, $InvoiceID); 
 		$sheet->setCellValue('B'  . $rowNumber, $row['ShipID']);
 		$sheet->setCellValue('C'  . $rowNumber, $row['ShipName']);
 		$sheet->setCellValue('D'  . $rowNumber, $row['ShipWeight']);
