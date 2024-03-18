@@ -1,11 +1,10 @@
 <?php
 // composer require phpoffice/phpspreadsheet
-require '../../vendor/autoload.php'; // Include the PhpSpreadsheet library
+require_once( '../../vendor/autoload.php'); // Include the PhpSpreadsheet library
 
 $folder_name =  basename(dirname(__FILE__));
-Require_once( "C:\\wow\\password\\config.php"); 
-Require_once("../include/auth.php"); 
-Require_once("../include/config.php"); 
+require_once( "C:\\wow\\password\\config.php"); 
+require_once("../include/auth.php");  
 $SAPPOname =  $table_body= '';
 $IsActive = 0 ;	  
 $TotalInvoiceTable=0;
@@ -17,10 +16,15 @@ $YY = substr($string, 2);
 // Include PhpSpreadsheet classes
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-
+$info_sql = "SELECT `name`, `value` FROM `info`";
+		$info_result = $dbop->query($info_sql)->fetchAll();   
+		$info_data = array();
+		$info_data = array_column($info_result, 'value', 'name');  
+		$invoiceStart =$info_data['invoiceStart']; // JB- 
+		$orginalinvoiceStart=$invoiceStart;
 // Your SQL query with Arabic columns 
-$SQL = "SELECT * FROM `full_invoice_view` WHERE MONTH(`InvoiceDate`) =".$MM." AND YEAR(`InvoiceDate`) = ".$YY."  AND `Status`= '800';";   
-// echo $SQL; exit();
+$SQL = "SELECT * FROM `full_invoice_view` WHERE MONTH(`InvoiceDate`) =".$MM." AND YEAR(`InvoiceDate`) = ".$YY."  ;";   
+ 
 $result = $dbop->query($SQL)->fetchAll();   
 
 
@@ -127,7 +131,14 @@ if (1) {
     // Fetch and write data to the spreadsheet
     $rowNumber = 2;
    	foreach($result as $row){ 
-		$sheet->setCellValue('A'  . $rowNumber, $row['InvoiceID']);
+		$Status =intval($row['Status']);
+		if($Status==0){
+			$invoiceStart='CN-';  
+		}else{
+			$invoiceStart=$orginalinvoiceStart;   
+		}
+		$InvoiceID=$invoiceStart.$row['InvoiceID'];
+		$sheet->setCellValue('A'  . $rowNumber, $InvoiceID);
 		$sheet->setCellValue('B'  . $rowNumber, $row['ShipID']);
 		$sheet->setCellValue('C'  . $rowNumber, $row['ShipName']);
 		$sheet->setCellValue('D'  . $rowNumber, $row['ShipWeight']);
@@ -220,17 +231,17 @@ if (1) {
     $writer = new Xlsx($spreadsheet);
     $filename = 'Monthly_'.$string.'_data.xlsx'; 
     // Set headers for download
-    header('Content-Type: text/html; charset=UTF-8');
+    
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename="' . $filename . '"');
     header('Cache-Control: max-age=0');
-
+    header('Content-Type: text/html; charset=UTF-8'); // This line seems redundant, you might remove it if it's unnecessary
+    
     // Output the Excel file to the browser
     $writer->save('php://output');
 } else {
     echo "No results found";
-}
-
+} 
 // Close the database connection
-$conn->close();
+$dbop->close();
 ?>

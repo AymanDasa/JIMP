@@ -75,6 +75,30 @@ $TotalInvoiceTable=0;
 	.table_tbody{
 		font-size: 14px;  
 		}
+	.td_r{
+		text-align: right;
+	}
+	
+	.td_r_red{
+		text-align: right;
+		color:red;
+	}
+	.td_c{
+		text-align: center;
+	}
+	
+	.td_c_red{
+		text-align: center;
+		color:red;
+	}
+	.td_l{
+		text-align: left;
+	}
+	
+	.td_l_red{
+		text-align: left;
+		color:red;
+	}
     </style>
     <section class="content">
 		<div class="container-fluid">
@@ -157,18 +181,19 @@ $TotalInvoiceTable=0;
 						<div class="card-body">   
 							<table class="table table-bordered">
 								<thead class="table_heade">
-									<tr>
-										<th style="text-align:center;vertical-align:middle" width="10%">الإجمالي </th>
-										<th style="text-align:center;vertical-align:middle" width="10%">ضريبة <br>القيمة المضافه </th>
-										<th style="text-align:center;vertical-align:middle" width="10%">المجموع</th>
-										<th style="text-align:center;vertical-align:middle" width="10%">الخدمات البحرية <br> الخاصة</th>
-										<th style="text-align:center;vertical-align:middle" width="10%">أجور الإنتقال من <br> رصيف الى اخر</th>
-										<th style="text-align:center;vertical-align:middle" width="10%">أجور استخدام <br> المخطاف</th>
-										<th style="text-align:center;vertical-align:middle" width="10%">أجور استخدام <br> الرصيف</th>
-										<th style="text-align:center;vertical-align:middle" width="10%">أجور المغادرة</th>
-										<th style="text-align:center;vertical-align:middle" width="10%">أجور القدوم</th>
-										<th style="text-align:center;vertical-align:middle" width="20%">اسم السفينة</th>
-										<th style="text-align:center;vertical-align:middle" width="8%">رقم الفاتورة</th> 
+									<tr> 
+										<th style="text-align:center;vertical-align:middle" width="8%"> Invoice#</th>  
+										<th style="text-align:center;vertical-align:middle" width="20%">Vessel</th> 
+										<th style="text-align:center;vertical-align:middle" width="10%">Arrival </th>
+										<th style="text-align:center;vertical-align:middle" width="10%">Departure </th>
+										<th style="text-align:center;vertical-align:middle" width="10%">Port Fess</th>
+										<th style="text-align:center;vertical-align:middle" width="10%">Anchor </th> 
+										<th style="text-align:center;vertical-align:middle" width="10%">Marine S.</th>
+										<th style="text-align:center;vertical-align:middle" width="10%">Special S.</th>
+										<th style="text-align:center;vertical-align:middle" width="10%">Total</th>
+										<th style="text-align:center;vertical-align:middle" width="10%">VAT</th>
+										<th style="text-align:center;vertical-align:middle" width="10%">Total With VAT</th>
+
 									</tr>
 								</thead>
 								<tbody class="table_tbody">  
@@ -199,34 +224,47 @@ $TotalInvoiceTable=0;
 											$MSericeOutPrice    = $invoice['MSericeOutPrice'];  
 											$TotalInvoice_MSericeOutPrice=  $TotalInvoice_MSericeOutPrice +$MSericeOutPrice ; 
 											$MSericeInPrice    	= $invoice['MSericeInPrice'];   
-											$Status    	= $invoice['Status'];   
+											$Status    	= intval($invoice['Status']);   
 											$TotalInvoice_MSericeInPrice=  $TotalInvoice_MSericeInPrice +$MSericeInPrice ; 
-											if($Status==0){$invoiceStart='CN-';}else{$invoiceStart=$orginalinvoiceStart;}
-											echo '<tr>
-												<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td>
-												<td style="text-align: right;">'.number_format($VAT,2,"."). ' </td>
-												<td style="text-align: right;">'.number_format($TOTAL,2,".").'  </td>
-												<td style="text-align: right;">'.number_format($SSTOTAL,2,".").'  </td>
-												<td style="text-align: right;">'.number_format($MSTOTAL,2,".").'  </td>
-												<td style="text-align: right;">'.number_format($MSericeAnchoragePrice,2,".").'  </td>
-												<td style="text-align: right;">'.number_format($MovePortPrice,2,".").'  </td>
-												<td style="text-align: right;">'.number_format($MSericeOutPrice,2,".").'  </td>
-												<td style="text-align: right;">'.number_format($MSericeInPrice,2,".").'  </td> 
-												<td>'.$ShipName.' </td>  
-												<td style="text-align: center;">'.$invoiceStart.$InvoiceID. '</td>  
+											if($Status==0){
+												$invoiceStart='CN-';
+												$red='_red';
+											}else{
+												$invoiceStart=$orginalinvoiceStart;
+												$red='';
+											}
+											echo '<tr> 
+												<td class="td_c'.$red.'">'.$invoiceStart.$InvoiceID. '</td>  
+												<td class="td_l'.$red.'">'.$ShipName.' </td>  
+												<td class="td_r'.$red.'">'.number_format($MSericeInPrice,2,".").'  </td> 
+												<td class="td_r'.$red.'">'.number_format($MSericeOutPrice,2,".").'  </td>
+												<td class="td_r'.$red.'">'.number_format($MovePortPrice,2,".").'  </td>
+												<td class="td_r'.$red.'">'.number_format($MSericeAnchoragePrice,2,".").'  </td>
+												<td class="td_r'.$red.'">'.number_format($MSTOTAL,2,".").'  </td>
+												<td class="td_r'.$red.'">'.number_format($SSTOTAL,2,".").'  </td>
+												<td class="td_r'.$red.'">'.number_format($TOTAL,2,".").'  </td>
+												<td class="td_r'.$red.'">'.number_format($VAT,2,"."). ' </td>
+												<td class="td_r'.$red.'">'.number_format($VAT_TOTAL,2,"."). ' </td>
+												
+												
+
 											</tr>' ;}
 											echo '<tr>
-												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Table,2,".").' </td>
-												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_VAT,2,".").' </td>
-												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_TOTAL,2,".").' </td>
-												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_SSTOTAL,2,".").' </td>
-												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSTOTAL,2,".").' </td>
-												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Anchorage,2,".").' </td>
-												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MovePortPrice,2,".").' </td>
-												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeOutPrice,2,".").' </td> 
-												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeInPrice,2,".").' </td>
 												<td>  </td> 
 												<td>  </td>  
+												
+												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeInPrice,2,".").' </td>
+												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSericeOutPrice,2,".").' </td> 
+												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MovePortPrice,2,".").' </td>
+												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Anchorage,2,".").' </td>
+												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_MSTOTAL,2,".").' </td>
+												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_SSTOTAL,2,".").' </td>
+												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_TOTAL,2,".").' </td>
+												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_VAT,2,".").' </td>
+												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Table,2,".").' </td>
+												
+
+
 											</tr>'; ?> 
 								</tbody>
 							</table> 

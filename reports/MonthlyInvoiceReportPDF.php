@@ -29,7 +29,7 @@ $MonthDate = " ".$MM."-".$YY." ";
 
 $TotalInvoice_Table=$non_VATabl_gross=$VATabl_gross=$CPSP_TotalShare=$PORT_TotalShare=$CPSP_TotalVAT =$PORT_TotalVAT= $TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
 $TotalInvoice_MSericeBathPrice=0;
-$SQL = "SELECT * FROM `invoice` WHERE MONTH(`InvoiceDate`) =".$MM." AND YEAR(`InvoiceDate`) = ".$YY."  AND `Status`= '800';";  
+$SQL = "SELECT * FROM `invoice` WHERE MONTH(`InvoiceDate`) =".$MM." AND YEAR(`InvoiceDate`) = ".$YY."  AND `Status`= '800' ORDER BY `InvoiceID` ASC ;";  
 $invoices = $dbop->query($SQL)->fetchAll();    
 
  $html='';
@@ -379,7 +379,7 @@ $html.= '
 	
 	
 
-	$query_credit = "SELECT *  FROM `credit` WHERE MONTH(`CreditDate`) =".$MM." AND YEAR(`CreditDate`) = ".$YY. "; ";
+	$query_credit = "SELECT *  FROM `credit` WHERE MONTH(`CreditDate`) =".$MM." AND YEAR(`CreditDate`) = ".$YY. " ORDER BY  `InvoiceID` ASC; ";
 	$dbop->query($query_credit);  
 	$numRows = $dbop->numRows();
 	 
@@ -451,18 +451,17 @@ $html.= '
 			<tr class="tablecenterHead">
 				<th class="tablecenterHead">#</th> 
 				<th class="tablecenterHead">Date</th> 
-				<th style="width:35%;" class="tablecenterHead">Agent Name</th> 
-				<th class="tablecenterHead">Ship Name</th> 
+				<th style="width:35%;" class="tablecenterHead">Ship Name / Agent Name</th>  
 				<th class="tablecenterHead">Marine Amount</th>
 				<th class="tablecenterHead">SServices Amount</th>
 				<th class="tablecenterHead">TOTAL (SAR)</th>
-				<th class="tablecenterHead">VAT (SAR)</th>
+				<th   class="tablecenterHead">VAT (SAR)</th>
 				<th class="tablecenterHead">TOTAL With VAT (SAR)</th>   
 			</tr>
 		</thead>
 		<tbody> ';
  
-			$query_credit = "SELECT *  FROM `credit` WHERE MONTH(`CreditDate`) =".$MM." AND YEAR(`CreditDate`) = ".$YY. "; ";
+			$query_credit = "SELECT *  FROM `credit` WHERE MONTH(`CreditDate`) =".$MM." AND YEAR(`CreditDate`) = ".$YY. " ORDER BY  `InvoiceID` ASC; ";
 			$credits = $dbop->query($query_credit)->fetchAll();   
 		foreach ($credits as $row) {   
 			$InvoiceID	= $row['InvoiceID'];
@@ -510,8 +509,7 @@ $html.= '
 				<tr class="tableDay">
 					<td class="tableleft">CN-'.$InvoiceID. ' </td>  
 					<td class="tableleft">'.date_format($date1,"Y-m-d"). ' </td>  
-					<td class="tableleft">'.$AgentNameEn.'  </td>
-					<td class="tableleft">'.$ShipName. ' </td>  
+					<td class="tableleft">'.$ShipName. ' - '.$AgentNameEn.'  </td> 
 					<td  class="tableright">'.number_format($MSTOTAL,2,"."). ' </td> 
 					<td  class="tableright">'.number_format($SSTOTAL,2,"."). ' </td> 
 					<td  class="tableright">'.number_format($TOTAL,2,"."). ' </td> 
@@ -521,8 +519,7 @@ $html.= '
  	}
 $html.= '	<tr class="tableDay">
 				<td class="tableleft">  </td>  
-				<td class="tableleft"> </td>  
-				<td class="tableleft">  </td>
+				<td class="tableleft"> </td>   
 				<td class="tableright">TOTAL</td>  
 				<td  class="tableright">'.number_format($CN_MSTOTAL,2,"."). ' </td> 
 				<td  class="tableright">'.number_format($CN_SSTOTAL,2,"."). ' </td> 
