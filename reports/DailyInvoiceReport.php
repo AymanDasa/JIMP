@@ -174,7 +174,7 @@ $TotalInvoiceTable=0;
 								<tbody class="table_tbody">  
 									<?php
 										$TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
-										$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."' AND `Status`= '800';";  
+										$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."'   ;";  
 										if($debug){echo "SQL :".$SQL."<br>";}   
 										$invoices = $dbop->query($SQL)->fetchAll();   
 										foreach ($invoices as $invoice) {     
@@ -199,7 +199,9 @@ $TotalInvoiceTable=0;
 											$MSericeOutPrice    = $invoice['MSericeOutPrice'];  
 											$TotalInvoice_MSericeOutPrice=  $TotalInvoice_MSericeOutPrice +$MSericeOutPrice ; 
 											$MSericeInPrice    	= $invoice['MSericeInPrice'];   
+											$Status    	= $invoice['Status'];   
 											$TotalInvoice_MSericeInPrice=  $TotalInvoice_MSericeInPrice +$MSericeInPrice ; 
+											if($Status==0){$invoiceStart='CN-';}else{$invoiceStart=$orginalinvoiceStart;}
 											echo '<tr>
 												<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td>
 												<td style="text-align: right;">'.number_format($VAT,2,"."). ' </td>
@@ -211,7 +213,7 @@ $TotalInvoiceTable=0;
 												<td style="text-align: right;">'.number_format($MSericeOutPrice,2,".").'  </td>
 												<td style="text-align: right;">'.number_format($MSericeInPrice,2,".").'  </td> 
 												<td>'.$ShipName.' </td>  
-												<td style="text-align: center;">'.$InvoiceID.'</td>  
+												<td style="text-align: center;">'.$invoiceStart.$InvoiceID. '</td>  
 											</tr>' ;}
 											echo '<tr>
 												<td style="text-align: right; font-weight: bold;  "> '.number_format($TotalInvoice_Table,2,".").' </td>

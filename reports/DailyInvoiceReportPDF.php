@@ -18,7 +18,7 @@ $i=0;
 if(isset($_GET['InvoiceDate'])){ 
 	$InvoiceDate= date_format(date_create($_GET['InvoiceDate']),"Y-m-d" );  
 	$TotalInvoice_Table=$TotalInvoice_VAT=$TotalInvoice_TOTAL=$TotalInvoice_MSericeInPrice=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_SSTOTAL=$TotalInvoice_MSTOTAL=$TotalInvoice_MSericeOutPrice=$TotalInvoice_MovePortPrice=$TotalInvoice_Anchorage 	= $TotalVAT= 0;
-	$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."' AND `Status`= '800';";  
+	$SQL = "SELECT * FROM `invoice` WHERE DATE(`InvoiceDate`) = '".$InvoiceDate."';";  
 	$invoices = $dbop->query($SQL)->fetchAll();    
 	 }  
 $html= ''; 
@@ -161,6 +161,13 @@ $html= '
 							padding-right: 2px;
 							text-align: center;
 						 }
+						 .tablecenterCN{
+							color:red;
+							font-family:Verdana;
+							border:1px solid #dee2e6;
+							padding-right: 2px;
+							text-align: center;
+						 }
 						 .tableleft{
 							font-family:Verdana;
 							border:1px solid #dee2e6;
@@ -175,6 +182,15 @@ $html= '
 							padding-top: 4px;
 							padding-bottom: 4px;
 							text-align: right;
+						 }
+						 .tablerightCN{
+							font-family:Verdana;
+							border:1px solid #dee2e6;
+							padding-right: 2px;
+							padding-top: 4px;
+							padding-bottom: 4px;
+							text-align: right;
+							color:red;
 						 }
 						 
 
@@ -275,18 +291,21 @@ $html= '
 
 					<table class="table0">
 						<thead>
-							<tr class="tablecenterHead">
-								<th width="10%" class="tablecenterHead">الإجمالي </th>
-								<th width="10%" class="tablecenterHead">ضريبة <br>القيمة المضافه </th>
-								<th width="10%" class="tablecenterHead">المجموع</th>
-								<th width="10%" class="tablecenterHead">الخدمات البحرية <br> الخاصة</th>
-								<th width="10%" class="tablecenterHead">أجور الإنتقال من <br> رصيف الى اخر</th>
-								<th width="10%" class="tablecenterHead">أجور استخدام <br> المخطاف</th>
-								<th width="10%" class="tablecenterHead">أجور استخدام <br> الرصيف</th>
-								<th width="10%" class="tablecenterHead">أجور المغادرة</th>
-								<th width="10%" class="tablecenterHead">أجور القدوم</th>
-								<th width="20%" class="tablecenterHead">اسم السفينة</th>
-								<th width="8%"  class="tablecenterHead">رقم الفاتورة</th> 
+							<tr class="tablecenterHead"> 
+								<th width="8%"  class="tablecenterHead"> Invoice#  </th>  
+								<th width="10%" class="tablecenterHead"> Vessel </th>
+								<th width="10%" class="tablecenterHead"> Araval </th>
+								<th width="10%" class="tablecenterHead"> Departure </th>
+								<th width="10%" class="tablecenterHead"> Port Fees </th>
+								<th width="10%" class="tablecenterHead">Anchorage  </th> 
+								<th width="10%" class="tablecenterHead">Marine S.</th>
+								<th width="10%" class="tablecenterHead">Special S.</th>
+								<th width="10%" class="tablecenterHead">Total</th>
+								<th width="10%" class="tablecenterHead">VAT</th>
+								<th width="10%" class="tablecenterHead">Total with VAT</th>
+
+
+
 							</tr>
 						</thead>
 						<tbody> 
@@ -316,39 +335,47 @@ foreach ($invoices as $invoice) {
 	$MSericeOutPrice    = $invoice['MSericeOutPrice'];  
 	$TotalInvoice_MSericeOutPrice=  $TotalInvoice_MSericeOutPrice +$MSericeOutPrice ; 
 	$MSericeInPrice    	= $invoice['MSericeInPrice'];   
+	$Status    	= $invoice['Status'];   
 	$TotalInvoice_MSericeInPrice=  $TotalInvoice_MSericeInPrice +$MSericeInPrice ; 
+	if($Status==0){
+		$invoiceStart='CN-'; 
+		$fontRed='CN';
+	}else{
+		$invoiceStart=$orginalinvoiceStart;  
+		$fontRed='';
+	}
 	$html.= '<tr class="tableDay">
-			<td class="tableright">'.number_format($VAT_TOTAL,2,"."). ' </td>
-			<td class="tableright">'.number_format($VAT,2,"."). ' </td>
-			<td class="tableright">'.number_format($TOTAL,2,".").'  </td>
-			<td class="tableright">'.number_format($SSTOTAL,2,".").'  </td>
-			<td class="tableright">'.number_format($MSTOTAL,2,".").'  </td>
-			<td class="tableright">'.number_format($MSericeAnchoragePrice,2,".").'  </td>
-			<td class="tableright">'.number_format($MovePortPrice,2,".").'  </td>
-			<td class="tableright">'.number_format($MSericeOutPrice,2,".").'  </td>
-			<td class="tableright">'.number_format($MSericeInPrice,2,".").'  </td> 
-			<td class="tableleft">'.$ShipName.' </td>  
-			<td class="tablecenter">'.$InvoiceID.'</td>  
+			
+			<td class="tablecenter'.$fontRed.'">'.$invoiceStart.$InvoiceID. '</td>  
+			<td class="tableleft">'.$ShipName.' </td>   
+			<td class="tableright'.$fontRed.'">'.number_format($MSericeInPrice,2,".").'  </td>  
+			<td class="tableright'.$fontRed.'">'.number_format($MSericeOutPrice,2,".").'  </td> 
+			<td class="tableright'.$fontRed.'">'.number_format($MovePortPrice,2,".").'  </td> 
+			<td class="tableright'.$fontRed.'">'.number_format($MSericeAnchoragePrice,2,".").'  </td> 
+			<td class="tableright'.$fontRed.'">'.number_format($MSTOTAL,2,".").'  </td> 
+			<td class="tableright'.$fontRed.'">'.number_format($SSTOTAL,2,".").'  </td> 
+			<td class="tableright'.$fontRed.'">'.number_format($TOTAL,2,".").'  </td> 
+			<td class="tableright'.$fontRed.'">'.number_format($VAT,2,"."). ' </td> 
+			<td class="tableright'.$fontRed.'">'.number_format($VAT_TOTAL,2,"."). ' </td>
+
 		</tr>' ;
 }
+ 
 $html.= '<tr class="tableDayTotal"   ">
-		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_Table,2,".").' </b></td>
-		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_VAT,2,".").' </b></td>
-		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_TOTAL,2,".").' </b></td>
-		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_SSTOTAL,2,".").' </b></td>
-		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSTOTAL,2,".").' </b></td>
-		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_Anchorage,2,".").' </b></td>
-		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MovePortPrice,2,".").' </b></td>
-		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSericeOutPrice,2,".").' </b></td>
-		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSericeInPrice,2,".").' </b></td>
-		<td class="tableDayTotal">  </td> 
 		<td class="invoicecount"> 
-		عدد الفواتير  '.$i.'
-		 </td>  
-	</tr>   '; 
-
-
-
+			عدد الفواتير  '.$i.'
+		</td>  
+		<td class="tableDayTotal">  </td> 
+		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSericeInPrice,2,".").' </b></td> 
+		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSericeOutPrice,2,".").' </b></td> 
+		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MovePortPrice,2,".").' </b></td>
+		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_Anchorage,2,".").' </b></td>  
+		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_MSTOTAL,2,".").' </b></td> 
+		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_SSTOTAL,2,".").' </b></td> 
+		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_TOTAL,2,".").' </b></td>
+		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_VAT,2,".").' </b></td>
+		<td class="tableDayTotal"><b>'.number_format($TotalInvoice_Table,2,".").' </b></td>  
+	</tr>   ';  
 $html.= '
 						</tbody>
 					</table> 

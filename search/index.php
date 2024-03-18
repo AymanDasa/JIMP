@@ -129,7 +129,7 @@ if($debug){echo "<b>search :</b>".$search,"<br>";}
                                                          $TOTAL		    = $row['TOTAL'];	
                                                          $VAT			= $row['VAT'];	
                                                          $VAT_TOTAL	    = floatval($row['VAT_TOTAL']);		 
-														 $Status       = intval($invoice['Status']);  
+														 $Status       = intval($row['Status']);  
 													    $date1=date_create($InvoiceDate);  
                                                         if($Status==0){$invoiceStart='CN-';}else{$invoiceStart=$orginalinvoiceStart;}
                                                         if($Status >700){
