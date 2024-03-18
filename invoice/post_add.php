@@ -74,7 +74,7 @@ function MSA($SWeight,$Days){
 
 
  
- if($AfterMarch==0)
+ if($AfterMarch==1)
 		{ 
 
 			// $MSericeBathPrice=MSB($ShipWeight,$MSFraction2,$PeriodDays); 
