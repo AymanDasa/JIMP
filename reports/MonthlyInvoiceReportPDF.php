@@ -19,6 +19,8 @@ function X0X($myText)
 		}
 $html= '';
 $i=0; 
+$CPSP_color='#fcb0b7';
+$PORT_color='#A8DBA8';
 $string=strval($_GET['YM']); 
 $MM = intval(substr($string, 0, 2));
 $YY = intval(substr($string, 2));
@@ -378,68 +380,73 @@ $html.= '
 	
 
 	$query_credit = "SELECT *  FROM `credit` WHERE MONTH(`CreditDate`) =".$MM." AND YEAR(`CreditDate`) = ".$YY. "; ";
+	$dbop->query($query_credit);  
+	$numRows = $dbop->numRows();
+	 
+
 	$CN_MSTOTAL	=$CN_non_VATabl_gross=$CN_CPSP_Share=0;	
 	$CN_SSTOTAL	=$CN_VATabl_gross=$CN_PORT_TotalVAT=0;	
 	$CN_TOTAL		=$CN_PORT_TotalShare=$CN_CPSP_TotalVAT =0;
 	$CN_VAT		=$CN_CPSP_TotalShare=$CN_PORT_VAT =0;	
 	$CN_VAT_TOTAL 	=$CN_PORT_Share=$CN_CPSP_VAT = 0;	
-$html.= '
-<table class="table0">
-	<tbody  class="tableDay">
-		<tr>
-			<td style="text-align:center; width:20%  ; height:20px ;">
-			<p> 
-				<span lang="ar-SA">   
-					المملكة العربية السعودية <br>
-					'.$CompanyName.' <br>
-					<span lang="ar-SA">هـاتف :8696300 013</span>
-					<br>
-					<span lang="ar-SA">فـاكس :8574202 013</span>      
-				</span>
-			</p>
-			</td>
-			<td style="text-align:center; width:20%  ; height:20px ;">
-			<p>
-				<span lang="ar-SA"><br>
-					<img src="img/'.$companyLogo.'" height="60px">
-				</span>
-			</p>
-			</td>
-			<td style="text-align:center; width:20%  ; height:20px ;"> 
-				<span lang="ar-SA"> عكس الفواتير الشهرية<br>
-				</span>
-				<span dir="ltr" style="font-family:Verdana;language:en-US;direction:ltr;unicode-bidi:embed" lang="en-US">
-					Monthly Credit Note Report  
-				</span><br> '.$MonthDate .'   التاريخ
-			</td>
-			<td style="text-align:center; width:20%  ; height:20px ;" valign="middle">
-			<p>
-				<span lang="ar-SA">
-					<img src="img/mawani.png" height="70px"> 
-				</span>
-			</p>
-			</td>
-			<td style="text-align:center; width:20%  ; height:20px ;" valign="middle">
-			<p>
-				<span style="font-size:8pt" lang="ar-SA">
-						المملكة العربية السعودية 
+ 
+	$html.= '
+	<table class="table0">
+		<tbody  class="tableDay">
+			<tr>
+				<td style="text-align:center; width:20%  ; height:20px ;">
+				<p> 
+					<span lang="ar-SA">   
+						المملكة العربية السعودية <br>
+						'.$CompanyName.' <br>
+						<span lang="ar-SA">هـاتف :8696300 013</span>
 						<br>
-					الهيئة العامة للموانئ
-					<br>
-					'.$port_name.'
-					<br>
-					www.ports.gov.sa
-				</span>
-			</p>
-			</td>
-		</tr>
-	</tbody>
-</table>  
-<br><br><br><br><br><br><br><br>
-';  
+						<span lang="ar-SA">فـاكس :8574202 013</span>      
+					</span>
+				</p>
+				</td>
+				<td style="text-align:center; width:20%  ; height:20px ;">
+				<p>
+					<span lang="ar-SA"><br>
+						<img src="img/'.$companyLogo.'" height="60px">
+					</span>
+				</p>
+				</td>
+				<td style="text-align:center; width:20%  ; height:20px ;"> 
+					<span lang="ar-SA"> عكس الفواتير الشهرية<br>
+					</span>
+					<span dir="ltr" style="font-family:Verdana;language:en-US;direction:ltr;unicode-bidi:embed" lang="en-US">
+						Monthly Credit Note Report  
+					</span><br> '.$MonthDate .'   التاريخ
+				</td>
+				<td style="text-align:center; width:20%  ; height:20px ;" valign="middle">
+				<p>
+					<span lang="ar-SA">
+						<img src="img/mawani.png" height="70px"> 
+					</span>
+				</p>
+				</td>
+				<td style="text-align:center; width:20%  ; height:20px ;" valign="middle">
+				<p>
+					<span style="font-size:8pt" lang="ar-SA">
+							المملكة العربية السعودية 
+							<br>
+						الهيئة العامة للموانئ
+						<br>
+						'.$port_name.'
+						<br>
+						www.ports.gov.sa
+					</span>
+				</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>  
+	<br><br><br><br><br><br><br><br>
+	';  
 
 	$html.='	 
-	<table class="table0">
+		<table class="table0">
 		<thead>
 			<tr class="tablecenterHead">
 				<th class="tablecenterHead">#</th> 
@@ -454,9 +461,10 @@ $html.= '
 			</tr>
 		</thead>
 		<tbody> ';
+ 
 			$query_credit = "SELECT *  FROM `credit` WHERE MONTH(`CreditDate`) =".$MM." AND YEAR(`CreditDate`) = ".$YY. "; ";
 			$credits = $dbop->query($query_credit)->fetchAll();   
-foreach ($credits as $row) {   
+		foreach ($credits as $row) {   
 			$InvoiceID	= $row['InvoiceID'];
 			$InvoiceDate	= $row['InvoiceDate'];
 			$CreditDate	= $row['CreditDate'];
@@ -510,7 +518,7 @@ foreach ($credits as $row) {
 					<td  class="tableright">'.number_format($VAT,2,"."). ' </td> 
 					<td  class="tableright">'.number_format($VAT_TOTAL,2,"."). ' </td>     
 			</tr>' ; 
- }
+ 	}
 $html.= '	<tr class="tableDay">
 				<td class="tableleft">  </td>  
 				<td class="tableleft"> </td>  
@@ -618,8 +626,6 @@ $html.='<div class="page_break"></div>'; $html.='
 			</tr>  
 			' ;
 			 if($CN_TOTAL>0){
-				$CPSP_color='#fcb0b7';
-				$PORT_color='#A8DBA8';
 			$html.='  
 			<tr class="tableDayTotal"> 
 					<td class="tableright">  - '.number_format($CN_VAT_TOTAL,2,"."). '</td> 
@@ -635,7 +641,8 @@ $html.='<div class="page_break"></div>'; $html.='
 					 
 					<td class="tableright">  - '.number_format($CN_CPSP_Share,2,".").'</td>
 					<td class="tableright">  - '.number_format($CN_PORT_Share,2,".").'</td>    
-			</tr> 
+			</tr> ';}
+			$html.=' 
 			<tr class="tableDayTotal"> 
 					<td class="tableright">  '.number_format(floatval($TotalInvoice_Table-$CN_VAT_TOTAL),2,"."). '</td> 
 					<td class="tableright">  '.number_format(floatval($TotalInvoice_VAT-$CN_VAT),2,".").'</td>  
@@ -658,7 +665,8 @@ $html.='<div class="page_break"></div>'; $html.='
 
 
 
-
+	' ; 
+   $html.='  
 
 	<br><br><br> 
 	<br><br><br> 
@@ -674,7 +682,7 @@ $html.='<div class="page_break"></div>'; $html.='
 			</tr>
 		</thead>   
 		' ;
-			  }
+			
 			  
 			  $CELL1 = floatval($TotalInvoice_TOTAL-$CN_TOTAL); 
 			  $CELL2 = floatval($TotalInvoice_VAT-$CN_VAT);
@@ -695,11 +703,7 @@ $html.='<div class="page_break"></div>'; $html.='
 			</tbody>
 
 		</table>
-
-
-
-
- <br>';  
+ <br>';    
 /*
 ##########################################################################################
 #############################         FOOTER        ######################################
@@ -747,6 +751,7 @@ $html.= '
 </table>   
 </body>
 </html> ';  
+if($debug){echo $html;exit;}  
 $p = $Arabic->arIdentify($html);
 for ($i = count($p)-1; $i >= 0; $i-=2) {
 	$utf8ar = $Arabic->utf8Glyphs(substr($html, $p[$i-1], $p[$i] - $p[$i-1]));
