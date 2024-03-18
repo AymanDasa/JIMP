@@ -884,7 +884,7 @@ $dbop->query($SQL_activitylog);
 						  
 <a href="add.php" class="btn btn-app">  <i class="fas fa-plus"></i>  Add  </a>								
 <a href="edit.php?id=<?php echo $maxID;?>" class="btn btn-app">  <i class="fas fa-pen-to-square"></i>  Edit  </a>								
-<a href="../reports/pre_invoice.php?id=<?php echo $maxID;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
+<a href="../reports/invoice.php?id=<?php echo $maxID;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
  		 
                       </ol>
                     </div>
