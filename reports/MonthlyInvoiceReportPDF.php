@@ -376,7 +376,13 @@ $html.= '
 	';$html.=' <div class="page_break"></div>';
 	
 	
-	
+
+	$query_credit = "SELECT *  FROM `credit` WHERE MONTH(`CreditDate`) =".$MM." AND YEAR(`CreditDate`) = ".$YY. "; ";
+	$CN_MSTOTAL	=$CN_non_VATabl_gross=$CN_CPSP_Share=0;	
+	$CN_SSTOTAL	=$CN_VATabl_gross=$CN_PORT_TotalVAT=0;	
+	$CN_TOTAL		=$CN_PORT_TotalShare=$CN_CPSP_TotalVAT =0;
+	$CN_VAT		=$CN_CPSP_TotalShare=$CN_PORT_VAT =0;	
+	$CN_VAT_TOTAL 	=$CN_PORT_Share=$CN_CPSP_VAT = 0;	
 $html.= '
 <table class="table0">
 	<tbody  class="tableDay">
@@ -431,11 +437,7 @@ $html.= '
 </table>  
 <br><br><br><br><br><br><br><br>
 ';  
-$CN_MSTOTAL	=$CN_non_VATabl_gross=$CN_CPSP_Share=0;	
-$CN_SSTOTAL	=$CN_VATabl_gross=$CN_PORT_TotalVAT=0;	
-$CN_TOTAL		=$CN_PORT_TotalShare=$CN_CPSP_TotalVAT =0;
-$CN_VAT		=$CN_CPSP_TotalShare=$CN_PORT_VAT =0;	
-$CN_VAT_TOTAL 	=$CN_PORT_Share=$CN_CPSP_VAT = 0;
+
 	$html.='	 
 	<table class="table0">
 		<thead>
@@ -452,7 +454,7 @@ $CN_VAT_TOTAL 	=$CN_PORT_Share=$CN_CPSP_VAT = 0;
 			</tr>
 		</thead>
 		<tbody> ';
-			$query_credit = "SELECT *  FROM `credit` WHERE MONTH(`InvoiceDate`) =".$MM." AND YEAR(`InvoiceDate`) = ".$YY. "; ";
+			$query_credit = "SELECT *  FROM `credit` WHERE MONTH(`CreditDate`) =".$MM." AND YEAR(`CreditDate`) = ".$YY. "; ";
 			$credits = $dbop->query($query_credit)->fetchAll();   
 foreach ($credits as $row) {   
 			$InvoiceID	= $row['InvoiceID'];
