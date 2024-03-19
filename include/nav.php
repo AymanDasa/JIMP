@@ -8,9 +8,9 @@
         <a href="<?php echo $path;?>index.php" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        	<a href="<?php echo $path;?>company/index.php" class="nav-link">Company 
-			<?php echo $newIcon;?>
-		</a> 
+        	<a href="<?php echo $path;?>company/index.php" class="nav-link">Company </a> 
+			 
+		
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="https://github.com/AymanDasa/JIMP/discussions" class="nav-link">🚀Community </a>
@@ -63,8 +63,7 @@
             <i class="fas fa-right-to-bracket mr-2"></i> Logout
           </a>
         </div>
-      </li>
-      </li>
+      </li> 
       <?php /*
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">

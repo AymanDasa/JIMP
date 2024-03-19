@@ -7,31 +7,12 @@
 	Require_once( "C:\\wow\\password\\config.php");  
 	include("include/auth.php");
 	include("include/head.php");  
-	$debug =0;
-	
-	
+	$debug =0; 
 // ######################################################################
 // ########################## 	NEW ICON 		#######################
 // ######################################################################
-$newIcon='';
-// Remove the old one in " nav.php " Change the Date and Add echo $newIcon;
-$given_date = "2024-03-23 01:01:01";
-if ($today < $given_date) {
-	
-	$newIcon='
-	<style> 
-		.shake {  animation: shake 0.2s infinite; } 
-				@keyframes shake { 
-			0% { transform: rotate(0deg); }
-			25% { transform: rotate(5deg); }
-			50% { transform: rotate(0eg); }
-			75% { transform: rotate(-5deg); }
-			100% { transform: rotate(0deg); }
-				} 
-	</style>
-	<span class="constant-tilt-shake"> 
-		<span class="right badge badge-danger shake">New</span>
-	</span> ';}
+ 
+ 
 	
 ?>
 <body class="hold-transition sidebar-mini">
@@ -107,30 +88,31 @@ if ($today < $given_date) {
 								$approve_text = '<span style="color:#e52b50;"><i class="fas fa-square-xmark"></i></span>';
 								$approve_vx='xx';	
 							 }
-							echo '<tr>
+							echo '
+              <tr>
 									<td>'.$InvoiceID. ' </td>  
 									<td>'.date_format($date1,"Y-m-d"). ' </td>  
 									<td>'.$ShipName.'  </td>
 									<td>'.$AgentNameEn. ' </td> 
 									<td>'.$AgentNameAr. ' </td> 
 									<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td> 
-									<td>  
-										<div class="btn-group btn-group-sm"> 
-										  <a href="invoice/view.php?id='.$invoice['InvoiceID'].'" class="btn">
-										  <i class="fas fa-eye"></i></a>
-										  <a href="invoice/edit.php?id='.$invoice["InvoiceID"].'" class="btn">
-										  <i class="fas fa-pen-to-square"></i></a>';
-											if($debug){echo '
-												<a href="reports/invoice2.php?id='.$invoice["InvoiceID"].'" class="btn">
-												<i class="fas fa-cross"></i></a>';
-												}
-											echo '<a href="reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn">
-												  <i class="fas fa-file-pdf"></i></a>
-												<spen href="#" class="btn">'.$approve_text.'	</spen>
-												<span hidden>'.$approve_vx.'</spen> 
-										</div>
-									</td>  
-								</tr>' ; 
+                  <td>  
+                    <div class="btn-group btn-group-sm"> 
+                      <a href="invoice/view.php?id='.$invoice['InvoiceID'].'" class="btn">
+                        <i class="fas fa-eye"></i>
+                      </a>
+                      <a href="invoice/edit.php?id='.$invoice["InvoiceID"].'" class="btn">
+                        <i class="fas fa-pen-to-square"></i>
+                      </a> 
+                      <a href="reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn">
+                        <i class="fas fa-file-pdf"></i>
+                      </a>
+                      <div class="btn">  '.$approve_text.'	</div>
+                      <div hidden="hidden">'.$approve_vx.'</div> 
+                    </div>
+                  </td>  
+              </tr>
+              ' ; 
 						}?>
 					</tbody>
                   <tfoot>

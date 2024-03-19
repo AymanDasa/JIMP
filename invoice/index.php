@@ -128,8 +128,8 @@ $IsActive = 0 ;
 						<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn">
                               <i class="fas fa-file-pdf"></i></a>
 						 
-						<spen href="#" class="btn">'.$approve_text.'	</spen>
-						<span hidden>'.$approve_vx.'</spen>
+                                <div  class="btn">'.$approve_text.'	</div>
+                                <div hidden>'.$approve_vx.'</div>
 
                             </div>
                           </td>  
