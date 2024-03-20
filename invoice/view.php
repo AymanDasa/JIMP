@@ -144,8 +144,7 @@ if(isset($_GET['id'])) {
 }
 else{
 	exit();
-}
- ?>  
+} ?>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,15 +176,17 @@ else{
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
-</head>
-
-<body class="hold-transition sidebar-mini">
-<style>
+  <style>
     .tab {
         display: inline-block;
         margin-left: 10px;
     }
 </style>
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+
 <div class="wrapper">
   <!-- Navbar -->
   <?php include("../include/nav.php")?>
@@ -228,9 +229,8 @@ else{
                     </div>
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
-<a href="add.php" class="btn btn-app">  <i class="fas fa-plus"></i>  Add  </a>															
-<a href="../reports/invoice.php?id=<?php echo $InvoiceID;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
- 	
+					<li><a href="add.php" class="btn btn-app">  <i class="fas fa-plus"></i>  Add  </a>	</li>
+					<li><a href="../reports/invoice.php?id=<?php echo $InvoiceID;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a></li>								
                       </ol>
                     </div>
                   </div> 
@@ -415,7 +415,7 @@ else{
                       </tr> 
                       <tr>
                         <th>Grand Total:</th>
-                        <td style="text-align: right;"><b><?php echo number_format($VAT_TOTAL, 2);?><b></td>
+                        <td style="text-align: right;"><b><?php echo number_format($VAT_TOTAL, 2);?></b></td>
                       </tr>
                     </table>
                   </div>
@@ -446,11 +446,10 @@ else{
                       </button>
                     </form>
                     <?php }
-				 else {?>   
-					<a href="../reports/invoice.php?id=<?php echo $InvoiceID;?>">
-                      <button class="btn btn-success float-right" >
+				 else {?>    
+                      <a href="../reports/invoice.php?id=<?php echo $InvoiceID;?>" class="btn btn-success float-right" >
 				  <i class="fa-solid fa-print"></i> Print
-                      </button> </a>
+				 </a> 
 				<?php }?> 
                   <!-- 
                   <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">

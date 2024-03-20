@@ -216,26 +216,21 @@ if(isset($_POST['InvoiceMonth'])){
 												$invoiceStart=$orginalinvoiceStart;
 												$red='';
 												$neg=''; 
-											}
-											
-											
-								echo '<tr>
-									
-									
-									<td class="td_c'.$red.'">'.$invoiceStart.$InvoiceID.'</td>   
-									<td class="td_l'.$red.'">'.$ShipName.' </td>  
-									<td class="td_r'.$red.'">'.$neg.number_format($MSericeInPrice,2,".").'  </td> 
-									<td class="td_r'.$red.'">'.$neg.number_format($MSericeOutPrice,2,".").'  </td>
-									<td class="td_r'.$red.'">'.$neg.number_format($MovePortPrice,2,".").'  </td>
-									<td class="td_r'.$red.'">'.$neg.number_format($MSericeBathPrice,2,".").'  </td> 
-									<td class="td_r'.$red.'">'.$neg.number_format($MSericeAnchoragePrice,2,".").'  </td>  
-									<td class="td_r'.$red.'">'.$neg.number_format($MSTOTAL,2,".").'  </td> 
-									<td class="td_r'.$red.'">'.$neg.number_format($SSTOTAL,2,".").'  </td>
-									<td class="td_r'.$red.'">'.$neg.number_format($TOTAL,2,".").'  </td>
-									<td class="td_r'.$red.'">'.$neg.number_format($VAT,2,"."). ' </td>
-									<td class="td_r'.$red.'">'.$neg.number_format($VAT_TOTAL,2,"."). ' </td> 
-
-								</tr>' ;}
+											} 
+								echo '<tr>  
+										<td class="td_c'.$red.'">'.$invoiceStart.$InvoiceID.'</td>   
+										<td class="td_l'.$red.'">'.$ShipName.' </td>  
+										<td class="td_r'.$red.'">'.$neg.number_format($MSericeInPrice,2,".").'  </td> 
+										<td class="td_r'.$red.'">'.$neg.number_format($MSericeOutPrice,2,".").'  </td>
+										<td class="td_r'.$red.'">'.$neg.number_format($MovePortPrice,2,".").'  </td>
+										<td class="td_r'.$red.'">'.$neg.number_format($MSericeBathPrice,2,".").'  </td> 
+										<td class="td_r'.$red.'">'.$neg.number_format($MSericeAnchoragePrice,2,".").'  </td>  
+										<td class="td_r'.$red.'">'.$neg.number_format($MSTOTAL,2,".").'  </td> 
+										<td class="td_r'.$red.'">'.$neg.number_format($SSTOTAL,2,".").'  </td>
+										<td class="td_r'.$red.'">'.$neg.number_format($TOTAL,2,".").'  </td>
+										<td class="td_r'.$red.'">'.$neg.number_format($VAT,2,"."). ' </td>
+										<td class="td_r'.$red.'">'.$neg.number_format($VAT_TOTAL,2,"."). ' </td>  
+									</tr>' ;}
 							  ?> 
 								</tbody>
 							</table> 

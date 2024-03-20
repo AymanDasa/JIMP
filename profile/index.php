@@ -24,6 +24,7 @@
 		$user_2fa_enable = $row['user_2fa_enable'];
 		$user_2fa_secret = $row['user_2fa_secret'];
 		$user_2fa_code = $row['user_2fa_code']; 
+		$signature=$row['signature']; 
 	} 
  
 // Check if the form is submitted
@@ -103,6 +104,84 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
 	if($debug){echo "Error: No file uploaded or an error occurred during upload.";}
     }
+
+// ############  Signature ################
+
+    if (isset($_FILES["Signature"]) && $_FILES["imageUpload"]["error"] == 0) {
+	//  Signature
+	$allowedExtensions = array( "png");
+	$fileExtension = pathinfo($_FILES["imageUpload"]["name"], PATHINFO_EXTENSION); 
+	$uploadDirectory = "avatar/";
+	  // Check if the folder exists
+	  if (is_dir($uploadDirectory)) {
+	  // Open the folder
+	  if ($handle = opendir($uploadDirectory)) {
+		  $id_file = $user_id; 
+		  // Loop through each file in the folder
+		  while (false !== ($file = readdir($handle))) {
+			  // Check if the file starts with "$id_file"
+			  if (strpos($file, $id_file) === 0) {
+				  // Construct the full path to the file
+				  $filePath = $uploadDirectory . $file;
+
+				  // Remove the file
+				  if (unlink($filePath)) {
+					  if($debug){echo "File removed successfully: " . $filePath . "<br>";} 
+				  } else { 
+					  if($debug){echo "Error removing file: " . $filePath . "<br>";}
+				  }
+			  }
+		  } 
+		  // Close the folder
+		  closedir($handle);
+	  } else { 
+		  if($debug){echo "Error opening folder.";}
+	  }
+	  } else { 
+	  if($debug){echo "Folder not found.";}
+	  }
+
+
+
+	if (in_array(strtolower($fileExtension), $allowedExtensions)) {
+	    // Check file size (1 MB limit)
+	    if ($_FILES["imageUpload"]["size"] <= 101000) {
+		   // Set upload directory
+
+		   // Create directory if it doesn't exist
+		   if (!is_dir($uploadDirectory)) {
+			  mkdir($uploadDirectory, 0777, true);
+		   }
+		   $newFilename = $user_id."_".$username."." . $fileExtension; 
+		   $uploadFilePath = $uploadDirectory . $newFilename;
+		   if (file_exists($uploadFilePath)) {
+			  unlink($uploadFilePath);
+		   } 
+		   move_uploaded_file($_FILES["imageUpload"]["tmp_name"], $uploadFilePath);
+
+		   
+		   if($debug){echo "File uploaded successfully. File path: " . $uploadFilePath;}
+		   
+
+
+		   $SQL_UPDATE ="UPDATE `users` SET 
+		   `avatar`                  ='$newFilename' 
+		    WHERE  `id`         =".$user_id.";";  
+		   $dbop->query($SQL_UPDATE); 
+		   header("Refresh:0");
+
+
+	    } else {
+		  if($debug){echo "Error: File size exceeds 1 MB limit.";}
+		   
+	    }
+	} else {
+	  if($debug){echo "Error: Only JPG or PNG files are allowed.";}
+	}
+ } else {
+  if($debug){echo "Error: No file uploaded or an error occurred during upload.";}
+ }
+
 
     if (isset($_POST["f_name"])){
 		$f_name=$_POST["f_name"];
@@ -189,10 +268,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								<form method="post" enctype="multipart/form-data">
 									<input type="file"  name="imageUpload" accept=".jpg, .jpeg, .png" required>
 									 
-									<button class="btn btn-primary" type="submit">Upload new image</button>
+									<button class="btn btn-primary" type="submit">New image</button>
 								</form>
 							</div>
 						</div>
+<br>
+						<div class="card mb-4 mb-xl-0">
+							<div class="card-header">
+								User Signature
+							</div>
+							<div class="card-body text-center"> 
+								<img class="rounded-circle img-account-profile mb-2" style="height: 66px;border-radius: 0% !important;" src="avatar/<?php echo $avatar;?>" alt>
+								<div class="small  mb-4" style="color:red;">
+									  PNG ONLY no larger than 1 MB , height 70 px, transparent  
+								</div> 
+								<form method="post" enctype="multipart/form-data">
+									<input type="file"  name="Signature" accept=".png" required> 
+									<button class="btn btn-primary" type="submit">New Signature</button>
+								</form>
+							</div>
+						</div> 
 					</div>
 					<div class="col-xl-8"> 
 						<div class="card mb-4">
@@ -223,12 +318,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 									</div> 
 									<button class="btn btn-primary" type="submit">Save changes</button>
 								</form>
-							</div>
-						</div>
+							</div> 
+						</div> 
 					</div>
 				</div>
 			</div> <!-- /.row --> 
 		</section> 	
+		<br>
 		<!-- /.content -->
 	</div>
 				<!-- /.content-wrapper -->
