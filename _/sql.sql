@@ -1,0 +1,2 @@
+INSERT INTO `info` ( `name`, `value`, `type`, `active`) VALUES ('port_nameEn', 'Jeddah Islamic Port', 'text', '1'); 
+INSERT INTO `info` ( `name`, `value`, `type`, `active`) VALUES ( 'AdressCompanyEN', 'ZSC', 'text', '0');

@@ -141,6 +141,14 @@ $info_sql = "SELECT `name`, `value` FROM `info`";
 			$job_user3=$info_data['job_user3'];
 			$job_user4=$info_data['job_user4'];
 			$job_user5=$info_data['job_user5'];
+
+			$name_user1En=$info_data['name_user1En'];
+			$name_user2En=$info_data['name_user2En'];
+			$name_user3En=$info_data['name_user3En']; 
+			$job_user1En=$info_data['job_user1En'];
+			$job_user2En=$info_data['job_user2En'];
+			$job_user3En=$info_data['job_user3En']; 
+
 			
 			$IBAN =$info_data['IBAN'];
 			$invoiceStart =$info_data['invoiceStart']; // JB-
@@ -149,6 +157,7 @@ $info_sql = "SELECT `name`, `value` FROM `info`";
 			$vat =$info_data['vat'];
 			$AdressMamwani =$info_data['AdressMamwani']; 
 			$AdressCompany =$info_data['AdressCompany']; 
+			$AdressCompanyEN =$info_data['AdressCompanyEN']; 
 			$footerAR =$info_data['footerAR']; 
 			$footerEN =$info_data['footerEN']; 
 			$mawniLogo =$info_data['mawniLogo']; 
@@ -164,6 +173,7 @@ $info_sql = "SELECT `name`, `value` FROM `info`";
 			$PortPercentage=floatval($info_data['PortPercentage']);
 			$CPSPercentage=floatval(100-$PortPercentage); 
 			$AfterMarch=intval($info_data['AfterMarch']);   
+			$port_nameEn=intval($info_data['port_nameEn']);   
 			$info_data =[0];
 			$info_result=[0];   
  ?>
