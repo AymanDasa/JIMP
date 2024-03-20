@@ -173,7 +173,7 @@ $info_sql = "SELECT `name`, `value` FROM `info`";
 			$PortPercentage=floatval($info_data['PortPercentage']);
 			$CPSPercentage=floatval(100-$PortPercentage); 
 			$AfterMarch=intval($info_data['AfterMarch']);   
-			$port_nameEn=intval($info_data['port_nameEn']);   
+			$port_nameEn=$info_data['port_nameEn'];   
 			$info_data =[0];
 			$info_result=[0];   
  ?>

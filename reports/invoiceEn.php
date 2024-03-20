@@ -228,6 +228,18 @@
 		  .labele1s{
 			font-size:10px;
 		  }
+		  .labele_l{
+			text-align: left;
+		  }
+		  .labele_r{
+			text-align: right;
+		  }
+		  .labele_c{
+			text-align: center;
+		  }
+		  .labele_j{
+			text-align:  justify;
+		  }
         </style>
     </head>
     <body> 
@@ -343,6 +355,7 @@ $html.='
                     
                 </tbody>
             </table>  
+		  <br>
 			<table dir="ltr"   style="border-collapse:collapse; height:100px; width:100%; z-index:4; cellpadding:0; cellspacing:0; border:0;">
 				<tbody> 
 					<tr  style="font-size:8px;  border-top: solid; border-top-width: thin;"> 	 	
@@ -371,35 +384,36 @@ $html.='
 <table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
 	<tbody>
 		<tr>
-			<td align=right width=24% valign="middle" 	>';
-
-
-
-if(D0D(date("Y/m/d", strtotime($InvoiceDate)))){
-$html.='
-				<span lang="ar-SA" class="labela1">'. date("H:i", strtotime($InvoiceDate)) .'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date("Y/m/d", strtotime($InvoiceDate)). ' </span> <br>
-';}
-$html.='			
+			
+			<td  class="labele_l" width=12% valign="middle" 	>
+				<span lang="ar-SA" >Invoice Date </span><br> 
 			</td> 
-			<td align=right width=11% valign="middle" 	>
-				<span lang="ar-SA" class="labela1">&nbsp; Invoice Date </span><br> 
+			<td class="labele_c"  width=24% valign="middle" 	>'; 
+				if(D0D(date("Y/m/d", strtotime($InvoiceDate)))){
+				$html.='
+					 '.date("Y/m/d", strtotime($InvoiceDate)). '&nbsp;&nbsp;   &nbsp;'. date("H:i", strtotime($InvoiceDate)) .' <br>
+				';}
+				$html.='			
 			</td> 
-			<td align=right width=36% valign="middle" style="border-bottom-style: hidden;">
+			<td  class="labele_l"  width=36% valign="middle" style="border-bottom-style: hidden;">
 				<span lang="ar-SA" class="labela1">&nbsp;Agent Name &nbsp;      </span><br>
 		 
 			</td>
-			<td align=right width=29% valign="middle" style="border-bottom-style: hidden;">
+			<td  class="labele_l"  width=29% valign="middle" style="border-bottom-style: hidden;">
 				<span lang="ar-SA" class="labela1"> &nbsp;Vessel Name &nbsp;  </span><br>
 				 
 			</td>
 		 </tr>
 		 <tr>
-		 	<td align=center  valign="middle"> 
- 				<span lang="en-US" class="labele1"> '.$invoiceStart.$InvoiceID.'</span> 
-			  </td> 
-		 	<td align=right  valign="middle"> 
+
+		 	
+		 	<td class="labele_l"  valign="middle"> 
 				<span lang="en-US" class="labele1">Sytem No.&nbsp;&nbsp;</span>
 			</td>
+			<td class="labele_c" valign="middle"> 
+ 				<span lang="en-US" class="labele1"> '.$invoiceStart.$InvoiceID.'</span> 
+			  </td> 
+
 			  <td align=center   height="30pt" valign="middle">
 				<span lang="ar-SA" class="labela1"> '.$AgentNameEn.'</span><br>
 				<span lang="en-US" class="labele1">'.$AgentNameAr.'</span> <br>
@@ -420,80 +434,77 @@ $html.='
 </style>
 <table dir="ltr" width=100% style="border-collapse:collapse;z-index:4" cellspacing="1" border="1">
 	<tbody>
-		<tr>
-			<td align=center width=10% valign="middle" class="p10pt">
-					<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$TripNo.'&nbsp;&nbsp; </span>&nbsp; 
-			</td>
-			<td align=right width=16% valign="middle" class="p10pt"> 
-				<span lang="en-US" class="labele1" >Trip No</span> 
-			</td>
-			<td align=center width=8%  class="p10pt">
-				<span lang="ar-SA" class="labela1">&nbsp;'.$ShipWeight.'&nbsp;&nbsp; </span> 
-			</td>
-			<td align=right width=25% class="p10pt"> 
-				<span lang="en-US" class="labele1">G.R.T.</span> 
-			</td>
-			<td align=right width=25% class="p10pt">
-			';
-if(D0D(date("Y/m/d", strtotime($ArrivalDate)))){
-$html.='
-<span lang="ar-SA" class="labela1">&nbsp;'.date("H:i", strtotime($ArrivalDate)).'  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '.date("Y/m/d", strtotime($ArrivalDate)).' </span>
-';}
-$html.='	
-				  	 
-			</td> 
-			<td align=right width=15% class="p10pt"> 
+		<tr> 
+			<td class="labele_l p10pt" width=15%> 
 				<span lang="en-US" class="labele1">Arrival Date</span> 
 			</td>
-		</tr>
-		<tr>
-			<td align=center class="p10pt">
-				<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$DockingNo.'&nbsp;&nbsp; </span> 
-			</td>
-			<td align=right  class="p10pt"> 
-				<span lang="en-US" class="labele1">Docking Berth No</span> 
-			</td>
-			<td align=center class="p10pt">
-					<span lang="ar-SA" class="labela1">&nbsp;'.X0X(number_format($PeriodDays)).'&nbsp;&nbsp; </span> 
-			</td>
-			<td align=right class="p10pt"> 
-				<span lang="en-US" class="labele1">Period Days</span> 
-			</td>
-			<td align=right class="p10pt">';
-			if(D0D(date("Y/m/d", strtotime($DepartureDate)))){
-			$html.='
-			<span lang="ar-SA"  class="labela1">&nbsp;'.date("H:i", strtotime($DepartureDate)).'&nbsp;&nbsp;&nbsp;&nbsp;'.date("Y/m/d", strtotime($DepartureDate)).' </span> 
-			';}
-			$html.='	
-				
-							
+			<td  class="labele_c p10pt" width=25%>
+			';
+				if(D0D(date("Y/m/d", strtotime($ArrivalDate)))){
+				$html.='
+				'.date("Y/m/d", strtotime($ArrivalDate)).'&nbsp;&nbsp;   &nbsp;'.date("H:i", strtotime($ArrivalDate)).'  
+				';}
+				$html.='	
+				  	 
 			</td> 
-			<td align=right  class="p10pt"> 
+			<td class="labele_l p10pt"  width=25%> 
+				<span lang="en-US" class="labele1">G.R.T.</span> 
+			</td> 
+			<td class="labele_c p10pt" width=8%>
+				<span lang="ar-SA" class="labela1">&nbsp;'.$ShipWeight.'&nbsp;&nbsp; </span> 
+			</td>
+			
+			<td class="labele_l p10pt"  width=16% valign="middle"> 
+				<span lang="en-US" class="labele1" >Trip No</span> 
+			</td>
+			<td  class="labele_c p10pt" width=10% valign="middle">
+				<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$TripNo.'&nbsp;&nbsp; </span>&nbsp; 
+			</td> 
+		</tr>
+		<tr> 
+			<td   class="labele_l p10pt"> 
 				<span lang="en-US"class="labele1">Departure Date</span> 
 			</td>  
-		</tr>
-		<tr>
-			<td align=center class="p10pt">
-				<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$RouteNo.'&nbsp;&nbsp; </span> 
-			</td>
-			<td align=right  class="p10pt">
-				<span lang="ar-SA" class="labela1"> '.$EmptyLineAr.' </span><br>
-				<span lang="en-US" class="labele1">'.$EmptyLineEn.'</span> 
+			<td   class="labele_c p10pt">';
+				if(D0D(date("Y/m/d", strtotime($DepartureDate)))){
+				$html.='
+				'.date("Y/m/d", strtotime($DepartureDate)).'&nbsp;&nbsp;   &nbsp;'.date("H:i", strtotime($DepartureDate)).'
+				';}
+				$html.='	 		
 			</td> 
-			<td align=center  class="p10pt">
-				<span lang="ar-SA" class="labela1">&nbsp;'.X0X(number_format($AnchorageDays)).'&nbsp;&nbsp; </span> 
-			</td>
-			<td align=right class="p10pt">
-				<span lang="en-US" class="labele1">Anchorage Days</span> 
-			</td>
-			<td align=left class="p10pt">
+			<td    class="labele_l p10pt"> 
+				<span lang="en-US" class="labele1">Period Days</span> 
+			</td> 
+			<td class="labele_c p10pt" >
+				<span lang="ar-SA" class="labela1">&nbsp;'.X0X(number_format($PeriodDays)).'&nbsp;&nbsp; </span> 
+			</td> 
+			<td class="labele_l p10pt"> 
+				<span lang="en-US" class="labele1">Docking Berth No</span> 
+			</td> 
+			<td class="labele_c p10pt">
+				<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$DockingNo.'&nbsp;&nbsp; </span> 
+			</td>  
+		</tr>
+		<tr>  
+			<td class="labele_l p10pt">
+				<span lang="en-US" class="labele1"> Shifted Bath No</span> 
+			</td> 
+			<td class="labele_l p10pt">
 				<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$MovePortName.'&nbsp;&nbsp; </span> 
 			</td> 
-			<td align=right class="p10pt">
-				<span lang="en-US" class="labele1"> Shifted Bath No</span> 
-			</td>	
-		</tr>
-
+			<td class="labele_l p10pt">
+				<span lang="en-US" class="labele1">Anchorage Days</span> 
+			</td> 
+			<td class="labele_c p10pt" >
+				<span lang="ar-SA" class="labela1">&nbsp;'.X0X(number_format($AnchorageDays)).'&nbsp;&nbsp; </span> 
+			</td> 
+			<td class="labele_l p10pt" >
+				  '.$EmptyLineEn.'  
+			</td>  
+			<td  class="labele_c p10pt">
+				<span lang="en-US" class="labele1" style="text-transform:uppercase">&nbsp;'.$RouteNo.'&nbsp;&nbsp; </span> 
+			</td> 
+		</tr> 
 	</tbody>
 </table>
 
@@ -508,84 +519,102 @@ if(intval($MSTOTAL)>0){
   ########################################################################################################## 
   ########################################################################################################## 
   ########################################################################################################## 
-  ##########################################################################################################   
+  ##########################################################################################################  
+
 */ 
 $html.=' 
 
 <div><span style="font-size:2pt">&nbsp;</span></div>
 
-<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellspacing="1" border="1">
+<table  style="width:100%; border-collapse:collapse; z-index:4" cellspacing="1" border="1">
   	<tbody>
     		<tr>
     			<td colspan="7" align=center valign="middle"> 
 				<span lang="en-US" class="titele1e" > General Marine Services </span>
 			</td>
   		</tr>
-  		<tr>
-    			<td width=17% rowspan="6" align=center valign="middle"> &nbsp;</td>
+  		<tr> 
+			<td rowspan="2" align=center valign="middle" ><span lang="ar-SA" class="labela1">G.R.T.</span></td> 
 			<td colspan="5" align=center valign="middle"><span lang="ar-SA" class="labela1">pilotage </span></td>
-			<td rowspan="2" align=center valign="middle" ><span lang="ar-SA" class="labela1">G.R.T.</span></td>
+    			<td width=17% rowspan="6" align=center valign="middle"> &nbsp;</td>
 		</tr>
 		<tr>
-			<td colspan="3" align=center valign="middle"><span lang="ar-SA" class="labela1">Transferring from one wharf to another</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="labela1">Departure Fees</span></td>
+			
 			<td align=center valign="middle"><span lang="ar-SA" class="labela1">Arrival Fees</span></td>
+			<td align=center valign="middle"><span lang="ar-SA" class="labela1">Departure Fees</span></td>
+			<td colspan="3" align=center valign="middle"><span lang="ar-SA" class="labela1">Transferring from one wharf to another</span></td>
+			
 		</tr>
 		<tr>
-			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MC0, 2,'.')).'</span></td>
-			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MB0, 2,'.')).'</span></td>
-			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MA0, 2,'.')).'</span></td>
-			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CB0, 2,'.')).'</span></td>
-			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CA0, 2,'.')).'</span></td>
-			<td width=18% align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1">500 or less</span></td>
+			<td width=18% align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1">500 or less</span></td> 
+			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CA0, 2,'.')).'</span></td> 
+			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CB0, 2,'.')).'</span></td> 
+			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MA0, 2,'.')).'</span></td> 
+			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MB0, 2,'.')).'</span></td> 
+			<td width=13% align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MC0, 2,'.')).'</span></td> 
 		</tr>
 		<tr>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1">500 - 3000 </span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CA1, 2,'.')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CB1, 2,'.')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MA1, 2,'.')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MB1, 2,'.')).'</span></td> 
 			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MC1, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MB1, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MA1, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CB1, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CA1, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1">500 - 3000 </span></td>
+
+
+
+
+
+
 		</tr>
 		<tr>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MC2, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MB2, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MA2, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CB2, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CA2, 2,'.')).'</span></td> 
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1"> 15000 - 3000  </span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="labela1"> 15000 - 3000  </span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CA2, 2,'.')).'</span></td>  
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CB2, 2,'.')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MA2, 2,'.')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MB2, 2,'.')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MC2, 2,'.')).'</span></td>  
 		</tr>
 		<tr>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MC3, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MB3, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MA3, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CB3, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CA3, 2,'.')).'</span></td>
-			<td  align=right valign="middle" class="labela1">Over 15000  </td>
+			<td  align=right valign="middle" class="labela1">Over 15000  </td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CA3, 2,'.')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($CB3, 2,'.')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MA3, 2,'.')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MB3, 2,'.')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MC3, 2,'.')).'</span></td>  
 		</tr>
 		<tr>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MGPrice, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MC, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MB, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MA, 2,'.')).'</span></td> 
+			<td>&nbsp;</td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MSericeInPrice, 2,'.')).'</span></td> 
 			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MSericeOutPrice, 2,'.')).'</span></td>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MSericeInPrice, 2,'.')).'</span></td>
-			<td>&nbsp;</td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MA, 2,'.')).'</span></td> 
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MB, 2,'.')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MC, 2,'.')).'</span></td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MGPrice, 2,'.')).'</span></td>
+
+
+
 		</tr>
 		<tr>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MSericeBathPrice, 2,'.')).'</span></td>
+			
+			<td colspan="4" style="border-left-style:hidden;border-bottom-style:hidden">&nbsp;</td>
 			<td align=right colspan="2"><span lang="ar-SA" class="labela1">أجور استخدام الرصيف</span></td>
-			<td colspan="4" style="border-right-style:hidden;border-bottom-style:hidden">&nbsp;</td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MSericeBathPrice, 2,'.')).'</span></td>
+			
 		</tr>
 		<tr>
-			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MSericeAnchoragePrice, 2,'.')).'</span></td>
+			
+			<td colspan="4" style="border-left-style:hidden;border-bottom-style:hidden">&nbsp;</td>
 			<td align=right colspan="2"><span lang="ar-SA" class="labela1"> </span> Anchorage   '.$txtAncor.' 3000</td>
-			<td colspan="4" style="border-right-style:hidden;border-bottom-style:hidden">&nbsp;</td>
+			<td align=right valign="middle">&nbsp;<span lang="ar-SA" class="dataa1">'.X0X(number_format($MSericeAnchoragePrice, 2,'.')).'</span></td>
+			
 		</tr>
 		<tr>
-			<td align=right valign="middle">&nbsp;<span dir="rtl" lang="ar-SA" class="dataa1x">'.X0X(number_format($MSTOTAL, 2,'.')).'</span></td>
+			
+			<td colspan="4" style="border-left-style:hidden;border-bottom-style:hidden">&nbsp;</td>
 			<td  align=right colspan="2"><span lang="ar-SA" class="labela1"> Total</span></td>
-			<td colspan="4" style="border-right-style:hidden;border-bottom-style:hidden">&nbsp;</td>
+			<td align=right valign="middle">&nbsp;<span dir="rtl" lang="ar-SA" class="dataa1x">'.X0X(number_format($MSTOTAL, 2,'.')).'</span></td>
+			
   		</tr>
   	</tbody>
 </table>
@@ -614,25 +643,25 @@ $html.='
 			<span lang="en-US" class="titele1e" > Special Marine Services </span> 
 		</td>
 	</tr>
-	<tr>
-		<td width=15% align=center valign="middle"> 
-			<span lang="en-US" class="labele1"> Amount </span>
-		</td>
-		<td width=9% align=center valign="middle"> 
-			<span lang="en-US" class="labele1"> Qty. </span>
-		</td>
-		<td width=9% align=center valign="middle"> 
-			<span lang="en-US" class="labele1"> U. Price </span>
-		</td>
-		<td width=12% align=center valign="middle"> 
-			<span lang="en-US" class="labele1"> Unit </span>
+	<tr> 
+		<td width=6% align=center valign="middle"> 
+			<span lang="en-US" class="labele1"> No  </span>
 		</td>
 		<td width=35% align=center valign="middle"> 
 			<span lang="en-US" class="labele1"> Description </span>
 		</td>
-		<td width=6% align=center valign="middle"> 
-			<span lang="en-US" class="labele1"> No  </span>
+		<td width=12% align=center valign="middle"> 
+			<span lang="en-US" class="labele1"> Unit </span>
 		</td>
+		<td width=9% align=center valign="middle"> 
+			<span lang="en-US" class="labele1"> U. Price </span>
+		</td>
+		<td width=9% align=center valign="middle"> 
+			<span lang="en-US" class="labele1"> Qty. </span>
+		</td>
+		<td width=15% align=center valign="middle"> 
+			<span lang="en-US" class="labele1"> Amount </span>
+		</td> 
 	</tr> 
 ';
 $i=0;  
@@ -642,12 +671,19 @@ if($SSPrice1>0){
 		foreach ($codes as $code_row) { $code1 = strval($code_row['code']);}				
 		$html.='
 		<tr>
-			<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSPrice1, 2,'.').'</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSQut1.'</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUPrice1.'</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit1.'</span></td>
+			
 			<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName1.' </span></td>
+			
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit1.'</span></td>
+			
 			<td align=center valign="middle"><span lang="ar-SA" class="dataa1"> '.$code1.' </span></td>
+			
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUPrice1.'</span></td>
+			
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSQut1.'</span></td>
+			
+			<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSPrice1, 2,'.').'</span></td>
+
 		</tr>';}  
 if($SSPrice2>0){ 
 		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService2."'; ";  
@@ -655,12 +691,18 @@ if($SSPrice2>0){
 		foreach ($codes as $code_row) { $code =$code_row['code'];}
 		$html.='
 		<tr>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSPrice2, 2,'.').'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSQut2.'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUPrice2.'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit2.'</span></td>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName2.' </span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
+		
+		<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName2.' </span></td>
+		
+		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit2.'</span></td>
+		
+		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUPrice2.'</span></td>
+		
+		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSQut2.'</span></td>
+		
+		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSPrice2, 2,'.').'</span></td>
+
 	</tr>';} 
 if($SSPrice3>0){ 
 		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService3."'; ";  
@@ -668,12 +710,17 @@ if($SSPrice3>0){
 		foreach ($codes as $code_row) { $code =$code_row['code'];}
 	$html.='
 		<tr>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSPrice3, 2,'.').'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSQut3.'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUPrice3.'</span></td>
-		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit3.'</span></td>
-		<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName3.' </span></td>
 		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
+		
+		<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName3.' </span></td>
+		
+		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit3.'</span></td>
+		
+		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUPrice3.'</span></td>
+		
+		<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSQut3.'</span></td>
+		
+		<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSPrice3, 2,'.').'</span></td>
 	</tr>';} 
 if($SSPrice4>0){
 		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService4."'; ";  
@@ -681,12 +728,17 @@ if($SSPrice4>0){
 		foreach ($codes as $code_row) { $code =$code_row['code'];}
 	$html.='
 		<tr>
-			<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSPrice4, 2,'.').'</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSQut4.'</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUPrice4.'</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit4.'</span></td>
-			<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName4.' </span></td>
 			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
+			
+			<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName4.' </span></td>
+			
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit4.'</span></td>
+			
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUPrice4.'</span></td>
+			
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSQut4.'</span></td>
+			
+			<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSPrice4, 2,'.').'</span></td>
 	</tr>';} 
 if($SSPrice5>0){
 		$query1 = " SELECT `code`  FROM `services` WHERE `Service_ID`='".$SService5."'; ";  
@@ -694,17 +746,22 @@ if($SSPrice5>0){
 				foreach ($codes as $code_row) { $code =$code_row['code'];}
 	$html.='
 		<tr>
-			<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSPrice5, 2,'.').'</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSQut5.'</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUPrice5.'</span></td>
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit5.'</span></td>
-			<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName5.' </span></td>
 			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
+			
+			<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName5.' </span></td>
+			
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit5.'</span></td>
+			
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSQut5.'</span></td>
+			
+			<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSPrice5, 2,'.').'</span></td>
+			 
 		</tr>';}  
 	$html.='
 	<tr>
-		<td width=13%  align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSTOTAL, 2,'.').'</span></td>
 		<td align=left colspan="5"   valign="middle"><span lang="ar-SA" class="labela1">المجموع</span>
+		<td width=13%  align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSTOTAL, 2,'.').'</span></td>
+		
 	</tr>
 
 </tbody>
@@ -736,38 +793,39 @@ $html.='
 ';
 if($MSTOTAL>0){
 $html.=' 
-   	<tr> 
-	   	<td align=right  width=15% 	valign="middle"><span lang="en-US" class="datae1">'.number_format($MSTOTAL, 2).'</span></td> 
-		<td align=right  width=10%	valign="middle" style="border-right-style:hidden"> &nbsp;</td>
-		<td align=left   width=30%	valign="middle" ><span lang="en-US"  class="labele1" >  General Marine Services</span></td>
+   	<tr>  
+	   	<td align=right  width=50%	valign="middle" style="border-right-style:hidden"> &nbsp;</td>
+		<td align=left   width=20%	valign="middle" ><span lang="en-US"  class="labele1" >  General Marine Services</span></td> 
+		<td align=right  width=15% 	valign="middle"><span lang="en-US" class="datae1">'.number_format($MSTOTAL, 2).'</span></td> 
 	</tr>
 ';}
 if($SSTOTAL>0){
 $html.=' 
-    <tr>
-    		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($SSTOTAL, 2).'</span></td> 
+    <tr> 
 		<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
-		<td align=left    valign="middle" ><span lang="en-US" class="labele1">  Special Marine Services</span></td>
-		
+		<td align=left    valign="middle" ><span lang="en-US" class="labele1">  Special Marine Services</span></td> 
+		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($SSTOTAL, 2).'</span></td>  
 	</tr>
 ';}
 $html.=' 
-    <tr>
-    		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($TOTAL, 2).'</span></td> 
+    <tr> 
 		<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
-		<td align=left    valign="middle" ><span lang="en-US" class="labele1">Subtotal </span></td>
+		<td align=left    valign="middle" ><span lang="en-US" class="labele1">Subtotal </span></td> 
+		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($TOTAL, 2).'</span></td> 
 		
 	</tr>
 	<tr>
+	
+		<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
+		<td align=left    valign="middle" ><span lang="en-US" class="labele1">VAT</span></td> 
 		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($VAT, 2).'</span></td> 
-		<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
-		<td align=left    valign="middle" ><span lang="en-US" class="labele1">VAT</span></td>
 		
 	</tr>
 	<tr>
+	
+	<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td> 
+		<td align=left    valign="middle" ><span lang="en-US" class="labele1">Total</span></td> 
 		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($VAT_TOTAL, 2).'</span></td> 
-		<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
-		<td align=left    valign="middle" ><span lang="en-US" class="labele1">Total</span></td>
 		
 	</tr>
   </tbody>
