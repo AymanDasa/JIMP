@@ -3,6 +3,7 @@
 	use Dompdf\Options;
 	require '../../dompdf/vendor/autoload.php';
 	$options = new Options();
+	$options->set('isRemoteEnabled', true);
 	$options->set('defaultFont', 'Arabic');
 	$options->set('chroot', realpath(''));
 	$dompdf = new Dompdf($options); 
@@ -187,8 +188,8 @@
 	include_once('../../phpqrcode/qrlib.php');
 	 
 	$QR= zatca_base64_tlv_encode(  
-	    'Western Coast Port Services','311940454500003',$InvoiceDate,   $TOTAL,   $VAT); 
-	QRcode::png($QR, '../../phpqrcode/invoiceQR.png','S' ,2, 0);  
+	    $CompanyName,$company_vat,$InvoiceDate,   $TOTAL,   $VAT); 
+	QRcode::png($QR, '../../phpqrcode/invoiceQR_'.$InvoiceID.'.png','S' ,2, 0);  
 	// END QR FUNCTION
 	$MovePortName='';
 	if($MovePort1!=''){$MovePortName=$MovePort1;} 
@@ -303,7 +304,7 @@ $html.='
   ########################################################################################################## 
   ########################################################################################################## 
   ########################################################################################################## 
-  ######################################        Managers Information      ################################## 
+  ######################################        FOOTER Information      ################################## 
   ########################################################################################################## 
   ########################################################################################################## 
   ########################################################################################################## 
@@ -353,18 +354,25 @@ $html.='
 		</tr>
 	 
 </tbody>
-</table> 
-
-<br>
-
-
+</table>  
+<br>  
+			<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
+				<tbody> 
+					<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 	 	
+						<td align=left width=40%">'.$footerEN.'</td>  
+						<td align=left width20%"><img src="http://'.$_SERVER["HTTP_HOST"].'/phpqrcode/invoiceQR_'.$InvoiceID.'.png"></td>  
+						<td align=right width=40%">'.$footerAR.'</td> 
+					<tr>
+				</tbody>
+			</table> 
+		</footer>
 '; 
 /*
 ########################################################################################################## 
 ########################################################################################################## 
 ########################################################################################################## 
 ########################################################################################################## 
-########################################       Bank  Information      #################################### 
+########################################       MAIN  Information      #################################### 
 ########################################################################################################## 
 ########################################################################################################## 
 ########################################################################################################## 
@@ -372,16 +380,6 @@ $html.='
 */ 
 
 $html.=' 
-			<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
-				<tbody> 
-					<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 	 	
-						<td align=left width=50%">'.$footerEN.'</td>  
-						<td align=right width=50%">'.$footerAR.'</td> 
-					<tr>
-				</tbody>
-			</table> 
-		</footer>
-
         <!-- Wrap the content of your PDF inside a main tag -->
 <main>         
 <div><span style="font-size:60.0pt">&nbsp;</span></div>
@@ -827,7 +825,13 @@ $html.='
     </body>
 </html>
 '; 
+	$debug =0;
 	
+	if($debug){
+		// print_r($_SERVER);
+		echo "<p>";
+		echo $html;
+		exit;}
 	$p = $Arabic->arIdentify($html);
 	for ($i = count($p)-1; $i >= 0; $i-=2) {
 		$utf8ar = $Arabic->utf8Glyphs(substr($html, $p[$i-1], $p[$i] - $p[$i-1]));
