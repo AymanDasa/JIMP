@@ -12,11 +12,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		// Loop through POST data to update each field in the database
 		foreach ($_POST as $field_name => $new_value) {
 			// Sanitize input to prevent SQL injection  
-		   $field_name = stripslashes ( strip_tags(($field_name)));
+		   	$field_name = stripslashes ( strip_tags(($field_name)));
 			$new_value = stripslashes ( strip_tags(($new_value)));
 
 			// Update the database with the new value
-			$sql = "UPDATE `info` SET `value`='$new_value' WHERE `active` = 1 AND `name`='$field_name';";
+			$sql = "UPDATE `info` SET `value`='$new_value' WHERE  `name`='$field_name';";
+			
+			if($debug){echo "<b>sql : </b>".$sql."<br>";}
 			$dbop->query($sql); 
 		
 			$Error_MSG= '<script>
@@ -27,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$new_name = stripslashes 	(($_POST['name']));
 			$new_value = stripslashes 	(($_POST['value']));
 			$sql ="INSERT INTO `info` ( `name`, `value` ) VALUES ( '".$new_name."', '".$new_value."' );";
+			if($debug){echo "<b>INSERT : </b>".$sql."<br>";}
 			$dbop->query($sql);  
 			$Error_MSG= '<script>
 							$(document).ready(function() { toastr.success("Add New"); });
@@ -53,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/toastr/toastr.min.css"> 
+  <link rel="stylesheet" href="../include/css/jimp.css">
   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -92,7 +96,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<div class="card">
 				<div class="card-body">
 		<?php 		
-$line_count=0; 	
+$line_count=0; 
+$Selected1=$Selected0='';	
 $sql = "SELECT * FROM `info` WHERE `active` = 1;  ";  
 $result = $dbop->query($sql)->fetchAll();
 
@@ -102,30 +107,44 @@ $result = $dbop->query($sql)->fetchAll();
 		$id_delete= $row["id"] ;
         // Create label for the field
         $label = ucfirst(str_replace('_', ' ', $row["name"]));
+	   
+			$type =$row['type']; 
+			if($type =='yesno'){$yesno=1; $value =intval($row['value']); }else{$yesno=0;$value =$row['value'];}
+			 
+			if($debug){echo "<div  style='color:red;'><b> ". $label ."</b> / ".$value." / ".$type ."</div><br>";}
 		 
         // Output the label and editable input field 
-        echo "	<div class=form-group'>
-			  	<div class='row'>
+	   echo "	<div class=form-group'>
+					<div class='row'>
 					<div class='col-2 col-form-label'> 
 						<label >{$label}:</label>
 					</div>
-					<div class='col-8'>  
+					<div class='col-8'>  ";
+	   if($yesno){
+
+		if( $value ) {$Selected1='selected';}else{$Selected0='selected';}
+		echo " 
+			
+			<select  name='{$row["name"]}' class='custom-select form-control-border' >
+				<option value='1' ".$Selected1.">YES</option>
+				<option value='0' ".$Selected0.">NO</option> 
+			</select>
+				";
+
+	   }else{
+        echo "	 
 						<input type='text' class='form-control' name='{$row["name"]}' value='{$row["value"]}'>
-						
-					</div>
-		    		</div>
+					  ";
+	   }
+		echo "		
+				</div>
+				</div>
 			</div>  ";
 	   $line_count++;
 	   if ($line_count % 10 == 0) {
 		echo "<hr>"; } 
 	}?> 
-<button type="submit" name="Update" value="Update" class="btn btn-app"><i class="fas fa-plus"></i> Update</button>
-
-<?php if($is_admin){ ?>
-	<a href="#" class="btn btn-app" data-toggle="modal" data-target="#modal-lg">  
-		<i class="fas fa-plus"></i>  Add  </a>	 
-	</div>
-<?php } ?>
+<button type="submit" name="Update" value="Update" class="btn btn-app"><i class="fas fa-plus"></i> Update</button> 
 </form> 
 	 
 

@@ -38,8 +38,19 @@ $TotalInvoiceTable=0;
   <!-- dropzonejs -->
   <link rel="stylesheet" href="<?php echo $Homepath ;?>adminlte/plugins/dropzone/min/dropzone.min.css">  
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo $Homepath ;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?php echo $Homepath ;?>adminlte/dist/css/adminlte.min.css"> 
+  <link rel="stylesheet" href="../include/css/jimp.css">
   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
+  	<style>
+		.table_heade{font-size: 12px;font-weight: bold;}
+		.table_tbody{font-size: 14px;}
+		.td_r{text-align: right;}
+		.td_r_red{text-align: right;color:red;}
+		.td_c{text-align: center;}
+		.td_c_red{text-align: center;	color:red;}
+		.td_l{text-align: left;}
+		.td_l_red{text-align: left;color:red;	}
+	</style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -65,41 +76,7 @@ $TotalInvoiceTable=0;
         </div>
       </div><!-- /.container-fluid -->
     </section> 
-    <!-- Main content -->
-    <style>
-	.table_heade{
-		font-size: 12px;
-		font-weight: bold;  
-		}
-
-	.table_tbody{
-		font-size: 14px;  
-		}
-	.td_r{
-		text-align: right;
-	}
-	
-	.td_r_red{
-		text-align: right;
-		color:red;
-	}
-	.td_c{
-		text-align: center;
-	}
-	
-	.td_c_red{
-		text-align: center;
-		color:red;
-	}
-	.td_l{
-		text-align: left;
-	}
-	
-	.td_l_red{
-		text-align: left;
-		color:red;
-	}
-    </style>
+    <!-- Main content --> 
     <section class="content">
 		<div class="container-fluid">
 			<div class="row">  
@@ -115,8 +92,8 @@ $TotalInvoiceTable=0;
 			?> 
 								 
 
-<a href="DailyInvoiceReportXLS.php?InvoiceDate=<?php echo $InvoiceDate;?>" class="btn btn-app">  <i class="fas fa-file-excel"></i>  XLS  </a>								
-<a href="DailyInvoiceReportPDF.php?InvoiceDate=<?php echo $InvoiceDate;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
+<a href="DailyInvoiceReportXLS.php?InvoiceDate=<?php echo $InvoiceDate;?>" class="btn btn-app-x">  <i class="fas fa-file-excel"></i>     </a>								
+<a href="DailyInvoiceReportPDF.php?InvoiceDate=<?php echo $InvoiceDate;?>" class="btn btn-app-x">  <i class="fas fa-file-pdf"></i>      </a>	
  							
   
 

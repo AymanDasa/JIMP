@@ -84,6 +84,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/toastr/toastr.min.css"> 
+  <link rel="stylesheet" href="../include/css/jimp.css">
   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -120,7 +121,7 @@
               <div class="card-header">
                 <h3 class="card-title">List of all Agents</h3>
 			 <div class="card-tools">  
-				<a href="add.php" class="btn btn-app" data-toggle="modal" data-target="#modal-lg">  <i class="fas fa-plus"></i>  Add  </a>	 
+				<a href="add.php" class="btn btn-app-x" data-toggle="modal" data-target="#modal-lg">  <i class="fas fa-plus"></i>     </a>	 
                   </div>
               </div> 
               <!-- /.card-header -->

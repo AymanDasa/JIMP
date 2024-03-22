@@ -99,10 +99,18 @@
 					$info_data = array_column($info_result, 'value', 'name'); 
 						$companyLogo =$info_data['companyLogo'];   
 						$companyXLogo =$info_data['companyXLogo']; 
-						$companySlog =$info_data['companySlog'];   
-						$Activate2FA =intval($info_data['Activate2FA']);   
+						$companySlog =$info_data['companySlog'];    
 						$info_data =[0];
 						$info_result=[0]; 
+
+									
+					$config_sql = "SELECT `name`, `value` FROM `config`";
+					$config_result = $dbop->query($config_sql)->fetchAll();   
+					$config_data = array();
+					$config_data = array_column($config_result, 'value', 'name');  
+						$Activate2FA = intval($config_data['Activate2FA']);
+						$config_data =[0];
+						$config_result=[0]; 
 		?>
 <html lang="en">
 <head>

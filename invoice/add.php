@@ -34,21 +34,9 @@
 					foreach ($services as $service) {    
             $servicesOption.='
 			<option   value="'.$service['Service_ID'].'"> ['.$service['code'].'] '.$service['Description'].'</option>';
-					}
-				// option services
-		// SSCount 
-			$query = "SELECT `value` FROM `config`  WHERE  `name`='SSCount' LIMIT 1;"; 
-			$SSCountQuerys = $dbop->query($query)->fetchAll();   
-			foreach ($SSCountQuerys as $SSCountQuery) {    
-				$SSCount = intval($SSCountQuery['value']) ;
-			}
-		// option services
+					} 
 
-        // DUBLICAT ITEM
-		  
-	   
-
-
+        // DUBLICAT ITEM 
 			$today = date("Y-m-d H:i:s");
 			$A = $B = $C = $D = $E = $F = $G = $H = $I = $J = 0;
 			$TotalInvoiceAmount = $NumberOfAllInvoice = $OverBalance =  0;
@@ -84,6 +72,7 @@
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/dropzone/min/dropzone.min.css">  
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../include/css/jimp.css">
   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 <body class="hold-transition sidebar-mini">

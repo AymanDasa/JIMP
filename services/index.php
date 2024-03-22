@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../include/css/jimp.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -58,15 +59,9 @@
             <div class="card">
               <div class="card-header">
               <h3 class="card-title">List of all Services</h3>
-                  <div class="card-tools"> 
-                    <a href="add.php">
-                      <button type="button" class="btn btn-success" >
-                        Add Service
-                      </button> 
-                    </a>
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-plus"></i>
-                    </button> 
+                  <div class="card-tools">  
+ <a href="add.php" class="btn btn-app-x" data-toggle="modal" data-target="#modal-lg">  <i class="fas fa-plus"></i>     </a>	 
+                
                   </div>
               </div> 
               <!-- /.card-header -->

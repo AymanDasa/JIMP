@@ -50,6 +50,18 @@ if(isset($_POST['FromToInvoice'])){
   <link rel="stylesheet" href="<?php echo $Homepath ;?>adminlte/plugins/dropzone/min/dropzone.min.css">  
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath ;?>adminlte/dist/css/adminlte.min.css">
+  
+  <link rel="stylesheet" href="<?php echo $Homepath ;?>adminlte/dist/css/adminlte.min.css"> 
+  <style>
+	.table_heade{
+		font-size: 12px;
+		font-weight: bold;  
+		}
+
+	.table_tbody{
+		font-size: 14px;  
+		}
+    </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -75,17 +87,7 @@ if(isset($_POST['FromToInvoice'])){
         </div>
       </div><!-- /.container-fluid -->
     </section> 
-    <!-- Main content -->
-    <style>
-	.table_heade{
-		font-size: 12px;
-		font-weight: bold;  
-		}
-
-	.table_tbody{
-		font-size: 14px;  
-		}
-    </style>
+    <!-- Main content --> 
     <section class="content">
 		<div class="container-fluid">
 			<div class="row">  

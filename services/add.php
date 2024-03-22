@@ -45,6 +45,7 @@
     <!-- Select2 -->
 	<link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../include/css/jimp.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

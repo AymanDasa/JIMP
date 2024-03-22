@@ -45,8 +45,19 @@ if(isset($_POST['FromToInvoice'])){
   <!-- dropzonejs -->
   <link rel="stylesheet" href="<?php echo $Homepath ;?>adminlte/plugins/dropzone/min/dropzone.min.css">  
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo $Homepath ;?>adminlte/dist/css/adminlte.min.css">
-  <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
+  <link rel="stylesheet" href="<?php echo $Homepath ;?>adminlte/dist/css/adminlte.min.css"> 
+  <link rel="stylesheet" href="../include/css/jimp.css">
+  <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico"> 
+  <style>
+	.table_heade{
+		font-size: 12px;
+		font-weight: bold;  
+		}
+
+	.table_tbody{
+		font-size: 14px;  
+		}
+    </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -73,16 +84,6 @@ if(isset($_POST['FromToInvoice'])){
       </div><!-- /.container-fluid -->
     </section> 
     <!-- Main content -->
-    <style>
-	.table_heade{
-		font-size: 12px;
-		font-weight: bold;  
-		}
-
-	.table_tbody{
-		font-size: 14px;  
-		}
-    </style>
     <section class="content">
 		<div class="container-fluid">
 			<div class="row">  
@@ -90,12 +91,10 @@ if(isset($_POST['FromToInvoice'])){
 					<div class="card"> 
 						<div class="card-header">
 							<h3 class="card-title">Result</h3>
-							<div class="card-tools">  
- <a href="ExportToInvoicePDF.php?FromInvoice=<?php echo $FromInvoice;?>&ToInvoice=<?php echo $ToInvoice;?>"> 
-								<button type="button" class="btn btn-success" > PDF </button>  </a>
-								<button type="button" class="btn btn-tool" data-card-widget="collapse">
-								<i class="fas fa-plus"></i>
-								</button> 
+							<div class="card-tools">   
+								<a href="ExportToInvoicePDF.php?FromInvoice=<?php echo $FromInvoice;?>&ToInvoice=<?php echo $ToInvoice;?>" class="btn btn-app-x">  
+									<i class="fas fa-file-pdf"></i>      
+								</a>
 							</div>
 						</div>  
 						<div class="card-body">     

@@ -1,0 +1,43 @@
+/*!
+ *   JIMP v3.18.0
+ *   Author: Ayman Dasa
+ *   Website: vExam.net <https://www.vexam.net>  
+ */
+ .btn-app-x {
+	border-radius: 3px;
+	background-color: #f8f9fa;
+	border: 1px solid #ddd;
+	color: #6c757d;
+	font-size: 20px;
+	height: 50px;
+	margin: 1px 0 1px 10px;
+	min-width: 50px; 
+	padding: 10px 22px;
+	position: relative;
+	text-align: center;
+} 
+.btn-app-En {
+	border-radius: 3px;
+	background-color: #f8f9fa;
+	border: 1px solid #ddd;
+	color: #336192;
+	font-size: 20px;
+	height: 50px;
+	margin: 1px 0 1px 10px;
+	min-width: 50px; 
+	padding: 10px 22px;
+	position: relative;
+	text-align: center;
+}   
+.btn-app-x:hover {
+	background-color: #d0d0d0;
+} 
+
+.tab {
+	display: inline-block;
+	margin-left: 10px;
+} 
+.img-account-profile {
+	height: 250px;
+	width: 250px;
+}  

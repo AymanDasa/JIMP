@@ -64,6 +64,7 @@ $alog_note = strval("Approved:".$maxID."   " );
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/dropzone/min/dropzone.min.css">  
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../include/css/jimp.css">
   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
  
@@ -137,6 +138,7 @@ $alog_note = strval("Approved:".$maxID."   " );
 	<script src="<?php echo $Homepath;?>adminlte/plugins/dropzone/min/dropzone.min.js"></script>   
 	<!-- AdminLTE App -->
 	<script src="<?php echo $Homepath;?>adminlte/dist/js/adminlte.min.js"></script>
+	
 <!-- AdminLTE for demo purposes -->
 
 <script src="<?php echo $path;?>include/js/menu.js"></script>

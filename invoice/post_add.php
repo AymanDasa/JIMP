@@ -836,16 +836,11 @@ $dbop->query($SQL_activitylog);
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/dropzone/min/dropzone.min.css">  
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../include/css/jimp.css">
   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 
-<body class="hold-transition sidebar-mini">
-<style>
-    .tab {
-        display: inline-block;
-        margin-left: 10px;
-    }
-</style>
+<body class="hold-transition sidebar-mini"> 
 <div class="wrapper">
   <!-- Navbar -->
   <?php include("../include/nav.php")?>
@@ -882,9 +877,9 @@ $dbop->query($SQL_activitylog);
                         
                           
 						  
-<a href="add.php" class="btn btn-app">  <i class="fas fa-plus"></i>  Add  </a>								
-<a href="edit.php?id=<?php echo $maxID;?>" class="btn btn-app">  <i class="fas fa-pen-to-square"></i>  Edit  </a>								
-<a href="../reports/invoice.php?id=<?php echo $maxID;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a>	
+<a href="add.php" class="btn btn-app-x">  <i class="fas fa-plus"></i>     </a>								
+<a href="edit.php?id=<?php echo $maxID;?>" class="btn btn-app-x">  <i class="fas fa-pen-to-square"></i>     </a>								
+<a href="../reports/invoice.php?id=<?php echo $maxID;?>" class="btn btn-app-x">  <i class="fas fa-file-pdf"></i>      </a>	
  		 
                       </ol>
                     </div>

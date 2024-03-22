@@ -4,12 +4,7 @@
 			Require_once("../include/auth.php"); 
 			Require_once("../include/config.php"); 
 			  
-	    
-			$query = "SELECT `value` FROM `config`  WHERE  `name`='SSCount' LIMIT 1;"; 
-			$SSCountQuerys = $dbop->query($query)->fetchAll();   
-			foreach ($SSCountQuerys as $SSCountQuery) {    
-				$SSCount = intval($SSCountQuery['value']) ;
-			} 
+	     
 			$today = date("Y-m-d H:i:s"); 
 
 if(isset($_GET['id'])) {
@@ -174,14 +169,9 @@ else{
   <!-- dropzonejs -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/dropzone/min/dropzone.min.css">  
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
-  <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
-  <style>
-    .tab {
-        display: inline-block;
-        margin-left: 10px;
-    }
-</style>
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css"> 
+  <link rel="stylesheet" href="../include/css/jimp.css">
+  <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico"> 
 
 </head>
 
@@ -229,9 +219,10 @@ else{
                     </div>
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
-					<li><a href="add.php" class="btn btn-app">  <i class="fas fa-plus"></i>  Add  </a>	</li>
-					<li><a href="../reports/invoice.php?id=<?php echo $InvoiceID;?>" class="btn btn-app">  <i class="fas fa-file-pdf"></i>  PDF   </a></li>								
-                      </ol>
+					<li><a href="add.php" class="btn btn-app-x">  <i class="fas fa-plus"></i>   </a>	</li>
+					<li><a href="../reports/invoiceEn.php?id=<?php echo $InvoiceID;?>" class="btn btn-app-En">  <i class="fas fa-file-pdf"></i>    </a></li>
+					<li><a href="../reports/invoice.php?id=<?php echo $InvoiceID;?>" class="btn btn-app-x">  <i class="fas fa-file-pdf"></i>    </a></li>								
+					 </ol>
                     </div>
                   </div> 
                 </div> 

@@ -24,6 +24,7 @@ $IsActive = 0 ;
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../include/css/jimp.css">
    <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -61,10 +62,8 @@ $IsActive = 0 ;
               <div class="card-header">
                 <h3 class="card-title">List of all Invoices</h3>
                   <div class="card-tools"> 
-                    <a href="add.php" class="btn btn-app">  <i class="fas fa-plus"></i>  Add  </a>	
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-plus"></i>
-                    </button> 
+                    <a href="add.php" class="btn btn-app-x">  <i class="fas fa-plus"></i>  </a>	
+                    
                   </div>
               </div> 
               <!-- /.card-header -->
@@ -105,7 +104,7 @@ $IsActive = 0 ;
 						$approve_vx='xx';	
 					 }
                        echo '<tr>
-                          <td>'.$InvoiceID. ' </td>  
+                          <td>'.$invoiceStart.$InvoiceID. ' </td>  
                           <td>'.date_format($date1,"Y-m-d"). ' </td>  
                           <td>'.$ShipName.'  </td>
                           <td>'.$AgentNameEn. ' </td> 

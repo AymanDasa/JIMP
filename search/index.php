@@ -29,16 +29,12 @@ if($debug){echo "<b>search :</b>".$search,"<br>";}
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
-   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
+  <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css"> 
+  <link rel="stylesheet" href="../include/css/jimp.css">
+  <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 <body class="hold-transition sidebar-mini">
-<style>
-    .tab {
-        display: inline-block;
-        margin-left: 10px;
-    }
-</style>
+ 
 <div class="wrapper">
   <!-- Navbar -->
   <?php include("../include/nav.php")?>

@@ -138,16 +138,11 @@ if($debug){echo "<b>  ShipID:</b>".$ShipID."<br>";}
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/dropzone/min/dropzone.min.css">  
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../include/css/jimp.css">
   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 
-<body class="hold-transition sidebar-mini">
-<style>
-    .tab {
-        display: inline-block;
-        margin-left: 10px;
-    }
-</style>
+<body class="hold-transition sidebar-mini"> 
 <div class="wrapper">
   <!-- Navbar -->
   <?php include("../include/nav.php")?>

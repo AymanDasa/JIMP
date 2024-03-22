@@ -83,6 +83,7 @@ $dbop->query($SQL_activitylog);
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../include/css/jimp.css">
   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -260,7 +261,7 @@ $dbop->query($SQL_activitylog);
 												}
 												
 											echo '<tr>
-												<td>'.$InvoiceID. ' </td>  
+												<td>'.$invoiceStart.$InvoiceID. ' </td>  
 												<td>'.date_format($date1,"Y-m-d"). ' </td>  
 												<td>'.$ShipName.'  </td>
 												<td style="text-align: right; width:10%">'.number_format($MSTOTAL,2,","). ' </td> 
@@ -269,7 +270,7 @@ $dbop->query($SQL_activitylog);
 												<td style="text-align: right; width:5%"">  
 													 
 												<div class="btn-group btn-group-sm"> 
-													<a href="../invoice/view.php?id='.$invoiceStart.$InvoiceID.'" class="btn">
+													<a href="../invoice/view.php?id='.$InvoiceID.'" class="btn">
 													<i class="fas fa-eye"></i></a> 
 													<a href="../reports/invoice.php?id='.$InvoiceID.'" class="btn">
 															<i class="fas fa-file-pdf"></i></a> 

@@ -4,12 +4,7 @@
 			Require_once("../include/auth.php"); 
 			Require_once("../include/config.php"); 
 			$name=$cr =$vat =$hname=$conatct =$create_date=$update_date="";  
-            $CardColor='secondary'; 
-			$query = "SELECT `value` FROM `config`  WHERE  `name`='SSCount' LIMIT 1;"; 
-			$SSCountQuerys = $dbop->query($query)->fetchAll();   
-			foreach ($SSCountQuerys as $SSCountQuery) {    
-				$SSCount = intval($SSCountQuery['value']) ;
-			} 
+            $CardColor='secondary';  
 			$today = date("Y-m-d H:i:s"); 
 
 if(isset($_GET['id'])) {
@@ -158,19 +153,7 @@ else{
         <option value="'.$ship['ShipID'].'" '.$select.'>'.$ship['ShipName'].'</option>';
     }
 // option ShipName
-
-
-		
-
-// option SSCount 
-$query = "SELECT `value` FROM `config`  WHERE  `name`='SSCount' LIMIT 1;"; 
-$SSCountQuerys = $dbop->query($query)->fetchAll();   
-foreach ($SSCountQuerys as $SSCountQuery) {    
-    $SSCount = intval($SSCountQuery['value']) ;
-}
-// option SSCount
-
-
+ 
  ?>  
 <!DOCTYPE html>
 <html lang="en">
@@ -202,6 +185,7 @@ foreach ($SSCountQuerys as $SSCountQuery) {
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/plugins/dropzone/min/dropzone.min.css">  
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $Homepath;?>adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../include/css/jimp.css">
   <link rel="icon" type="image/x-icon" href="../include/img/favicon.ico">
 </head>
 <body class="hold-transition sidebar-mini">
