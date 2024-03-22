@@ -93,8 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<div class="card-body">
 		<?php 		
 $line_count=0; 	
-$sql = "SELECT * FROM `info` WHERE `active` = 1;  "; 
-if($is_admin){$sql = "SELECT * FROM `info`; "; }
+$sql = "SELECT * FROM `info` WHERE `active` = 1;  ";  
 $result = $dbop->query($sql)->fetchAll();
 
     // Output data of each row within a form

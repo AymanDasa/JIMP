@@ -650,13 +650,13 @@ $html.='
 		<td width=35% align=center valign="middle"> 
 			<span lang="en-US" class="labele1"> Description </span>
 		</td>
-		<td width=12% align=center valign="middle"> 
+		<td width=19% align=center valign="middle"> 
 			<span lang="en-US" class="labele1"> Unit </span>
 		</td>
-		<td width=9% align=center valign="middle"> 
+		<td width=7% align=center valign="middle"> 
 			<span lang="en-US" class="labele1"> U. Price </span>
 		</td>
-		<td width=9% align=center valign="middle"> 
+		<td width=5% align=center valign="middle"> 
 			<span lang="en-US" class="labele1"> Qty. </span>
 		</td>
 		<td width=15% align=center valign="middle"> 
@@ -671,12 +671,12 @@ if($SSPrice1>0){
 		foreach ($codes as $code_row) { $code1 = strval($code_row['code']);}				
 		$html.='
 		<tr>
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1"> '.$code1.' </span></td>
 			
 			<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName1.' </span></td>
 			
 			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit1.'</span></td>
 			
-			<td align=center valign="middle"><span lang="ar-SA" class="dataa1"> '.$code1.' </span></td>
 			
 			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUPrice1.'</span></td>
 			
@@ -753,6 +753,8 @@ if($SSPrice5>0){
 			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUnit5.'</span></td>
 			
 			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSQut5.'</span></td>
+			
+			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$SSUPrice5.'</span></td>
 			
 			<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSPrice5, 2,'.').'</span></td>
 			 

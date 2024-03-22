@@ -152,10 +152,8 @@ if($debug){echo "<b>search :</b>".$search,"<br>";}
 													<td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td>   
 													<td> 
                                                         <div class="btn-group btn-group-sm"> 
-                                                            <a href="view.php?id='.$InvoiceID.'" class="btn">
-                                                            <i class="fas fa-eye"></i></a>
-                                                            <a href="edit.php?id='.$InvoiceID.'" class="btn">
-                                                            <i class="fas fa-pen-to-square"></i></a> ';
+                                                            <a href="../invoice/view.php?id='.$InvoiceID.'" class="btn">
+                                                            <i class="fas fa-eye"></i></a>  ';
                                                             if($debug){echo '
                                                                 <a href="../reports/invoice2.php?id='.$InvoiceID.'" class="btn">
                                                                 <i class="fas fa-cross"></i></a>';}
