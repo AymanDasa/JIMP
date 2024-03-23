@@ -125,6 +125,13 @@ if($page_level==0){$xroot='';}else{$xroot='../';}
                   <p>Credit Notes</p>
                 </a>
               </li>
+		    <li class="nav-item">
+                <a href="<?php echo $path;?>bulk/index.php" class="nav-link">
+			            <i class="fa-solid fa-list nav-icon"></i>
+                  <p>Bulk Approve</p>
+                </a>
+              </li>
+
 		    <?php /*
               <li class="nav-item">
                 <a href="<?php echo $path;?>services/add.php" class="nav-link">

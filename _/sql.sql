@@ -38,6 +38,12 @@ ALTER TABLE `config`
   DELETE FROM info WHERE `info`.`name` = 'companyXLogo';
   DELETE FROM info WHERE `info`.`name` = 'Activate2FA';
   DELETE FROM info WHERE `info`.`name` = 'vat'; 
+  -- jimp_projrct_name_is hear
+  -- STRONG PASSWORD
+  -- change the password in tow files 
+  -- change root password 
+  -- add bulck action to approve from-to
+  -- 
   
   
   
