@@ -8,64 +8,24 @@
 			$NoError = 1;	  
 			$name=$cr =$vat =$conatct =$create_date=$update_date=" "; 
 					$today = date("Y-m-d H:i:s");  
-					$Xcont = 1;
-			if(isset($_POST['add'])){ 
-						$AgentNameAr		=  	stripslashes(htmlentities( strip_tags($_POST['AgentNameAr'] )));
-						$AgentNameEn		= 	stripslashes(htmlentities( strip_tags($_POST['AgentNameEn'] )));
-						$AgentCR			=  	stripslashes(htmlentities( strip_tags($_POST['AgentCR'] )));
-						$AgentEmail			=  	stripslashes(htmlentities( strip_tags($_POST['AgentEmail'] )));
-						$AgentBilling		=  	stripslashes(htmlentities( strip_tags($_POST['AgentBilling'] )));
-						$AgentEx2			=  	stripslashes(htmlentities( strip_tags($_POST['AgentEx2'] )));
-						$AgentPhone			=  	stripslashes(htmlentities( strip_tags($_POST['AgentPhone'] )));
-						$AgentContactName	=  	stripslashes(htmlentities( strip_tags($_POST['AgentContactName'] )));
-						$AgentNotes			=  	stripslashes(htmlentities( strip_tags($_POST['AgentNotes'] )));  
-
-						if($AgentNameEn ==''){  
-							$Error_MSG= '
-						   <script>
-							   $(document).ready(function() { 
-								   toastr.error("Sorry, Empty Agent Name En."); 
-							   });
-							   </script>'; 
-						    $NoError = $NoError * 0 ;} 
-					   if(strlen($AgentCR) ==0){
-						   $Error_MSG= '
-						   <script>
-							   $(document).ready(function() { 
-								   toastr.error("Sorry, Empty CR"); 
-							   });
-							   </script>'; 
-						    $NoError = $NoError * 0 ;}
-
-						    $Xcont =0;
-						    	$NewCR	=  	stripslashes(htmlentities( strip_tags($_POST['AgentCR'] )));
-							$SqlCR = " SELECT `AgentCR`  FROM `agents` WHERE `AgentCR`='".$NewCR."' LIMIT 1; "; 
-								if($debug){echo "<b>query :</b>".$SqlCR."<br>";}  
-							$result  =  $dbop->query($SqlCR) ;  
-							$Xcont  =  $result->numRows() ; 
-						if($Xcont > 0 ){
-							$Error_MSG= '
-								<script>
-								$(document).ready(function() { 
-									toastr.error("Sorry, Duplicate CR"); 
-								});
-								</script>'; 
-							$NoError = $NoError * 0 ;}  
-					if($NoError){ // agent
-						$query_INSERT="INSERT INTO `agents`  
-						(`AgentNameAr` ,`AgentNameEn` ,`AgentCR` ,`AgentEmail`,`AgentBilling`,`AgentEx2`,`AgentPhone`,`AgentContactName`,`AgentNotes`)
-						VALUES ('".$AgentNameAr."', '".$AgentNameEn."','".$AgentCR."','".$AgentEmail."','".$AgentBilling."','".$AgentEx2."','".$AgentPhone."','".$AgentContactName."','".$AgentNotes."');"; 
-						if($debug){echo "<b>query_INSERT :</b>".$query_INSERT."<br>";}  
-						$dbop->query($query_INSERT);   
-						 // LOG File
-						$alog_note = strval("AgentNameAr:".$AgentNameAr." + AgentCR:".$AgentCR."= AgentNameEn:".$AgentNameEn."    " );  
-						$SQL_activitylog="INSERT INTO `activitylog` 
-							( `alog_section`  ,	`alog_no`  ,	`alog_description`  ,	`alog_user` ,	`alog_note` 	) 
-							VALUE ('".$folder_name."' ,'".$AgentNameAr."' ,'Add  Agent',	'".$username_now."' ,'".$alog_note."' 	) ;";
-						$dbop->query($SQL_activitylog);    
-						if($debug){echo "<b>IMO :</b>".$AgentCR."<br>";}  else{header("Refresh:20"); }
+					$Xcont = 1;  
+			if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+				// Loop through each checkbox
+				foreach ($_POST as $key => $value) {
+					// Check if the checkbox corresponds to an invoice ID
+					if (strpos($key, 'invoicID_') === 0) {
+						// Extract the invoice ID from the checkbox name
+						$invoiceID = substr($key, 9); 
+						// Update the status of the invoice in the database
+						$sql = "UPDATE `invoice` SET Status = 800 WHERE `InvoiceID` = $invoiceID"; 
+						if ($dbop->query($sql) === FALSE) {
+							echo "Error updating record: " . $conn->error;
+						}
 					}
-			}  
+				} 
+			}
+
+			$Error_MSG='';
 ?>
 <html lang="en">
 <head>
@@ -126,6 +86,7 @@
               </div> 
               <!-- /.card-header -->
               <div class="card-body">
+			  <form action="#" method="POST">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
@@ -154,7 +115,7 @@
 							$VAT_TOTAL  	= $row['VAT_TOTAL'];      
 			 	                echo '<tr>
 
-                              <td>  <input type="checkbox" id="invoice" name="invoice'.$i.'" value="1" class="invoice-checkbox"> </td> 
+                              <td>  <input type="checkbox" id="invoice" name="invoicID_'.$InvoiceID.'" value="1" class="invoice-checkbox"> </td> 
                               <td> '.$InvoiceID. '  </td> 
                               <td>'.$InvoiceDate. ' </td> 
                               <td>'.$ShipName. ' </td> 
@@ -175,6 +136,8 @@
                   </tr>
                   </tfoot>
                 </table>
+				<input type="submit" value="Approv All">
+				</form>
               </div>
               <!-- /.card-body -->
             </div>
