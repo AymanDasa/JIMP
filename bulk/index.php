@@ -61,7 +61,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Agents</h1>
+            <h1>Bulk Approved inovices</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -79,7 +79,7 @@
           <div class="col-12"> 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">List of all Agents</h3>
+                <h3 class="card-title">List of Inovices</h3>
 			 <div class="card-tools">  
 				<a href="add.php" class="btn btn-app-x" data-toggle="modal" data-target="#modal-lg">  <i class="fas fa-plus"></i>     </a>	 
                   </div>
@@ -278,6 +278,16 @@ function checkAll() {
   var $container = $('<div />', {
     class: 'p-3 control-sidebar-content'
   });
+ 
+</script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": false, "lengthChange": true, "autoWidth": false 
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+   
+  });
+
  
 </script>
 <script src="<?php echo $path;?>include/js/menu.js"></script>
