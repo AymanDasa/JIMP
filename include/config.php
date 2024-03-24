@@ -137,9 +137,10 @@ $config_sql = "SELECT `name`, `value` FROM `config`";
 		$footerEN =$config_data['footerEN'];
 		$AdressCompanyEN =$config_data['AdressCompanyEN'];
 		$Activate2FA = intval($config_data['Activate2FA']);
-		$vat =$config_data['vat'] ; 
+		$vat =floatval($config_data['vat']) ;  
 		$config_data =[0];
 		$config_result=[0]; 
+		
 
 // #####################################################################
 // #######################  SELECT  FROM  info   #######################
