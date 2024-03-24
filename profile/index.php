@@ -27,7 +27,9 @@
 		$signature=$row['signature']; 
 	} 
  
-// Check if the form is submitted
+
+// ############  imageUpload ################
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if file was uploaded without errors
     if (isset($_FILES["imageUpload"]) && $_FILES["imageUpload"]["error"] == 0) {
@@ -107,11 +109,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // ############  Signature ################
 
-    if (isset($_FILES["Signature"]) && $_FILES["imageUpload"]["error"] == 0) {
+    if (isset($_FILES["Signature"]) && $_FILES["Signature"]["error"] == 0) {
 	//  Signature
 	$allowedExtensions = array( "png");
-	$fileExtension = pathinfo($_FILES["imageUpload"]["name"], PATHINFO_EXTENSION); 
-	$uploadDirectory = "avatar/";
+	$fileExtension = pathinfo($_FILES["Signature"]["name"], PATHINFO_EXTENSION); 
+	$uploadDirectory = "	/";
 	  // Check if the folder exists
 	  if (is_dir($uploadDirectory)) {
 	  // Open the folder
@@ -145,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if (in_array(strtolower($fileExtension), $allowedExtensions)) {
 	    // Check file size (1 MB limit)
-	    if ($_FILES["imageUpload"]["size"] <= 101000) {
+	    if ($_FILES["Signature"]["size"] <= 101000) {
 		   // Set upload directory
 
 		   // Create directory if it doesn't exist
@@ -157,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		   if (file_exists($uploadFilePath)) {
 			  unlink($uploadFilePath);
 		   } 
-		   move_uploaded_file($_FILES["imageUpload"]["tmp_name"], $uploadFilePath);
+		   move_uploaded_file($_FILES["Signature"]["tmp_name"], $uploadFilePath);
 
 		   
 		   if($debug){echo "File uploaded successfully. File path: " . $uploadFilePath;}
@@ -165,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 		   $SQL_UPDATE ="UPDATE `users` SET 
-		   `avatar`                  ='$newFilename' 
+		   `signature`                  ='$newFilename' 
 		    WHERE  `id`         =".$user_id.";";  
 		   $dbop->query($SQL_UPDATE); 
 		   header("Refresh:0");
@@ -271,7 +273,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								User Signature
 							</div>
 							<div class="card-body text-center"> 
-								<img class="rounded-circle img-account-profile mb-2" style="height: 66px;border-radius: 0% !important;" src="avatar/<?php echo $avatar;?>" alt>
+								<img class="rounded-circle img-account-profile mb-2" style="height: 66px;border-radius: 0% !important;" src="signature/<?php echo $avatar;?>" alt>
 								<div class="small  mb-4" style="color:red;">
 									  PNG ONLY no larger than 1 MB , height 70 px, transparent  
 								</div> 
