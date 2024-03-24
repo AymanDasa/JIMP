@@ -15,8 +15,9 @@ if(isset($_POST['approved'])) {
         exit();
     }else{ 
       if($debug){echo "<b>Approved maxID :</b>".$maxID,"<br>";} 
+      if($debug){echo "<b>Approved username :</b>".$username,"<br>";} 
         $SQL_APPROVED="UPDATE `invoice` SET       
-                `Status`        ='$Status'   
+                `Status`        ='$Status' ,  
                 `approved`        ='$username'   
         WHERE   `InvoiceID`     ='$maxID';   
         ";  
