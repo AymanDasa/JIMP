@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	//  Signature
 	$allowedExtensions = array( "png");
 	$fileExtension = pathinfo($_FILES["Signature"]["name"], PATHINFO_EXTENSION); 
-	$uploadDirectory = "	/";
+	$uploadDirectory = "../reports/signature/";
 	  // Check if the folder exists
 	  if (is_dir($uploadDirectory)) {
 	  // Open the folder
@@ -273,7 +273,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								User Signature
 							</div>
 							<div class="card-body text-center"> 
-								<img class="rounded-circle img-account-profile mb-2" style="height: 66px;border-radius: 0% !important;" src="signature/<?php echo $avatar;?>" alt>
+								<img class="rounded-circle img-account-profile mb-2" style="height: 66px;border-radius: 0% !important;" src="../reports/signature/<?php echo $avatar;?>" alt>
 								<div class="small  mb-4" style="color:red;">
 									  PNG ONLY no larger than 1 MB , height 70 px, transparent  
 								</div> 
