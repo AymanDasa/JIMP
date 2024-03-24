@@ -679,7 +679,8 @@ $SQL_INSERT="INSERT INTO `invoice`
   `is_VAT`,
   `VAT`,
   `VAT_TOTAL`,
-  `Status`
+  `Status`,
+  `approved`
 ) 
 VALUES (
  

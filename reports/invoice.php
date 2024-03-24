@@ -147,6 +147,7 @@
 		  $VAT_TOTAL=$invoicev['VAT_TOTAL']; 
 		  $Status=intval($invoicev['Status']);  
 		  $OracleCode=$invoicev['OracleCode'];  
+		  $approved=$invoicev['approved'];  
 	$ArrivalDate0 = intval(date('Y', strtotime($ArrivalDateH)));
 	if($ArrivalDate0<1444){$ArrivalDateH='';}  
 	$DepartureDateH0 = intval(date('Y', strtotime($DepartureDateH)));
@@ -178,12 +179,18 @@
 	    $result.= chr(5) . chr( strlen($invoice_tax_amount) ) . $invoice_tax_amount;
 	    return base64_encode($result);
 	}
- 
+	
     $query = "SELECT *  FROM `agents` WHERE `AgentID`=".$AgentID." LIMIT 1;"; 
     $ships = $dbop->query($query)->fetchAll();   
     foreach ($ships as $ship) {  $AgentVAT =$ship['AgentCR'];  }
 
-
+    $signature='nosignature.png';
+    if($approved=='0'){$signature='nosignature.png';}else{
+    $user_query = "SELECT *  FROM `users` WHERE `username`='".$approved."' ;"; 
+    $users = $dbop->query($user_query)->fetchAll();   
+    foreach ($users as $row) {
+	 $signature=$row['signature'];}
+    }
 	// 
 	include_once('../../phpqrcode/qrlib.php');
 	 
@@ -191,8 +198,15 @@
 	    $CompanyName,$company_vat,$InvoiceDate,   $TOTAL,   $VAT); 
 	QRcode::png($QR, '../../phpqrcode/invoiceQR_'.$InvoiceID.'.png','S' ,2, 0);  
 	// END QR FUNCTION
-	$MovePortName='';
-	if($MovePort1!=''){$MovePortName=$MovePort1;} 
+	$MovePortName=$movetext='';
+	$countMovePort1=0;
+	if($MovePort1!=''){
+		$MovePortName=$MovePort1;
+		$countMovePort1 = intval(count(explode(',',$MovePort1)) );  
+	} 
+	if($countMovePort1>0){
+		$movetext='Total shifts ('.$countMovePort1.')';
+	}
 	if($ShipWeight<3000){$txtAncor="أقل من  ";}else { $txtAncor="أكثر من ";}
 			$html='
 			<html>
@@ -342,12 +356,22 @@ $html.='
 		<tr>
 				
 			<td align=right width=33% valign="top"><br> 
+				
 				   <span lang="ar-SA" style="font-size:9pt">التوقيع : ........................</span>
 			</td> 
 			<td align=right width=34%   valign="top"><br>  
 				   <span lang="ar-SA" style="font-size:9pt">التوقيع : ........................</span>
 			</td> 
-			<td align=right width=33%   valign="top"><br> 
+			<td align=right width=33%   valign="top"> 
+			';	
+			if($Status!=700) {
+			$html.=' 
+			<img src="signature/'.$signature.'" style="width:110px;position: absolute; right: 5%;">
+			';
+			}
+			$html.=' 
+			
+			<br>
 				   <span lang="ar-SA" style="font-size:9pt">التوقيع : ........................</span>
 				   
 			</td> 
@@ -549,7 +573,7 @@ $html.='
 			<td rowspan="2" align=center valign="middle" ><span lang="ar-SA" class="labela1">الوزن</span></td>
 		</tr>
 		<tr>
-			<td colspan="3" align=center valign="middle"><span lang="ar-SA" class="labela1">أجور الإنتقال من رصيف الى اخر</span></td>
+			<td colspan="3" align=center valign="middle"><span lang="ar-SA" class="labela1">'.$movetext.' أجور الإنتقال </span></td>
 			<td align=center valign="middle"><span lang="ar-SA" class="labela1">أجور المغادرة</span></td>
 			<td align=center valign="middle"><span lang="ar-SA" class="labela1">أجور القدوم</span></td>
 		</tr>
@@ -828,8 +852,7 @@ $html.='
 	$debug =0;
 	
 	if($debug){
-		// print_r($_SERVER);
-		echo "<p>";
+		// print_r($_SERVER); 
 		echo $html;
 		exit;}
 	$p = $Arabic->arIdentify($html);

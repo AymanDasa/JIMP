@@ -17,9 +17,13 @@ if(isset($_POST['approved'])) {
       if($debug){echo "<b>Approved maxID :</b>".$maxID,"<br>";} 
         $SQL_APPROVED="UPDATE `invoice` SET       
                 `Status`        ='$Status'   
+                `approved`        ='$username'   
         WHERE   `InvoiceID`     ='$maxID';   
         ";  
         $dbop->query($SQL_APPROVED);
+
+
+
         $MyScript="<script> 
         setTimeout(function () {
         window.location.href= 'index.php'; // the redirect goes here

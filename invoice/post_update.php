@@ -682,7 +682,7 @@ $SQL_UPDATE ="UPDATE `invoice` SET
   `is_VAT`                  ='$is_VAT',   
   `VAT`                     ='$VAT',   
   `VAT_TOTAL`               ='$VAT_TOTAL',       
-  `Status`                   ='$Status'   
+  `Status`                  ='$Status' 
    WHERE  `InvoiceID`         =".$InvoiceID.";";  
 if($debug){echo "<b>InvoiceID :</b>".$InvoiceID,"<br>";} 
 if($debug){echo "<b>SQL_UPDATE :</b>".$SQL_UPDATE,"<br>";} 
