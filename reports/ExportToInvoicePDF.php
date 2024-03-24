@@ -203,7 +203,8 @@ for($InvoiceID=$FromInvoice;$InvoiceID<=$ToInvoice; $InvoiceID++)
 		  $VAT=$invoicev['VAT'];
 		  $VAT_TOTAL=$invoicev['VAT_TOTAL']; 
 		  $Status=$invoicev['Status'];  
-		  $OracleCode=$invoicev['OracleCode']; 
+		  $OracleCode=$invoicev['OracleCode'];  
+		  $approved=$invoicev['approved'];  
 		  
 		
 		
@@ -217,6 +218,15 @@ for($InvoiceID=$FromInvoice;$InvoiceID<=$ToInvoice; $InvoiceID++)
 	$query = "SELECT *  FROM `agents` WHERE `AgentID`=".$AgentID." LIMIT 1;"; 
 	$ships = $dbop->query($query)->fetchAll();   
 	foreach ($ships as $ship) {  $AgentVAT =$ship['AgentCR'];  }
+
+	$signature='nosignature.png';
+	if($approved=='0'){$signature='nosignature.png';}else{
+	$user_query = "SELECT *  FROM `users` WHERE `username`='".$approved."' ;"; 
+	$users = $dbop->query($user_query)->fetchAll();   
+	foreach ($users as $row) {
+	  $signature=$row['signature'];}
+	}
+	 // 
 
 	$MovePortName='';
 	if($MovePort1!=''){$MovePortName=$MovePortName.' / '.$MovePort1;}
@@ -272,7 +282,14 @@ $html.='
 					<td align=right width=34%   valign="top"><br>  
 						<span lang="ar-SA" style="font-size:9pt">التوقيع : ........................</span>
 					</td> 
-					<td align=right width=33%   valign="top"><br> 
+					<td align=right width=33%   valign="top">
+								';	
+						if($Status!=700) {
+						$html.=' 
+						<img src="signature/'.$signature.'" style="width:110px;position: absolute; right: 5%;">
+						';
+						}
+						$html.=' <br>
 						<span lang="ar-SA" style="font-size:9pt">التوقيع : ........................</span>
 						
 					</td> 
