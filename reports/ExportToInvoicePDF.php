@@ -4,6 +4,7 @@ use Dompdf\Options;
 require '../../dompdf/vendor/autoload.php';
 $options = new Options();
 $options->set('defaultFont', 'Arabic');
+$options->set('isRemoteEnabled', true);
 $options->set('chroot', realpath(''));
 $dompdf = new Dompdf($options); 
 require_once '../../dompdf/vendor/src/Arabic.php';
@@ -26,6 +27,16 @@ function X0X($myText)
 		   $year = (int)$dateTime->format("Y"); 
 		   if ($year < 2000) {return false; } else { return True;} } else { return false; }
 	}
+	function zatca_base64_tlv_encode($seller_name, $vat_registration_number, $invoice_datetime, $invoice_amount, $invoice_tax_amount)
+	{
+	    $result = chr(1) . chr( strlen($seller_name) ) . $seller_name;
+	    $result.= chr(2) . chr( strlen($vat_registration_number) ) . $vat_registration_number;
+	    $result.= chr(3) . chr( strlen($invoice_datetime) ) . $invoice_datetime;
+	    $result.= chr(4) . chr( strlen($invoice_amount) ) . $invoice_amount;
+	    $result.= chr(5) . chr( strlen($invoice_tax_amount) ) . $invoice_tax_amount;
+	    return base64_encode($result);
+	}
+	
 	$html='   
 	<html> 
 	<head>
@@ -76,7 +87,7 @@ if(isset($_GET['FromInvoice']) && isset($_GET['ToInvoice'])){
 	if($debug){echo "<b>ToInvoice :</b>".$ToInvoice."<br>";}
 }else{exit();}
 $TotalPages = $ToInvoice - $FromInvoice;
-
+if($TotalPages>51){echo "ERROR : mote than 50 invoices"; exit;}
 $query_max = "SELECT MAX(`InvoiceID`) as InvoiceIDMax  FROM `invoice` LIMIT 1;"; 
 $maxs = $dbop->query($query_max)->fetchAll();
 	foreach ($maxs as $row) { $max_invoice = intval($row['InvoiceIDMax']); }
@@ -304,17 +315,19 @@ $html.='
 ########################################       Bank  Information      #################################### 
 ########################################################################################################## 
 */ 
-
+	// 
+	include_once('../../phpqrcode/qrlib.php');
+	 
+	$QR= zatca_base64_tlv_encode(  
+	    $CompanyName,$company_vat,$InvoiceDate,   $TOTAL,   $VAT); 
+	QRcode::png($QR, '../../phpqrcode/invoiceQR_'.$InvoiceID.'.png','S' ,2, 0);  
+	// END QR FUNCTION
 $html.=' 
 	<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
 		<tbody> 
 			<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 
-			<td align=left width=50% " >
-				'.$footerEN.'
-			</td>  
-			<td align=right width=50% "> 
-			 '.$footerAR.'
-			</td> 
+				<td align=left width=50%" >'.$footerEN.'</td>  
+				<td align=right width=50%"> '.$footerAR.'</td> 
 			<tr>
 		</tbody>
 	</table> 
