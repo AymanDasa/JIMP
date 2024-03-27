@@ -200,7 +200,7 @@
 								<!-- %%  Partial/Final  %%% -->     
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3"> 
 										<div class="form-group">
-											<label>MovePort 1</label> 
+											<label>MovePort  </label> 
 											<input name="MovePort1" type="text" class="form-control" >
 										</div>
 									</div>
@@ -224,7 +224,7 @@
 								<!-- %%  To Date  %%% --> 
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">  
 									<div class="form-group">
-									<label>Anchor Leave:</label>
+									<label>Anchor Leave </label>
 									<div class="input-group date" id="ClickAnchorLeaveDate" data-target-input="nearest">
 										<input name="AnchorageLeave" type="text" class="form-control datetimepicker-input" data-target="#ClickAnchorLeaveDate"/>
 										<div class="input-group-append" data-target="#ClickAnchorLeaveDate" data-toggle="datetimepicker">
@@ -233,11 +233,11 @@
 									</div>
 									</div>
 									</div>  
-								<!-- %% Trip No  %%% -->   
-									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3"> 
+								<!-- %% Anchorage Counts %%% -->   
+									<div class="col-sm-4 col-md-2 col-lg-2 col-xl-2"> 
 										<div class="form-group">
-											<label>Docking No</label> 
-											<input type="text" class="form-control" name="DockingNo"  >
+											<label>Anchorage Counts</label> 
+											<input type="text" class="form-control" name="AnchorageDays"  >
 										</div>
 									</div>
 								<!-- %%  Partial/Final  %%% -->     
@@ -267,7 +267,10 @@
 										</div> 
 									</div>
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">   
-										 
+										<div class="form-group">
+											<label>Docking No</label> 
+											<input type="text" class="form-control" name="DockingNo"  >
+										</div>
 									</div>
 							</div>  
 							<div class="row">

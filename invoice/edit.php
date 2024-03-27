@@ -342,11 +342,11 @@ else{
 									</div>
 									</div>
 									</div>  
-								<!-- %% Trip No  %%% -->   
+								<!-- %% Anchorage Counts  %%% -->   
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3"> 
-										<div class="form-group">
-											<label>Docking No</label> 
-											<input type="text" class="form-control" name="DockingNo"  value="<?php echo $DockingNo;?>" >
+									<div class="form-group">
+											<label>Anchorage Counts</label> 
+											<input type="text" class="form-control" name="AnchorageDays" value="<?php echo $AnchorageDays;?>" >
 										</div>
 									</div>
 								<!-- %%  Partial/Final  %%% -->     
@@ -376,7 +376,10 @@ else{
 										</div> 
 									</div>
 									<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">   
-										 
+										<div class="form-group">
+											<label>Docking No</label> 
+											<input type="text" class="form-control" name="DockingNo"  value="<?php echo $DockingNo;?>" >
+										</div>
 									</div>
 							</div>  
 							<div class="row">

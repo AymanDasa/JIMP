@@ -42,9 +42,8 @@ function PeriodDay($startTimeStamp,$endTimeStamp)
 	// PeriodDay function to calculate number of days between two Dates
 	$start = strtotime($startTimeStamp); 	//Change Text to time format
 	$end = strtotime($endTimeStamp);		//Change Text to time format
-	$numberDays = abs($end - $start);		//Absolute value of difference , All answers is positive 
-	$numberDays = intval($numberDays);		//Get the integer value of a numberDays 
-	$Periods = ceil ($numberDays /(60*60*24)) ;	//Round numberDays up 
+	$numberDays = abs($end - $start);		//Absolute value of difference , All answers is positive  
+	$Periods =  (ceil ($numberDays /(60*60*24))) ;	//Round numberDays up 
 	return $Periods;						//return Period Days
 	/*
 	How to use PeriodDay Function:
@@ -283,6 +282,8 @@ if($debug){echo "AnchorageLeave :".$AnchorageLeave."<br>";}
     $AnchorageLeaveG 	=$AnchorageLeaveX[1];
     $AnchorageLeaveH 	=$AnchorageLeaveX[2];
     if($AncX*$AncY){$AnchorageDays= PeriodDay($AnchorageEntry,$AnchorageLeave);}else{$AnchorageDays=0;}
+    
+if(isset($_POST['AnchorageDays'])){$AnchorageDays=intval($_POST['AnchorageDays']); } 
 if($debug){echo "<b>AnchorageDays : </b>".$AnchorageDays."<br>";}   
 
 $MSericeAnchoragePrice= MSA($ShipWeight,$AnchorageDays); 
