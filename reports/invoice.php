@@ -366,7 +366,7 @@ $html.='
 			';	
 			if($Status!=700) {
 			$html.=' 
-			<img src="signature/'.$signature.'" style="width:110px;position: absolute; right: 5%;">
+			<img src="signature/'.$signature.'" style="width:110px;position: absolute; right: 5%; bottom:'.$signature_location.'%;">
 			';
 			}
 			$html.='  

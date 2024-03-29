@@ -1,1 +1,1 @@
-ALTER TABLE `invoice` ADD `approved` VARCHAR(50) NOT NULL DEFAULT '0' AFTER `OracleCode`; 
+ALTER TABLE `users` ADD `signature_location` TINYINT NOT NULL DEFAULT '0' AFTER `signature`; 
