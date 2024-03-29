@@ -297,10 +297,16 @@ if($debug){echo "AnchorageLeave :".$AnchorageLeave."<br>";}
     $AnchorageLeaveX 	=TGH($AnchorageLeave);
     $AnchorageLeaveT 	=$AnchorageLeaveX[0];
     $AnchorageLeaveG 	=$AnchorageLeaveX[1];
-    $AnchorageLeaveH 	=$AnchorageLeaveX[2];
-    if($AncX*$AncY){$AnchorageDays= PeriodDay($AnchorageEntry,$AnchorageLeave);} 
+    $AnchorageLeaveH 	=$AnchorageLeaveX[2]; 
     
-if(  intval($_POST['AnchorageDays']) > 0 ){$AnchorageDays=intval($_POST['AnchorageDays']); } 
+     
+    if($AncX*$AncY){$AnchorageDays= PeriodDay($AnchorageEntry,$AnchorageLeave);}else{$AnchorageDays=0;}
+     
+if($debug){echo "<b>AnchorageDays : </b>".$AnchorageDays."<br>";}   
+if(intval($_POST['AnchorageDays']) > $AnchorageDays){$AnchorageDays=intval($_POST['AnchorageDays']); } 
+
+
+
 if($debug){echo "<b>AnchorageDays : </b>".$AnchorageDays."<br>";}   
 
 $MSericeAnchoragePrice= MSA($ShipWeight,$AnchorageDays); 
