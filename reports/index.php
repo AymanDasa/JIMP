@@ -150,7 +150,7 @@ $IsActive = 0 ;
 						<div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
 
 							<form action="ExportToInvoice.php" method="POST">
-								<div class="col-4"> <h3>Max 50 invoices</h3>
+								<div class="col-4"> 
 									<div class="form-group">
 										<label>From invoice#</label> 
 											<input  name="ExportFromInvoice" type="text" class="form-control" >    
