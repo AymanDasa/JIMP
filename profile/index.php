@@ -188,8 +188,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["f_name"])){
 		$f_name=$_POST["f_name"];
 		$l_name=$_POST["l_name"];
+		$signature_location=intval($_POST["signature_location"]);
 		$SQL_UPDATE ="UPDATE `users` SET 
 		`f_name`                  ='$f_name' ,
+		`signature_location`	 ='$signature_location' ,
 		`l_name`                  ='$l_name' 
 		WHERE  `id`         =".$user_id.";";  
 		$dbop->query($SQL_UPDATE); 
@@ -306,9 +308,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											<label class="small mb-1" for="inputOrgName">Created </label>
 											<input class="form-control" id="created_at" type="text" disabled  name="created_at" value="<?php echo $created_at?>">
 										</div> 
-										<div class="col-md-6">
-											<label class="small mb-1" for="inputLocation">Is Active</label>
-											<input class="form-control" id="is_active" type="text" disabled  name="is_active" value="<?php echo $is_active?>">
+										<div class="form-group">
+											<label for="customRange1">signature location <small><?php echo $signature_location-80;?></small></label>
+											<input type="range" name="signature_location" class="custom-range" id="customRange1" min="80" max="105" value="<?php echo $signature_location;?>">
 										</div>
 									</div> 
 									<button class="btn btn-primary" type="submit">Save changes</button>

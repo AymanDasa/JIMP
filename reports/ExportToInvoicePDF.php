@@ -297,8 +297,8 @@ $html.='
 								';	
 						if($Status!=700) {
 						$html.=' 
-						<img src="signature/'.$signature.'" style="width:110px;position: absolute; right: 5%;">
-						';
+						<img src="signature/'.$signature.'" style="width:110px;position: absolute; right: 5%; bottom:'.$signature_location.'%;">
+							';
 						}
 						$html.=' <br>
 						<span lang="ar-SA" style="font-size:9pt">التوقيع : ........................</span>

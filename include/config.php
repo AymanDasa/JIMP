@@ -120,7 +120,8 @@ foreach ($result as $row) {
 	$clear_pass = $row['clear_pass'];
 	$user_2fa_enable = $row['user_2fa_enable'];
 	$user_2fa_secret = $row['user_2fa_secret'];
-	$user_2fa_code = $row['user_2fa_code']; 
+	$user_2fa_code = $row['user_2fa_code'];  
+	$signature_location=intval($row['signature_location']);   
 }  
 
 // #####################################################################
@@ -184,7 +185,7 @@ $info_sql = "SELECT `name`, `value` FROM `info`";
 			$CPSPercentage=floatval(100-$PortPercentage); 
 			$AfterMarch=intval($info_data['AfterMarch']);   
 			$SSCount=intval($info_data['SSCount']);   
-			$port_nameEn=$info_data['port_nameEn'];   
+			$port_nameEn=$info_data['port_nameEn'];     
 			$info_data =[0];
 			$info_result=[0];   
  ?>
