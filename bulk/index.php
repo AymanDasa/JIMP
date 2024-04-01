@@ -116,11 +116,11 @@
 			 	                echo '<tr>
 
                               <td>  <input type="checkbox" id="invoice" name="invoicID_'.$InvoiceID.'" value="1" class="invoice-checkbox"> </td> 
-                              <td> '.$InvoiceID. '  </td> 
+                              <td> '.$invoiceStart.$InvoiceID. '   </td> 
                               <td>'.$InvoiceDate. ' </td> 
                               <td>'.$ShipName. ' </td> 
                               <td>'.$AgentNameEn. ' </td> 
-                              <td>'.number_format($VAT_TOTAL,2,"."). ' </td> 
+                              <td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td> 
                                
 					  
                             </tr>' ;  }  ?>
