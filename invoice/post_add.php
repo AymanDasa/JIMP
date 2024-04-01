@@ -42,9 +42,8 @@ function PeriodDay($startTimeStamp,$endTimeStamp)
 	// PeriodDay function to calculate number of days between two Dates
 	$start = strtotime($startTimeStamp); 	//Change Text to time format
 	$end = strtotime($endTimeStamp);		//Change Text to time format
-	$numberDays = abs($end - $start);		//Absolute value of difference , All answers is positive 
-	 
-	$Periods =   ceil ($numberDays /(60*60*24)) ;	//Round numberDays up 
+	$numberDays = abs($end - $start);		//Absolute value of difference , All answers is positive  
+	$Periods =  (ceil ($numberDays /(60*60*24))) ;	//Round numberDays up 
 	return $Periods;						//return Period Days
 	/*
 	How to use PeriodDay Function:
@@ -269,30 +268,22 @@ if($debug){echo "<b>ArrivalDate : </b>".$ArrivalDate."<br>";}
 if($debug){echo "<b>DepartureDate : </b>".$DepartureDate."<br>";}
 if($debug){echo "<b>ArrivalDays : </b>".$PeriodDays."<br>";}
 
-if(isset($_POST['AnchorageEntry'])){$AnchorageEntry=$_POST['AnchorageEntry'];  $AncX=1; }else{$AnchorageEntry=NULL;$AncX=0;}
+if(isset($_POST['AnchorageEntry'])){$AnchorageEntry=$_POST['AnchorageEntry']; }else{$AnchorageEntry=NULL;$AncX=0;}
 if($debug){echo "AnchorageEntry :".$AnchorageEntry."<br>";} 
     $AnchorageEntryX 	=TGH($AnchorageEntry);
     $AnchorageEntryT 	=$AnchorageEntryX[0];
     $AnchorageEntryG 	=$AnchorageEntryX[1];
     $AnchorageEntryH 	=$AnchorageEntryX[2];
     
-if(isset($_POST['AnchorageLeave'])){$AnchorageLeave=$_POST['AnchorageLeave']; $AncY=1;  }else{$AnchorageLeave=NULL;$AncY=0;}
+if(isset($_POST['AnchorageLeave'])){$AnchorageLeave=$_POST['AnchorageLeave']; }else{$AnchorageLeave=NULL;$AncY=0;}
 if($debug){echo "AnchorageLeave :".$AnchorageLeave."<br>";}  
     $AnchorageLeaveX 	=TGH($AnchorageLeave);
     $AnchorageLeaveT 	=$AnchorageLeaveX[0];
     $AnchorageLeaveG 	=$AnchorageLeaveX[1];
     $AnchorageLeaveH 	=$AnchorageLeaveX[2];
-  
-    
- 
     if($AncX*$AncY){$AnchorageDays= PeriodDay($AnchorageEntry,$AnchorageLeave);}else{$AnchorageDays=0;}
-     
-if(intval($_POST['AnchorageDays']) > $AnchorageDays){$AnchorageDays=intval($_POST['AnchorageDays']); } 
-
-
-
-
-
+    
+if(isset($_POST['AnchorageDays'])){$AnchorageDays=intval($_POST['AnchorageDays']); } 
 if($debug){echo "<b>AnchorageDays : </b>".$AnchorageDays."<br>";}   
 
 $MSericeAnchoragePrice= MSA($ShipWeight,$AnchorageDays); 
