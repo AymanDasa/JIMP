@@ -120,7 +120,7 @@
                               <td>'.$InvoiceDate. ' </td> 
                               <td>'.$ShipName. ' </td> 
                               <td>'.$AgentNameEn. ' </td> 
-                              <td>'.$VAT_TOTAL. ' </td> 
+                              <td>'.number_format($VAT_TOTAL,2,"."). ' </td> 
                                
 					  
                             </tr>' ;  }  ?>
