@@ -202,7 +202,7 @@ if( $VAT_TOTAL == $User_Total) {
 										</thead>
 										<tbody>
 											<?php 
-												$SQL='SELECT * FROM `credit` ORDER BY  `InvoiceID` DESC ;';
+												$SQL='SELECT * FROM `credit` ORDER BY  `InvoiceID` DESC LIMIT '.$LIMIT.' ;';
 												$credits = $dbop->query($SQL)->fetchAll();
 												foreach ($credits as $row) {  
 													$InvoiceID  	= $row['InvoiceID'];

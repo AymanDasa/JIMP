@@ -219,7 +219,8 @@ else{
                     </div>
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
-					<li><a href="add.php" class="btn btn-app-x">  <i class="fas fa-plus"></i>   </a>	</li>
+					<li><a href="add.php" class="btn btn-app-x">  <i class="fas fa-plus"></i>   </a>	</li> 
+          <a href="#" class="btn btn-app-x" data-toggle="modal" data-target="#modal-lg"> <span class="badge bg-danger" style="position: absolute; top: -10px; left:35px; font-size:12px;">New</span>  <i class="fas fa-paperclip"></i>    </a>
 					<li><a href="../reports/invoiceEn.php?id=<?php echo $InvoiceID;?>" class="btn btn-app-En">  <i class="fas fa-file-pdf"></i>    </a></li>
 					<li><a href="../reports/invoice.php?id=<?php echo $InvoiceID;?>" class="btn btn-app-x">  <i class="fas fa-file-pdf"></i>    </a></li>								
 					 </ol>
@@ -454,6 +455,60 @@ else{
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
+
+
+
+
+
+
+
+
+
+      <!-- /. modal --> 
+		<div class="modal fade" id="modal-lg">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Add Attachment</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form action="#" method="POST">
+					<div class="modal-body">
+						<div class="col-md-12">  
+							<input type="hidden" name="id" >  
+							<div class="row">
+								<div class="col-sm-12">
+									<!-- text input   -->
+									<div class="form-group">
+										<label>File Name</label>
+										<input type="text" class="form-control is-invalid" name="FileName"  autocomplete="off">
+									</div> 
+
+                  <div class="form-group">
+											<label for="customRange1">signature location <small><?php echo $signature_location-80;?></small></label>
+											<input type="range" name="signature_location" class="custom-range" id="customRange1" min="80" max="105" value="<?php echo $signature_location;?>">
+										</div>
+
+
+								</div>
+							</div> 
+               
+						</div> 
+					</div>
+					<div class="modal-footer justify-content-between">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" name="add" value="add"  class="btn btn-primary">Upload File</button>
+					</div>  
+				</form> 
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+		</div>
+	<!-- /. modal -->
+
     </section>
     <!-- /.content -->
   </div>
