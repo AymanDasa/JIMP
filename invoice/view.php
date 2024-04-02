@@ -4,18 +4,12 @@
 			Require_once("../include/auth.php"); 
 			Require_once("../include/config.php"); 
 			  
-	     
+      $InvoiceID =0;    
 			$today = date("Y-m-d H:i:s"); 
+      if ($_SERVER["REQUEST_METHOD"] == "POST") { $InvoiceID = intval($_POST['id']); }
+      if(isset($_GET['id']) ) {$InvoiceID = intval($_GET['id']);  }
 
-if(isset($_GET['id'])) {
-#########################################################################
-#########################################################################
-#######################  Functions & Class  #############################
-#########################################################################
-#########################################################################
-    $InvoiceID = intval($_GET['id']);  
     $query = "SELECT *  FROM `invoice` WHERE `InvoiceID`=".$InvoiceID." LIMIT 1;"; 
-
     $invoicevs = $dbop->query($query)->fetchAll();   
     foreach ($invoicevs as $invoicev) {   
       $ShipID=$invoicev['ShipID'];
@@ -136,10 +130,7 @@ if(isset($_GET['id'])) {
       $OracleCode=$invoicev['OracleCode'];  
     } 
 
-}
-else{
-	exit();
-} ?>  
+ ?>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -474,7 +465,7 @@ else{
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="#" method="POST">
+				<form action="#" method="POST" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="col-md-12">  
 							<input type="hidden" name="id" >  
@@ -484,14 +475,11 @@ else{
 									<div class="form-group">
 										<label>File Name</label>
 										<input type="text" class="form-control is-invalid" name="FileName"  autocomplete="off">
-									</div> 
-
+									</div>   
                   <div class="form-group">
-											<label for="customRange1">signature location <small><?php echo $signature_location-80;?></small></label>
-											<input type="range" name="signature_location" class="custom-range" id="customRange1" min="80" max="105" value="<?php echo $signature_location;?>">
-										</div>
-
-
+                    <label for="customRange1">Uploade PDF File</label>
+                    <input type="file"  name="Signature" accept=".pdf" required>  
+                  </div> 
 								</div>
 							</div> 
                
@@ -501,6 +489,8 @@ else{
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button type="submit" name="add" value="add"  class="btn btn-primary">Upload File</button>
 					</div>  
+          
+          <input type="hidden" name="InvoiceID" value="<?php echo $InvoiceID ;?>">
 				</form> 
 			</div>
 			<!-- /.modal-content -->
