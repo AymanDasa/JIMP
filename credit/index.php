@@ -311,7 +311,7 @@ if( $VAT_TOTAL == $User_Total) {
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-form-label" for="inputError">Invoice Total Amount</label>
-							<input type="text" name="VAT_TOTAL" value="8642.25" class="form-control is-invalid" id="inputError" autocomplete="off"/>
+							<input type="text" name="VAT_TOTAL"  class="form-control is-invalid" id="inputError" autocomplete="off"/>
 						</div>
 					</div>
 					<div class="col-sm-6">
