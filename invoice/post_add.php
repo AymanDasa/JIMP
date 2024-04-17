@@ -75,7 +75,7 @@ function MSA($SWeight,$Days){
  
  if($AfterMarch==1)
 		{ 
-
+//  $AfterMarch= 1
 			// $MSericeBathPrice=MSB($ShipWeight,$MSFraction2,$PeriodDays); 
 
 			function MSB($SWeight,$STFactor,$Days){
@@ -136,7 +136,7 @@ function MSA($SWeight,$Days){
 		else
 		{ 	
 			// $MSericeBathPrice=MSB($ShipWeight,$MSFraction2,$PeriodDays); 
-
+//  $AfterMarch= 0
 			function MSB($SWeight,$STFactor,$Days){
 				// MSP() function used to Callculate MService2 Only
 				// $STFactor for Service Type Factor 
