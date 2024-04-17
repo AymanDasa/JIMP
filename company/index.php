@@ -120,8 +120,7 @@ $result = $dbop->query($sql)->fetchAll();
 						<label >{$label}:</label>
 					</div>
 					<div class='col-8'>  ";
-	   if($yesno){
-
+	   if($yesno){ 
 		if( $value ) {$Selected1='selected';}else{$Selected0='selected';}
 		echo " 
 			
