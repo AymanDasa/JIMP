@@ -84,13 +84,13 @@ function MSA($SWeight,$Days){
 			// $STFactor for Service Type Factor 
 			// $Days for Period Days
 			if ($SWeight<=500)						// if Ship Weight < 500 
-				{$MBPrice=($Days*550)*$STFactor; }
+				{$MBPrice=($Days*500)*$STFactor; }
 			if ($SWeight>500 && $SWeight<=3000 )		// if Ship Weight > 500 and Weight < 3000 
-				{$MBPrice=($Days*1100)*$STFactor;}
+				{$MBPrice=($Days*1000)*$STFactor;}
 			if ($SWeight>3000 && $SWeight<=15000 ) 		// if Ship Weight > 3000 and Weight < 15000 
 				{$MBPrice=($Days*1500)*$STFactor;} 
 			if ($SWeight>15000 )					//if Ship Weight > 15000
-				{$MBPrice=($Days*2200)*$STFactor;}
+				{$MBPrice=($Days*2000)*$STFactor;}
 			return floatval($MBPrice);	
 			/*
 			How to use MSB Function:
@@ -143,13 +143,13 @@ function MSA($SWeight,$Days){
 				// $STFactor for Service Type Factor 
 				// $Days for Period Days
 				if ($SWeight<=500)						// if Ship Weight < 500 
-					{$MBPrice=($Days*500)*$STFactor; }
+					{$MBPrice=($Days*550)*$STFactor; }
 				if ($SWeight>500 && $SWeight<=3000 )		// if Ship Weight > 500 and Weight < 3000 
-					{$MBPrice=($Days*1000)*$STFactor;}
+					{$MBPrice=($Days*1100)*$STFactor;}
 				if ($SWeight>3000 && $SWeight<=15000 ) 		// if Ship Weight > 3000 and Weight < 15000 
 					{$MBPrice=($Days*1500)*$STFactor;} 
 				if ($SWeight>15000 )					//if Ship Weight > 15000
-					{$MBPrice=($Days*2000)*$STFactor;}
+					{$MBPrice=($Days*2200)*$STFactor;}
 				return floatval($MBPrice);	
 				/*
 				How to use MSB Function:
