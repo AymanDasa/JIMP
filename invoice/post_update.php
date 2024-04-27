@@ -557,7 +557,15 @@ $MSTOTAL=floatval($MSericeInPrice)+floatval($MSericeOutPrice)+floatval($MSericeB
     ########################  SSTOTAL  ###############################
     $SSTOTAL=floatval($SSPrice1)+floatval($SSPrice2)+floatval($SSPrice3)+floatval($SSPrice4)+floatval($SSPrice5) ;
     
-
+    $queryss = " SELECT *  FROM `sslines` WHERE `ss_Invoice`='".$InvoiceID."'; ";  
+    $results = $dbop->query($queryss);    
+    $numRows = $results->numRows();
+    $results = $dbop->query($queryss)->fetchAll(); 
+    if($numRows>0){ 
+	    foreach ($results as $row) { 
+		$SSTOTAL= $SSTOTAL + floatval($row['ss_Price']);  
+	    }
+    }
 
 #########################################################################
 #########################################################################

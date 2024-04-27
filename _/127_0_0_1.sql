@@ -12,8 +12,7 @@ CREATE TABLE `sslines` (
   `ss_code` varchar(9) NOT NULL DEFAULT '0',
   `ss_Qut` double NOT NULL,
   `ss_UPrice` double NOT NULL,
-  `ss_Price` double NOT NULL,
-  `ss_Cost` double NOT NULL,
+  `ss_Price` double NOT NULL, 
   `ss_note` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
  

@@ -753,6 +753,24 @@ if($SSPrice5>0){
 			<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$SSName5.' </span></td>
 			<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$code.'</span></td>
 		</tr>';}  
+		$queryss = " SELECT *  FROM `sslines` WHERE `ss_Invoice`='".$InvoiceID."'; ";  
+		$results = $dbop->query($queryss);    
+		$numRows = $results->numRows();
+		$results = $dbop->query($queryss)->fetchAll(); 
+		if($numRows>0){ 
+			foreach ($results as $row) { 
+				$html.='<tr>
+				<td align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($row['ss_Price'], 2,'.').'</span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$row['ss_Qut'].'</span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($row['ss_UPrice'], 2,'.').'</span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$row['ss_Unit'].'</span></td>
+				<td align=right valign="middle"><span lang="ar-SA" class="dataa1"> '.$row['ss_Description'].' </span></td>
+				<td align=center valign="middle"><span lang="ar-SA" class="dataa1">'.$row['ss_code'].'</span></td>
+			</tr>';
+			}
+		}
+
+
 	$html.='
 	<tr>
 		<td width=13%  align=right valign="middle"><span lang="ar-SA" class="dataa1">'.number_format($SSTOTAL, 2,'.').'</span></td>

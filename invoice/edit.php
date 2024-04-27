@@ -154,6 +154,75 @@ else{
     }
 // option ShipName
  
+
+if(isset($_POST['add'])){ 
+	// Service_ID  Description code   SSQut SSUPrice    SSNote invoiceID
+	######################################################################
+	######################################################################
+
+
+
+	$Service_ID	= stripslashes(htmlentities( strip_tags($_POST['Service_ID'] )));
+	$Service_ID	= intval($Service_ID); 
+	$SSQut		= stripslashes(htmlentities( strip_tags($_POST['SSQut'] )));
+	$SSQut 		= floatval($SSQut);
+	$SSUPrice		= stripslashes(htmlentities( strip_tags($_POST['SSUPrice'] )));
+	$SSUPrice 	= floatval($SSUPrice);
+	$SSNote		= stripslashes(htmlentities( strip_tags($_POST['SSNote'] )));
+	$invoiceID	= stripslashes(htmlentities( strip_tags($_POST['invoiceID'] ))); 
+	$invoiceID	= intval($invoiceID);
+	
+ 
+	$query = "SELECT *  FROM `services` WHERE `Service_ID`= ".$Service_ID." LIMIT 1;"; 
+   	$result1 = $dbop->query($query)->fetchAll();  
+	foreach ($result1 as $row) { 
+		$SSUnitEn =$row['Unit']; 
+		$Description =$row['Description']; 
+		$DescriptionEn =$row['DescriptionEn']; 
+		$SScode =$row['code']; 
+	}
+
+	$ss_Price = floatval($SSUPrice * $SSQut);
+	
+	$thevat=0;
+	$SQL_INSERT="INSERT INTO `sslines` ( `Service_ID`, `ss_Invoice`, `ss_Description`, `ss_DescriptionEn`, `ss_Unit`, `ss_code`, `ss_Qut`, `ss_UPrice`, `ss_Price`,  `ss_note`) VALUES 
+	( '".$Service_ID."', '".$invoiceID."', '".$Description."', '".$DescriptionEn."', '".$SSUnitEn."', '".$SScode."', '".$SSQut."', '".$SSUPrice."', '".$ss_Price."',   '".$SSNote."'); ";
+	$dbop->query($SQL_INSERT); 
+
+	$query = "SELECT `MSTOTAL`,`SSTOTAL`,`TOTAL`,`is_VAT`,`VAT`,`VAT_TOTAL`  FROM `invoice` WHERE `invoiceID`= ".$invoiceID." LIMIT 1;"; 
+	$result2 = $dbop->query($query)->fetchAll();  
+	foreach ($result2 as $row) { 
+		$SSTOTAL =floatval($row['SSTOTAL']); 
+		$TOTAL =floatval($row['TOTAL']); 
+		$is_VAT =intval($row['is_VAT']); 
+		$VAT =floatval($row['VAT']); 
+		$VAT_TOTAL =floatval($row['VAT_TOTAL']); 
+
+		if($debug){ 
+			echo "SSTOTAL:".$SSTOTAL . " <br> TOTAL : ".$TOTAL . " <br> is_VAT: ".$is_VAT ." <br>  VAT".$VAT." <br>  VAT_TOTAL".$VAT_TOTAL ."<br>";
+		}
+	}
+	$vat = intval($vat) ;
+	$thevat=0.15;
+	$SSTOTAL 	=  $SSTOTAL + $ss_Price   ;
+	$TOTAL 	=  $TOTAL   +  $ss_Price ; 
+	if($is_VAT==1){$VAT =  ($TOTAL * $thevat ) ; }else{$VAT =0;}
+	$VAT_TOTAL = $VAT + $TOTAL ;
+		if($debug){ 
+			echo "vat:".$vat . " <br> SSTOTAL:".$SSTOTAL . " <br> TOTAL : ".$TOTAL . " <br> is_VAT: ".$is_VAT ." <br>  VAT".$VAT." <br>  thevat".$thevat." <br>  VAT_TOTAL".$VAT_TOTAL ."<br>";
+		}
+	$SQL_INSERT2=" UPDATE `invoice`  SET 
+		`SSTOTAL` = '".$SSTOTAL ."',
+		`TOTAL` = '".$TOTAL."', 
+		`VAT` = '".$VAT."', 
+		`VAT_TOTAL` = '".$VAT_TOTAL."' 
+		WHERE `invoice`.`InvoiceID` = ".$invoiceID.";  ";
+	$dbop->query($SQL_INSERT2); 
+
+
+
+
+}
  ?>  
 <!DOCTYPE html>
 <html lang="en">
@@ -762,8 +831,33 @@ else{
 									</div>  
 								</div> 
 							</div> 
+							<?php
+	$queryss = " SELECT *  FROM `sslines` WHERE `ss_Invoice`='".$InvoiceID."'; ";  
+    $results = $dbop->query($queryss);    
+    $numRows = $results->numRows();
+    $results = $dbop->query($queryss)->fetchAll(); 
+    if($numRows>0){ 
+	    foreach ($results as $row) { 
+		 ?>
+			<div class="row">
+				<div class="col-sm-2 col-md-6 col-lg-6 col-xl-6">  
+					<?php echo "[".$row['ss_code']."]".$row['ss_Description'];?> 
+				</div> 
+				<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+					<?php echo $row['ss_Qut'];?>
+				</div>
+				<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+					<?php echo $row['ss_UPrice'];?>  
+				</div>
+				<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2">  
+					<?php echo $row['ss_Price'];?> 
+				</div> 
+			</div>
+		 <?php 
+	    }
+    } ?>
                 <!-- %%%%%%%%%%%%%%%%%%%%  5 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
-							<button type="button" href="add.php"  data-toggle="modal" data-target="#modal-lg"class="btn btn-primary float-right" style="margin-right: 5px;"> 
+							<button type="button" href="#"  data-toggle="modal" data-target="#modal-lg"class="btn btn-primary float-right" style="margin-right: 5px;"> 
 								<i class="fas fa-plus"></i>  Add More Services    
 							</button>
 						</div>
@@ -775,6 +869,8 @@ else{
 						 
 				</form> 
 	<!-- /.card -->
+
+
 	</div>
 	<!--/.col (right) -->
 	</div>
@@ -783,11 +879,11 @@ else{
 
 
 			 <!-- /. modal --> 
-			 <div class="modal fade" id="modal-lg">
+	<div class="modal fade" id="modal-lg">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Add New Agent</h4>
+					<h4 class="modal-title">Add New Service</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -797,20 +893,18 @@ else{
 						<div class="col-md-12">  
 						<div class="row">
 								<div class="col-sm-2 col-md-6 col-lg-6 col-xl-6"> 
-									<!-- %%%%%%%%%%%%%%%%%%%% Fees 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  --> 
+									<!-- %%%%%%%%%%%%%%%%%%%% Fees X %%%%%%%%%%%%%%%%%%%%%%%%%%%%  --> 
 									<div class="form-group">
 										<label>Services Description </label> 
-										<select name="SService5" class="form-control select2">
+										<select name="Service_ID" class="form-control select2">
 							  					<?php
                                                 // option Description
-                                                    $query = "SELECT `Service_ID`,`Description`,`code`  FROM `services`;"; 
+                                                    $query = "SELECT `Service_ID`,`Description`,`code`   FROM `services`;"; 
                                                     $services = $dbop->query($query)->fetchAll(); 
                                                     $servicesOption='<option value=""></option>';  
                                                     foreach ($services as $service) {    
-                                                        $ThisID =intval($service['Service_ID']);
-                                                        $SService5=intval($SService5);
-                                                        if($ThisID==$SService5){$select="selected";}else{$select="";}
-											 $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>['.$service['code'].'] '.$service['Description'].'</option>';
+                                                        $ThisID =intval($service['Service_ID']); 
+											 $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>['.$service['code'].'] '.$service['Description'].'</option>'; 
                                                     }
                                                     echo $servicesOption;
                                                 // option Description
@@ -822,21 +916,21 @@ else{
 										<!-- %%%%%%%%%%%%%%%%%%%% Rate 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 									<div class="form-group">
 										<label>Qut.</label> 
-										<input type="text" class="form-control" name="SSQut5"  value="<?php echo $SSQut5;?>">
+										<input type="text" class="form-control" name="SSQut">
 									</div>  
 								</div>
 								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
 										<!-- %%%%%%%%%%%%%%%%%%%% Rate 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 									<div class="form-group">
 										<label>U. Price</label> 
-										<input type="text" class="form-control" name="SSUPrice5"  value="<?php echo $SSUPrice5;?>">
+										<input type="text" class="form-control" name="SSUPrice">
 									</div>  
 								</div>
 								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
 										<!-- %%%%%%%%%%%%%%%%%%%% Rate 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 									<div class="form-group">
 										<label>Note</label> 
-										<input type="text" class="form-control" name="SSNote5"  value="<?php echo $SSNote5;?>">
+										<input type="text" class="form-control" name="SSNote">
 									</div>  
 								</div> 
 							</div> 
@@ -848,6 +942,7 @@ else{
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button type="submit" name="add" value="add"  class="btn btn-primary">Save changes</button>
 					</div>  
+					<input type="hidden" name="invoiceID" value="<?php echo $invoiceID;?>">
 				</form> 
 			</div>
 			<!-- /.modal-content -->
@@ -892,11 +987,11 @@ else{
 	<script src="<?php echo $Homepath;?>adminlte/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script>
-$(function () {
-  bsCustomFileInput.init();
-});
+	$(function () {
+	bsCustomFileInput.init();
+	});
 
-$(function () {
+	$(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
 
@@ -1040,58 +1135,58 @@ $(function () {
 
 
 <script>
-$(document).ready(function() {
-  var i = 1;
-  $('#dodaj-pozyc').click(function() { 
-    $('#listap').append(
-	'<!-- %%%%%%%%%%%%%%%%%%%% row List   %%%%%%%%%%%%%%%%%%%%%%%%  -->'+
-	'<div class="row" id="lista-p-' + i + '">'+ 
-		'<div class="col-1" >'+
-			'<label>  &nbsp; </label>'+
-				'<p>'+
-      					'<button type="button"  name="remove' + i + '" id="' + i + '" class="col-0 col-form-label text-sm-center btn btn-outline-danger btn-sm btn_remove font-weight-bold">X</button>' +
-				'</p>'+
-		'</div> '+
-		'<div class="col-3" >' +
-			'<div class="form-group">'+
-				'<label>Invoice#</label>'+
-				'<input type="text" class="form-control" name="invoice'+ i + '"  autocomplete="off">'+ 
+	$(document).ready(function() {
+	var i = 1;
+	$('#dodaj-pozyc').click(function() { 
+	$('#listap').append(
+		'<!-- %%%%%%%%%%%%%%%%%%%% row List   %%%%%%%%%%%%%%%%%%%%%%%%  -->'+
+		'<div class="row" id="lista-p-' + i + '">'+ 
+			'<div class="col-1" >'+
+				'<label>  &nbsp; </label>'+
+					'<p>'+
+							'<button type="button"  name="remove' + i + '" id="' + i + '" class="col-0 col-form-label text-sm-center btn btn-outline-danger btn-sm btn_remove font-weight-bold">X</button>' +
+					'</p>'+
 			'</div> '+
-		'</div>'+ 
-		'<div class="col-4">  '+
-			'<div class="form-group">'+
-				'<label>Invoice Date</label>'+
-				'<input type="text" class="form-control" name="invoicedate'+ i + '"  autocomplete="off">'+ 
+			'<div class="col-3" >' +
+				'<div class="form-group">'+
+					'<label>Invoice#</label>'+
+					'<input type="text" class="form-control" name="invoice'+ i + '"  autocomplete="off">'+ 
+				'</div> '+
+			'</div>'+ 
+			'<div class="col-4">  '+
+				'<div class="form-group">'+
+					'<label>Invoice Date</label>'+
+					'<input type="text" class="form-control" name="invoicedate'+ i + '"  autocomplete="off">'+ 
+				'</div> '+
+			'</div>'+ 
+			'<div class="col-4"> '+
+				'<div class="form-group">'+
+					'<label>Amount</label>'+
+					'<input type="text" class="form-control" name="amount'+ i + '"  > '+
+				'</div> '+
 			'</div> '+
-		'</div>'+ 
-		'<div class="col-4"> '+
-			'<div class="form-group">'+
-				'<label>Amount</label>'+
-				'<input type="text" class="form-control" name="amount'+ i + '"  > '+
-			'</div> '+
-		'</div> '+
-	'</div> '
-		 );
-	 
-if(i<15){i++;
-	const box = document.getElementById('dodaj-pozyc'); 		
-	box.style.display = 'block';
-}else{ 
-	const box = document.getElementById('dodaj-pozyc'); 		
-	box.style.display = 'none';
-}
+		'</div> '
+			);
+		
+	if(i<15){i++;
+		const box = document.getElementById('dodaj-pozyc'); 		
+		box.style.display = 'block';
+	}else{ 
+		const box = document.getElementById('dodaj-pozyc'); 		
+		box.style.display = 'none';
+	}
 
-    
-  });
-  $(document).on('click', '.btn_remove', function() {
-    var id = $(this).attr("id");
-    $('input[name="remove"]' + id).remove();
-    $('#atrybut-ile-' + id + '').remove();
-    $('#atrybut-nazwa-' + id+  '').remove();
-    $('#lista-p-' + id).empty();
-    $('#lista-p-' + id).html(""); 
-  });
-});
+	
+	});
+	$(document).on('click', '.btn_remove', function() {
+	var id = $(this).attr("id");
+	$('input[name="remove"]' + id).remove();
+	$('#atrybut-ile-' + id + '').remove();
+	$('#atrybut-nazwa-' + id+  '').remove();
+	$('#lista-p-' + id).empty();
+	$('#lista-p-' + id).html(""); 
+	});
+	});
 </script>
  
       
