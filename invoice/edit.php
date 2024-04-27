@@ -520,15 +520,14 @@ else{
 										<select name="SService1" class="form-control select2">
 							  					<?php
                                                 // option Description
-                                                    $query = "SELECT `Service_ID`,`Description` FROM `services`;"; 
+                                                    $query = "SELECT `Service_ID`,`Description`,`code` FROM `services`;"; 
                                                     $services = $dbop->query($query)->fetchAll();  
                                                     $servicesOption='<option value=""></option>'; 
                                                     foreach ($services as $service) {    
                                                         $ThisID =intval($service['Service_ID']);
                                                         $SService1=intval($SService1);
                                                         if($ThisID==$SService1){$select="selected";}else{$select="";}
-                                                    $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>'.$service['Description'].'
-                                                    </option>';
+											 $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>['.$service['code'].'] '.$service['Description'].'</option>';
                                                     }
                                                     echo $servicesOption;
                                                 // option Description
@@ -573,15 +572,14 @@ else{
 										<select name="SService2" class="form-control select2">
 							  					<?php
                                                 // option Description
-                                                    $query = "SELECT `Service_ID`,`Description`  FROM `services`;"; 
+                                                    $query = "SELECT `Service_ID`,`Description`,`code`  FROM `services`;"; 
                                                     $services = $dbop->query($query)->fetchAll();  
                                                     $servicesOption='<option value=""></option>'; 
                                                     foreach ($services as $service) {    
                                                         $ThisID =intval($service['Service_ID']);
                                                         $SService2=intval($SService2);
                                                         if($ThisID==$SService2){$select="selected";}else{$select="";}
-                                                    $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>'.$service['Description'].'
-                                                    </option>';
+                                                    $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>['.$service['code'].'] '.$service['Description'].'</option>';
                                                     }
                                                     echo $servicesOption;
                                                 // option Description
@@ -626,14 +624,14 @@ else{
 										<select name="SService3" class="form-control select2">
 							  					<?php
                                                 // option Description
-                                                    $query = "SELECT `Service_ID`,`Description`  FROM `services`;"; 
+                                                    $query = "SELECT `Service_ID`,`Description`,`code`  FROM `services`;"; 
                                                     $services = $dbop->query($query)->fetchAll();   
                                                     $servicesOption='<option value=""></option>';
                                                     foreach ($services as $service) {    
                                                         $ThisID =intval($service['Service_ID']);
                                                         $SService3=intval($SService3);
                                                         if($ThisID==$SService3){$select="selected";}else{$select="";}
-                                                    $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>'.$service['Description'].'</option>';
+											 $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>['.$service['code'].'] '.$service['Description'].'</option>';
                                                     }
                                                     echo $servicesOption;
                                                 // option Description
@@ -676,14 +674,14 @@ else{
 										<select name="SService4" class="form-control select2">
 							  					<?php
                                                 // option Description
-                                                    $query = "SELECT `Service_ID`,`Description`  FROM `services`;"; 
+                                                    $query = "SELECT `Service_ID`,`Description`,`code`  FROM `services`;"; 
                                                     $services = $dbop->query($query)->fetchAll();   
                                                     $servicesOption='<option value=""></option>';
                                                     foreach ($services as $service) {    
                                                         $ThisID =intval($service['Service_ID']);
                                                         $SService4=intval($SService4);
                                                         if($ThisID==$SService4){$select="selected";}else{$select="";}
-                                                    $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>'.$service['Description'].'</option>';
+											 $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>['.$service['code'].'] '.$service['Description'].'</option>';
                                                     }
                                                     echo $servicesOption;
                                                 // option Description
@@ -719,7 +717,7 @@ else{
 
 
                 <!-- %%%%%%%%%%%%%%%%%%%%  5 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
-                <div class="row">
+                				<div class="row">
 								<div class="col-sm-2 col-md-6 col-lg-6 col-xl-6"> 
 									<!-- %%%%%%%%%%%%%%%%%%%% Fees 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  --> 
 									<div class="form-group">
@@ -727,14 +725,14 @@ else{
 										<select name="SService5" class="form-control select2">
 							  					<?php
                                                 // option Description
-                                                    $query = "SELECT `Service_ID`,`Description`  FROM `services`;"; 
+                                                    $query = "SELECT `Service_ID`,`Description`,`code`  FROM `services`;"; 
                                                     $services = $dbop->query($query)->fetchAll(); 
                                                     $servicesOption='<option value=""></option>';  
                                                     foreach ($services as $service) {    
                                                         $ThisID =intval($service['Service_ID']);
                                                         $SService5=intval($SService5);
                                                         if($ThisID==$SService5){$select="selected";}else{$select="";}
-                                                    $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>'.$service['Description'].'</option>';
+											 $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>['.$service['code'].'] '.$service['Description'].'</option>';
                                                     }
                                                     echo $servicesOption;
                                                 // option Description
@@ -765,8 +763,11 @@ else{
 								</div> 
 							</div> 
                 <!-- %%%%%%%%%%%%%%%%%%%%  5 . Special Service   %%%%%%%%%%%%%%%%%%%%%%%% --> 
-
+							<button type="button" href="add.php"  data-toggle="modal" data-target="#modal-lg"class="btn btn-primary float-right" style="margin-right: 5px;"> 
+								<i class="fas fa-plus"></i>  Add More Services    
+							</button>
 						</div>
+
 						<div class="card-footer">
 							<button type="submit" name="Update" value="Update" class="btn btn-info">Update</button>
 						</div>  
@@ -779,6 +780,83 @@ else{
 	</div>
 	<!-- /.row -->
 		</div><!-- /.container-fluid -->
+
+
+			 <!-- /. modal --> 
+			 <div class="modal fade" id="modal-lg">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Add New Agent</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form action="#" method="POST">
+					<div class="modal-body">
+						<div class="col-md-12">  
+						<div class="row">
+								<div class="col-sm-2 col-md-6 col-lg-6 col-xl-6"> 
+									<!-- %%%%%%%%%%%%%%%%%%%% Fees 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  --> 
+									<div class="form-group">
+										<label>Services Description </label> 
+										<select name="SService5" class="form-control select2">
+							  					<?php
+                                                // option Description
+                                                    $query = "SELECT `Service_ID`,`Description`,`code`  FROM `services`;"; 
+                                                    $services = $dbop->query($query)->fetchAll(); 
+                                                    $servicesOption='<option value=""></option>';  
+                                                    foreach ($services as $service) {    
+                                                        $ThisID =intval($service['Service_ID']);
+                                                        $SService5=intval($SService5);
+                                                        if($ThisID==$SService5){$select="selected";}else{$select="";}
+											 $servicesOption.='<option value="'.$service['Service_ID'].'" '.$select.'>['.$service['code'].'] '.$service['Description'].'</option>';
+                                                    }
+                                                    echo $servicesOption;
+                                                // option Description
+                                                ?>
+										</select>
+									</div> 
+								</div> 
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>Qut.</label> 
+										<input type="text" class="form-control" name="SSQut5"  value="<?php echo $SSQut5;?>">
+									</div>  
+								</div>
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>U. Price</label> 
+										<input type="text" class="form-control" name="SSUPrice5"  value="<?php echo $SSUPrice5;?>">
+									</div>  
+								</div>
+								<div class="col-sm-2 col-md-4 col-lg-2 col-xl-2"> 
+										<!-- %%%%%%%%%%%%%%%%%%%% Rate 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+									<div class="form-group">
+										<label>Note</label> 
+										<input type="text" class="form-control" name="SSNote5"  value="<?php echo $SSNote5;?>">
+									</div>  
+								</div> 
+							</div> 
+						  
+						<!-- input states -->  
+				</div> 
+
+					<div class="modal-footer justify-content-between">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" name="add" value="add"  class="btn btn-primary">Save changes</button>
+					</div>  
+				</form> 
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+		</div>
+	<!-- /. modal -->
+
+
 		</section>
 		<!-- /.content -->
 	</div>
