@@ -87,6 +87,9 @@ $IsActive = 0 ;
 							<a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Invoice List</a>
 						</li>
 						<li class="nav-item">
+							<a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-list" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Pilotage Report</a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Export</a>
 						</li>
 						</ul>
@@ -143,9 +146,21 @@ $IsActive = 0 ;
 									<input type="hidden" name="FromToInvoice" value="1">
 									<button type="submit" class="btn btn-info float-right">Genrate</button>
 								</div>
-							</form> 
-
-
+							</form>  
+						</div>
+						<div class="tab-pane fade" id="custom-content-below-list" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
+							<form action="PilotageReport.php" method="POST">
+								<div class="col-4"> 
+									<div class="form-group">
+										<label>From Invoice #</label> 
+											<input  name="PilotageFromInvoice" type="text" class="form-control" >    
+										<label>To Invoice #</label> 
+											<input  name="PilotageToInvoice" type="text" class="form-control" >   
+									</div>
+									<input type="hidden" name="FromToInvoice" value="1">
+									<button type="submit" class="btn btn-info float-right">Genrate</button>
+								</div>
+							</form>  
 						</div>
 						<div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
 
