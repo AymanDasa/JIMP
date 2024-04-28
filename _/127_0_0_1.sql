@@ -18,6 +18,5 @@ CREATE TABLE `sslines` (
  
 ALTER TABLE `sslines`
   ADD PRIMARY KEY (`ss_id`);
- AUTO_INCREMENT for table `sslines` 
 ALTER TABLE `sslines`
-  MODIFY `ss_id` int(4) NOT NULL AUTO_INCREMENT; 
+  MODIFY `ss_id` int(4) NOT NULL AUTO_INCREMENT;
