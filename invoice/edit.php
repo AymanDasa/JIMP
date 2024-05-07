@@ -13,9 +13,12 @@ if(isset($_GET['id'])) {
 #######################  Functions & Class  #############################
 #########################################################################
 #########################################################################
+
+if($debug){echo "<b> GET [  id ]  : </b>".$_GET['id']."<br>";}  
+
 $invoiceID = intval($_GET['id']); 
     $query = "SELECT *  FROM `invoice` WHERE `invoiceID`=".$invoiceID." LIMIT 1;"; 
-
+	if($debug){echo "<b> query  : </b>".$query."<br>";}  
     $invoicevs = $dbop->query($query)->fetchAll();   
     foreach ($invoicevs as $invoicev) {   
 		$ShipID=$invoicev['ShipID'];
@@ -130,6 +133,7 @@ else{
 // option AgentNameAr 
     $AgentOption='<option value=""></option>';
     $query = "SELECT `AgentID`,`AgentNameEn`,`AgentCR` FROM `agents`;"; 
+	if($debug){echo "<b> query  : </b>".$query."<br>";}  
     $Agents = $dbop->query($query)->fetchAll();   
     foreach ($Agents as $Agents) {   
         $ThisID =intval($Agents['AgentID']);
@@ -143,6 +147,7 @@ else{
 // option ShipName
     $ShipNameOption='<option value=""></option>';
     $query = "SELECT `ShipID`,`ShipName`  FROM `ship`;"; 
+	if($debug){echo "<b> query  : </b>".$query."<br>";}  
     $ships = $dbop->query($query)->fetchAll();  
 
     foreach ($ships as $ship) {
@@ -172,8 +177,15 @@ if(isset($_POST['add'])){
 	$invoiceID	= stripslashes(htmlentities( strip_tags($_POST['invoiceID'] ))); 
 	$invoiceID	= intval($invoiceID);
 	
+
+	if($debug){echo "<b> Service_ID  : </b>".$Service_ID."<br>";}  
+	if($debug){echo "<b> SSQut  : </b>".$SSQut."<br>";}  
+	if($debug){echo "<b> SSUPrice  : </b>".$SSUPrice."<br>";}  
+	if($debug){echo "<b> SSNote  : </b>".$SSNote."<br>";}  
+	if($debug){echo "<b> invoiceID  : </b>".$invoiceID."<br>";}   
  
 	$query = "SELECT *  FROM `services` WHERE `Service_ID`= ".$Service_ID." LIMIT 1;"; 
+	if($debug){echo "<b> query  : </b>".$query."<br>";}  
    	$result1 = $dbop->query($query)->fetchAll();  
 	foreach ($result1 as $row) { 
 		$SSUnitEn =$row['Unit']; 
@@ -182,13 +194,23 @@ if(isset($_POST['add'])){
 		$SScode =$row['code']; 
 	}
 
-	$ss_Price = floatval($SSUPrice * $SSQut);
-	
+	$ss_Price = floatval($SSUPrice * $SSQut); 
 	$thevat=0;
+
+	if($debug){echo "<b> Service_ID  : </b>".$Service_ID."<br>";} 
+	if($debug){echo "<b> invoiceID  : </b>".$invoiceID."<br>";} 
+	if($debug){echo "<b> Description  : </b>".$Description."<br>";} 
+	if($debug){echo "<b> DescriptionEn  : </b>".$DescriptionEn."<br>";} 
+	if($debug){echo "<b> SSUnitEn  : </b>".$SSUnitEn."<br>";} 
+	if($debug){echo "<b> SScode  : </b>".$SScode."<br>";} 
+	if($debug){echo "<b> SSUPrice  : </b>".$SSUPrice."<br>";} 
+	if($debug){echo "<b> ss_Price  : </b>".$ss_Price."<br>";} 
+	if($debug){echo "<b> SSNote  : </b>".$SSNote."<br>";} 
+
 	$SQL_INSERT="INSERT INTO `sslines` ( `Service_ID`, `ss_Invoice`, `ss_Description`, `ss_DescriptionEn`, `ss_Unit`, `ss_code`, `ss_Qut`, `ss_UPrice`, `ss_Price`,  `ss_note`) VALUES 
 	( '".$Service_ID."', '".$invoiceID."', '".$Description."', '".$DescriptionEn."', '".$SSUnitEn."', '".$SScode."', '".$SSQut."', '".$SSUPrice."', '".$ss_Price."',   '".$SSNote."'); ";
 	$dbop->query($SQL_INSERT); 
-
+	if($debug){echo "<b> SQL_INSERT  : </b>".$SQL_INSERT."<br>";} 
 	$query = "SELECT `MSTOTAL`,`SSTOTAL`,`TOTAL`,`is_VAT`,`VAT`,`VAT_TOTAL`  FROM `invoice` WHERE `invoiceID`= ".$invoiceID." LIMIT 1;"; 
 	$result2 = $dbop->query($query)->fetchAll();  
 	foreach ($result2 as $row) { 
@@ -203,11 +225,15 @@ if(isset($_POST['add'])){
 		}
 	}
 	$vat = intval($vat) ;
+	if($debug){echo "<b> vat  : </b>".$vat."<br>";} 
+	
 	$thevat=0.15;
 	$SSTOTAL 	=  $SSTOTAL + $ss_Price   ;
 	$TOTAL 	=  $TOTAL   +  $ss_Price ; 
 	if($is_VAT==1){$VAT =  ($TOTAL * $thevat ) ; }else{$VAT =0;}
 	$VAT_TOTAL = $VAT + $TOTAL ;
+
+	if($debug){echo "<b> VAT_TOTAL  : </b>".$VAT_TOTAL."<br>";} 
 		if($debug){ 
 			echo "vat:".$vat . " <br> SSTOTAL:".$SSTOTAL . " <br> TOTAL : ".$TOTAL . " <br> is_VAT: ".$is_VAT ." <br>  VAT".$VAT." <br>  thevat".$thevat." <br>  VAT_TOTAL".$VAT_TOTAL ."<br>";
 		}
