@@ -178,6 +178,7 @@ if(isset($_POST['add'])){
 	$invoiceID	= intval($invoiceID);
 	
 
+	if($debug){echo "<b> is_VAT  : </b>".$is_VAT."<br>";}  
 	if($debug){echo "<b> Service_ID  : </b>".$Service_ID."<br>";}  
 	if($debug){echo "<b> SSQut  : </b>".$SSQut."<br>";}  
 	if($debug){echo "<b> SSUPrice  : </b>".$SSUPrice."<br>";}  
