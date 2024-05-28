@@ -89,7 +89,11 @@ if(isset($_POST['PilotageFromInvoice'])){
 					<div class="card"> 
 						<div class="card-header">   
 						<ol class="breadcrumb float-sm-right">
-									<li><a href="PilotageReportXLS.php?FromInvoice=<?php echo $FromInvoice;?>&ToInvoice=<?php echo $ToInvoice;?>" class="btn btn-app-x">  <i class="fas  fa-file-excel"></i>   </a>	</li> 
+						
+			<li><a href="PilotageReportXLS.php?FromInvoice=<?php echo $FromInvoice;?>&ToInvoice=<?php echo $ToInvoice;?>" class="btn btn-app-x">  <i class="fas  fa-file-excel"></i>   </a>	</li> 
+			
+			<li><a href="PilotageReportCSV.php?FromInvoice=<?php echo $FromInvoice;?>&ToInvoice=<?php echo $ToInvoice;?>" class="btn btn-app-x">  <i class="fas  fa-file"></i>   </a>	</li> 
+									
 								</ol>
 						</div>  
 						<div class="card-body">   
