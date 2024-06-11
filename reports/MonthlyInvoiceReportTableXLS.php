@@ -50,31 +50,41 @@ if (1) {
 
 
     // Fetch and write data to the spreadsheet
-    $rowNumber = 2;
-   	foreach($result as $row){ 
-		$Status =intval($row['Status']);
-		if($Status==0){
-			$invoiceStart='CN-';  
-            $CNFactor= -1;  
-		}else{
-			$invoiceStart=$orginalinvoiceStart;
-            $CNFactor= 1 ;   
-		}
+    $rowNumber = 2; 
+    $CNFactor= -1 ; 
+   	foreach($result as $row){  
+        $invoiceStart=$orginalinvoiceStart;
 		$InvoiceID=$invoiceStart.$row['InvoiceID'];
 		$sheet->setCellValue('A'  . $rowNumber, $InvoiceID);
 		$sheet->setCellValue('B'  . $rowNumber, $row['ShipName']);
-		$sheet->setCellValue('C'  . $rowNumber, number_format( floatval($row['MSericeInPrice'])* $CNFactor , 2, ".", "") );  
-		$sheet->setCellValue('D'  . $rowNumber, number_format( floatval($row['MSericeOutPrice'])* $CNFactor , 2, ".", "") );  
-		$sheet->setCellValue('E'  . $rowNumber, number_format( floatval($row['MovePortPrice'])* $CNFactor , 2, ".", "") );  
-		$sheet->setCellValue('F'  . $rowNumber, number_format( floatval($row['MSericeBathPrice'])* $CNFactor , 2, ".", "") );  
-		$sheet->setCellValue('G'  . $rowNumber, number_format( floatval($row['MSericeAnchoragePrice'])* $CNFactor , 2, ".", "") );  
-		$sheet->setCellValue('H'  . $rowNumber, number_format( floatval($row['MSTOTAL'])* $CNFactor , 2, ".", "") );  
-		$sheet->setCellValue('I'  . $rowNumber, number_format( floatval($row['SSTOTAL'])* $CNFactor , 2, ".", "") );   
-		$sheet->setCellValue('J'  . $rowNumber, number_format( floatval($row['TOTAL'])* $CNFactor , 2, ".", "") );  
-		$sheet->setCellValue('K'  . $rowNumber, number_format( floatval($row['VAT'])* $CNFactor , 2, ".", "") );  
-		$sheet->setCellValue('L'  . $rowNumber, number_format( floatval($row['VAT_TOTAL'])* $CNFactor , 2, ".", "") );   
+		$sheet->setCellValue('C'  . $rowNumber, number_format( floatval($row['MSericeInPrice']) , 2, ".", "") );  
+		$sheet->setCellValue('D'  . $rowNumber, number_format( floatval($row['MSericeOutPrice']) , 2, ".", "") );  
+		$sheet->setCellValue('E'  . $rowNumber, number_format( floatval($row['MovePortPrice']) , 2, ".", "") );  
+		$sheet->setCellValue('F'  . $rowNumber, number_format( floatval($row['MSericeBathPrice']) , 2, ".", "") );  
+		$sheet->setCellValue('G'  . $rowNumber, number_format( floatval($row['MSericeAnchoragePrice']) , 2, ".", "") );  
+		$sheet->setCellValue('H'  . $rowNumber, number_format( floatval($row['MSTOTAL']) , 2, ".", "") );  
+		$sheet->setCellValue('I'  . $rowNumber, number_format( floatval($row['SSTOTAL']) , 2, ".", "") );   
+		$sheet->setCellValue('J'  . $rowNumber, number_format( floatval($row['TOTAL']) , 2, ".", "") );  
+		$sheet->setCellValue('K'  . $rowNumber, number_format( floatval($row['VAT']) , 2, ".", "") );  
+		$sheet->setCellValue('L'  . $rowNumber, number_format( floatval($row['VAT_TOTAL']) , 2, ".", "") );    
+        $Status =intval($row['Status']);
 
-
+		if($Status == 0){   
+            $invoiceStart='CN-';   
+            $InvoiceID=$invoiceStart.$row['InvoiceID'];
+            $sheet->setCellValue('A'  . $rowNumber, $InvoiceID);
+            $sheet->setCellValue('B'  . $rowNumber, $row['ShipName']);
+            $sheet->setCellValue('C'  . $rowNumber, number_format( floatval($row['MSericeInPrice'])* $CNFactor , 2, ".", "") );  
+            $sheet->setCellValue('D'  . $rowNumber, number_format( floatval($row['MSericeOutPrice'])* $CNFactor , 2, ".", "") );  
+            $sheet->setCellValue('E'  . $rowNumber, number_format( floatval($row['MovePortPrice'])* $CNFactor , 2, ".", "") );  
+            $sheet->setCellValue('F'  . $rowNumber, number_format( floatval($row['MSericeBathPrice'])* $CNFactor , 2, ".", "") );  
+            $sheet->setCellValue('G'  . $rowNumber, number_format( floatval($row['MSericeAnchoragePrice'])* $CNFactor , 2, ".", "") );  
+            $sheet->setCellValue('H'  . $rowNumber, number_format( floatval($row['MSTOTAL'])* $CNFactor , 2, ".", "") );  
+            $sheet->setCellValue('I'  . $rowNumber, number_format( floatval($row['SSTOTAL'])* $CNFactor , 2, ".", "") );   
+            $sheet->setCellValue('J'  . $rowNumber, number_format( floatval($row['TOTAL'])* $CNFactor , 2, ".", "") );  
+            $sheet->setCellValue('K'  . $rowNumber, number_format( floatval($row['VAT'])* $CNFactor , 2, ".", "") );  
+            $sheet->setCellValue('L'  . $rowNumber, number_format( floatval($row['VAT_TOTAL'])* $CNFactor , 2, ".", "") );   
+		} 
         $rowNumber++;
     }
 

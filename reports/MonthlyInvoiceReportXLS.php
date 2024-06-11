@@ -134,8 +134,12 @@ if (1) {
 		$Status =intval($row['Status']);
 		if($Status==0){
 			$invoiceStart='CN-';  
+            
+            $CNFactor= -1;  
 		}else{
-			$invoiceStart=$orginalinvoiceStart;   
+			$invoiceStart=$orginalinvoiceStart; 
+            
+            $CNFactor= 1;    
 		}
 		$InvoiceID=$invoiceStart.$row['InvoiceID'];
 		$sheet->setCellValue('A'  . $rowNumber, $InvoiceID);
@@ -159,7 +163,8 @@ if (1) {
 		$sheet->setCellValue('T'  . $rowNumber, $row['AnchorageLeave']);
 		$sheet->setCellValue('U'  . $rowNumber, $row['AnchorageLeaveT']);
 		$sheet->setCellValue('V'  . $rowNumber, $row['AnchorageDays']);
-		$sheet->setCellValue('W'  . $rowNumber, $row['MSericeAnchoragePrice']);
+
+		$sheet->setCellValue('W'  .number_format( floatval( $rowNumber, $row['MSericeAnchoragePrice'])* $CNFactor , 2, ".", "") );  
 		$sheet->setCellValue('X'  . $rowNumber, $row['MovePort1']);
 		$sheet->setCellValue('Y'  . $rowNumber, $row['MovePort2']);
 		$sheet->setCellValue('Z'  . $rowNumber, $row['MovePort3']); 
@@ -174,12 +179,12 @@ if (1) {
 	    $sheet->setCellValue('AI'  . $rowNumber, $row['MService1']);
 	    $sheet->setCellValue('AG'  . $rowNumber, $row['MService2']);
 	    $sheet->setCellValue('AK'  . $rowNumber, $row['MService3']);
-	    $sheet->setCellValue('AL'  . $rowNumber, $row['MSericeInPrice']);
-	    $sheet->setCellValue('AM'  . $rowNumber, $row['MSericeOutPrice']);
-	    $sheet->setCellValue('AN'  . $rowNumber, $row['MovePortPrice']);
-	    $sheet->setCellValue('AO'  . $rowNumber, $row['MSericeBathPrice']);
-	    $sheet->setCellValue('AP'  . $rowNumber, $row['MGPrice']);
-	    $sheet->setCellValue('AQ'  . $rowNumber, $row['MSTOTAL']);
+	    $sheet->setCellValue('AL'  .number_format( floatval( $rowNumber, $row['MSericeInPrice'])* $CNFactor , 2, ".", "") );  
+	    $sheet->setCellValue('AM'  .number_format( floatval( $rowNumber, $row['MSericeOutPrice'])* $CNFactor , 2, ".", "") );  
+	    $sheet->setCellValue('AN'  .number_format( floatval( $rowNumber, $row['MovePortPrice'])* $CNFactor , 2, ".", "") );  
+	    $sheet->setCellValue('AO'  .number_format( floatval( $rowNumber, $row['MSericeBathPrice'])* $CNFactor , 2, ".", "") );  
+	    $sheet->setCellValue('AP'  .number_format( floatval( $rowNumber, $row['MGPrice'])* $CNFactor , 2, ".", "") );  
+	    $sheet->setCellValue('AQ'  .number_format( floatval( $rowNumber, $row['MSTOTAL'])* $CNFactor , 2, ".", "") );  
 
 	    $sheet->setCellValue('AR'  . $rowNumber, $row['SScode1']);
 	    $sheet->setCellValue('AS'  . $rowNumber, $row['SSName1']);
@@ -216,11 +221,11 @@ if (1) {
 	    $sheet->setCellValue('BX'  . $rowNumber, $row['SSNote3']);
 	    $sheet->setCellValue('BY'  . $rowNumber, $row['SSNote4']);
 	    $sheet->setCellValue('BZ'  . $rowNumber, $row['SSNote5']);
-	   $sheet->setCellValue('CA'  . $rowNumber, $row['SSTOTAL']);
-	   $sheet->setCellValue('CA'  . $rowNumber, $row['TOTAL']);
-	   $sheet->setCellValue('CB'  . $rowNumber, $row['is_VAT']);
-	   $sheet->setCellValue('CC'  . $rowNumber, $row['VAT']);
-	   $sheet->setCellValue('CD'  . $rowNumber, $row['VAT_TOTAL']);
+	   $sheet->setCellValue('CA'  .number_format( floatval($rowNumber, $row['SSTOTAL'])* $CNFactor , 2, ".", "") );  
+	   $sheet->setCellValue('CA'  .number_format( floatval( $rowNumber, $row['TOTAL'])* $CNFactor , 2, ".", "") );  
+	   $sheet->setCellValue('CB'  .number_format( floatval( $rowNumber, $row['is_VAT'])* $CNFactor , 2, ".", "") );  
+	   $sheet->setCellValue('CC'  .number_format( floatval( $rowNumber, $row['VAT'])* $CNFactor , 2, ".", "") );  
+	   $sheet->setCellValue('CD'  .number_format( floatval( $rowNumber, $row['VAT_TOTAL'])* $CNFactor , 2, ".", "") );  
 	   $sheet->setCellValue('CE'  . $rowNumber, $row['Status']); 
 
 
