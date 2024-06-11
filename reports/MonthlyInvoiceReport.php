@@ -97,7 +97,7 @@ if(isset($_POST['InvoiceMonth'])){
 								    
  <a href="MonthlyInvoiceReportXLS.php?YM=<?php echo $MM.$YY;?>" class="btn btn-app-x">  <i class="fas fa-file-excel"></i>     </a>								
  <a href="MonthlyInvoiceReportPDF.php?YM=<?php echo $MM.$YY;?>" class="btn btn-app-x">  <i class="fas fa-file-pdf"></i>      </a>	
- <a href="MonthlyInvoiceReportTableXLS.php?YM=<?php echo $MM.$YY;?>" class="btn btn-app-x">  <i class="fas fa-file-pdf"></i>      </a>	
+ <a href="MonthlyInvoiceReportTableXLS.php?YM=<?php echo $MM.$YY;?>" class="btn btn-app-x"> <span style="color:darkred"> <i class="fas fa-file"></i>  </span>    </a>	
  							
   
 									<button type="button" class="btn btn-tool" data-card-widget="collapse">
