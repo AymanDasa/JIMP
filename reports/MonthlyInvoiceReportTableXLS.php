@@ -53,6 +53,7 @@ if (1) {
     $rowNumber = 2; 
     $CNFactor= -1 ; 
    	foreach($result as $row){  
+        if($Status > 0){ 
         $invoiceStart=$orginalinvoiceStart;
 		$InvoiceID=$invoiceStart.$row['InvoiceID'];
 		$sheet->setCellValue('A'  . $rowNumber, $InvoiceID);
@@ -66,9 +67,9 @@ if (1) {
 		$sheet->setCellValue('I'  . $rowNumber, number_format( floatval($row['SSTOTAL']) , 2, ".", "") );   
 		$sheet->setCellValue('J'  . $rowNumber, number_format( floatval($row['TOTAL']) , 2, ".", "") );  
 		$sheet->setCellValue('K'  . $rowNumber, number_format( floatval($row['VAT']) , 2, ".", "") );  
-		$sheet->setCellValue('L'  . $rowNumber, number_format( floatval($row['VAT_TOTAL']) , 2, ".", "") );    
-        $Status =intval($row['Status']);
-
+		$sheet->setCellValue('L'  . $rowNumber, number_format( floatval($row['VAT_TOTAL']) , 2, ".", "") );   
+        } 
+        $Status =intval($row['Status']); 
 		if($Status == 0){   
             $invoiceStart='CN-';   
             $InvoiceID=$invoiceStart.$row['InvoiceID'];
