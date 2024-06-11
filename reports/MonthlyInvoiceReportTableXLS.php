@@ -71,6 +71,20 @@ if (1) {
         } 
         $Status =intval($row['Status']); 
 		if($Status == 0){   
+            $invoiceStart=$orginalinvoiceStart;
+            $InvoiceID=$invoiceStart.$row['InvoiceID'];
+            $sheet->setCellValue('A'  . $rowNumber, $InvoiceID);
+            $sheet->setCellValue('B'  . $rowNumber, $row['ShipName']);
+            $sheet->setCellValue('C'  . $rowNumber, number_format( floatval($row['MSericeInPrice']) , 2, ".", "") );  
+            $sheet->setCellValue('D'  . $rowNumber, number_format( floatval($row['MSericeOutPrice']) , 2, ".", "") );  
+            $sheet->setCellValue('E'  . $rowNumber, number_format( floatval($row['MovePortPrice']) , 2, ".", "") );  
+            $sheet->setCellValue('F'  . $rowNumber, number_format( floatval($row['MSericeBathPrice']) , 2, ".", "") );  
+            $sheet->setCellValue('G'  . $rowNumber, number_format( floatval($row['MSericeAnchoragePrice']) , 2, ".", "") );  
+            $sheet->setCellValue('H'  . $rowNumber, number_format( floatval($row['MSTOTAL']) , 2, ".", "") );  
+            $sheet->setCellValue('I'  . $rowNumber, number_format( floatval($row['SSTOTAL']) , 2, ".", "") );   
+            $sheet->setCellValue('J'  . $rowNumber, number_format( floatval($row['TOTAL']) , 2, ".", "") );  
+            $sheet->setCellValue('K'  . $rowNumber, number_format( floatval($row['VAT']) , 2, ".", "") );  
+            $sheet->setCellValue('L'  . $rowNumber, number_format( floatval($row['VAT_TOTAL']) , 2, ".", "") );   
             $invoiceStart='CN-';   
             $InvoiceID=$invoiceStart.$row['InvoiceID'];
             $sheet->setCellValue('A'  . $rowNumber, $InvoiceID);
