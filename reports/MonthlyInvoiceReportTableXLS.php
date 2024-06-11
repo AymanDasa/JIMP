@@ -48,7 +48,7 @@ if (1) {
     $sheet->setCellValue('K1'  ,  'VAT');
     $sheet->setCellValue('L1'  ,  'Total With VAT'); 
 
-
+//  ============================================
     // Fetch and write data to the spreadsheet
     $rowNumber = 2; 
     $CNFactor= -1 ; 
@@ -105,7 +105,7 @@ if (1) {
 		} 
         $rowNumber++;
     }
-
+//  ============================================
     // Save the spreadsheet to a file
     $writer = new Xlsx($spreadsheet);
     $filename = 'Monthly_'.$string.'_data.xlsx'; 
