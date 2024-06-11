@@ -91,15 +91,18 @@ if(isset($_POST['InvoiceMonth'])){
 					<div class="card"> 
 						<div class="card-header">
 							<h3 class="card-title">Result</h3>
-							<div class="card-tools">  
-							
-
-								    
- <a href="MonthlyInvoiceReportXLS.php?YM=<?php echo $MM.$YY;?>" class="btn btn-app-x">  <i class="fas fa-file-excel"></i>     </a>								
- <a href="MonthlyInvoiceReportPDF.php?YM=<?php echo $MM.$YY;?>" class="btn btn-app-x">  <i class="fas fa-file-pdf"></i>      </a>	
- <a href="MonthlyInvoiceReportTableXLS.php?YM=<?php echo $MM.$YY;?>" class="btn btn-app-x"> <span style="color:darkred"> <i class="fas fa-file"></i>  </span>    </a>	
- 							
-  
+							<div class="card-tools">   
+								<div class="btn-group" >
+									<button type="button" class="btn btn-default">Download</button>
+									<button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown" >
+										<span class="sr-only">Download</span>
+									</button>
+									<div  class="dropdown-menu" role="menu" >
+										<a class="dropdown-item" href="MonthlyInvoiceReportXLS.php?YM=<?php echo $MM.$YY;?>"> <i class="fas fa-file-excel"></i>   All Excel File    </a>
+										<a class="dropdown-item" href="MonthlyInvoiceReportPDF.php?YM=<?php echo $MM.$YY;?>"> <i class="fas fa-file-pdf"></i>   All Pdf File     </a>
+										<a class="dropdown-item" href="MonthlyInvoiceReportTableXLS.php?YM=<?php echo $MM.$YY;?>"> <span style="color:darkred"> <i class="fas fa-file-excel"></i></span>   Table Excel File </a>
+									</div>
+								</div> 
 									<button type="button" class="btn btn-tool" data-card-widget="collapse">
 									<i class="fas fa-plus"></i> </button> 
 						 
