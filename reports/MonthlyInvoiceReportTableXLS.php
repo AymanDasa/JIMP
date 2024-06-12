@@ -151,28 +151,16 @@ if (1) {
     $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'VAT');
     $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'Total With VAT'); 
 
-    $currentPosition= 0 ;	  
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, $InvoiceID);
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, $row['ShipName']);
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, $row['ShipWeight']);
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeInPrice']) , 2, ".", "") );  
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeOutPrice']) , 2, ".", "") );  
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MovePortPrice']) , 2, ".", "") );  
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeBathPrice']) , 2, ".", "") );  
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeAnchoragePrice']) , 2, ".", "") );  
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSTOTAL']) , 2, ".", "") );  
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['SSTOTAL']) , 2, ".", "") );   
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['TOTAL']) , 2, ".", "") );  
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT']) , 2, ".", "") );  
-    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT_TOTAL']) , 2, ".", "") ); 
 
   
     $result = $dbop->query($SQL)->fetchAll(); 
     foreach($result as $row){  
         $Status =intval($row['Status']); 
-        $currentPosition= 0 ;
+        
 
 		if($Status == 0){    
+            $currentPosition= 0 ;
+            $rowNumber++; 
             $invoiceStart='CN-';    
             $currentPosition= 0 ;	 
             $InvoiceID=$invoiceStart.$row['InvoiceID'];
@@ -189,11 +177,10 @@ if (1) {
             $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['TOTAL']) , 2, ".", "") );  
             $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT']) , 2, ".", "") );  
             $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT_TOTAL']) , 2, ".", "") );   
-             
             
-		} 
-        $rowNumber++;
-    }
+		}  
+    } 
+        $rowNumber++; 
 //  ============================================
     // Save the spreadsheet to a file
     $writer = new Xlsx($spreadsheet); 
