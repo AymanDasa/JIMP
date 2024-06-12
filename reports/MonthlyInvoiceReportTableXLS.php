@@ -80,48 +80,33 @@ if (1) {
     // Create a new Spreadsheet
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
-
+    $currentPosition= 0 ;
+    $rowNumber = 1; 
     // Set the column headers
-    $sheet->setCellValue(getNextAlphaX()  ,  'Invoice #');
-    $sheet->setCellValue(getNextAlphaX()  ,  'Vessel');
-    $sheet->setCellValue(getNextAlphaX()  ,  'G.R.T.');
-    $sheet->setCellValue(getNextAlphaX()  ,  'Arrival');
-    $sheet->setCellValue(getNextAlphaX()  ,  'Departure');
-    $sheet->setCellValue(getNextAlphaX()  ,  'Shifting');
-    $sheet->setCellValue(getNextAlphaX()  ,  'Port Fess');
-    $sheet->setCellValue(getNextAlphaX()  ,  'Anchorage');
-    $sheet->setCellValue(getNextAlphaX()  ,  'Marine S.');
-    $sheet->setCellValue(getNextAlphaX()  ,  'Special S.'); 
-    $sheet->setCellValue(getNextAlphaX()  ,  'Total');
-    $sheet->setCellValue(getNextAlphaX()  ,  'VAT');
-    $sheet->setCellValue(getNextAlphaX()  ,  'Total With VAT'); 
-    $currentPosition= 0 ;	
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'Invoice #');
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'Vessel');
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'G.R.T.');
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'Arrival');
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'Departure');
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'Shifting');
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'Port Fess');
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'Anchorage');
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'Marine S.');
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'Special S.'); 
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'Total');
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'VAT');
+    $sheet->setCellValue(getNextAlpha(). $rowNumber, 'Total With VAT'); 
+   	
 //  ============================================
     // Fetch and write data to the spreadsheet
-    $rowNumber = 2; 
+    
     $CNFactor= -1 ; 
    	foreach($result as $row){  
         $Status =intval($row['Status']); 
-        $currentPosition= 0 ;	
+       
         if($Status > 0){ 
-        $invoiceStart=$orginalinvoiceStart;
-		$InvoiceID=$invoiceStart.$row['InvoiceID'];
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, $InvoiceID);
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, $row['ShipName']);
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, $row['ShipWeight']);
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeInPrice']) , 2, ".", "") );  
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeOutPrice']) , 2, ".", "") );  
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MovePortPrice']) , 2, ".", "") );  
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeBathPrice']) , 2, ".", "") );  
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeAnchoragePrice']) , 2, ".", "") );  
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSTOTAL']) , 2, ".", "") );  
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['SSTOTAL']) , 2, ".", "") );   
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['TOTAL']) , 2, ".", "") );  
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT']) , 2, ".", "") );  
-		$sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT_TOTAL']) , 2, ".", "") );   
-        } 
-        $currentPosition= 0 ;	
-		if($Status == 0){   
+            $currentPosition= 0 ;
+            $rowNumber++;
             $invoiceStart=$orginalinvoiceStart;
             $InvoiceID=$invoiceStart.$row['InvoiceID'];
             $sheet->setCellValue(getNextAlpha() . $rowNumber, $InvoiceID);
@@ -137,30 +122,83 @@ if (1) {
             $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['TOTAL']) , 2, ".", "") );  
             $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT']) , 2, ".", "") );  
             $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT_TOTAL']) , 2, ".", "") );   
-            $invoiceStart='CN-';   
-            $rowNumber++;
+        } 
+
+    }
+    $rowNumber++;
+    $rowNumber++;
+    $rowNumber++;
+
+    $currentPosition= 0 ;
+    $sheet->setCellValue(getNextAlpha() . $rowNumber,  ' Cridit Note Table'); 
+
+    $rowNumber++;
+    $rowNumber++; 
+
+
+    $currentPosition= 0 ;
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'Invoice #');
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'Vessel');
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'G.R.T.');
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'Arrival');
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'Departure');
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'Shifting');
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'Port Fess');
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'Anchorage');
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'Marine S.');
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'Special S.'); 
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'Total');
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'VAT');
+    $sheet->setCellValue(getNextAlpha() .$rowNumber ,  'Total With VAT'); 
+
+    $currentPosition= 0 ;	  
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, $InvoiceID);
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, $row['ShipName']);
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, $row['ShipWeight']);
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeInPrice']) , 2, ".", "") );  
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeOutPrice']) , 2, ".", "") );  
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MovePortPrice']) , 2, ".", "") );  
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeBathPrice']) , 2, ".", "") );  
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeAnchoragePrice']) , 2, ".", "") );  
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSTOTAL']) , 2, ".", "") );  
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['SSTOTAL']) , 2, ".", "") );   
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['TOTAL']) , 2, ".", "") );  
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT']) , 2, ".", "") );  
+    $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT_TOTAL']) , 2, ".", "") ); 
+
+  
+    $result = $dbop->query($SQL)->fetchAll(); 
+    foreach($result as $row){  
+        $Status =intval($row['Status']); 
+        $currentPosition= 0 ;
+
+		if($Status == 0){    
+            $invoiceStart='CN-';    
+            $currentPosition= 0 ;	 
             $InvoiceID=$invoiceStart.$row['InvoiceID'];
-            $currentPosition= 0 ;	
             $sheet->setCellValue(getNextAlpha() . $rowNumber, $InvoiceID);
             $sheet->setCellValue(getNextAlpha() . $rowNumber, $row['ShipName']);
             $sheet->setCellValue(getNextAlpha() . $rowNumber, $row['ShipWeight']);
-            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeInPrice'])* $CNFactor , 2, ".", "") );  
-            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeOutPrice'])* $CNFactor , 2, ".", "") );  
-            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MovePortPrice'])* $CNFactor , 2, ".", "") );  
-            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeBathPrice'])* $CNFactor , 2, ".", "") );  
-            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeAnchoragePrice'])* $CNFactor , 2, ".", "") );  
-            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSTOTAL'])* $CNFactor , 2, ".", "") );  
-            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['SSTOTAL'])* $CNFactor , 2, ".", "") );   
-            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['TOTAL'])* $CNFactor , 2, ".", "") );  
-            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT'])* $CNFactor , 2, ".", "") );  
-            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT_TOTAL'])* $CNFactor , 2, ".", "") );   
+            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeInPrice']) , 2, ".", "") );  
+            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeOutPrice']) , 2, ".", "") );  
+            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MovePortPrice']) , 2, ".", "") );  
+            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeBathPrice']) , 2, ".", "") );  
+            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSericeAnchoragePrice']) , 2, ".", "") );  
+            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['MSTOTAL']) , 2, ".", "") );  
+            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['SSTOTAL']) , 2, ".", "") );   
+            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['TOTAL']) , 2, ".", "") );  
+            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT']) , 2, ".", "") );  
+            $sheet->setCellValue(getNextAlpha() . $rowNumber, number_format( floatval($row['VAT_TOTAL']) , 2, ".", "") );   
+             
+            
 		} 
         $rowNumber++;
     }
 //  ============================================
     // Save the spreadsheet to a file
-    $writer = new Xlsx($spreadsheet);
-    $filename = 'Monthly_'.$string.'_data.xlsx'; 
+    $writer = new Xlsx($spreadsheet); 
+    $formattedDateTime = date('ymdHis');
+    $filename = 'Monthly_'.$string.'_'.$formattedDateTime.'.xlsx'; 
     // Set headers for download
     
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
