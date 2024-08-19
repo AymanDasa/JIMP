@@ -167,14 +167,14 @@ if(isset($_POST['add'])){
 
 
 
-	$Service_ID	= stripslashes(htmlentities( strip_tags($_POST['Service_ID'] )));
+	$Service_ID	= stripslashes(strip_tags(htmlspecialchars($_POST['Service_ID']	, ENT_QUOTES )));
 	$Service_ID	= intval($Service_ID); 
-	$SSQut		= stripslashes(htmlentities( strip_tags($_POST['SSQut'] )));
+	$SSQut		= stripslashes(strip_tags(htmlspecialchars($_POST['SSQut'] 		, ENT_QUOTES )));
 	$SSQut 		= floatval($SSQut);
-	$SSUPrice		= stripslashes(htmlentities( strip_tags($_POST['SSUPrice'] )));
+	$SSUPrice	= stripslashes(strip_tags(htmlspecialchars($_POST['SSUPrice'] 	, ENT_QUOTES )));
 	$SSUPrice 	= floatval($SSUPrice);
-	$SSNote		= stripslashes(htmlentities( strip_tags($_POST['SSNote'] )));
-	$invoiceID	= stripslashes(htmlentities( strip_tags($_POST['invoiceID'] ))); 
+	$SSNote		= stripslashes(strip_tags(htmlspecialchars($_POST['SSNote'] 	, ENT_QUOTES )));
+	$invoiceID	= stripslashes(strip_tags(htmlspecialchars($_POST['invoiceID'] 	, ENT_QUOTES )));
 	$invoiceID	= intval($invoiceID);
 	
 

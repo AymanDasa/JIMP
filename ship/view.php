@@ -30,10 +30,10 @@
 					$VAT	=	stripslashes(htmlentities( strip_tags($_POST['VAT'] )));}
 					else{$VAT=0;}     
 				if($DuplicateIMO){echo "ERROR IMO : ".$IMO; exit();} 
-						$IMO		=  	stripslashes(htmlentities( strip_tags($_POST['IMO'] )));
-						$ShipName	= 	stripslashes(htmlentities( strip_tags($_POST['ShipName'] )));
-						$Notes		=  	stripslashes(htmlentities( strip_tags($_POST['Notes'] )));
-						$Weight		=  	stripslashes(htmlentities( strip_tags($_POST['Weight'] )));
+						$IMO		=  	stripslashes(strip_tags(htmlspecialchars($_POST['IMO'] 		, ENT_QUOTES )));
+						$ShipName	= 	stripslashes(strip_tags(htmlspecialchars($_POST['ShipName'] , ENT_QUOTES )));
+						$Notes		=  	stripslashes(strip_tags(htmlspecialchars($_POST['Notes'] 	, ENT_QUOTES )));
+						$Weight		=  	stripslashes(strip_tags(htmlspecialchars($_POST['Weight'] 	, ENT_QUOTES )));
 						$Weight		=  	floatval($Weight);
 						if($debug){echo "<b>VAT :</b>".$VAT."<br>";} 
 				if($VAT=='on'){$VAT=1;}else{$VAT=0;}
