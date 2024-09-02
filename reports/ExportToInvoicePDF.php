@@ -1,6 +1,7 @@
 <?php 
 use Dompdf\Dompdf;
 use Dompdf\Options;
+// THID FILE FOR EXPORT THE PDF FROM TO
 require '../../dompdf/vendor/autoload.php';
 $options = new Options();
 $options->set('defaultFont', 'Arabic');
@@ -11,8 +12,20 @@ $Arabic = new ArPHP\I18N\Arabic();
 Require_once( "C:\\wow\\password\\config.php"); 
 Require_once("../include/auth.php"); 
 Require_once("../include/config.php"); 
+
+include_once('../../phpqrcode/qrlib.php');
 $orginalinvoiceStart=$invoiceStart;
 $xi=0;
+function zatca_base64_tlv_encode($seller_name, $vat_registration_number, $invoice_datetime, $invoice_amount, $invoice_tax_amount)
+	{
+	    $result = chr(1) . chr( strlen($seller_name) ) . $seller_name;
+	    $result.= chr(2) . chr( strlen($vat_registration_number) ) . $vat_registration_number;
+	    $result.= chr(3) . chr( strlen($invoice_datetime) ) . $invoice_datetime;
+	    $result.= chr(4) . chr( strlen($invoice_amount) ) . $invoice_amount;
+	    $result.= chr(5) . chr( strlen($invoice_tax_amount) ) . $invoice_tax_amount;
+	    return base64_encode($result);
+	}
+
 function X0X($myText)
 	{
 		$digit = intval($myText); 
@@ -26,6 +39,7 @@ function X0X($myText)
 		   $year = (int)$dateTime->format("Y"); 
 		   if ($year < 2000) {return false; } else { return True;} } else { return false; }
 	}
+	
 	$html='   
 	<html> 
 	<head>
@@ -246,6 +260,13 @@ for($InvoiceID=$FromInvoice;$InvoiceID<=$ToInvoice; $InvoiceID++)
   ########################################################################################################## 
   ##########################################################################################################   
 */ 
+
+// QR FUNCTION 
+	$QR= zatca_base64_tlv_encode(  
+	$CompanyName,$company_vat,$InvoiceDate,   $TOTAL,   $VAT); 
+	QRcode::png($QR, '../reports/phpqrcode/invoiceQR_'.$InvoiceID.'.png','S' ,2, 0);  
+// END QR FUNCTION
+
 $html.=' 
 <footer> 	
 	<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
@@ -308,13 +329,10 @@ $html.='
 $html.=' 
 	<table dir="ltr" width=100% style="border-collapse:collapse; z-index:4" cellpadding="0" cellspacing="0" border="0">
 		<tbody> 
-			<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 
-			<td align=left width=50% " >
-				'.$footerEN.'
-			</td>  
-			<td align=right width=50% "> 
-			 '.$footerAR.'
-			</td> 
+			<tr style="font-size:8px; border-top: solid; border-top-width: thin;"> 	 	
+						<td align=left width=40%">'.$footerEN.'</td>  
+						<td align=left width20%"><img src="phpqrcode/invoiceQR_'.$InvoiceID.'.png"></td>  
+						<td align=right width=40%">'.$footerAR.'</td> 
 			<tr>
 		</tbody>
 	</table> 
