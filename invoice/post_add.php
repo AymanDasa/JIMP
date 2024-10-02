@@ -790,7 +790,7 @@ VALUES (
 '$Status'
 )";
 
-
+if($debug){echo "<b>SQL_INSERT :</b><code>".$SQL_INSERT."</code><br>";}
 
 $dbop->query($SQL_INSERT); 
 }
