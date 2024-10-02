@@ -47,6 +47,8 @@
 							$f_name = $accounts["f_name"] ; 
 							$l_name = $accounts["l_name"] ;  
 							
+							
+						
 							 
 							if( isset($id) ){ 
 								// Attempt to execute the prepared statement  
@@ -64,15 +66,17 @@
 										$_SESSION["f_name"] = $f_name;   
 										$_SESSION["l_name"] = $l_name;         
 										$_SESSION["data6"] = '';  
-										$_SESSION["Activate2FA"] = $Activate2FA;  
+										$_SESSION["Activate2FA"] = $Activate2FA;  							
 										     
 										// Redirect user to 2fa page
 										
-										// TODO: add log file for timestamp for user access 
-
+										// TODO: add log file for timestamp for user access  
+										
+										
 										$invoices = $dbop->query('SELECT MAX(`id`) AS MAX_ID FROM users LIMIT 1;')->fetchAll();  
 										foreach ($invoices as $invoice) {$_SESSION["MAX_ID"]=  intval($invoice['MAX_ID'])+1; } 
-		
+										
+										
 										header("location: 2fa.php");
 									} else{
 										// Password is not valid, display a generic error message

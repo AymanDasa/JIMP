@@ -29,15 +29,15 @@
 
 			if($debug){echo "<b>_POST[save] :</b>".$_POST['save']."<br>";} 
 			if(isset($_POST['save'])){
-						$AgentNameAr=  	stripslashes(htmlentities( strip_tags($_POST['AgentNameAr'] )));
-						$AgentCR=  		stripslashes(htmlentities( strip_tags($_POST['AgentCR'] )));
-						$AgentEmail=  		stripslashes(htmlentities( strip_tags($_POST['AgentEmail'] )));
-						$AgentBilling=  stripslashes(htmlentities( strip_tags($_POST['AgentBilling'] )));
-						$AgentNameEn=  stripslashes(htmlentities( strip_tags($_POST['AgentNameEn'] )));
-						$AgentEx2=  stripslashes(htmlentities( strip_tags($_POST['AgentEx2'] )));
-						$AgentPhone=  stripslashes(htmlentities( strip_tags($_POST['AgentPhone'] )));
-						$AgentContactName=  stripslashes(htmlentities( strip_tags($_POST['AgentContactName'] ))); 
-						$AgentNotes=  stripslashes(htmlentities( strip_tags($_POST['AgentNotes'] ))); 
+						$AgentNameAr=  		stripslashes(strip_tags(htmlspecialchars($_POST['AgentNameAr'] 	, ENT_QUOTES )));
+						$AgentCR=  			stripslashes(strip_tags(htmlspecialchars($_POST['AgentCR'] 		, ENT_QUOTES )));
+						$AgentEmail=  		stripslashes(strip_tags(htmlspecialchars($_POST['AgentEmail'] 	, ENT_QUOTES )));
+						$AgentBilling=  	stripslashes(strip_tags(htmlspecialchars($_POST['AgentBilling'] , ENT_QUOTES )));
+						$AgentNameEn=  		stripslashes(strip_tags(htmlspecialchars($_POST['AgentNameEn'] 	, ENT_QUOTES )));
+						$AgentEx2=  		stripslashes(strip_tags(htmlspecialchars($_POST['AgentEx2'] 	, ENT_QUOTES )));
+						$AgentPhone=  		stripslashes(strip_tags(htmlspecialchars($_POST['AgentPhone'] 	, ENT_QUOTES )));
+						$AgentContactName=  stripslashes(strip_tags(htmlspecialchars($_POST['AgentContactName'] , ENT_QUOTES )));
+						$AgentNotes=  		stripslashes(strip_tags(htmlspecialchars($_POST['AgentNotes']	, ENT_QUOTES )));
   
 						if($debug){echo "<b>AgentID :</b>".$AgentID."<br>";} 
 

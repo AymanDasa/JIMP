@@ -29,7 +29,7 @@ if(1) {
 	$Status
 
 */
-if(isset($_POST['reason'])){$reason=stripslashes(htmlentities(strip_tags($_POST['reason'])));}else{$reason='';}
+if(isset($_POST['reason'])){$reason=stripslashes(strip_tags(htmlspecialchars($_POST['reason']	, ENT_QUOTES)));}else{$reason='';}
 	if(isset($_POST['InvoiceID'])){$InvoiceID = intval($_POST['InvoiceID']);}
 	if(isset($_GET['InvoiceID'])) {$InvoiceID = intval($_GET['InvoiceID']);}
 	if($InvoiceID>0){$query = "SELECT *  FROM `credit`;"; }else{}

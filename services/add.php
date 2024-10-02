@@ -11,16 +11,16 @@
 		if(isset($_POST['add'])){
 			
 			
-					$code		=  	stripslashes(htmlentities( strip_tags($_POST['code'] )));
-					$Description		= 	stripslashes(htmlentities( strip_tags($_POST['Description'] )));
-					$ServiceType			=  	stripslashes(htmlentities( strip_tags($_POST['ServiceType'] )));
-					$Unit			=  	stripslashes(htmlentities( strip_tags($_POST['Unit'] )));
-					$WeightFactor		=  	stripslashes(htmlentities( strip_tags($_POST['WeightFactor'] )));
-					$DoubleFactor			=  	stripslashes(htmlentities( strip_tags($_POST['DoubleFactor'] )));
-					$ProfitPercent			=  	stripslashes(htmlentities( strip_tags($_POST['ProfitPercent'] )));
-					$Cost	=  	stripslashes(htmlentities( strip_tags($_POST['Cost'] )));
-					$MinCost			=  	stripslashes(htmlentities( strip_tags($_POST['MinCost'] )));  
-					$Notes			=  	stripslashes(htmlentities( strip_tags($_POST['Notes'] )));  
+					$code			=  	stripslashes(strip_tags(htmlspecialchars($_POST['code'] 		, ENT_QUOTES )));
+					$Description	= 	stripslashes(strip_tags(htmlspecialchars($_POST['Description'] 	, ENT_QUOTES )));
+					$ServiceType	=  	stripslashes(strip_tags(htmlspecialchars($_POST['ServiceType'] 	, ENT_QUOTES )));
+					$Unit			=  	stripslashes(strip_tags(htmlspecialchars($_POST['Unit'] 		, ENT_QUOTES )));
+					$WeightFactor	=  	stripslashes(strip_tags(htmlspecialchars($_POST['WeightFactor']	, ENT_QUOTES )));
+					$DoubleFactor	=  	stripslashes(strip_tags(htmlspecialchars($_POST['DoubleFactor']	, ENT_QUOTES )));
+					$ProfitPercent	=  	stripslashes(strip_tags(htmlspecialchars($_POST['ProfitPercent'], ENT_QUOTES )));
+					$Cost			=  	stripslashes(strip_tags(htmlspecialchars($_POST['Cost'] 		, ENT_QUOTES )));
+					$MinCost		=  	stripslashes(strip_tags(htmlspecialchars($_POST['MinCost'] 		, ENT_QUOTES )));  
+					$Notes			=  	stripslashes(strip_tags(htmlspecialchars($_POST['Notes'] 		, ENT_QUOTES )));  
 		
 			$query_INSERT="INSERT INTO `services`  
 						(`code` ,`Description` ,`ServiceType` ,`Unit`,`WeightFactor`,`DoubleFactor`,`ProfitPercent`,`Cost`,`MinCost`,`Notes`)

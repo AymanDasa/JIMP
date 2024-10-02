@@ -1,6 +1,7 @@
 <?php 
 	use Dompdf\Dompdf;
 	use Dompdf\Options;
+	// THID FILE FOR EXPORT THE PDF
 	require '../../dompdf/vendor/autoload.php';
 	$options = new Options();
 	$options->set('isRemoteEnabled', true);

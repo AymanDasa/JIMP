@@ -6,5 +6,6 @@
 	} else { 
 		header("location: access/index.php");
 		exit;
+		
 	}
 ?> 
