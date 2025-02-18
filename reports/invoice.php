@@ -279,10 +279,11 @@ $html.='
 						<br>
 
 ';}else{
+	/*      Invoice removed as per Mr. Samer  */
 $html.='						
-						<span lang="ar-SA"> فــــاتــــورة 
-						</span><br>
-						INVOICE
+						 &nbsp; 
+						<br>
+						&nbsp;
 						<br>
 ';}
 $html.='						
