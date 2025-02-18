@@ -256,7 +256,7 @@ if( $VAT_TOTAL == $User_Total) {
                                                             <a href="view.php?id='.$InvoiceID.'" class="btn">
                                                            	 	<i class="fas fa-eye"></i>
 															</a> 
-                                                            <a href="../reports/invoice.php?id='.$InvoiceID.'" class="btn">
+                                                            <a href="../reports/invoice.php?id='.$InvoiceID.'" class="btn"  target="_blank">
                                                           		<i class="fas fa-file-pdf"></i>
 															</a>  
                                                         </div>

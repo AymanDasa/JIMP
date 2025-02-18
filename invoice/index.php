@@ -121,10 +121,10 @@ $IsActive = 0 ;
                               <i class="fas fa-pen-to-square"></i></a>   
 						';
 						if($debug){echo '
-							<a href="../reports/invoice2.php?id='.$invoice["InvoiceID"].'" class="btn">
+							<a href="../reports/invoice2.php?id='.$invoice["InvoiceID"].'" class="btn" target="_blank">
 							<i class="fas fa-cross"></i></a>';}
 						echo '
-						<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn">
+						<a href="../reports/invoice.php?id='.$invoice["InvoiceID"].'" class="btn" target="_blank">
                               <i class="fas fa-file-pdf"></i></a>
 						 
                                 <div  class="btn">'.$approve_text.'	</div>
