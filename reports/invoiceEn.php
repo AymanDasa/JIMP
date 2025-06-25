@@ -240,6 +240,24 @@
 		  .labele_j{
 			text-align:  justify;
 		  }
+		  
+		   
+@font-face {
+    font-family: "saudi_riyal";
+    src: url("fonts/saudi_riyal.woff2") format("woff2"),
+         url("fonts/saudi_riyal.woff") format("woff"),
+         url("fonts/saudi_riyal.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* Ensure the icon class correctly loads the Riyal symbol */
+  .icon-saudi_riyal::before {
+    content: "\e900";
+    font-family: "saudi_riyal" !important;
+    font-size: inherit;
+    color: inherit;
+  }
         </style>
     </head>
     <body> 
@@ -798,7 +816,7 @@ $html.='
    	<tr>  
 	   	<td align=right  width=50%	valign="middle" style="border-right-style:hidden"> &nbsp;</td>
 		<td align=left   width=20%	valign="middle" ><span lang="en-US"  class="labele1" >  General Marine Services</span></td> 
-		<td align=right  width=15% 	valign="middle"><span lang="en-US" class="datae1">'.number_format($MSTOTAL, 2).'</span></td> 
+		<td align=right  width=15% 	valign="middle"><span lang="en-US" class="datae1"><span class="icon-saudi_riyal"></span>'.number_format($MSTOTAL, 2).'</span></td> 
 	</tr>
 ';}
 if($SSTOTAL>0){
@@ -806,28 +824,28 @@ $html.='
     <tr> 
 		<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
 		<td align=left    valign="middle" ><span lang="en-US" class="labele1">  Special Marine Services</span></td> 
-		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($SSTOTAL, 2).'</span></td>  
+		<td align=right   valign="middle"><span lang="en-US"  class="datae1"><span class="icon-saudi_riyal"></span>'.number_format($SSTOTAL, 2).'</span></td>  
 	</tr>
 ';}
 $html.=' 
     <tr> 
 		<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
 		<td align=left    valign="middle" ><span lang="en-US" class="labele1">Subtotal </span></td> 
-		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($TOTAL, 2).'</span></td> 
+		<td align=right   valign="middle"><span lang="en-US"  class="datae1"><span class="icon-saudi_riyal"></span>'.number_format($TOTAL, 2).'</span></td> 
 		
 	</tr>
 	<tr>
 	
 		<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td>
 		<td align=left    valign="middle" ><span lang="en-US" class="labele1">VAT</span></td> 
-		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($VAT, 2).'</span></td> 
+		<td align=right   valign="middle"><span lang="en-US"  class="datae1"><span class="icon-saudi_riyal"></span>'.number_format($VAT, 2).'</span></td> 
 		
 	</tr>
 	<tr>
 	
 	<td align=right   valign="middle" style="border-right-style:hidden"> &nbsp;</td> 
 		<td align=left    valign="middle" ><span lang="en-US" class="labele1">Total</span></td> 
-		<td align=right   valign="middle"><span lang="en-US"  class="datae1">'.number_format($VAT_TOTAL, 2).'</span></td> 
+		<td align=right   valign="middle"><span lang="en-US"  class="datae1"><span class="icon-saudi_riyal"></span>'.number_format($VAT_TOTAL, 2).'</span></td> 
 		
 	</tr>
   </tbody>

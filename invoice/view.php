@@ -294,70 +294,70 @@
                       <tr> 
                           <td>Marine Services</td> 
                           <td style="text-align: right;"> اجرة القدوم </td> 
-                          <td style="text-align: right;"><?php echo number_format($MSericeInPrice, 2);?></td>
+                          <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($MSericeInPrice, 2);?></td>
                       </tr>
                     <?php }
                     if($MSericeOutPrice){?>
                       <tr> 
                           <td>Marine Services</td> 
                           <td style="text-align: right;"> اجرة المغادرة </td> 
-                          <td style="text-align: right;"><?php echo number_format($MSericeOutPrice, 2);?></td>
+                          <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($MSericeOutPrice, 2);?></td>
                       </tr>
                     <?php }
                     if($MovePortPrice){?>
                       <tr> 
                           <td>Marine Services</td> 
                           <td style="text-align: right;">  اجرة الإنتقال </td> 
-                          <td style="text-align: right;"><?php echo number_format($MovePortPrice, 2);?></td>
+                          <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($MovePortPrice, 2);?></td>
                       </tr>
                     <?php }
                     if($MSericeBathPrice){?>
                       <tr> 
                           <td>Marine Services</td> 
                           <td style="text-align: right;">  اجرة الرصيف </td> 
-                          <td style="text-align: right;"><?php echo number_format($MSericeBathPrice, 2);?></td>
+                          <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($MSericeBathPrice, 2);?></td>
                       </tr>
                     <?php }
                     if($MSericeAnchoragePrice){?>
                       <tr> 
                           <td>Marine Services</td> 
                           <td style="text-align: right;"> اجرة المخطاف </td> 
-                          <td style="text-align: right;"><?php echo number_format($MSericeAnchoragePrice, 2);?></td>
+                          <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($MSericeAnchoragePrice, 2);?></td>
                       </tr>
                     <?php  } 
                       if($SSPrice1){?>
                       <tr> 
                           <td>Special Services</td>
                           <td style="text-align: right;"><?php echo $SSName1;?></td> 
-                          <td style="text-align: right;"><?php echo number_format($SSPrice1, 2);?></td>
+                          <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($SSPrice1, 2);?></td>
                       </tr>
                       <?php } 
                     if($SSPrice2){?>
                       <tr> 
                           <td>Special Services</td>
                           <td style="text-align: right;"><?php echo $SSName2;?></td> 
-                          <td style="text-align: right;"><?php echo number_format($SSPrice2, 2);?></td>
+                          <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($SSPrice2, 2);?></td>
                       </tr>
                       <?php } 
                     if($SSPrice3){?>
                       <tr> 
                           <td>Special Services</td>
                           <td style="text-align: right;"><?php echo $SSName3;?></td> 
-                          <td style="text-align: right;"><?php echo number_format($SSPrice3, 2);?></td>
+                          <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($SSPrice3, 2);?></td>
                       </tr>
                       <?php } 
                     if($SSPrice4){?>
                       <tr> 
                           <td>Special Services</td>
                           <td style="text-align: right;"><?php echo $SSName4;?></td> 
-                          <td style="text-align: right;"><?php echo number_format($SSPrice4, 2);?></td>
+                          <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($SSPrice4, 2);?></td>
                       </tr>
                       <?php } 
                     if($SSPrice5){?>
                       <tr> 
                           <td>Special Services</td>
                           <td style="text-align: right;"><?php echo $SSName5;?></td> 
-                          <td style="text-align: right;"><?php echo number_format($SSPrice5, 2);?></td>
+                          <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($SSPrice5, 2);?></td>
                       </tr><?php }  ?>
                     </tbody>
                   </table>
@@ -378,27 +378,27 @@
                     <table class="table">
                       <tr>
                         <th style="width:50%"><b>Service</b></th>
-                        <td style="text-align: right;"><b>SAR</b></td>
+                        <td style="text-align: right;"><b><span class="icon-saudi_riyal"></span></b></td>
                       </tr>
                       <tr>
                         <th style="width:50%">Marine Services:</th>
-                        <td style="text-align: right;"><?php echo number_format($MSTOTAL, 2);?></td>
+                        <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($MSTOTAL, 2);?></td>
                       </tr>
                       <tr>
                         <th style="width:50%">Special Service:</th>
-                        <td style="text-align: right;"><?php echo number_format($SSTOTAL, 2);?></td>
+                        <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($SSTOTAL, 2);?></td>
                       </tr>
                       <tr>
                         <th style="width:50%">Sub Total:</th>
-                        <td style="text-align: right;"><?php echo number_format($TOTAL, 2);?></td>
+                        <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($TOTAL, 2);?></td>
                       </tr>
                       <tr>
                         <th>VAT (15%)</th>
-                        <td style="text-align: right;"><?php echo number_format($VAT, 2);?></td>
+                        <td style="text-align: right;"><span class="icon-saudi_riyal"></span><?php echo number_format($VAT, 2);?></td>
                       </tr> 
                       <tr>
                         <th>Grand Total:</th>
-                        <td style="text-align: right;"><b><?php echo number_format($VAT_TOTAL, 2);?></b></td>
+                        <td style="text-align: right;"><span class="icon-saudi_riyal"></span><b><?php echo number_format($VAT_TOTAL, 2);?></b></td>
                       </tr>
                     </table>
                   </div>

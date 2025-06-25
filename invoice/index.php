@@ -75,9 +75,9 @@ $IsActive = 0 ;
                       <th>Date</th> 
                       <th>Ship Name</th> 
                       <th>Agent Name</th>
-                      <th>TOTAL</th>
-                      <th>VAT</th>
-                      <th>TOTAL (SAR)</th>
+                      <th>TOTAL <span class="icon-saudi_riyal"></span></th>
+                      <th>VAT <span class="icon-saudi_riyal"></span></th>
+                      <th>TOTAL <span class="icon-saudi_riyal"></span></th>
                       <th>View</th>
                   </tr>
                   </thead>
@@ -108,9 +108,9 @@ $IsActive = 0 ;
                           <td>'.date_format($date1,"Y-m-d"). ' </td>  
                           <td>'.$ShipName.'  </td>
                           <td>'.$AgentNameEn. ' </td> 
-                          <td> '.number_format($TOTAL,2,"."). '</td> 
-                          <td> '.number_format($VAT,2,"."). '</td> 
-                          <td style="text-align: right;">'.number_format($VAT_TOTAL,2,"."). ' </td> 
+                          <td> <span class="icon-saudi_riyal"></span> '.number_format($TOTAL,2,"."). '</td> 
+                          <td> <span class="icon-saudi_riyal"></span> '.number_format($VAT,2,"."). '  </td> 
+                          <td style="text-align: right;"> <span class="icon-saudi_riyal"></span> '.number_format($VAT_TOTAL,2,"."). '  </td> 
                            
                           <td>  
 
