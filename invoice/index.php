@@ -63,8 +63,10 @@ $IsActive = 0 ;
                 <h3 class="card-title">List of all Invoices</h3>
                   <div class="card-tools"> 
                     <a href="add.php" class="btn btn-app-x">  <i class="fas fa-plus"></i>  </a>	
-                    
+		
+				   <a href="#" class="btn btn-app-x" > <span class="badge bg-danger" style="position: absolute; top: -10px; left:35px; font-size:16px;">New</span> <span class="icon-saudi_riyal"></span>  </a>
                   </div>
+				  
               </div> 
               <!-- /.card-header -->
               <div class="card-body">
