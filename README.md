@@ -58,6 +58,7 @@ This step is essential for setting up the project database.
 ## 8. DomPDF
 ### Clone DomPDF repository and install dependencies
 Clone the DomPDF repository using the following commands:
+Enable `extension=gd` in C:Xamp\php\php.ini
 ```bash
 git clone https://github.com/dompdf/dompdf
 cd dompdf
